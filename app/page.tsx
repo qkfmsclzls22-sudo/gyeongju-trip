@@ -146,11 +146,11 @@ export default function Home() {
                 className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300 group block"
               >
                 {/* 배너 이미지 */}
-                <div className={`relative h-52 overflow-hidden bg-gradient-to-br ${tour.bgFrom} ${tour.bgTo}`}>
+                <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${tour.bgFrom} ${tour.bgTo}`}>
                   <img
                     src={tour.image}
                     alt={tour.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                   />
                   {/* 이미지 없을 때 텍스트 오버레이 */}
