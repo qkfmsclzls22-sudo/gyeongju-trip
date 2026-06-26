@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 const tours = [
   {
     id: 1,
@@ -62,6 +64,99 @@ const tours = [
     badge: "추천",
   },
 ];
+
+function TourSlider() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % tours.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const tour = tours[current];
+
+  return (
+    <div className="relative">
+      {/* 슬라이드 카드 */}
+      <a
+        href={`/tours/${tour.slug}`}
+        className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300 group block"
+      >
+        <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${tour.bgFrom} ${tour.bgTo}`}>
+          <img
+            src={tour.image}
+            alt={tour.title}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+          />
+          <div className="absolute inset-0 flex items-end p-5 bg-gradient-to-t from-black/40 to-transparent">
+            <p className="text-white text-sm font-bold leading-snug drop-shadow">
+              {tour.category === "박물관" && "역사 도슨트 프리미엄 투어"}
+              {tour.category === "야경" && "청사초롱 신라별빛야행"}
+              {tour.category === "불국사" && "불국사 X 석굴암 역사투어"}
+            </p>
+          </div>
+          <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+            {tour.discount}% OFF
+          </span>
+        </div>
+        <div className="p-6">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="bg-amber-100 text-amber-700 text-xs font-medium px-2 py-1 rounded-full">{tour.badge}</span>
+            <span className="text-xs text-gray-400">★ {tour.rating} ({tour.reviews.toLocaleString()}건)</span>
+            <span className="text-xs text-gray-400 ml-auto">{tour.duration}</span>
+          </div>
+          <h3 className="font-bold text-gray-900 mb-2 text-base leading-tight">{tour.title}</h3>
+          <p className="text-gray-500 text-sm mb-4 leading-relaxed">{tour.description}</p>
+          <div className="flex flex-wrap gap-1 mb-4">
+            {tour.times.map((t) => (
+              <span key={t} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">🕐 {t}</span>
+            ))}
+          </div>
+          <div className="border-t border-gray-100 pt-4 flex items-end justify-between">
+            <div>
+              <div className="text-xs text-gray-400 line-through mb-0.5">{tour.originalPrice.toLocaleString()}원</div>
+              <div className="text-xl font-bold text-red-500">{tour.price.toLocaleString()}원</div>
+              {tour.childPrice !== tour.price && (
+                <div className="text-xs text-gray-400 mt-1">어린이 {tour.childPrice.toLocaleString()}원</div>
+              )}
+            </div>
+            <span className="bg-gray-900 group-hover:bg-amber-500 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors">
+              자세히 보기
+            </span>
+          </div>
+        </div>
+      </a>
+
+      {/* 인디케이터 */}
+      <div className="flex justify-center gap-2 mt-4">
+        {tours.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all ${i === current ? "bg-amber-500 w-6" : "bg-gray-300"}`}
+          />
+        ))}
+      </div>
+
+      {/* 좌우 버튼 */}
+      <button
+        onClick={() => setCurrent((prev) => (prev - 1 + tours.length) % tours.length)}
+        className="absolute left-2 top-36 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-8 h-8 rounded-full shadow flex items-center justify-center text-sm"
+      >
+        ‹
+      </button>
+      <button
+        onClick={() => setCurrent((prev) => (prev + 1) % tours.length)}
+        className="absolute right-2 top-36 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 w-8 h-8 rounded-full shadow flex items-center justify-center text-sm"
+      >
+        ›
+      </button>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -138,14 +233,17 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">투어 프로그램</h2>
             <p className="text-gray-500">모든 투어는 전문 문화해설사가 직접 진행합니다</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* 모바일: 슬라이더 / PC: 3열 그리드 */}
+          <div className="md:hidden">
+            <TourSlider />
+          </div>
+          <div className="hidden md:grid md:grid-cols-3 gap-6">
             {tours.map((tour) => (
               <a
                 key={tour.id}
                 href={`/tours/${tour.slug}`}
                 className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300 group block"
               >
-                {/* 배너 이미지 */}
                 <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${tour.bgFrom} ${tour.bgTo}`}>
                   <img
                     src={tour.image}
@@ -153,7 +251,6 @@ export default function Home() {
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                   />
-                  {/* 이미지 없을 때 텍스트 오버레이 */}
                   <div className="absolute inset-0 flex items-end p-5 bg-gradient-to-t from-black/40 to-transparent">
                     <p className="text-white text-sm font-bold leading-snug drop-shadow">
                       {tour.category === "박물관" && "역사 도슨트 프리미엄 투어"}
@@ -165,12 +262,9 @@ export default function Home() {
                     {tour.discount}% OFF
                   </span>
                 </div>
-
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="bg-amber-100 text-amber-700 text-xs font-medium px-2 py-1 rounded-full">
-                      {tour.badge}
-                    </span>
+                    <span className="bg-amber-100 text-amber-700 text-xs font-medium px-2 py-1 rounded-full">{tour.badge}</span>
                     <span className="text-xs text-gray-400">★ {tour.rating} ({tour.reviews.toLocaleString()}건)</span>
                     <span className="text-xs text-gray-400 ml-auto">{tour.duration}</span>
                   </div>
@@ -178,23 +272,15 @@ export default function Home() {
                   <p className="text-gray-500 text-sm mb-4 leading-relaxed">{tour.description}</p>
                   <div className="flex flex-wrap gap-1 mb-4">
                     {tour.times.map((t) => (
-                      <span key={t} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                        🕐 {t}
-                      </span>
+                      <span key={t} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">🕐 {t}</span>
                     ))}
                   </div>
                   <div className="border-t border-gray-100 pt-4 flex items-end justify-between">
                     <div>
-                      <div className="text-xs text-gray-400 line-through mb-0.5">
-                        {tour.originalPrice.toLocaleString()}원
-                      </div>
-                      <div className="text-xl font-bold text-red-500">
-                        {tour.price.toLocaleString()}원
-                      </div>
+                      <div className="text-xs text-gray-400 line-through mb-0.5">{tour.originalPrice.toLocaleString()}원</div>
+                      <div className="text-xl font-bold text-red-500">{tour.price.toLocaleString()}원</div>
                       {tour.childPrice !== tour.price && (
-                        <div className="text-xs text-gray-400 mt-1">
-                          어린이 {tour.childPrice.toLocaleString()}원
-                        </div>
+                        <div className="text-xs text-gray-400 mt-1">어린이 {tour.childPrice.toLocaleString()}원</div>
                       )}
                     </div>
                     <span className="bg-gray-900 group-hover:bg-amber-500 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors">
