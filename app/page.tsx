@@ -67,6 +67,7 @@ const tours = [
 
 function TourSlider() {
   const [current, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -77,8 +78,29 @@ function TourSlider() {
 
   const tour = tours[current];
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setCurrent((prev) => (prev + 1) % tours.length);
+      } else {
+        setCurrent((prev) => (prev - 1 + tours.length) % tours.length);
+      }
+    }
+    setTouchStart(null);
+  };
+
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* 슬라이드 카드 */}
       <a
         href={`/tours/${tour.slug}`}
