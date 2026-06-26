@@ -214,41 +214,64 @@ export default function Home() {
       </header>
 
       {/* 히어로 섹션 */}
-      <section className="relative pt-20 min-h-screen flex items-center overflow-hidden bg-gray-950">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-indigo-950 to-gray-900" />
-        <div className="absolute inset-0 opacity-20"
+      <section className="relative pt-20 min-h-screen flex items-center overflow-hidden">
+        {/* 따뜻한 경주 느낌 배경 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-950 via-stone-900 to-amber-900" />
+        {/* 기와 패턴 느낌 오버레이 */}
+        <div className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: "radial-gradient(ellipse at 20% 50%, #f59e0b44 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, #3b82f644 0%, transparent 50%)"
+            backgroundImage: "radial-gradient(ellipse at 30% 40%, #fbbf2444 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, #d9770644 0%, transparent 50%), radial-gradient(ellipse at 60% 10%, #92400e33 0%, transparent 40%)"
           }}
         />
+
         <div className="relative max-w-6xl mx-auto px-4 py-24 text-center w-full">
           <p className="text-amber-400 font-medium mb-6 tracking-[0.3em] text-sm">GYEONGJU TRIP</p>
+
+          {/* 경주 랜드마크 아이콘 */}
+          <div className="flex justify-center gap-6 mb-8 text-3xl md:text-4xl opacity-80">
+            <span title="왕릉">🏔️</span>
+            <span title="불국사">⛩️</span>
+            <span title="첨성대">🗼</span>
+            <span title="박물관">🏛️</span>
+            <span title="한옥">🏯</span>
+          </div>
+
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            천년의 도시 경주<br />
-            <span className="text-amber-400">달빛과 함께 걷는</span><br />
-            <span className="text-2xl md:text-4xl font-medium text-gray-300">감성문화여행</span>
+            신라 천년의 숨결<br />
+            <span className="text-amber-400">경주의 모든 여행</span><br />
+            <span className="text-2xl md:text-4xl font-medium text-amber-200">한 곳에서 만나다</span>
           </h1>
-          <p className="text-gray-400 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
-            전문 문화해설사와 함께하는 프리미엄 역사투어.<br />
-            오직 경주트립에서만 가능한 특별한 경험.
+          <p className="text-amber-100/70 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+            왕릉, 기와, 한옥, 불국사, 첨성대까지.<br />
+            경주의 모든 역사와 문화를 경주트립에서 경험하세요.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#tours" className="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-3 rounded-full transition-colors text-lg">
               투어 보기 →
             </a>
-            <a href="#contact" className="border border-gray-600 hover:border-amber-400 text-gray-300 hover:text-amber-400 font-semibold px-8 py-3 rounded-full transition-colors text-lg">
+            <a href="#contact" className="border border-amber-700 hover:border-amber-400 text-amber-200 hover:text-amber-400 font-semibold px-8 py-3 rounded-full transition-colors text-lg">
               단체 문의
             </a>
           </div>
-          <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-gray-800 pt-10">
+
+          {/* 경주 랜드마크 태그 */}
+          <div className="mt-10 flex flex-wrap justify-center gap-2">
+            {["대릉원 왕릉", "불국사·석굴암", "첨성대", "동궁과월지", "국립경주박물관", "황리단길", "월정교"].map((tag) => (
+              <span key={tag} className="bg-amber-900/50 text-amber-300 border border-amber-700/50 text-xs px-3 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-amber-800/50 pt-10">
             {[
               { num: "1,310+", label: "누적 리뷰" },
               { num: "4.92★", label: "평균 평점" },
-              { num: "3종", label: "프리미엄 투어" },
+              { num: "경주 전문", label: "투어 플랫폼" },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-2xl font-bold text-white">{stat.num}</div>
-                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+                <div className="text-sm text-amber-400/70 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -343,11 +366,12 @@ export default function Home() {
             <div>
               <p className="text-amber-600 font-medium mb-3 text-sm tracking-wider">ABOUT US</p>
               <h2 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
-                경주를 가장 잘 아는<br />사람들이 안내합니다
+                경주의 모든 여행을<br />한 곳에서
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                경주트립은 경주 전문 문화해설사들이 운영하는 프리미엄 역사문화 투어 서비스입니다.
-                출시 3개월 만에 네이버 우수셀러 프리미엄 등급을 달성한, 검증된 투어 브랜드입니다.
+                경주트립은 단순한 투어 회사가 아닙니다.<br />
+                대릉원 왕릉부터 황리단길 한옥카페까지, 경주의 모든 것을 연결하는 경주 전문 여행 플랫폼입니다.<br />
+                출시 3개월 만에 네이버 우수셀러 프리미엄 등급을 달성한 검증된 브랜드가 안내합니다.
               </p>
               <div className="space-y-3">
                 {[
