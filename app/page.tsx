@@ -87,7 +87,9 @@ function TourSlider() {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStart === null) return;
-    setDragX(e.touches[0].clientX - touchStart);
+    const dx = e.touches[0].clientX - touchStart;
+    if (Math.abs(dx) > 10) e.preventDefault();
+    setDragX(dx);
   };
 
   const handleTouchEnd = () => {
@@ -111,6 +113,7 @@ function TourSlider() {
         style={{
           transform: `translateX(calc(-${current * 100}% + ${dragX}px))`,
           transition: isDragging ? "none" : "transform 0.4s ease",
+          touchAction: "pan-y",
         }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
