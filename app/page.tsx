@@ -2,6 +2,72 @@
 
 import { useState, useEffect } from "react";
 
+const landmarks = [
+  {
+    slug: "cheomseongdae",
+    name: "첨성대",
+    subtitle: "동양 최고(最古)의 천문대",
+    image: "/images/landmark-cheomseongdae.jpg",
+    gradient: "from-indigo-950 via-blue-900 to-indigo-800",
+    emoji: "🗼",
+    summary: "신라 선덕여왕 때 건립, 1,400년을 버텨온 동양 최고의 천문 관측대",
+  },
+  {
+    slug: "daereungwon",
+    name: "대릉원",
+    subtitle: "신라 왕들이 잠든 고분군",
+    image: "/images/landmark-daereungwon.jpg",
+    gradient: "from-emerald-950 via-green-900 to-teal-900",
+    emoji: "⛰️",
+    summary: "경주 시내 한복판에 솟아오른 신라 왕족의 거대한 무덤들",
+  },
+  {
+    slug: "donggung-wolji",
+    name: "동궁과월지",
+    subtitle: "천년 신라의 별궁과 연못",
+    image: "/images/landmark-donggung-wolji.jpg",
+    gradient: "from-slate-950 via-blue-950 to-indigo-950",
+    emoji: "🌕",
+    summary: "야경이 가장 아름다운 경주의 보석, 신라 왕족의 연회 장소",
+  },
+  {
+    slug: "bulguksa",
+    name: "불국사",
+    subtitle: "유네스코 세계문화유산",
+    image: "/images/tour-bulguksa.jpg",
+    gradient: "from-stone-800 via-amber-900 to-stone-900",
+    emoji: "⛩️",
+    summary: "신라 불교 건축의 정수, 석가탑과 다보탑이 마주 선 천년 고찰",
+  },
+  {
+    slug: "seokguram",
+    name: "석굴암",
+    subtitle: "돌로 빚은 신라의 불심",
+    image: "/images/landmark-seokguram.jpg",
+    gradient: "from-gray-900 via-stone-800 to-amber-950",
+    emoji: "🗿",
+    summary: "토함산 정상 석굴 속에 앉아 동해를 바라보는 본존불",
+  },
+  {
+    slug: "woljeonggyo",
+    name: "월정교",
+    subtitle: "신라 최대의 교량 복원",
+    image: "/images/landmark-woljeonggyo.jpg",
+    gradient: "from-amber-950 via-orange-900 to-red-950",
+    emoji: "🌉",
+    summary: "남천 위에 복원된 신라 시대 다리, 야경이 황홀한 경주의 랜드마크",
+  },
+  {
+    slug: "hwangnidan",
+    name: "황리단길",
+    subtitle: "한옥과 감성 카페의 골목",
+    image: "/images/landmark-hwangnidan.jpg",
+    gradient: "from-rose-950 via-pink-900 to-fuchsia-950",
+    emoji: "🏯",
+    summary: "100년 한옥과 힙한 카페가 공존하는 경주 젊음의 거리",
+  },
+];
+
 const tours = [
   {
     id: 1,
@@ -65,6 +131,124 @@ const tours = [
   },
 ];
 
+function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    if (isDragging) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % landmarks.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isDragging]);
+
+  const prev = () => setCurrent((c) => (c - 1 + landmarks.length) % landmarks.length);
+  const next = () => setCurrent((c) => (c + 1) % landmarks.length);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    setDragX(e.touches[0].clientX - touchStart);
+  };
+  const handleTouchEnd = () => {
+    if (Math.abs(dragX) > 50) dragX < 0 ? next() : prev();
+    setDragX(0);
+    setIsDragging(false);
+    setTouchStart(null);
+  };
+
+  const lm = landmarks[current];
+
+  return (
+    <section
+      className="relative w-full h-screen overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* 배경 슬라이드 */}
+      {landmarks.map((l, i) => (
+        <div
+          key={l.slug}
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? "opacity-100" : "opacity-0"}`}
+        >
+          <div className={`absolute inset-0 bg-gradient-to-br ${l.gradient}`} />
+          <img
+            src={l.image}
+            alt={l.name}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+      ))}
+
+      {/* 콘텐츠 */}
+      <div className="relative h-full flex flex-col items-center justify-center text-center px-4 pt-16">
+        <p className="text-amber-400 font-medium tracking-[0.3em] text-sm mb-4">GYEONGJU TRIP</p>
+        <div className="text-6xl mb-6">{lm.emoji}</div>
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-3 drop-shadow-lg">
+          {lm.name}
+        </h1>
+        <p className="text-amber-300 text-lg md:text-xl font-medium mb-4">{lm.subtitle}</p>
+        <p className="text-white/80 text-sm md:text-base max-w-md mb-10 leading-relaxed">
+          {lm.summary}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 items-center">
+          <a
+            href={`/landmarks/${lm.slug}`}
+            className="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-3 rounded-full transition-colors text-base"
+          >
+            유적지 자세히 보기 →
+          </a>
+          <a
+            href="#tours"
+            className="border border-white/50 hover:border-white text-white/80 hover:text-white font-semibold px-8 py-3 rounded-full transition-colors text-base"
+          >
+            투어 예약하기
+          </a>
+        </div>
+      </div>
+
+      {/* 좌우 화살표 (PC) */}
+      <button
+        onClick={prev}
+        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white text-xl transition-colors"
+      >
+        ‹
+      </button>
+      <button
+        onClick={next}
+        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white text-xl transition-colors"
+      >
+        ›
+      </button>
+
+      {/* 인디케이터 */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
+        {landmarks.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-amber-400 w-8" : "bg-white/40 w-2"}`}
+          />
+        ))}
+      </div>
+
+      {/* 스크롤 유도 */}
+      <div className="absolute bottom-6 right-6 text-white/50 text-xs hidden md:block">
+        {current + 1} / {landmarks.length}
+      </div>
+    </section>
+  );
+}
+
 function TourSlider() {
   const [current, setCurrent] = useState(0);
   const [dragX, setDragX] = useState(0);
@@ -84,21 +268,16 @@ function TourSlider() {
     setIsDragging(true);
     setDragX(0);
   };
-
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStart === null) return;
     const dx = e.touches[0].clientX - touchStart;
     if (Math.abs(dx) > 10) e.preventDefault();
     setDragX(dx);
   };
-
   const handleTouchEnd = () => {
     if (Math.abs(dragX) > 50) {
-      if (dragX < 0) {
-        setCurrent((prev) => (prev + 1) % tours.length);
-      } else {
-        setCurrent((prev) => (prev - 1 + tours.length) % tours.length);
-      }
+      if (dragX < 0) setCurrent((prev) => (prev + 1) % tours.length);
+      else setCurrent((prev) => (prev - 1 + tours.length) % tours.length);
     }
     setDragX(0);
     setIsDragging(false);
@@ -107,7 +286,6 @@ function TourSlider() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* 슬라이드 트랙 */}
       <div
         className="flex"
         style={{
@@ -121,23 +299,16 @@ function TourSlider() {
       >
         {tours.map((tour) => (
           <div key={tour.id} className="w-full shrink-0">
-            <a
-              href={`/tours/${tour.slug}`}
-              className="rounded-2xl overflow-hidden bg-white shadow-sm block mx-1"
-            >
+            <a href={`/tours/${tour.slug}`} className="rounded-2xl overflow-hidden bg-white shadow-sm block mx-1">
               <div className={`relative h-72 overflow-hidden bg-gradient-to-br ${tour.bgFrom} ${tour.bgTo}`}>
                 <img
                   src={tour.image}
                   alt={tour.title}
                   className="w-full h-full object-cover object-center"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
                 <div className="absolute inset-0 flex items-end p-5 bg-gradient-to-t from-black/40 to-transparent">
-                  <p className="text-white text-sm font-bold leading-snug drop-shadow">
-                    {tour.category === "박물관" && "역사 도슨트 프리미엄 투어"}
-                    {tour.category === "야경" && "청사초롱 신라별빛야행"}
-                    {tour.category === "불국사" && "불국사 X 석굴암 역사투어"}
-                  </p>
+                  <p className="text-white text-sm font-bold leading-snug drop-shadow">{tour.title}</p>
                 </div>
                 <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
                   {tour.discount}% OFF
@@ -164,17 +335,13 @@ function TourSlider() {
                       <div className="text-xs text-gray-400 mt-1">어린이 {tour.childPrice.toLocaleString()}원</div>
                     )}
                   </div>
-                  <span className="bg-gray-900 text-white text-sm font-medium px-5 py-2 rounded-full">
-                    자세히 보기
-                  </span>
+                  <span className="bg-gray-900 text-white text-sm font-medium px-5 py-2 rounded-full">자세히 보기</span>
                 </div>
               </div>
             </a>
           </div>
         ))}
       </div>
-
-      {/* 인디케이터 */}
       <div className="flex justify-center gap-2 mt-4">
         {tours.map((_, i) => (
           <button
@@ -198,6 +365,7 @@ export default function Home() {
             <img src="/logo.png" alt="경주트립" className="h-14 w-auto" />
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="#landmarks" className="hover:text-gray-900 transition-colors">유적지</a>
             <a href="#tours" className="hover:text-gray-900 transition-colors">투어 보기</a>
             <a href="#about" className="hover:text-gray-900 transition-colors">소개</a>
             <a href="#contact" className="hover:text-gray-900 transition-colors">문의</a>
@@ -213,66 +381,41 @@ export default function Home() {
         </div>
       </header>
 
-      {/* 히어로 섹션 */}
-      <section className="relative pt-20 min-h-screen flex items-center overflow-hidden">
-        {/* 따뜻한 경주 느낌 배경 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-950 via-stone-900 to-amber-900" />
-        {/* 기와 패턴 느낌 오버레이 */}
-        <div className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "radial-gradient(ellipse at 30% 40%, #fbbf2444 0%, transparent 55%), radial-gradient(ellipse at 75% 70%, #d9770644 0%, transparent 50%), radial-gradient(ellipse at 60% 10%, #92400e33 0%, transparent 40%)"
-          }}
-        />
+      {/* 히어로: 유적지 슬라이드쇼 */}
+      <HeroSlider />
 
-        <div className="relative max-w-6xl mx-auto px-4 py-24 text-center w-full">
-          <p className="text-amber-400 font-medium mb-6 tracking-[0.3em] text-sm">GYEONGJU TRIP</p>
-
-          {/* 경주 랜드마크 아이콘 */}
-          <div className="flex justify-center gap-6 mb-8 text-3xl md:text-4xl opacity-80">
-            <span title="왕릉">🏔️</span>
-            <span title="불국사">⛩️</span>
-            <span title="첨성대">🗼</span>
-            <span title="박물관">🏛️</span>
-            <span title="한옥">🏯</span>
+      {/* 경주 주요 유적지 */}
+      <section id="landmarks" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <p className="text-amber-600 font-medium mb-3 text-sm tracking-widest">LANDMARKS</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">경주 주요 유적지</h2>
+            <p className="text-gray-500">천년 신라의 숨결이 살아있는 경주의 대표 유산들</p>
           </div>
-
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            신라 천년의 숨결<br />
-            <span className="text-amber-400">경주의 모든 여행</span><br />
-            <span className="text-2xl md:text-4xl font-medium text-amber-200">한 곳에서 만나다</span>
-          </h1>
-          <p className="text-amber-100/70 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
-            왕릉, 기와, 한옥, 불국사, 첨성대까지.<br />
-            경주의 모든 역사와 문화를 경주트립에서 경험하세요.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#tours" className="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-3 rounded-full transition-colors text-lg">
-              투어 보기 →
-            </a>
-            <a href="#contact" className="border border-amber-700 hover:border-amber-400 text-amber-200 hover:text-amber-400 font-semibold px-8 py-3 rounded-full transition-colors text-lg">
-              단체 문의
-            </a>
-          </div>
-
-          {/* 경주 랜드마크 태그 */}
-          <div className="mt-10 flex flex-wrap justify-center gap-2">
-            {["대릉원 왕릉", "불국사·석굴암", "첨성대", "동궁과월지", "국립경주박물관", "황리단길", "월정교"].map((tag) => (
-              <span key={tag} className="bg-amber-900/50 text-amber-300 border border-amber-700/50 text-xs px-3 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-amber-800/50 pt-10">
-            {[
-              { num: "1,310+", label: "누적 리뷰" },
-              { num: "4.92★", label: "평균 평점" },
-              { num: "경주 전문", label: "투어 플랫폼" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-2xl font-bold text-white">{stat.num}</div>
-                <div className="text-sm text-amber-400/70 mt-1">{stat.label}</div>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {landmarks.map((lm) => (
+              <a
+                key={lm.slug}
+                href={`/landmarks/${lm.slug}`}
+                className="group relative rounded-2xl overflow-hidden aspect-[3/4] block shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${lm.gradient}`} />
+                <img
+                  src={lm.image}
+                  alt={lm.name}
+                  className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="text-2xl mb-1">{lm.emoji}</div>
+                  <h3 className="text-white font-bold text-lg leading-tight">{lm.name}</h3>
+                  <p className="text-white/70 text-xs mt-1 leading-snug">{lm.subtitle}</p>
+                </div>
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="bg-amber-500 text-white text-xs font-medium px-2 py-1 rounded-full">자세히 →</span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
@@ -286,7 +429,6 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">투어 프로그램</h2>
             <p className="text-gray-500">모든 투어는 전문 문화해설사가 직접 진행합니다</p>
           </div>
-          {/* 모바일: 슬라이더 / PC: 3열 그리드 */}
           <div className="md:hidden">
             <TourSlider />
           </div>
@@ -302,14 +444,10 @@ export default function Home() {
                     src={tour.image}
                     alt={tour.title}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
                   <div className="absolute inset-0 flex items-end p-5 bg-gradient-to-t from-black/40 to-transparent">
-                    <p className="text-white text-sm font-bold leading-snug drop-shadow">
-                      {tour.category === "박물관" && "역사 도슨트 프리미엄 투어"}
-                      {tour.category === "야경" && "청사초롱 신라별빛야행"}
-                      {tour.category === "불국사" && "불국사 X 석굴암 역사투어"}
-                    </p>
+                    <p className="text-white text-sm font-bold leading-snug drop-shadow">{tour.title}</p>
                   </div>
                   <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
                     {tour.discount}% OFF
@@ -344,7 +482,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-
           <div className="text-center mt-10">
             <a
               href="https://smartstore.naver.com/gjtrip"
