@@ -61,7 +61,7 @@ const landmarks = [
     slug: "hwangnidan",
     name: "황리단길",
     subtitle: "한옥과 감성 카페의 골목",
-    image: "/images/landmark-hwangnidan.jpg",
+    image: "/images/landmark-hwangnidan.png",
     gradient: "from-rose-950 via-pink-900 to-fuchsia-950",
     emoji: "🏯",
     summary: "100년 한옥과 힙한 카페가 공존하는 경주 젊음의 거리",
