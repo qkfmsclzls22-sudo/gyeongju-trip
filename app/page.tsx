@@ -570,9 +570,9 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">예약 & 문의</h2>
           <p className="text-gray-500 mb-10">카카오톡 또는 전화로 편하게 문의해주세요. 빠르게 답변드립니다.</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            <a href="https://open.kakao.com/gjtrip" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-2xl transition-colors">
-              <span className="text-2xl">💬</span>
-              카카오톡 문의하기
+            <a href="/quote" className="flex items-center justify-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-2xl transition-colors">
+              <span className="text-2xl">📝</span>
+              견적 및 문의
             </a>
             <a href="tel:010-8402-8543" className="flex items-center justify-center gap-3 border-2 border-gray-200 hover:border-amber-400 text-gray-700 font-semibold py-4 rounded-2xl transition-colors">
               <span className="text-2xl">📞</span>
