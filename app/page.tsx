@@ -591,9 +591,9 @@ export default function Home() {
       <footer className="bg-gray-950 text-gray-500 py-10">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-4">
-            <img src="/logo.png" alt="경주트립" className="h-12 w-auto brightness-0 invert opacity-80" />
+            <img src="/logo.png" alt="경주트립" className="h-12 w-auto rounded-lg bg-white p-1" />
           </div>
-          <p className="text-sm mb-1">경상북도 경주시 | 사업자등록번호: 000-00-00000</p>
+          <p className="text-sm mb-1">경상북도 경주시 계림로107 경북관광기업지원센터 6층 | 사업자등록번호: 694-75-00685</p>
           <p className="text-sm mb-1">문의: 010-8402-8543 (문자) | 단체: 010-5552-7971</p>
           <p className="text-sm mb-4">이메일: qkfmsclzls22@gmail.com</p>
           <p className="text-xs">© 2026 경주트립. All rights reserved.</p>
