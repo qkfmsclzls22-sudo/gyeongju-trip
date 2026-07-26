@@ -16,7 +16,7 @@ const landmarks = [
     slug: "daereungwon",
     name: "대릉원",
     subtitle: "신라 왕들이 잠든 고분군",
-    image: "/images/landmark-daereungwon.jpg",
+    image: "/images/landmark-daereungwon.png",
     gradient: "from-emerald-950 via-green-900 to-teal-900",
     emoji: "⛰️",
     summary: "경주 시내 한복판에 솟아오른 신라 왕족의 거대한 무덤들",
