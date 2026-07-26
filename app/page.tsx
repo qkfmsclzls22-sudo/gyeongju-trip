@@ -595,7 +595,7 @@ export default function Home() {
           </div>
           <p className="text-sm mb-1">경상북도 경주시 계림로107 경북관광기업지원센터 6층 | 사업자등록번호: 694-75-00685</p>
           <p className="text-sm mb-1">문의: 010-8402-8543 (문자) | 단체: 010-5552-7971</p>
-          <p className="text-sm mb-4">이메일: qkfmsclzls22@gmail.com</p>
+          <p className="text-sm mb-4">이메일: gjtrip11@naver.com</p>
           <p className="text-xs">© 2026 경주트립. All rights reserved.</p>
         </div>
       </footer>

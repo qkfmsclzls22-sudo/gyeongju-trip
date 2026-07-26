@@ -372,6 +372,7 @@ export default function LandmarkPage({ params }: { params: { slug: string } }) {
             투어 프로그램 보기
           </a>
         </div>
+        <p className="text-gray-500 text-xs mt-6">단체문의: 010-5552-7971</p>
       </section>
 
       {/* 푸터 */}
