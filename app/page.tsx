@@ -43,7 +43,7 @@ const landmarks = [
     slug: "seokguram",
     name: "석굴암",
     subtitle: "돌로 빚은 신라의 불심",
-    image: "/images/landmark-seokguram.jpg",
+    image: "/images/landmark-seokguram.png",
     gradient: "from-gray-900 via-stone-800 to-amber-950",
     emoji: "🗿",
     summary: "토함산 정상 석굴 속에 앉아 동해를 바라보는 본존불",
