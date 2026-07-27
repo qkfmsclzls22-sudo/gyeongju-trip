@@ -19,10 +19,11 @@ export default function QuotePage() {
   const [tourType, setTourType] = useState(TOUR_OPTIONS[0]);
   const [orgName, setOrgName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
 
-  const isValid = date && time && people && phone;
+  const isValid = date && time && people && phone && email;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,6 +42,7 @@ export default function QuotePage() {
           투어종류: tourType,
           기업단체명: orgName,
           담당자연락처: phone,
+          이메일: email,
           기타문의사항: message,
         }),
       });
@@ -53,6 +55,7 @@ export default function QuotePage() {
       setTourType(TOUR_OPTIONS[0]);
       setOrgName("");
       setPhone("");
+      setEmail("");
       setMessage("");
     } catch {
       setStatus("error");
@@ -177,6 +180,21 @@ export default function QuotePage() {
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400"
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                이메일 주소 <span className="text-amber-500">*</span>
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400"
+              />
+              <p className="text-xs text-gray-400 mt-1">견적서를 이메일로 보내드리기 위해 필요해요</p>
             </div>
 
             <div>

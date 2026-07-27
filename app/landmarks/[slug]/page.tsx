@@ -230,12 +230,10 @@ export default function LandmarkPage({ params }: { params: { slug: string } }) {
             <a href="/#contact" className="hover:text-gray-900 transition-colors">문의</a>
           </nav>
           <a
-            href="https://open.kakao.com/gjtrip"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/quote"
             className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-sm font-medium px-4 py-2 rounded-full transition-colors"
           >
-            카카오 문의
+            견적문의
           </a>
         </div>
       </header>
