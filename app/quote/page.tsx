@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Apps Script 웹앱 배포 후 발급되는 URL로 교체 필요 (경주트립 주문관리 스프레드시트에 연결됨)
-const QUOTE_WEBAPP_URL = "https://script.google.com/macros/s/REPLACE_WITH_DEPLOYMENT_ID/exec";
+const QUOTE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyvSj7nZ7XO9wmntGJaywgCTv_1n6BTs1H_cEd9WSyGkJOtY8b0a29xoZIe2AanQ2ZZ/exec";
 
 const TOUR_OPTIONS = [
   "국립경주박물관 역사 도슨트 프리미엄 투어",
@@ -32,9 +32,8 @@ export default function QuotePage() {
     }
     setStatus("submitting");
     try {
-      await fetch(QUOTE_WEBAPP_URL, {
+      const res = await fetch(QUOTE_WEBAPP_URL, {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           참가일시: `${date} ${time}`,
@@ -45,6 +44,8 @@ export default function QuotePage() {
           기타문의사항: message,
         }),
       });
+      const json = await res.json();
+      if (json.result !== "success") throw new Error(json.message || "unknown");
       setStatus("done");
       setDate("");
       setTime("");
