@@ -86,7 +86,10 @@ export async function POST(req: Request) {
       // 모델명은 OpenAI가 종종 새 버전으로 바꿉니다. "model not found" 오류가 나면
       // https://platform.openai.com/docs/models 에서 현재 쓸 수 있는 저비용 모델명으로 교체하세요.
       model: "gpt-5-mini",
-      max_completion_tokens: 1200,
+      // gpt-5-mini는 답변 전에 눈에 안 보이는 "추론" 토큰을 먼저 쓰는데, 이것도 이 한도 안에 포함됨.
+      // 한도가 너무 낮으면 추론만 하다 끝나서 실제 답변은 빈 문자열로 나옴(2026-07-27 실제로 발생한 문제:
+      // 1200으로는 추론 토큰만으로 꽉 차서 답변이 하나도 안 나왔음) - 넉넉하게 잡아야 함.
+      max_completion_tokens: 4000,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...history,
