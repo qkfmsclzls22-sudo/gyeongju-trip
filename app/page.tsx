@@ -356,6 +356,7 @@ function TourSlider() {
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <main className="min-h-screen bg-white">
       {/* 헤더 */}
@@ -373,17 +374,46 @@ export default function Home() {
               onClick={() => window.dispatchEvent(new Event("open-travel-chat"))}
               className="hover:text-gray-900 transition-colors"
             >
-              경주여행정보
+              💬 경주여행정보
             </button>
             <a href="#contact" className="hover:text-gray-900 transition-colors">문의</a>
           </nav>
-          <a
-            href="/quote"
-            className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-sm font-medium px-4 py-2 rounded-full transition-colors"
-          >
-            견적문의
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="/quote"
+              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-sm font-medium px-4 py-2 rounded-full transition-colors"
+            >
+              견적문의
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="메뉴 열기"
+              className="md:hidden w-10 h-10 flex items-center justify-center text-2xl text-gray-700"
+            >
+              {menuOpen ? "✕" : "☰"}
+            </button>
+          </div>
         </div>
+
+        {menuOpen && (
+          <nav className="md:hidden border-t border-gray-100 bg-white px-4 py-2 flex flex-col text-gray-700">
+            <a href="#landmarks" onClick={() => setMenuOpen(false)} className="py-3 px-2 rounded-lg hover:bg-gray-50">유적지</a>
+            <a href="#tours" onClick={() => setMenuOpen(false)} className="py-3 px-2 rounded-lg hover:bg-gray-50">투어 보기</a>
+            <a href="#about" onClick={() => setMenuOpen(false)} className="py-3 px-2 rounded-lg hover:bg-gray-50">소개</a>
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                window.dispatchEvent(new Event("open-travel-chat"));
+              }}
+              className="py-3 px-2 rounded-lg hover:bg-gray-50 text-left"
+            >
+              💬 경주여행정보 (AI에게 물어보기)
+            </button>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="py-3 px-2 rounded-lg hover:bg-gray-50">문의</a>
+          </nav>
+        )}
       </header>
 
       {/* 히어로: 유적지 슬라이드쇼 */}

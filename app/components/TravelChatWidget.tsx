@@ -120,13 +120,24 @@ export default function TravelChatWidget() {
         </div>
       )}
 
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-14 h-14 shadow-xl flex items-center justify-center text-2xl transition-transform hover:scale-105"
-        aria-label="여행정보 AI 도우미 열기"
-      >
-        {open ? "×" : "💬"}
-      </button>
+      {open ? (
+        <button
+          onClick={() => setOpen(false)}
+          className="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-14 h-14 shadow-xl flex items-center justify-center text-2xl transition-transform hover:scale-105"
+          aria-label="채팅 닫기"
+        >
+          ×
+        </button>
+      ) : (
+        <button
+          onClick={() => setOpen(true)}
+          className="bg-amber-500 hover:bg-amber-600 text-white rounded-full shadow-xl flex items-center gap-2 pl-4 pr-5 py-3 transition-transform hover:scale-105"
+          aria-label="경주 여행 AI 도우미 열기"
+        >
+          <span className="text-xl">💬</span>
+          <span className="text-sm font-semibold whitespace-nowrap">AI 여행정보</span>
+        </button>
+      )}
     </div>
   );
 }
