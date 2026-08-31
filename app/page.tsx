@@ -368,6 +368,13 @@ export default function Home() {
             <a href="#landmarks" className="hover:text-gray-900 transition-colors">유적지</a>
             <a href="#tours" className="hover:text-gray-900 transition-colors">투어 보기</a>
             <a href="#about" className="hover:text-gray-900 transition-colors">소개</a>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("open-travel-chat"))}
+              className="hover:text-gray-900 transition-colors"
+            >
+              경주여행정보
+            </button>
             <a href="#contact" className="hover:text-gray-900 transition-colors">문의</a>
           </nav>
           <a

@@ -20,6 +20,13 @@ export default function TravelChatWidget() {
     if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
+  // 상단 메뉴의 "경주여행정보"를 누르면 이 위젯을 열도록 함
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-travel-chat", handler);
+    return () => window.removeEventListener("open-travel-chat", handler);
+  }, []);
+
   async function handleSend(e: React.FormEvent) {
     e.preventDefault();
     const text = input.trim();

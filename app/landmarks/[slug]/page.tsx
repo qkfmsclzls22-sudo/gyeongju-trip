@@ -227,6 +227,13 @@ export default function LandmarkPage({ params }: { params: { slug: string } }) {
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
             <a href="/#landmarks" className="hover:text-gray-900 transition-colors">유적지</a>
             <a href="/#tours" className="hover:text-gray-900 transition-colors">투어 보기</a>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("open-travel-chat"))}
+              className="hover:text-gray-900 transition-colors"
+            >
+              경주여행정보
+            </button>
             <a href="/#contact" className="hover:text-gray-900 transition-colors">문의</a>
           </nav>
           <a
