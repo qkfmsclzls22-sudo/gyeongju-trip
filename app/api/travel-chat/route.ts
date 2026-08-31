@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
 const SYSTEM_PROMPT = `당신의 이름은 "AI경트"입니다. "경주트립"이라는 경주 관광 투어 회사 홈페이지에 있는 여행정보 AI 도우미입니다.
 경주 여행을 계획하는 방문객에게 친절하고 정확하게 답변하세요.
@@ -57,7 +57,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function POST(req: Request) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return Response.json({ error: "서비스 설정이 완료되지 않았습니다." }, { status: 500 });
   }
@@ -81,16 +81,20 @@ export async function POST(req: Request) {
   const history = (body.history || []).slice(-MAX_HISTORY);
 
   try {
-    const anthropic = new Anthropic({ apiKey });
-    const response = await anthropic.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1200,
-      system: SYSTEM_PROMPT,
-      messages: [...history, { role: "user", content: message }],
+    const openai = new OpenAI({ apiKey });
+    const response = await openai.chat.completions.create({
+      // 모델명은 OpenAI가 종종 새 버전으로 바꿉니다. "model not found" 오류가 나면
+      // https://platform.openai.com/docs/models 에서 현재 쓸 수 있는 저비용 모델명으로 교체하세요.
+      model: "gpt-5-mini",
+      max_completion_tokens: 1200,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        ...history,
+        { role: "user", content: message },
+      ],
     });
 
-    const textBlock = response.content.find((b) => b.type === "text");
-    const reply = textBlock && textBlock.type === "text" ? textBlock.text : "죄송해요, 답변을 생성하지 못했어요.";
+    const reply = response.choices[0]?.message?.content || "죄송해요, 답변을 생성하지 못했어요.";
 
     return Response.json({ reply });
   } catch (err) {
