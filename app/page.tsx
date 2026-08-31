@@ -374,7 +374,7 @@ export default function Home() {
               onClick={() => window.dispatchEvent(new Event("open-travel-chat"))}
               className="hover:text-gray-900 transition-colors"
             >
-              💬 경주여행정보
+              💬 AI경트
             </button>
             <a href="#contact" className="hover:text-gray-900 transition-colors">문의</a>
           </nav>
@@ -409,7 +409,7 @@ export default function Home() {
               }}
               className="py-3 px-2 rounded-lg hover:bg-gray-50 text-left"
             >
-              💬 경주여행정보 (AI에게 물어보기)
+              💬 AI경트에게 여행정보 물어보기
             </button>
             <a href="#contact" onClick={() => setMenuOpen(false)} className="py-3 px-2 rounded-lg hover:bg-gray-50">문의</a>
           </nav>
