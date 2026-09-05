@@ -158,6 +158,18 @@ export const IconShield = (p: IconProps) => (
   </Svg>
 );
 
+export const IconMenu = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </Svg>
+);
+
+export const IconClose = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M6 6l12 12M18 6L6 18" />
+  </Svg>
+);
+
 export const IconCalendar = (p: IconProps) => (
   <Svg {...p}>
     <rect x="3.5" y="5.2" width="17" height="15.3" rx="2.6" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+import TravelChatWidget from "./components/TravelChatWidget";
 
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
@@ -28,7 +29,10 @@ export default function RootLayout({
       lang="ko"
       className={`${notoSansKr.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <TravelChatWidget />
+      </body>
     </html>
   );
 }
