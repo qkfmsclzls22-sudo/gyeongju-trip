@@ -1,60 +1,66 @@
 "use client";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { TOUR_LIST } from "@/lib/tours";
 import TourCard from "./TourCard";
+
 export default function TourCatalog() {
   const [category, setCategory] = useState("전체");
   const [query, setQuery] = useState("");
+  const searchId = useId();
   const tours = TOUR_LIST.filter(
-    (t) =>
-      (category === "전체" || t.category === category) &&
-      [t.name, t.description, ...t.tags]
+    (tour) =>
+      (category === "전체" || tour.category === category) &&
+      [tour.name, tour.description, ...tour.tags]
         .join(" ")
         .toLowerCase()
         .includes(query.trim().toLowerCase()),
   );
   return (
     <>
-      <div className="search-box">
-        <label className="visually-hidden" htmlFor="tour-search">
-          투어 검색
-        </label>
-        <input
-          id="tour-search"
-          type="search"
-          placeholder="투어 이름이나 관심사를 검색해 보세요"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+      <div className="catalog-toolbar">
+        <div className="filter-bar" role="group" aria-label="투어 종류">
+          {["전체", "박물관", "야경", "불국사"].map((item) => (
+            <button
+              className="filter-chip"
+              key={item}
+              aria-pressed={category === item}
+              onClick={() => setCategory(item)}
+            >
+              {item === "야경" ? "야경투어" : item}
+              <span>
+                {item === "전체"
+                  ? TOUR_LIST.length
+                  : TOUR_LIST.filter((tour) => tour.category === item).length}
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="search-box">
+          <label className="visually-hidden" htmlFor={searchId}>
+            투어 검색
+          </label>
+          <input
+            id={searchId}
+            type="search"
+            placeholder="투어 검색"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="filter-bar" role="group" aria-label="투어 종류">
-        {["전체", "박물관", "야경", "불국사"].map((c) => (
-          <button
-            className="filter-chip"
-            key={c}
-            aria-pressed={category === c}
-            onClick={() => setCategory(c)}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
-      <p
-        style={{ fontSize: 14, color: "var(--muted)", marginBottom: 20 }}
-        aria-live="polite"
-      >
-        총 {tours.length}개의 투어
+      <p className="visually-hidden" aria-live="polite">
+        검색 결과 {tours.length}개
       </p>
       {tours.length ? (
         <div className="tour-grid">
-          {tours.map((t) => (
-            <TourCard key={t.id} tour={t} />
+          {tours.map((tour, index) => (
+            <TourCard key={tour.id} tour={tour} prioritizeImage={index === 0} />
           ))}
         </div>
       ) : (
         <div className="empty-state">
-          <h2>조건에 맞는 투어가 없어요</h2>
-          <p>검색어를 줄이거나 전체 투어를 확인해 보세요.</p>
+          <h2>검색 결과가 없습니다</h2>
+          <p>검색어를 줄이거나 전체 투어를 확인해 주세요.</p>
           <button
             className="btn btn-primary"
             onClick={() => {
@@ -62,7 +68,7 @@ export default function TourCatalog() {
               setQuery("");
             }}
           >
-            전체 투어 보기
+            검색 초기화
           </button>
         </div>
       )}

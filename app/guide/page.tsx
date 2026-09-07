@@ -14,18 +14,13 @@ export default function Guide() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">여행 전 읽어보세요</div>
-          <h1>알고 떠나면, 더 좋은 여행</h1>
-          <p>
-            먼저 볼 곳부터 잠깐 쉬어갈 골목까지.
-            <br />
-            일행의 체력과 여행 시간에 맞춰 경주를 즐겨보세요.
-          </p>
+          <h1>경주 여행가이드</h1>
+          <p>투어를 듣는 순서와 주변에 함께 들를 만한 장소를 정리했습니다.</p>
         </div>
         <section style={{ marginBottom: 58 }}>
           <div className="section-head">
             <div>
-              <h2>처음이라면, 이 순서로 만나보세요</h2>
+              <h2>세 투어를 모두 듣는다면</h2>
               <p>세 투어를 모두 계획한다면 참고할 수 있는 순서입니다.</p>
             </div>
           </div>
@@ -34,19 +29,19 @@ export default function Guide() {
               {
                 id: "museum",
                 n: "01",
-                title: "박물관에서 신라를 이해하고",
+                title: "국립경주박물관",
                 desc: "역사의 흐름과 주요 유물을 먼저 만나면 야외에서 볼 유적들이 한결 친숙해집니다.",
               },
               {
                 id: "bulguksa",
                 n: "02",
-                title: "불국사에서 이야기를 연결하고",
+                title: "불국사",
                 desc: "박물관에서 만난 신라의 예술을 건축과 공간 속에서 다시 찾아보세요.",
               },
               {
                 id: "night",
                 n: "03",
-                title: "야경과 함께 하루를 마무리해요",
+                title: "청사초롱 야경투어",
                 desc: "낮 일정 뒤 충분히 쉬고, 경주의 밤 풍경을 걸으며 여행을 마무리해 보세요.",
               },
             ].map((x) => (
@@ -67,7 +62,7 @@ export default function Guide() {
         <section style={{ paddingBottom: 65 }}>
           <div className="section-head">
             <div>
-              <h2>경주의 장면들</h2>
+              <h2>함께 둘러볼 장소</h2>
               <p>투어 전후로 함께 둘러보기 좋은 곳.</p>
             </div>
           </div>

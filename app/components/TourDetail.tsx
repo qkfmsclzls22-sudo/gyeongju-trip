@@ -29,13 +29,9 @@ export default function TourDetail({ tour }: { tour: Tour }) {
             />
           </div>
           <div className="detail-title">
-            <div className="tag-list">
-              {tour.tags.map((t) => (
-                <span className="tag" key={t}>
-                  {t}
-                </span>
-              ))}
-            </div>
+            <p className="detail-category">
+              {tour.category} · 전문 해설사 동행
+            </p>
             <h1>{tour.name}</h1>
             <p>{tour.description}</p>
             <div className="detail-facts">
@@ -77,7 +73,7 @@ export default function TourDetail({ tour }: { tour: Tour }) {
               ))}
             </section>
             <section id="course">
-              <h2>이렇게 함께 걸어요</h2>
+              <h2>코스와 집결 장소</h2>
               <ol className="course-list">
                 {tour.course.map((c) => (
                   <li key={c}>{c}</li>
@@ -106,7 +102,7 @@ export default function TourDetail({ tour }: { tour: Tour }) {
               </ul>
             </section>
             <section id="reviews">
-              <h2>먼저 다녀온 여행자의 이야기</h2>
+              <h2>참가 후기</h2>
               <div className="review-link-box">
                 <strong>실제 구매 후기를 직접 확인하세요</strong>
                 <p>

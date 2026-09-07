@@ -26,9 +26,9 @@ export const TOURS: Record<TourId, Tour> = {
   museum: {
     id: "museum",
     name: "국립경주박물관 도슨트 투어",
-    shortName: "박물관 도슨트",
+    shortName: "국립경주박물관 도슨트",
     category: "박물관",
-    tagline: "유물 앞에서 시작되는, 신라의 진짜 이야기",
+    tagline: "성덕대왕신종부터 신라역사관·신라미술관까지",
     description:
       "성덕대왕신종부터 신라의 황금 유물까지. 해설사와 함께 보고, 질문하며 천년 전 사람들의 삶을 만납니다.",
     image: "/images/museum-exterior.jpg",
@@ -44,7 +44,7 @@ export const TOURS: Record<TourId, Tour> = {
     course: ["성덕대왕신종", "신라역사관", "신라미술관"],
     highlights: [
       {
-        title: "이름을 외우는 대신, 이야기를 기억해요",
+        title: "금관과 토기, 성덕대왕신종 해설",
         text: "금관과 토기, 종에 담긴 이야기를 따라가면 교과서 속 신라가 한결 가까워집니다.",
       },
       {
@@ -69,7 +69,7 @@ export const TOURS: Record<TourId, Tour> = {
     name: "청사초롱 야경투어 · 신라별빛야행",
     shortName: "청사초롱 야경투어",
     category: "야경",
-    tagline: "불빛을 따라 걷다, 천년의 밤을 만나다",
+    tagline: "청사초롱을 들고 걷는 경주 야경 도보 코스",
     description:
       "청사초롱 하나 들고 신라의 밤길을 걸어요. 월성해자, 계림, 월정교와 첨성대에 얽힌 이야기가 경주의 밤을 채웁니다.",
     image: "/images/landmark-donggung-wolji.jpg",
@@ -92,16 +92,16 @@ export const TOURS: Record<TourId, Tour> = {
     ],
     highlights: [
       {
-        title: "내 손의 작은 불빛, 청사초롱",
+        title: "청사초롱 대여 포함",
         text: "청사초롱을 들고 해설사와 함께 걷는 밤. 눈앞의 풍경에 신라의 역사와 설화가 더해집니다.",
       },
       {
-        title: "빛나는 풍경에도 이야기가 있어요",
+        title: "계림·월정교·첨성대 해설",
         text: "계림의 숲과 월정교, 첨성대를 지나며 경주가 오래 간직해 온 이야기를 듣습니다.",
       },
       {
-        title: "여행의 마지막을 여유롭게",
-        text: "낮의 일정을 마친 뒤 가족, 연인, 친구와 함께 경주의 다른 표정을 만나보세요.",
+        title: "약 2시간 야외 도보",
+        text: "동궁과월지에서 모여 해설사와 함께 이동합니다. 편한 신발을 준비하고, 미성년자는 보호자와 함께 참여해 주세요.",
       },
     ],
     included: ["전문 문화해설사", "1인 1대 해설 수신기 대여", "청사초롱 대여"],
@@ -117,7 +117,7 @@ export const TOURS: Record<TourId, Tour> = {
     name: "불국사·석굴암 역사해설 투어",
     shortName: "불국사 역사해설",
     category: "불국사",
-    tagline: "돌 하나, 기둥 하나에 담긴 신라의 마음",
+    tagline: "불국사 주요 전각과 석가탑·다보탑 해설",
     description:
       "다보탑과 석가탑은 왜 서로 다른 모습일까요? 불국사의 건축과 신라 불교예술을 해설사의 이야기로 풀어봅니다.",
     image: "/images/bulguksa-main.jpg",
@@ -140,11 +140,11 @@ export const TOURS: Record<TourId, Tour> = {
     ],
     highlights: [
       {
-        title: "익숙한 풍경을 새롭게 읽어요",
+        title: "청운교·백운교와 두 탑",
         text: "청운교·백운교와 두 탑에 담긴 의미를 알고 나면, 여러 번 와 본 불국사도 새롭게 보입니다.",
       },
       {
-        title: "신라인이 꿈꾸었던 세계",
+        title: "불국사의 공간과 신라 불교예술",
         text: "불국사의 공간과 건축을 따라가며 신라 사람들이 표현하려 했던 이상과 예술을 알아봅니다.",
       },
       {

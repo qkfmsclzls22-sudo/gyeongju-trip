@@ -17,17 +17,8 @@ export default function Company() {
       <SiteHeader />
       <main id="main-content">
         <div className="wrap page-heading">
-          <div className="eyebrow">경주트립 이야기</div>
-          <h1>
-            경주를 보여주는 여행에서,
-            <br />
-            경주를 이해하는 여행으로.
-          </h1>
-          <p>
-            같은 풍경도 어떤 이야기를 만나느냐에 따라 달라집니다.
-            <br />
-            경주트립은 사람과 문화유산 사이에 이야기를 더합니다.
-          </p>
+          <h1>경주트립 소개</h1>
+          <p>경주에 기반을 두고 역사해설 투어와 단체 여행을 기획·운영합니다.</p>
         </div>
         <section className="wrap detail-hero">
           <div className="detail-image">
@@ -48,14 +39,14 @@ export default function Company() {
                 marginBottom: 20,
               }}
             >
-              눈앞의 장소가
+              경주에서 만나는
               <br />
-              나의 기억이 되는 순간
+              해설사와의 두 시간
             </h2>
             <p style={{ color: "var(--muted)", lineHeight: 1.9 }}>
-              유물의 이름보다 그 안에 담긴 사람의 이야기를, 사진 한 장보다 그
-              장소에서 느낀 마음을 오래 기억하는 여행. 경주트립이 만들어가는
-              여행입니다.
+              박물관의 유물과 불국사의 건축, 유적지에 얽힌 역사를 해설사와 함께
+              살펴봅니다. 궁금한 점을 묻고, 현장에서 설명을 들으며 경주를
+              알아가는 투어입니다.
             </p>
             <p style={{ color: "var(--muted)", lineHeight: 1.9 }}>
               국립경주박물관, 불국사와 석굴암 이야기, 청사초롱 야경투어를 통해
@@ -67,29 +58,29 @@ export default function Company() {
           <div className="wrap">
             <div className="section-head">
               <div>
-                <h2>경주트립이 만드는 여행</h2>
+                <h2>투어 운영 안내</h2>
               </div>
             </div>
             <div className="why-grid">
               <div className="why-item">
-                <h3>역사를 일상의 언어로</h3>
+                <h3>한 조 15–20명</h3>
                 <p>
-                  어려운 이름을 늘어놓기보다 쉽게 이해하고 질문할 수 있는
-                  이야기로 전합니다.
+                  박물관은 최대 15명, 불국사와 야경투어는 최대 20명씩
+                  진행합니다.
                 </p>
               </div>
               <div className="why-item">
-                <h3>함께하는 사람을 살피며</h3>
+                <h3>1인 1대 해설 수신기</h3>
                 <p>
-                  참여자의 나이와 관심사, 여행 목적에 맞춰 설명과 동선을
-                  조율합니다.
+                  이동하거나 유물을 살펴보면서 해설을 들을 수 있도록 수신기를
+                  대여합니다.
                 </p>
               </div>
               <div className="why-item">
-                <h3>지역에서 시작하는 기획</h3>
+                <h3>단체별 일정 상담</h3>
                 <p>
-                  경주의 장소와 문화가 가진 매력을 여행자의 실제 경험으로
-                  연결합니다.
+                  학교·기업·가족 모임은 인원, 출발 장소, 희망 코스를 확인한 뒤
+                  별도 견적을 안내합니다.
                 </p>
               </div>
             </div>
@@ -97,12 +88,11 @@ export default function Company() {
         </section>
         <section className="section wrap two-column">
           <div>
-            <div className="eyebrow">걸어온 길</div>
-            <h2 style={{ fontSize: 29, fontWeight: 750 }}>경주트립의 발자취</h2>
+            <h2 style={{ fontSize: 26, fontWeight: 700 }}>주요 연혁</h2>
             <div className="course-list">
               {history.map((h) => (
                 <div className="point" key={h.date} style={{ paddingTop: 20 }}>
-                  <strong style={{ color: "#54718a" }}>{h.date}</strong>
+                  <strong style={{ color: "var(--muted)" }}>{h.date}</strong>
                   <p style={{ marginTop: 8 }}>{h.text}</p>
                 </div>
               ))}
@@ -131,7 +121,7 @@ export default function Company() {
         </section>
       </main>
       <CtaBanner
-        title="함께 만들고 싶은 여행이 있나요?"
+        title="단체 여행·협업 문의"
         desc="단체여행·지역 콘텐츠·협업 제안을 기다립니다."
       />
       <SiteFooter />

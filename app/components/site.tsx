@@ -35,9 +35,9 @@ export function SiteHeader({
             className="brand-logo"
             src="/logo.png"
             alt="경주트립"
-            width={150}
-            height={86}
-            priority
+            width={900}
+            height={550}
+            preload
           />
         </Link>
         <nav className="desktop-nav" aria-label="주 메뉴">
@@ -99,7 +99,7 @@ export function SiteFooter() {
       <div className="wrap">
         <div className="footer-top">
           <div>
-            <h3>경주를 만나는 가장 좋은 시작, 경주트립</h3>
+            <h3>예약·참여 문의</h3>
             <a className="footer-phone" href="sms:01084028543">
               010-8402-8543
             </a>
@@ -123,7 +123,7 @@ export function SiteFooter() {
             </a>
           </div>
           <div>
-            <h3>함께하는 경주</h3>
+            <h3>단체 여행</h3>
             <Link href="/groups">기업·학교·단체 여행</Link>
             <Link href="/quote">맞춤 견적 문의</Link>
             <Link href="/company">경주트립 소개</Link>

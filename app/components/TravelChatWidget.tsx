@@ -167,7 +167,9 @@ export default function TravelChatWidget() {
               <p id="travel-chat-title" className="font-semibold text-sm">
                 AI 여행 도우미
               </p>
-              <p className="text-brand-100 text-xs">경주 여행 AI 도우미</p>
+              <p className="text-brand-100 text-xs">
+                자동 답변 · 예약 변경은 고객센터로 문의
+              </p>
             </div>
             <div className="flex items-center gap-3">
               {stage === "chat" && (
@@ -309,7 +311,7 @@ export default function TravelChatWidget() {
         >
           <IconChat className="w-5 h-5" />
           <span className="text-sm font-semibold whitespace-nowrap">
-            AI 여행 도우미
+            여행 질문 · AI
           </span>
         </button>
       )}

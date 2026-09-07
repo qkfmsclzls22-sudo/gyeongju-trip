@@ -14,24 +14,18 @@ export default function Groups() {
       <SiteHeader />
       <main id="main-content">
         <div className="wrap page-heading">
-          <div className="eyebrow">우리 일행에게 맞는 경주</div>
-          <h1>
-            우리의 목적에 맞는,
-            <br />
-            우리만의 경주 여행
-          </h1>
+          <h1>단체·맞춤여행</h1>
           <p>
-            한 번의 여행에도 서로 다른 목적이 있습니다.
-            <br />
-            함께하는 사람과 일정부터 듣고, 알맞은 코스를 제안합니다.
+            학교 체험학습, 기업 연수, 가족 모임의 날짜와 인원에 맞춰 코스를
+            구성합니다.
           </p>
         </div>
         <div className="wrap group-banner">
           <div className="group-copy">
             <h2>
-              배우고, 쉬고,
+              원하는 날짜에,
               <br />
-              함께 기억하는 시간.
+              우리 일행만 함께.
             </h2>
             <p>
               학교 체험학습부터 기업 연수, 가족 모임까지.
@@ -123,7 +117,7 @@ export default function Groups() {
         </section>
       </main>
       <CtaBanner
-        title="함께 떠날 경주 이야기를 들려주세요"
+        title="단체 여행 상담"
         desc="단체 문의 010-5552-7971 · 희망 날짜와 인원을 알려주시면 상담이 더 빨라집니다."
       />
       <SiteFooter />

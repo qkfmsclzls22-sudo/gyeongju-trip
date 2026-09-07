@@ -1,8 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { type Tour } from "@/lib/tours";
-import { IconArrow } from "./icons";
-export default function TourCard({ tour }: { tour: Tour }) {
+
+export default function TourCard({
+  tour,
+  prioritizeImage = false,
+}: {
+  tour: Tour;
+  prioritizeImage?: boolean;
+}) {
   return (
     <article className="tour-card">
       <Link
@@ -14,30 +20,41 @@ export default function TourCard({ tour }: { tour: Tour }) {
           src={tour.image}
           alt={tour.name}
           fill
-          sizes="(max-width:767px) 100vw, 380px"
+          sizes="(max-width:600px) 120px, (max-width:900px) 45vw, 380px"
+          preload={prioritizeImage}
         />
-        <span className="photo-label">{tour.duration}</span>
       </Link>
       <div className="tour-card-body">
-        <div className="tour-card-meta">{tour.category}</div>
+        <p className="tour-card-meta">
+          {tour.duration} · 한 조 최대 {tour.maxPeople}명
+        </p>
         <h3>
           <Link href={"/tours/" + tour.id}>{tour.shortName}</Link>
         </h3>
-        <p className="tour-card-desc">{tour.tagline}</p>
+        <p className="tour-card-desc">{tour.walking}</p>
+        <p className="tour-card-time">{tour.operatingHours}</p>
         <div className="price-row">
           <div>
-            <small>{tour.childPrice ? "성인 1인" : "1인 · 연령 공통"}</small>
-            <div className="price">
+            <span className="price-label">
+              {tour.childPrice ? "성인" : "1인"}
+            </span>
+            <strong className="price">
               {tour.adultPrice.toLocaleString("ko-KR")}
               <span>원</span>
-            </div>
+            </strong>
             {tour.childPrice && (
-              <small>어린이 {tour.childPrice.toLocaleString("ko-KR")}원</small>
+              <span className="child-price">
+                어린이 {tour.childPrice.toLocaleString("ko-KR")}원
+              </span>
             )}
           </div>
-          <Link className="text-link" href={"/tours/" + tour.id}>
-            투어 보기
-            <IconArrow />
+          <Link
+            className="tour-card-action"
+            href={"/tours/" + tour.id}
+            aria-label={tour.shortName + " 일정과 코스 보기"}
+          >
+            <span className="visually-hidden">일정·코스 보기</span>
+            <span aria-hidden>→</span>
           </Link>
         </div>
       </div>
