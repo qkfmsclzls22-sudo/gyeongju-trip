@@ -7,7 +7,7 @@ export default function Privacy() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">PRIVACY</div>
+          <div className="eyebrow">개인정보 처리 안내</div>
           <h1>개인정보처리방침</h1>
           <p>경주트립이 개인정보를 처리하는 목적과 방법을 안내합니다.</p>
         </div>

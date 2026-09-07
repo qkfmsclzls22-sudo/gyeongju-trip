@@ -8,7 +8,7 @@ export default function Terms() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">TERMS OF USE</div>
+          <div className="eyebrow">경주트립 이용약관</div>
           <h1>이용약관</h1>
           <p>경주트립 홈페이지 이용에 관한 안내입니다.</p>
         </div>

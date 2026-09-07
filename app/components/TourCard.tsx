@@ -16,23 +16,14 @@ export default function TourCard({ tour }: { tour: Tour }) {
           fill
           sizes="(max-width:767px) 100vw, 380px"
         />
-        <span className="photo-label">
-          {tour.category} · {tour.duration}
-        </span>
+        <span className="photo-label">{tour.duration}</span>
       </Link>
       <div className="tour-card-body">
-        <div className="tour-card-meta">경주 · 전문 해설사 동행</div>
+        <div className="tour-card-meta">{tour.category}</div>
         <h3>
           <Link href={"/tours/" + tour.id}>{tour.shortName}</Link>
         </h3>
         <p className="tour-card-desc">{tour.tagline}</p>
-        <div className="tag-list">
-          {tour.tags.map((t) => (
-            <span className="tag" key={t}>
-              {t}
-            </span>
-          ))}
-        </div>
         <div className="price-row">
           <div>
             <small>{tour.childPrice ? "성인 1인" : "1인 · 연령 공통"}</small>

@@ -12,7 +12,7 @@ export default function Tours() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">FIND YOUR GYEONGJU</div>
+          <div className="eyebrow">경주트립 정규 투어</div>
           <h1>나에게 맞는 경주를 찾아보세요</h1>
           <p>
             처음 만나는 신라, 아이와의 배움 여행, 함께 걷는 밤.

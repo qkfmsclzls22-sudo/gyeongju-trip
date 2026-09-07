@@ -20,7 +20,7 @@ export default async function Account() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">MY GYEONGJU TRIP</div>
+          <div className="eyebrow">나의 경주트립</div>
           <h1>{member.display_name}님, 반갑습니다</h1>
           <p>
             {member.provider === "naver" ? "네이버" : "Google"} 계정으로

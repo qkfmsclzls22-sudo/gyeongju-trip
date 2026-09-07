@@ -14,7 +14,7 @@ export default function Groups() {
       <SiteHeader />
       <main id="main-content">
         <div className="wrap page-heading">
-          <div className="eyebrow">DESIGNED FOR YOUR PEOPLE</div>
+          <div className="eyebrow">우리 일행에게 맞는 경주</div>
           <h1>
             우리의 목적에 맞는,
             <br />

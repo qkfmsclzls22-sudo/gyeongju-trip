@@ -14,7 +14,7 @@ export default function Guide() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">MAKE MORE OF YOUR GYEONGJU</div>
+          <div className="eyebrow">여행 전 읽어보세요</div>
           <h1>알고 떠나면, 더 좋은 여행</h1>
           <p>
             먼저 볼 곳부터 잠깐 쉬어갈 골목까지.

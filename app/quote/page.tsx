@@ -43,7 +43,7 @@ export default function Quote() {
       <SiteHeader showCta={false} />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">LET’S PLAN YOUR TRIP</div>
+          <div className="eyebrow">단체·맞춤 여행 문의</div>
           <h1>어떤 경주 여행을 준비하시나요?</h1>
           <p>일정과 인원을 알려주시면 알맞은 구성으로 안내해 드립니다.</p>
         </div>
@@ -86,7 +86,7 @@ export default function Quote() {
           </section>
           {status === "done" ? (
             <div className="form-card" role="status">
-              <div className="eyebrow">THANK YOU</div>
+              <div className="eyebrow">문의가 접수되었습니다</div>
               <h2 style={{ fontSize: 28, fontWeight: 750 }}>
                 문의가 접수되었습니다.
               </h2>

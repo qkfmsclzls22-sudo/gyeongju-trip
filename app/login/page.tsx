@@ -18,7 +18,7 @@ export default async function Login({
     <>
       <SiteHeader showCta={false} />
       <main className="login-wrap" id="main-content">
-        <div className="eyebrow">WELCOME TO GYEONGJU TRIP</div>
+        <div className="eyebrow">회원 로그인</div>
         <h1>
           반가워요.
           <br />

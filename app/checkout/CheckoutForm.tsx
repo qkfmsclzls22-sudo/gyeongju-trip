@@ -91,7 +91,7 @@ export default function CheckoutForm(p: Props) {
           )
         }
       />
-      <div className="eyebrow">TEST CHECKOUT</div>
+      <div className="eyebrow">결제 기능 시험 화면</div>
       <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 20 }}>
         예약 내용 확인
       </h1>

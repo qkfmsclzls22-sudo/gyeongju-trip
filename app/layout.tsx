@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import TravelChatWidget from "./components/TravelChatWidget";
 
@@ -7,6 +7,12 @@ const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
+});
+
+const notoSerifKr = Noto_Serif_KR({
+  variable: "--font-noto-serif-kr",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${notoSansKr.variable} h-full antialiased`}>
+    <html
+      lang="ko"
+      className={`${notoSansKr.variable} ${notoSerifKr.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main-content">
           본문으로 건너뛰기

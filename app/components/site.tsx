@@ -31,12 +31,14 @@ export function SiteHeader({
     <header className="site-header">
       <div className="wrap header-main">
         <Link href="/" className="brand" aria-label="경주트립 홈">
-          <span className="brand-photo">
-            <Image src="/logo.png" alt="" width={154} height={94} />
-          </span>
-          <span className="brand-type">
-            경주트립<small>GYEONGJU TRIP</small>
-          </span>
+          <Image
+            className="brand-logo"
+            src="/logo.png"
+            alt="경주트립"
+            width={150}
+            height={86}
+            priority
+          />
         </Link>
         <nav className="desktop-nav" aria-label="주 메뉴">
           {navItems.map((n) => (

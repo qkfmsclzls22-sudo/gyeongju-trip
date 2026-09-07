@@ -3,47 +3,32 @@ import Image from "next/image";
 import { SiteHeader, SiteFooter } from "./components/site";
 import TourCard from "./components/TourCard";
 import { TOUR_LIST } from "@/lib/tours";
-import {
-  IconArrow,
-  IconMuseum,
-  IconMoon,
-  IconPagoda,
-  IconUsers,
-  IconMapPin,
-  IconGuide,
-  IconHeadphones,
-  IconRoute,
-} from "./components/icons";
+import { IconArrow, IconMapPin } from "./components/icons";
 const shortcuts = [
   {
     href: "/tours/museum",
     title: "박물관",
-    sub: "신라를 만나는 시간",
-    Icon: IconMuseum,
+    sub: "유물로 읽는 신라",
   },
   {
     href: "/tours/night",
     title: "야경투어",
-    sub: "경주의 밤을 걷다",
-    Icon: IconMoon,
+    sub: "달빛 아래 걷는 역사",
   },
   {
     href: "/tours/bulguksa",
     title: "불국사",
-    sub: "세계유산의 이야기",
-    Icon: IconPagoda,
+    sub: "천년 사찰 깊이 보기",
   },
   {
     href: "/groups",
     title: "단체여행",
-    sub: "우리만의 경주",
-    Icon: IconUsers,
+    sub: "학교·기업·가족 여행",
   },
   {
     href: "/guide",
     title: "여행가이드",
-    sub: "알고 가면 더 좋은",
-    Icon: IconRoute,
+    sub: "여행 전 읽을거리",
   },
 ];
 const places = [
@@ -95,21 +80,19 @@ export default function Home() {
           </div>
           <div className="hero-shade" />
           <div className="wrap hero-inner">
-            <div className="eyebrow">LOCAL STORIES, LASTING MEMORIES</div>
+            <div className="eyebrow">경주를 깊이 만나는 두 시간</div>
             <h1>
-              경주는, 이야기를 만나면
+              보이는 것 너머의
               <br />
-              <em>더 오래 남습니다.</em>
+              <em>경주를 만납니다</em>
             </h1>
             <p>
-              천년의 유물부터 달빛 아래 골목까지.
+              유물 하나, 돌계단 하나에도 이야기가 있습니다.
               <br />
-              경주를 잘 아는 해설사와 함께
-              <br />
-              풍경 너머의 이야기를 만나보세요.
+              경주를 잘 아는 해설사와 천천히 걸어보세요.
             </p>
             <Link href="/tours" className="btn btn-gold">
-              나에게 맞는 투어 찾기
+              투어 둘러보기
               <IconArrow />
             </Link>
             <p className="hero-location">
@@ -119,9 +102,9 @@ export default function Home() {
         </section>
         <div className="wrap">
           <nav className="quick-links" aria-label="투어 바로가기">
-            {shortcuts.map(({ href, title, sub, Icon }) => (
+            {shortcuts.map(({ href, title, sub }, index) => (
               <Link key={href} href={href}>
-                <Icon />
+                <span className="quick-index">0{index + 1}</span>
                 <span>
                   <strong>{title}</strong>
                   <small>{sub}</small>
@@ -133,9 +116,9 @@ export default function Home() {
         <section id="tours" className="section wrap">
           <div className="section-head">
             <div>
-              <div className="eyebrow">GYEONGJU, WITH A STORY</div>
-              <h2>어떤 경주를 만나고 싶으세요?</h2>
-              <p>여행의 취향에 맞춰 고르는 세 가지 이야기.</p>
+              <div className="eyebrow">경주트립 정규 투어</div>
+              <h2>세 가지 방식으로 만나는 경주</h2>
+              <p>낮과 밤, 실내와 야외. 여행 일정에 맞춰 골라보세요.</p>
             </div>
             <Link href="/tours" className="text-link">
               전체 투어
@@ -167,13 +150,13 @@ export default function Home() {
           <div className="wrap">
             <div className="section-head">
               <div>
-                <div className="eyebrow">WHY GYEONGJU TRIP</div>
-                <h2>함께 걸으면, 여행의 깊이가 달라져요</h2>
+                <div className="eyebrow">경주트립이 준비한 것</div>
+                <h2>해설에 집중할 수 있는 여행</h2>
               </div>
             </div>
             <div className="why-grid">
               <div className="why-item">
-                <IconGuide />
+                <span className="why-number">01</span>
                 <h3>경주를 아는 사람의 이야기</h3>
                 <p>
                   설명판을 읽는 것에서 한 걸음 더. 해설사와 대화하며 눈앞의
@@ -181,7 +164,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="why-item">
-                <IconUsers />
+                <span className="why-number">02</span>
                 <h3>질문이 편안한 작은 그룹</h3>
                 <p>
                   박물관은 한 조 최대 15명, 야경과 불국사는 최대 20명. 서로의
@@ -189,7 +172,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="why-item">
-                <IconHeadphones />
+                <span className="why-number">03</span>
                 <h3>이야기에 집중할 수 있도록</h3>
                 <p>
                   1인 1대 해설 수신기를 제공합니다. 주변 풍경을 둘러보면서도
@@ -202,7 +185,7 @@ export default function Home() {
         <section className="section wrap">
           <div className="group-banner">
             <div className="group-copy">
-              <div className="eyebrow">A TRIP, TOGETHER</div>
+              <div className="eyebrow">단체·맞춤 여행</div>
               <h2>
                 함께하는 사람에 맞춰,
                 <br />
@@ -235,7 +218,7 @@ export default function Home() {
         >
           <div className="section-head">
             <div>
-              <div className="eyebrow">BEFORE YOU GO</div>
+              <div className="eyebrow">여행 전 읽어두면 좋은 이야기</div>
               <h2>알고 가면 더 좋은 경주</h2>
               <p>투어 전후로, 여행의 장면을 더해보세요.</p>
             </div>

@@ -17,7 +17,7 @@ export default function Company() {
       <SiteHeader />
       <main id="main-content">
         <div className="wrap page-heading">
-          <div className="eyebrow">OUR STORY</div>
+          <div className="eyebrow">경주트립 이야기</div>
           <h1>
             경주를 보여주는 여행에서,
             <br />
@@ -97,7 +97,7 @@ export default function Company() {
         </section>
         <section className="section wrap two-column">
           <div>
-            <div className="eyebrow">OUR JOURNEY</div>
+            <div className="eyebrow">걸어온 길</div>
             <h2 style={{ fontSize: 29, fontWeight: 750 }}>경주트립의 발자취</h2>
             <div className="course-list">
               {history.map((h) => (

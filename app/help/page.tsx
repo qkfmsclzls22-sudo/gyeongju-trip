@@ -8,7 +8,7 @@ export default function Help() {
       <SiteHeader />
       <main className="wrap" id="main-content">
         <div className="page-heading">
-          <div className="eyebrow">WE ARE HERE TO HELP</div>
+          <div className="eyebrow">예약·참여 안내</div>
           <h1>궁금한 점을 먼저 확인해 보세요</h1>
           <p>예약부터 여행 당일까지, 자주 묻는 질문을 모았습니다.</p>
         </div>
