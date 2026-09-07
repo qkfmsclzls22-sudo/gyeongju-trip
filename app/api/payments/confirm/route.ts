@@ -1,113 +1,139 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getTour, calcAmount } from "@/lib/tours";
-
-export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const {
-    paymentKey,
-    orderId,
-    amount,
-    tourId,
-    adultCount,
-    childCount,
-    date,
-    time,
-    name,
-    phone,
-    email,
-  } = body;
-
-  if (!paymentKey || !orderId || !amount || !tourId) {
-    return NextResponse.json({ result: "error", message: "필수 값이 누락되었습니다." }, { status: 400 });
-  }
-
-  const tour = getTour(tourId);
-  if (!tour) {
-    return NextResponse.json({ result: "error", message: "존재하지 않는 투어입니다." }, { status: 400 });
-  }
-
-  const adults = Number(adultCount) || 0;
-  const children = Number(childCount) || 0;
-  const receivedAmount = Number(amount);
-  const expectedAmount = calcAmount(tour, adults, children);
-
-  // 클라이언트가 보낸 금액이 서버가 계산한 정가와 다르면 승인 자체를 시도하지 않는다 (가격 변조 방어)
-  if (adults + children < 1 || expectedAmount !== receivedAmount) {
-    return NextResponse.json(
-      { result: "error", message: "결제 금액이 일치하지 않습니다. 다시 시도해주세요." },
-      { status: 400 }
+import { currentMember } from "@/lib/auth";
+import { sql } from "@/lib/db";
+import { isSameOrigin, readObject } from "@/lib/http";
+import {
+  testCheckoutEnabled,
+  COMMERCE_DISABLED,
+  tossHeaders,
+} from "@/lib/commerce";
+import { paymentMatches } from "@/lib/booking";
+type Order = {
+  id: string;
+  amount: number;
+  status: string;
+  payment_key: string | null;
+};
+export async function POST(req: Request) {
+  if (!testCheckoutEnabled())
+    return Response.json(
+      { result: "error", message: COMMERCE_DISABLED },
+      { status: 503 },
     );
-  }
-
-  const secretKey = process.env.TOSS_SECRET_KEY;
-  if (!secretKey) {
-    return NextResponse.json(
-      { result: "error", message: "서버에 TOSS_SECRET_KEY가 설정되어 있지 않습니다." },
-      { status: 500 }
+  if (!isSameOrigin(req))
+    return Response.json(
+      { result: "error", message: "요청을 확인해 주세요." },
+      { status: 403 },
     );
-  }
-
-  const basicAuth = Buffer.from(`${secretKey}:`).toString("base64");
-
-  let tossJson: Record<string, unknown>;
   try {
-    const tossRes = await fetch("https://api.tosspayments.com/v1/payments/confirm", {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${basicAuth}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ paymentKey, orderId, amount: receivedAmount }),
-    });
-    tossJson = await tossRes.json();
-    if (!tossRes.ok) {
-      // 새로고침 등으로 이미 승인된 결제를 다시 확인 요청한 경우 — 사용자에게는 성공으로 응답 (주문 알림은 최초 1회만 발송되었으므로 재발송하지 않음)
-      if (tossJson.code === "ALREADY_PROCESSED_PAYMENT") {
-        return NextResponse.json({ result: "success", payment: tossJson, alreadyProcessed: true });
-      }
-      return NextResponse.json(
-        {
-          result: "error",
-          message: (tossJson.message as string) || "결제 승인에 실패했습니다.",
-          code: tossJson.code,
-        },
-        { status: tossRes.status }
+    const member = await currentMember();
+    if (!member)
+      return Response.json(
+        { result: "error", message: "로그인이 필요합니다." },
+        { status: 401 },
+      );
+    let body;
+    try {
+      body = await readObject(req);
+    } catch {
+      return Response.json(
+        { result: "error", message: "요청 내용이 올바르지 않습니다." },
+        { status: 400 },
       );
     }
+    const { paymentKey, orderId, amount } = body;
+    if (
+      typeof paymentKey !== "string" ||
+      paymentKey.length < 1 ||
+      paymentKey.length > 200 ||
+      typeof orderId !== "string" ||
+      !/^GJT_[a-f0-9]{32}$/.test(orderId) ||
+      typeof amount !== "number" ||
+      !Number.isSafeInteger(amount) ||
+      amount <= 0
+    )
+      return Response.json(
+        { result: "error", message: "결제 정보를 확인해 주세요." },
+        { status: 400 },
+      );
+    const db = sql();
+    const rows =
+      await db`SELECT id,amount,status,payment_key FROM orders WHERE id=${orderId} AND member_id=${member.id} AND is_test=true`;
+    const order = rows[0] as Order | undefined;
+    if (
+      !order ||
+      order.amount !== amount ||
+      (order.payment_key && order.payment_key !== paymentKey)
+    )
+      return Response.json(
+        { result: "error", message: "주문 정보가 일치하지 않습니다." },
+        { status: 400 },
+      );
+    if (order.status === "paid")
+      return Response.json({
+        result: "success",
+        orderId,
+        amount,
+        isTest: true,
+      });
+    const claimed =
+      await db`UPDATE orders SET status='confirming',payment_key=${paymentKey} WHERE id=${orderId} AND member_id=${member.id} AND ((status='pending' AND expires_at>now()) OR (status='confirming' AND payment_key=${paymentKey})) RETURNING id`;
+    if (!claimed.length)
+      return Response.json(
+        {
+          result: "error",
+          message: "주문 유효 시간이 지났거나 처리할 수 없는 상태입니다.",
+        },
+        { status: 409 },
+      );
+    let response = await fetch(
+      "https://api.tosspayments.com/v1/payments/confirm",
+      {
+        method: "POST",
+        headers: { ...tossHeaders(), "Idempotency-Key": orderId },
+        body: JSON.stringify({ paymentKey, orderId, amount: order.amount }),
+        signal: AbortSignal.timeout(15000),
+        cache: "no-store",
+      },
+    );
+    let payment = (await response.json()) as Record<string, unknown>;
+    if (payment.code === "ALREADY_PROCESSED_PAYMENT") {
+      response = await fetch(
+        "https://api.tosspayments.com/v1/payments/" +
+          encodeURIComponent(paymentKey),
+        {
+          headers: tossHeaders(),
+          signal: AbortSignal.timeout(10000),
+          cache: "no-store",
+        },
+      );
+      payment = await response.json();
+    }
+    if (!response.ok || !paymentMatches(payment, order, paymentKey))
+      return Response.json(
+        {
+          result: "error",
+          message:
+            "결제 상태를 확인하지 못했습니다. 다시 확인하거나 고객센터에 문의해 주세요.",
+        },
+        { status: 502 },
+      );
+    const saved =
+      await db`UPDATE orders SET status='paid',paid_at=now() WHERE id=${orderId} AND member_id=${member.id} AND payment_key=${paymentKey} AND status IN ('confirming','paid') RETURNING id`;
+    if (!saved.length) throw new Error();
+    return Response.json({
+      result: "success",
+      orderId,
+      amount: order.amount,
+      isTest: true,
+    });
   } catch {
-    return NextResponse.json(
-      { result: "error", message: "결제 승인 서버 통신 중 오류가 발생했습니다." },
-      { status: 502 }
+    return Response.json(
+      {
+        result: "error",
+        message:
+          "결제 상태 확인이 지연되고 있습니다. 다시 결제하지 말고 상태를 다시 확인해 주세요.",
+      },
+      { status: 503 },
     );
   }
-
-  // 결제는 이미 승인 완료된 상태 — 주문 알림(시트 기록 + 이메일)이 실패해도 사용자에게는 결제 성공으로 응답한다.
-  const orderWebappUrl = process.env.ORDER_WEBAPP_URL;
-  if (orderWebappUrl) {
-    try {
-      await fetch(orderWebappUrl, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({
-          주문번호: orderId,
-          투어명: tour.name,
-          참가일시: `${date ?? ""} ${time ?? ""}`.trim(),
-          성인: adults,
-          어린이: children,
-          결제금액: receivedAmount,
-          예약자명: name ?? "",
-          연락처: phone ?? "",
-          이메일: email ?? "",
-          결제수단: tossJson.method ?? "",
-          승인시각: tossJson.approvedAt ?? "",
-        }),
-      });
-    } catch (err) {
-      console.error(`[payments/confirm] 주문 알림 전송 실패 (orderId=${orderId}):`, err);
-    }
-  } else {
-    console.error(`[payments/confirm] ORDER_WEBAPP_URL 미설정 — 주문 알림을 보내지 못함 (orderId=${orderId})`);
-  }
-
-  return NextResponse.json({ result: "success", payment: tossJson });
 }

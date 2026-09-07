@@ -16,7 +16,8 @@ function buildToursSection(): string {
 
 function buildLandmarksSection(): string {
   return LANDMARKS.map(
-    (l) => `- ${l.name}(${l.area}): ${l.hours}, ${l.fee}${l.note ? `. ${l.note}` : ""}`
+    (l) =>
+      `- ${l.name}(${l.area}): ${l.hours}, ${l.fee}${l.note ? `. ${l.note}` : ""}`,
   ).join("\n");
 }
 
@@ -90,7 +91,9 @@ const RATE_WINDOW_MS = 60 * 60 * 1000;
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
-  const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  const timestamps = (requestLog.get(ip) || []).filter(
+    (t) => now - t < RATE_WINDOW_MS,
+  );
   timestamps.push(now);
   requestLog.set(ip, timestamps);
   return timestamps.length > RATE_LIMIT;
@@ -99,15 +102,25 @@ function isRateLimited(ip: string): boolean {
 export async function POST(req: Request) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return Response.json({ error: "서비스 설정이 완료되지 않았습니다." }, { status: 500 });
+    return Response.json(
+      { error: "서비스 설정이 완료되지 않았습니다." },
+      { status: 500 },
+    );
   }
 
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (isRateLimited(ip)) {
-    return Response.json({ error: "잠시 후 다시 시도해주세요." }, { status: 429 });
+    return Response.json(
+      { error: "잠시 후 다시 시도해주세요." },
+      { status: 429 },
+    );
   }
 
-  let body: { message?: string; history?: { role: "user" | "assistant"; content: string }[] };
+  let body: {
+    message?: string;
+    history?: { role: "user" | "assistant"; content: string }[];
+  };
   try {
     body = await req.json();
   } catch {
@@ -139,11 +152,16 @@ export async function POST(req: Request) {
       ],
     });
 
-    const reply = response.choices[0]?.message?.content || "죄송해요, 답변을 생성하지 못했어요.";
+    const reply =
+      response.choices[0]?.message?.content ||
+      "죄송해요, 답변을 생성하지 못했어요.";
 
     return Response.json({ reply });
   } catch (err) {
     console.error("travel-chat error:", err);
-    return Response.json({ error: "일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
+    return Response.json(
+      { error: "일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요." },
+      { status: 500 },
+    );
   }
 }
