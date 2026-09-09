@@ -26,7 +26,7 @@ export default function MuseumTour() {
           </>
         }
         subtitle="성덕대왕신종 · 신라역사관 · 신라미술관"
-        image="/images/tour-museum.jpg"
+        image="/images/tour-museum-field.webp"
         rating={4.92}
         reviews={536}
         discount={37}

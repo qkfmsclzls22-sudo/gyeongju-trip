@@ -25,7 +25,7 @@ export default function NightTour() {
           </>
         }
         subtitle="동궁과월지 · 첨성대 · 월정교"
-        image="/images/tour-night.jpg"
+        image="/images/tour-night-field.webp"
         rating={4.92}
         reviews={445}
         discount={44}

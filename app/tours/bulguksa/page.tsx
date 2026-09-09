@@ -25,7 +25,7 @@ export default function BulguksaTour() {
           </>
         }
         subtitle="유네스코 세계문화유산 · 경주가볼만한곳"
-        image="/images/tour-bulguksa.jpg"
+        image="/images/tour-bulguksa-field.webp"
         rating={4.93}
         reviews={329}
         discount={58}

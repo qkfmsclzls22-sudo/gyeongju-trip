@@ -15,14 +15,16 @@ const openTravelChat = () => window.dispatchEvent(new Event("open-travel-chat"))
 export function SiteHeader({
   back,
   showCta = true,
+  className = "",
 }: {
   back?: { href: string; label: string };
   showCta?: boolean;
+  className?: string;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-brand-100">
+    <header className={`fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-brand-100 ${className}`}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         <a href="/" className="flex items-center shrink-0">
           <img src="/logo.png" alt="경주트립" className="h-11 w-auto" />
