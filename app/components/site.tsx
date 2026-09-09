@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { IconArrow, IconClose, IconMenu } from "./icons";
 
 const navItems = [
@@ -16,19 +17,27 @@ export function SiteHeader({
   back,
   showCta = true,
   className = "",
+  variant = "default",
 }: {
   back?: { href: string; label: string };
   showCta?: boolean;
   className?: string;
+  variant?: "default" | "home";
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const items = variant === "home" ? [
+    { href: "/#about", label: "About" },
+    { href: "/#gallery", label: "Gallery" },
+    { href: "/#tours", label: "Tours" },
+    { href: "/#contact", label: "Contact" },
+  ] : navItems;
 
   return (
     <header className={`fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-brand-100 ${className}`}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <a href="/" className="flex items-center shrink-0">
-          <img src="/logo.png" alt="경주트립" className="h-11 w-auto" />
-        </a>
+        <Link href="/" className="flex items-center shrink-0">
+          {variant === "home" ? <span data-home-wordmark>GYEONGJU TRIP</span> : <img src="/logo.png" alt="경주트립" className="h-11 w-auto" />}
+        </Link>
 
         {back ? (
           <a
@@ -39,7 +48,7 @@ export function SiteHeader({
           </a>
         ) : (
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <a key={item.href} href={item.href} className="hover:text-brand-600 transition-colors">
                 {item.label}
               </a>
@@ -82,7 +91,7 @@ export function SiteHeader({
 
       {menuOpen && !back && (
         <nav className="md:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
-          {navItems.map((item) => (
+          {items.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -140,12 +149,12 @@ export function CtaBanner({ title, desc }: { title: string; desc: string }) {
             견적 및 문의
             <IconArrow className="w-4 h-4" />
           </a>
-          <a
+          <Link
             href="/#tours"
             className="inline-flex items-center justify-center bg-white hover:bg-cream border border-brand-100 text-ink font-semibold px-7 py-3.5 rounded-full transition-colors"
           >
             투어 프로그램 보기
-          </a>
+          </Link>
         </div>
       </div>
     </section>
