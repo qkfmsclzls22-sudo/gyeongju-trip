@@ -1,0 +1,149 @@
+.home {
+  --template-yellow: #fce08b;
+  --template-paper: #fdf6ef;
+  --template-red: #e12020;
+  --template-ink: #401804;
+  padding-top: 64px;
+  color: var(--template-ink);
+  background: var(--template-paper);
+  font-family: var(--font-noto-sans-kr), Arial, sans-serif;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.home :is(section, footer, [id]) { scroll-margin-top: 64px; }
+.home :is(h1, h2, h3, p) { margin: 0; }
+.home :is(h1, h2) { font-weight: 900; letter-spacing: -0.065em; line-height: 1.08; }
+.home a:focus-visible { outline: 3px solid currentColor; outline-offset: 6px; }
+.yellow { background: var(--template-yellow); }
+.paper { background: var(--template-paper); }
+.red { background: var(--template-red); }
+.stage { position: relative; width: 100%; max-width: 1366px; margin-inline: auto; aspect-ratio: 1366 / 768; container-type: inline-size; }
+
+.header { background: #fdf6eff5; border-color: #40180418; }
+.header a[href="/quote"] { background: var(--template-red); border-radius: 0; }
+.header a[href="/quote"]:hover { background: #bf1717; }
+.skipLink { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 18px; background: var(--template-ink); color: white; }
+.skipLink:focus { top: 12px; }
+
+.mosaicStage { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: min(1.9vw, 26px) min(2.2vw, 30px); padding: min(5.65vw, 77px); }
+.mosaicHeading { grid-column: 1 / 3; grid-row: 1; align-self: start; color: var(--template-red); }
+.mosaicHeading h1 { font-size: 5.25cqw; }
+.mosaicHeading h2 { font-size: 5.1cqw; }
+.textLink { display: inline-flex; align-items: center; gap: 12px; font-size: max(16px, 1.7cqw); font-weight: 700; letter-spacing: -0.04em; }
+.textLink svg { width: 1.25em; height: 1.25em; flex-shrink: 0; transform: rotate(-40deg); }
+.textLink:hover { text-decoration: underline; text-underline-offset: 5px; }
+.mosaicHeading > .textLink { margin-top: 1.6cqw; }
+.topRight { grid-column: 3; grid-row: 1; }
+.bottomMiddle { grid-column: 2; grid-row: 2; }
+.bottomRight { grid-column: 3; grid-row: 2; }
+.photoTile, .aboutPhoto, .showcasePhoto, .contactPhoto, .tourPhoto { position: relative; display: block; overflow: hidden; min-width: 0; }
+.home img { object-fit: cover; }
+.photoTile img, .tourPhoto img { transition: transform 240ms ease; }
+@media (hover: hover) {
+  .photoTile:hover img, .tourTile:hover img { transform: scale(1.035); }
+}
+
+.aboutHeading { position: absolute; left: 5.65%; top: 8.5%; font-size: 4.8cqw; color: var(--template-red); }
+.aboutPhoto { position: absolute; left: 5.65%; top: 31.6%; width: 34.65%; height: 58.5%; }
+.aboutCopy { position: absolute; left: 54.5%; top: 31.6%; width: 39.5%; font-size: max(15px, 1.65cqw); line-height: 1.55; letter-spacing: -0.035em; }
+.aboutCopy p + p { margin-top: 1.9cqw; }
+.aboutCopy .textLink { margin-top: 1.6cqw; }
+
+.showcasePhoto { position: absolute; inset: 4.5% 2.3%; }
+.showcaseLabel { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; padding: 2.2cqw 3.3cqw 2.8cqw; background: var(--template-red); color: var(--template-yellow); white-space: nowrap; }
+.showcaseLabel h2 { font-size: 7.7cqw; }
+.showcaseLabel:hover { background: #c91818; }
+
+.tourIntro { margin-top: 2.2cqw !important; color: var(--template-ink); font-size: max(15px, 1.6cqw); line-height: 1.55; }
+.tourTile { display: flex; flex-direction: column; min-width: 0; }
+.tourPhoto { flex: 1; min-height: 0; }
+.tourCaption { display: flex; justify-content: space-between; align-items: end; gap: 8px; padding-top: 10px; }
+.tourCaption h3 { font-size: max(16px, 1.65cqw); font-weight: 900; letter-spacing: -0.055em; }
+.tourCaption span { display: block; font-size: max(12px, 1.03cqw); }
+.tourCaption .tourPrice { font-weight: 700; font-size: max(13px, 1.18cqw); white-space: nowrap; }
+
+.programHeading { position: absolute; left: 5.65%; top: 8.5%; width: 36%; }
+.programHeading h2 { color: var(--template-red); font-size: 5.1cqw; }
+.programHeading .textLink { margin-top: 3cqw; max-width: 90%; font-size: max(14px, 1.3cqw); }
+.programList { position: absolute; left: 44.65%; right: 5.65%; top: 13.5%; bottom: 12.5%; display: flex; flex-direction: column; justify-content: space-between; list-style: none; margin: 0; padding: 0; }
+.programList a { display: flex; align-items: baseline; gap: 1.1cqw; }
+.programList a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.programNumber { font-size: max(16px, 1.8cqw); font-weight: 700; }
+.programList h3 { font-size: max(17px, 2cqw); line-height: 1.3; font-weight: 700; letter-spacing: -0.045em; }
+.programList p { font-size: max(14px, 1.5cqw); margin-top: 0.2cqw; line-height: 1.5; }
+.programList svg { width: 1.5cqw; height: 1.5cqw; min-width: 20px; min-height: 20px; margin-left: auto; align-self: center; }
+
+.contactPhoto { position: absolute; inset: 0 0 45% 0; }
+.contactPhoto img { object-position: center 48%; }
+.contactHeading { position: absolute; left: 5.65%; top: 61%; display: inline-flex; align-items: center; gap: 3cqw; color: var(--template-yellow); }
+.contactHeading h2 { font-size: 5.65cqw; }
+.contactHeading svg { width: 4cqw; height: 4cqw; transform: rotate(-40deg); }
+.personalContact, .groupContact { position: absolute; top: 81%; color: white; font-size: max(14px, 1.65cqw); line-height: 1.75; }
+.personalContact { left: 5.65%; }
+.groupContact { left: 37%; right: 5.65%; }
+.personalContact > p, .groupContact > a { font-weight: 700; }
+.personalContact a:hover, .groupContact a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.legal { max-width: 1366px; margin-inline: auto; padding: 22px 5.65% 32px; border-top: 1px solid #ffffff35; color: white; font-size: 12px; line-height: 1.8; }
+.legal span { margin-left: 12px; }
+
+@media (max-width: 900px) and (min-width: 641px) {
+  .aboutCopy { font-size: 14px; }
+  .aboutCopy p + p { margin-top: 10px; }
+  .aboutCopy .textLink { font-size: 14px; margin-top: 12px; }
+  .tourCaption { align-items: start; flex-direction: column; gap: 2px; }
+  .tourCaption h3 { font-size: 15px; }
+  .personalContact, .groupContact { font-size: 13px; }
+}
+
+@media (max-width: 640px) {
+  .stage { aspect-ratio: auto; }
+  .mosaicStage { padding: 36px 6%; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto repeat(2, 34cqw); gap: 14px; }
+  .mosaicHeading { grid-column: 1 / -1; grid-row: 1; padding-bottom: 18px; }
+  .mosaicHeading h1 { font-size: clamp(38px, 9.5cqw, 60px); }
+  .mosaicHeading h2 { font-size: clamp(34px, 8cqw, 50px); }
+  .mosaicHeading > .textLink { margin-top: 20px; }
+  .topRight { grid-column: 2; grid-row: 2; }
+  .bottomMiddle { grid-column: 1; grid-row: 3; }
+  .bottomRight { grid-column: 2; grid-row: 3; }
+  .aboutStage { padding: 42px 6%; display: grid; gap: 28px; }
+  .aboutHeading, .aboutPhoto, .aboutCopy { position: relative; inset: auto; width: auto; }
+  .aboutHeading { font-size: clamp(30px, 7.5cqw, 46px); }
+  .aboutPhoto { width: 78%; aspect-ratio: 474 / 450; height: auto; }
+  .aboutCopy { font-size: 15px; line-height: 1.75; }
+  .aboutCopy p + p { margin-top: 18px; }
+  .aboutCopy .textLink { margin-top: 22px; }
+  .desktopBreak { display: none; }
+  .showcaseStage { aspect-ratio: 1.25; }
+  .showcasePhoto { inset: 12px; }
+  .showcaseLabel { padding: 14px 20px 18px; }
+  .showcaseLabel h2 { font-size: 9cqw; }
+  .tourStage { grid-template-rows: auto repeat(2, 52cqw); }
+  .tourIntro { margin-top: 16px !important; }
+  .tourCaption { flex-direction: column; align-items: start; gap: 3px; padding-top: 8px; }
+  .tourCaption h3 { font-size: 16px; }
+  .tourCaption span { font-size: 11px; }
+  .programStage { padding: 42px 6%; display: grid; gap: 36px; }
+  .programHeading, .programList { position: relative; inset: auto; width: auto; }
+  .programHeading h2 { font-size: clamp(34px, 8cqw, 50px); }
+  .programHeading .textLink { margin-top: 22px; }
+  .programList { gap: 25px; }
+  .programList a { gap: 12px; }
+  .programList h3 { font-size: 18px; }
+  .programList p { font-size: 14px; }
+  .programNumber { font-size: 17px; }
+  .contactStage { display: flex; flex-direction: column; padding-bottom: 40px; }
+  .contactPhoto { position: relative; inset: auto; width: 100%; height: 60cqw; }
+  .contactHeading, .personalContact, .groupContact { position: relative; inset: auto; margin: 28px 6% 0; }
+  .contactHeading { gap: 16px; }
+  .contactHeading h2 { font-size: clamp(30px, 7.2cqw, 44px); }
+  .contactHeading svg { width: 28px; height: 28px; flex-shrink: 0; }
+  .personalContact, .groupContact { font-size: 15px; }
+  .groupContact p a { display: inline-block; }
+  .legal { padding: 24px 6% 100px; }
+  .legal span { display: block; margin: 6px 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photoTile img, .tourPhoto img { transition: none; }
+}
