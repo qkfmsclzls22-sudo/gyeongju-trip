@@ -15,9 +15,9 @@ const illustrations = [
   { name: "woljeonggyo", alt: "달빛 아래 월정교와 물에 비친 다리 일러스트", href: "/landmarks/woljeonggyo" },
 ];
 const tours = [
-  { id: "night", title: "신라별빛야행", label: "청사초롱 야경투어", description: "청사초롱과 함께 걷는 경주의 밤", image: "/images/tour-night-field.webp", alt: "첨성대 앞에서 청사초롱을 든 경주트립 여행자들" },
-  { id: "museum", title: "국립경주박물관", label: "박물관 도슨트", description: "유물에 담긴 신라의 이야기를 만나요", image: "/images/tour-museum-field.webp", alt: "경주트립 해설사와 함께하는 국립경주박물관 투어" },
-  { id: "bulguksa", title: "세계유산 불국사", label: "문화유산 해설투어", description: "천년의 공간을 더 깊이 들여다보는 시간", image: "/images/tour-bulguksa-field.webp", alt: "불국사에서 문화유산 해설을 듣는 경주트립 여행자들" },
+  { id: "night", title: "신라별빛야행", label: "청사초롱 야경투어", description: "청사초롱과 함께 걷는 경주의 밤", image: "/images/product-smartstore-night.webp", alt: "경주트립 스마트스토어 신라별빛야행 대표이미지" },
+  { id: "museum", title: "국립경주박물관", label: "박물관 도슨트", description: "유물에 담긴 신라의 이야기를 만나요", image: "/images/product-smartstore-museum.webp", alt: "경주트립 스마트스토어 국립경주박물관 프리미엄 도슨트 대표이미지" },
+  { id: "bulguksa", title: "불국사·석굴암", label: "문화유산 해설투어", description: "천년의 공간을 더 깊이 들여다보는 시간", image: "/images/product-smartstore-bulguksa.webp", alt: "경주트립 스마트스토어 불국사 석굴암 역사투어 대표이미지" },
 ];
 
 export default function Home() {
