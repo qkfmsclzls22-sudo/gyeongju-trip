@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect } from "react";
 import { IconArrow } from "./icons";
 import { useSnapCarousel } from "./useSnapCarousel";
 import { GalleryVideo } from "./GalleryVideo";
+import { useCarouselPlayback } from "./useCarouselPlayback";
 import styles from "../homepage.module.css";
 
 const photos = [
@@ -32,44 +33,24 @@ const galleryItems: GalleryItem[] = photos.flatMap((photo, i) => [
   ...videos.filter(video => video.after === i).map(video => ({ kind: "video" as const, src: `/videos/gallery-${video.slug}.mp4`, poster: `/images/gallery-video-${video.slug}.webp`, alt: video.alt, label: video.label, portrait: video.slug !== "museum-docent" })),
 ]);
 
-function subscribeToMotionPreference(callback: () => void) {
-  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-  query.addEventListener("change", callback);
-  return () => query.removeEventListener("change", callback);
-}
-const getMotionPreference = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 export function HomeGallery() {
-  const { track, active, move, updateActive } = useSnapCarousel(galleryItems.length);
-  const gallery = useRef<HTMLDivElement>(null);
-  const hovered = useRef(false);
-  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
-  const reducedMotion = useSyncExternalStore(subscribeToMotionPreference, getMotionPreference, () => true);
-  const playing = userPlaying ?? !reducedMotion;
+  const { track, active, move, goTo, updateActive } = useSnapCarousel(galleryItems.length);
+  const playback = useCarouselPlayback(track);
 
   useEffect(() => {
-    const el = gallery.current;
-    if (!playing || !el) return;
-    let visible = false;
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.intersectionRatio >= 0.25; }, { threshold: 0.25 });
-    observer.observe(el);
-    const timer = window.setInterval(() => {
-      const videoPlaying = Array.from(el.querySelectorAll("video")).some(video => !video.paused && !video.ended);
-      if (visible && !document.hidden && !hovered.current && !videoPlaying) move(1);
-    }, 4500);
-    return () => { observer.disconnect(); window.clearInterval(timer); };
-  }, [playing, move]);
+    if (!playback.running || galleryItems[active].kind === "video") return;
+    const timer = window.setTimeout(() => move(1), 4000);
+    return () => window.clearTimeout(timer);
+  }, [active, playback.running, move]);
 
-  function manualMove(direction: number) { setUserPlaying(false); move(direction); }
-
-  return <div ref={gallery} className={styles.gallery} onPointerEnter={(event) => { if (event.pointerType === "mouse") hovered.current = true; }} onPointerLeave={() => { hovered.current = false; }}>
-    <div id="gallery-track" ref={track} className={styles.galleryTrack} role="region" aria-roledescription="carousel" aria-label="경주트립 여행 사진" tabIndex={0} onScroll={updateActive} onPointerDown={() => setUserPlaying(false)} onFocus={() => setUserPlaying(false)} onKeyDown={(event) => {
+  return <div className={styles.gallery} onPointerDownCapture={playback.onPointerDown} onFocusCapture={playback.onFocus}>
+    <div id="gallery-track" ref={track} className={styles.galleryTrack} role="region" aria-roledescription="carousel" aria-label="경주트립 여행 사진과 영상" tabIndex={0} onScroll={updateActive} onKeyDown={(event) => {
       if ((event.target as HTMLElement).closest("video")) return;
-      if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); manualMove(event.key === "ArrowRight" ? 1 : -1); }
+      if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); move(event.key === "ArrowRight" ? 1 : -1); }
     }}>
       {galleryItems.map((item, i) => <figure className={`${styles.galleryCard} ${item.kind === "video" && item.portrait ? styles.videoCard : ""}`} key={item.src} role="group" aria-label={`${i + 1} / ${galleryItems.length}`}>
         <div className={styles.galleryPhoto}>{item.kind === "video"
-          ? <GalleryVideo src={item.src} poster={item.poster} label={item.alt} onPlay={() => setUserPlaying(false)} />
+          ? <GalleryVideo src={item.src} poster={item.poster} label={item.alt} active={active === i} playing={playback.running} onSelect={() => { goTo(i); playback.play(); }} onAdvance={() => move(1)} />
           : <Image src={`/images/${item.src}.webp`} alt={item.alt} fill sizes="(max-width: 640px) 80vw, (max-width: 1400px) 40vw, 550px" />}</div>
         <figcaption><span>{String(i + 1).padStart(2, "0")}</span>{item.label}</figcaption>
       </figure>)}
@@ -77,13 +58,10 @@ export function HomeGallery() {
     <div className={`${styles.container} ${styles.galleryControls}`}>
       <span className={styles.galleryHint}>경주트립과 함께한 순간들</span>
       <div>
-        <button type="button" className={styles.autoplayButton} aria-label={playing ? "자동 슬라이드 일시정지" : "자동 슬라이드 재생"} aria-controls="gallery-track" onClick={() => {
-          if (!playing) track.current?.querySelectorAll("video").forEach(video => video.pause());
-          setUserPlaying(!playing);
-        }}><span aria-hidden="true">{playing ? "Ⅱ" : "▶"}</span>{playing ? "일시정지" : "자동재생"}</button>
-        <span className={styles.galleryCount} aria-live={playing ? "off" : "polite"}>{String(active + 1).padStart(2, "0")} / {galleryItems.length}</span>
-        <button type="button" aria-label="이전 사진" aria-controls="gallery-track" onClick={() => manualMove(-1)}><IconArrow className={styles.previousArrow} /></button>
-        <button type="button" aria-label="다음 사진" aria-controls="gallery-track" onClick={() => manualMove(1)}><IconArrow /></button>
+        <button type="button" className={styles.autoplayButton} aria-label={playback.playing ? "자동 슬라이드 일시정지" : "자동 슬라이드 재생"} aria-controls="gallery-track" onClick={playback.toggle}><span aria-hidden="true">{playback.playing ? "Ⅱ" : "▶"}</span>{playback.playing ? "일시정지" : "자동재생"}</button>
+        <span className={styles.galleryCount} aria-live={playback.playing ? "off" : "polite"}>{String(active + 1).padStart(2, "0")} / {galleryItems.length}</span>
+        <button type="button" aria-label="이전 사진" aria-controls="gallery-track" onClick={() => move(-1)}><IconArrow className={styles.previousArrow} /></button>
+        <button type="button" aria-label="다음 사진" aria-controls="gallery-track" onClick={() => move(1)}><IconArrow /></button>
       </div>
     </div>
   </div>;
