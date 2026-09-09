@@ -3,13 +3,13 @@ import { Outfit } from "next/font/google";
 import { SiteHeader } from "./components/site";
 import { IconArrow } from "./components/icons";
 import { HomeGallery } from "./components/HomeGallery";
+import { TourCarousel } from "./components/TourCarousel";
 import styles from "./homepage.module.css";
 
 const outfit = Outfit({ subsets: ["latin"], weight: ["500", "700", "800", "900"], variable: "--font-home-display", display: "swap" });
 const storeUrl = "https://smartstore.naver.com/gjtrip";
 const illustrations = [
   { name: "blossom", alt: "봄꽃이 핀 나무와 경주의 초록 고분을 그린 일러스트", href: "/landmarks/daereungwon" },
-  { name: "autumn", alt: "초록 능선 위 가을 나무 두 그루를 그린 일러스트", href: "/landmarks/daereungwon" },
   { name: "buddha", alt: "따뜻한 주황색 배경의 석굴암 본존불 일러스트", href: "/landmarks/seokguram" },
   { name: "cheomseongdae", alt: "색동 조각으로 표현한 첨성대 일러스트", href: "/landmarks/cheomseongdae" },
   { name: "woljeonggyo", alt: "달빛 아래 월정교와 물에 비친 다리 일러스트", href: "/landmarks/woljeonggyo" },
@@ -45,9 +45,10 @@ export default function Home() {
             <div className={styles.aboutPhoto}><Image src="/images/about-cheongsachorong.webp" alt="어둠 속에서 따뜻하게 빛나는 경주트립의 청사초롱" fill sizes="(max-width: 640px) 88vw, 42vw" /></div>
           </div>
           <div className={styles.aboutCopy}>
-            <p>경주트립은 경주의 이야기를 여행으로 만드는<br className={styles.desktopBreak} /> 로컬 여행 콘텐츠 기업입니다.</p>
-            <p>문화유산 해설, 박물관 도슨트, 야경투어부터<br className={styles.desktopBreak} /> 프라이빗 여행과 기업·학교·MICE 프로그램까지.</p>
-            <p>경주를 잘 아는 사람들과 함께<br className={styles.desktopBreak} /> 취향과 목적에 맞는 여행을 기획하고 운영합니다.</p>
+            <p>경주트립은 경주의 역사와 문화를<br className={styles.desktopBreak} /> 여행자의 눈높이로 전하는 로컬 여행 기업입니다.</p>
+            <p>박물관 도슨트·문화유산 해설·청사초롱 야경투어와<br className={styles.desktopBreak} /> 기업·학교·MICE 맞춤 여행을 기획하고 운영합니다.</p>
+            <p>유적 속 사람들의 삶을 쉬운 이야기로 풀고,<br className={styles.desktopBreak} /> 여행의 목적과 동행에 맞는 코스와 시간을 설계합니다.</p>
+            <p>경주를 깊이 이해하고 오래 기억하는 여행,<br className={styles.desktopBreak} /> 배움과 즐거움이 함께하는 경험을 만드는 것이 목표입니다.</p>
             <a className={styles.textLink} href="/company">경주트립 알아보기 <IconArrow /></a>
           </div>
         </div>
@@ -62,14 +63,14 @@ export default function Home() {
       <section id="tours" className={styles.paper} aria-labelledby="tours-title">
         <div className={`${styles.container} ${styles.programs}`}>
           <div className={styles.programHeading}><h2 id="tours-title">나에게 맞는<br />경주여행</h2><a className={styles.textLink} href={storeUrl} target="_blank" rel="noopener noreferrer">전체 상품 보기 <IconArrow /></a></div>
-          <div className={styles.productGrid}>
+          <TourCarousel count={tours.length}>
             {tours.map((tour) => <a key={tour.id} href={`/tours/${tour.id}`} className={styles.product}>
-              <div className={styles.productPhoto}><Image src={tour.image} alt={tour.alt} fill sizes="(max-width: 640px) 88vw, 29vw" /></div>
+              <div className={styles.productPhoto}><Image src={tour.image} alt={tour.alt} fill sizes="(max-width: 640px) 78vw, 29vw" /></div>
               <span className={styles.productLabel}>{tour.label}</span>
               <div className={styles.productTitle}><h3>{tour.title}</h3><IconArrow /></div>
               <p>{tour.description}</p>
             </a>)}
-          </div>
+          </TourCarousel>
           <div className={styles.customTours}>
             <a href="/quote"><span>가족·친구와 함께</span><strong>우리만의 프라이빗 투어</strong><IconArrow /></a>
             <a href="/quote"><span>인원과 목적에 맞게</span><strong>기업·학교·MICE 단체투어</strong><IconArrow /></a>
