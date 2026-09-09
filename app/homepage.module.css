@@ -145,7 +145,7 @@
   .productGrid::-webkit-scrollbar { display: none; }
   .product { flex: 0 0 78vw; scroll-snap-align: start; scroll-margin-left: 6vw; }
   .productControls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
-  .productControls > span { font-size: 11px; }
+  .productAutoplay { display: flex; align-items: center; gap: 5px; min-height: 38px; padding-inline: 8px; border: 1px solid var(--ink); border-radius: 24px; font-size: 11px; white-space: nowrap; cursor: pointer; }
   .productDots, .productArrows { display: flex; align-items: center; }
   .productDots button { width: 28px; height: 36px; display: grid; place-items: center; cursor: pointer; }
   .productDots button::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #40180440; }
