@@ -6,12 +6,12 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const GREETING: Message = {
   role: "assistant",
-  content: "안녕하세요, AI경트예요! 😊 경주 여행 무엇이든 물어보세요. 추천 코스, 유적지 정보, 투어 안내를 도와드릴게요.",
+  content: "처음 가는 경주, 덜 헤매고 여유롭게 여행하도록 도와드릴게요. 동행자·이동수단·숙소 위치·여행 기간을 알려주시면 동선과 놓치기 쉬운 팁을 함께 정리해드려요.",
 };
 
 const COMPANION_OPTIONS = ["가족여행(자녀 동반)", "부모님과 함께", "커플·신혼여행", "친구와 함께", "나홀로 여행"];
-const TRANSPORT_OPTIONS = ["자차", "대중교통·투어버스"];
-const STAY_OPTIONS = ["경주 시내(황리단길 인근)", "보문관광단지", "불국사·석굴암 인근", "신경주역 인근", "아직 미정"];
+const TRANSPORT_OPTIONS = ["자차·렌터카", "시내버스·도보", "대중교통·택시 병행", "관광버스 이용"];
+const STAY_OPTIONS = ["경주 시내(황리단길 인근)", "보문관광단지", "불국사·석굴암 인근", "경주역(KTX) 인근", "숙박 없음", "아직 미정"];
 const DURATION_OPTIONS = ["당일치기", "1박 2일", "2박 3일", "3박 이상"];
 
 function ChipGroup({
@@ -34,6 +34,7 @@ function ChipGroup({
             key={opt}
             type="button"
             onClick={() => onChange(opt)}
+            aria-pressed={value === opt}
             className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
               value === opt
                 ? "bg-brand-500 border-brand-500 text-white"
@@ -60,6 +61,9 @@ export default function TravelChatWidget() {
   const [transport, setTransport] = useState("");
   const [stay, setStay] = useState("");
   const [duration, setDuration] = useState("");
+  const [details, setDetails] = useState("");
+  const [pace, setPace] = useState("여유롭게");
+  const [profile, setProfile] = useState("");
   const formComplete = companion && transport && stay && duration;
 
   useEffect(() => {
@@ -73,7 +77,7 @@ export default function TravelChatWidget() {
     return () => window.removeEventListener("open-travel-chat", handler);
   }, []);
 
-  async function sendMessage(text: string, historyBase: Message[]) {
+  async function sendMessage(text: string, historyBase: Message[], travelProfile = profile) {
     setLoading(true);
     try {
       const res = await fetch("/api/travel-chat", {
@@ -81,6 +85,7 @@ export default function TravelChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
+          profile: travelProfile,
           history: historyBase.map((m) => ({ role: m.role, content: m.content })),
         }),
       });
@@ -102,11 +107,11 @@ export default function TravelChatWidget() {
   function handleSubmitForm(e: React.FormEvent) {
     e.preventDefault();
     if (!formComplete) return;
-    const summary = `[여행 정보]\n- 동행자: ${companion}\n- 이동수단: ${transport}\n- 숙소 위치: ${stay}\n- 여행 기간: ${duration}\n\n위 정보에 맞춰서 최적의 경주 여행 동선과 일정을 추천해줘.`;
-    const displaySummary = `👥 동행자: ${companion}\n🚗 이동수단: ${transport}\n🏨 숙소 위치: ${stay}\n📅 여행 기간: ${duration}`;
+    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n여행 속도: ${pace}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
+    setProfile(summary);
     setStage("chat");
-    setMessages([{ role: "user", content: displaySummary }]);
-    sendMessage(summary, []);
+    setMessages([{ role: "user", content: summary }]);
+    sendMessage("선택한 조건에 맞춰 경주 여행 동선과 일정을 짜줘. 이동과 휴식 여유, 헤매지 않는 팁도 알려줘.", [], summary);
   }
 
   function handleSend(e: React.FormEvent) {
@@ -126,6 +131,9 @@ export default function TravelChatWidget() {
     setTransport("");
     setStay("");
     setDuration("");
+    setDetails("");
+    setPace("여유롭게");
+    setProfile("");
   }
 
   return (
@@ -135,12 +143,12 @@ export default function TravelChatWidget() {
           <div className="bg-brand-500 text-white px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div>
               <p className="font-semibold text-sm">AI경트</p>
-              <p className="text-brand-100 text-xs">경주 여행 AI 도우미</p>
+              <p className="text-brand-100 text-xs">처음 가는 경주 · 맞춤 일정 도우미</p>
             </div>
             <div className="flex items-center gap-3">
               {stage === "chat" && (
-                <button onClick={handleRestartForm} className="text-white/80 hover:text-white text-xs underline underline-offset-2">
-                  맞춤설문 다시
+                <button disabled={loading} onClick={handleRestartForm} className="text-white/80 hover:text-white text-xs underline underline-offset-2">
+                  여행 조건 변경
                 </button>
               )}
               <button onClick={() => setOpen(false)} aria-label="닫기" className="text-white/80 hover:text-white text-xl leading-none">
@@ -152,19 +160,24 @@ export default function TravelChatWidget() {
           {stage === "form" ? (
             <form onSubmit={handleSubmitForm} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-gray-50">
               <p className="text-sm text-gray-600">
-                몇 가지만 알려주시면 <b>여행 스타일에 딱 맞는 동선</b>을 짜드려요.
+                여행 조건을 고르면 <b>동선·이동 여유·놓치기 쉬운 팁</b>을 함께 정리해드려요.
               </p>
               <ChipGroup label="누구와 함께 가세요?" options={COMPANION_OPTIONS} value={companion} onChange={setCompanion} />
               <ChipGroup label="이동수단은요?" options={TRANSPORT_OPTIONS} value={transport} onChange={setTransport} />
               <ChipGroup label="숙소는 어디쪽인가요?" options={STAY_OPTIONS} value={stay} onChange={setStay} />
               <ChipGroup label="여행 기간은요?" options={DURATION_OPTIONS} value={duration} onChange={setDuration} />
+              <ChipGroup label="어떤 속도로 여행할까요?" options={["여유롭게", "적당히", "알차게"]} value={pace} onChange={setPace} />
+              <label className="block text-xs font-semibold text-gray-500">
+                추가로 알려주시면 더 정확해요 (선택)
+                <textarea value={details} onChange={event => setDetails(event.target.value)} maxLength={500} rows={3} placeholder="예: 10월 10~11일, 경주역 11시 도착·다음 날 17시 출발, 아이 7세, 유모차, 야경·맛집 관심" className="mt-2 w-full resize-none rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-800" />
+              </label>
 
               <button
                 type="submit"
                 disabled={!formComplete}
                 className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-40 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors"
               >
-                맞춤 여행정보 받기
+                동선과 여행 팁 받기
               </button>
               <button
                 type="button"
@@ -186,14 +199,21 @@ export default function TravelChatWidget() {
                           : "bg-white text-gray-800 border border-gray-200 rounded-bl-sm"
                       }`}
                     >
-                      {m.content}
+                      {m.content.split(/(https:\/\/[^\s<>]+)/g).map((part, partIndex) => {
+                        if (!part.startsWith("https://")) return part;
+                        try {
+                          const url = new URL(part);
+                          if (url.username || url.password) return part;
+                          return <a key={partIndex} href={url.href} target="_blank" rel="noopener noreferrer" className="underline break-all">{part}</a>;
+                        } catch { return part; }
+                      })}
                     </div>
                   </div>
                 ))}
                 {loading && (
                   <div className="flex justify-start">
                     <div className="bg-white text-gray-400 border border-gray-200 px-3 py-2 rounded-2xl rounded-bl-sm text-sm">
-                      입력 중...
+                      동선과 이동 여유를 살펴보고 있어요…
                     </div>
                   </div>
                 )}
@@ -204,7 +224,8 @@ export default function TravelChatWidget() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="추가로 궁금한 점을 물어보세요"
+                  aria-label="여행 추가 질문"
+                  placeholder="예: 둘째 날은 비가 오면 어떻게 바꿀까요?"
                   maxLength={400}
                   className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-brand-400"
                 />
