@@ -8,6 +8,7 @@ const navItems = [
   { href: "/#tours", label: "투어" },
   { href: "/#landmarks", label: "유적지" },
   { href: "/company", label: "기업소개" },
+  { href: "/now", label: "지금 경주" },
   { href: "/#contact", label: "문의" },
 ];
 
@@ -29,6 +30,7 @@ export function SiteHeader({
     { href: "/#about", label: "About" },
     { href: "/#gallery", label: "Gallery" },
     { href: "/#tours", label: "Tours" },
+    { href: "/now", label: "지금 경주" },
     { href: "/#contact", label: "Contact" },
   ] : navItems;
 
@@ -47,7 +49,7 @@ export function SiteHeader({
             ← {back.label}
           </a>
         ) : (
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600">
+          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-600 whitespace-nowrap">
             {items.map((item) => (
               <a key={item.href} href={item.href} className="hover:text-brand-600 transition-colors">
                 {item.label}
@@ -81,7 +83,7 @@ export function SiteHeader({
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
               aria-expanded={menuOpen}
-              className="md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand-600 transition-colors"
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand-600 transition-colors"
             >
               {menuOpen ? <IconClose className="w-6 h-6" /> : <IconMenu className="w-6 h-6" />}
             </button>
@@ -90,7 +92,7 @@ export function SiteHeader({
       </div>
 
       {menuOpen && !back && (
-        <nav className="md:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
+        <nav className="lg:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
           {items.map((item) => (
             <a
               key={item.href}
