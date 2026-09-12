@@ -43,6 +43,7 @@ const history = [
 ];
 
 const corporateClients = [
+  { name: "교보생명", count: "170명", program: "불국사 역사문화 해설투어" },
   { name: "롯데GRS", count: "1,000여명", program: "국립경주박물관 도슨트투어" },
   {
     name: "한국수력원자력 월성원자력본부",
