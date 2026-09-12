@@ -34,15 +34,17 @@ export function inspectPlan(value: unknown, context: string): string[] {
   const arrivalMatch = [...context.matchAll(/(?:도착\s*(?:시각|시간)?\s*:?\s*)(\d{1,2}):(\d{2})|(\d{1,2}):(\d{2})\s*(?:경주\s*)?도착/g)].at(-1);
   const arrival = arrivalMatch ? Number(arrivalMatch[1] ?? arrivalMatch[3]) * 60 + Number(arrivalMatch[2] ?? arrivalMatch[4]) : null;
   const places = new Set<string>();
+  const dateMatch = [...context.matchAll(/(?:(\d{4})[-년]\s*)?(\d{1,2})[-월]\s*(\d{1,2})(?:일)?/g)].at(-1);
+  const startDate = dateMatch ? Date.UTC(Number(dateMatch[1] || new Date().getUTCFullYear()), Number(dateMatch[2]) - 1, Number(dateMatch[3])) : null;
   let previousDay = 0;
   for (const day of p.days) {
-    if (!Number.isInteger(day.day) || day.day <= previousDay || (tripDays && day.day > tripDays) || !Array.isArray(day.stops) || !day.stops.length) return ["숙박일수/일차 구조 오류"];
+    if (!day || !Number.isInteger(day.day) || day.day <= previousDay || (tripDays && day.day > tripDays) || !Array.isArray(day.stops) || !day.stops.length) return ["숙박일수/일차 구조 오류"];
     previousDay = day.day;
     let previousEnd = -1;
     const visitedAreas = new Set<string>();
     let previousArea = "";
     for (const [i, stop] of day.stops.entries()) {
-      if ([stop.start, stop.end, stop.place, stop.area, stop.kind, stop.text].some(v => typeof v !== "string")) return ["시간표 행 구조 오류"];
+      if (!stop || [stop.start, stop.end, stop.place, stop.area, stop.kind, stop.text].some(v => typeof v !== "string")) return ["시간표 행 구조 오류"];
       const start = minute(stop.start), end = minute(stop.end);
       if (!Number.isFinite(start) || !Number.isFinite(end) || end < start || start < previousEnd) errors.push(`${day.day}일차 ${stop.text}: 시각 역전/겹침`);
       if (day.day === 1 && arrival !== null && start < arrival) errors.push("첫날 도착 이전 일정 금지");
@@ -51,6 +53,10 @@ export function inspectPlan(value: unknown, context: string): string[] {
       if (tripDays && day.day === tripDays && ["체크인", "숙박"].includes(stop.kind)) errors.push("마지막 날 체크아웃 후 숙소 휴식/숙박 금지");
       if (stop.kind === "귀가" && i !== day.stops.length - 1) errors.push("귀가 뒤 추가 일정 금지");
       if (stop.kind === "관람") {
+        const monday = startDate !== null ? new Date(startDate + (day.day - 1) * 86400000).getUTCDay() === 1 : tripDays === 1 && /월요일/.test(context);
+        const venue = stop.place + " " + stop.text;
+        if (monday && /라원|동궁식물원|동궁원/.test(venue)) errors.push("월요일 정기휴관인 라원·동궁식물원 대신 플래시백 계림 등 운영하는 대안을 선택하세요");
+        if (/국립\s*경주\s*박물관/.test(venue) && start < 600) errors.push("국립경주박물관 관람은 10:00 개관 이후 배치하세요");
         const key = canonicalPlace(stop.place);
         if (places.has(key) && !repeatsAllowed) errors.push(`명소 중복: ${stop.place}`);
         places.add(key);
@@ -68,7 +74,7 @@ export function inspectPlan(value: unknown, context: string): string[] {
 
 export function renderPlan(plan: Plan): string {
   if (!plan.days.length) return plan.answer;
-  const sections = plan.days.map((d, i) => `${d.day}일차\n${i === 0 && plan.assumptions ? plan.assumptions + "\n\n" : ""}${d.stops.map(s => `${s.start}${s.end === s.start ? "" : "–" + s.end} | ${s.text.replace(/\n/g, " ")}`).join("\n")}`);
+  const sections = plan.days.map((d, i) => `${d.day}일차\n${i === 0 && plan.assumptions ? plan.assumptions + "\n\n" : ""}${d.stops.map(s => `${s.start}${s.end === s.start ? "" : "–" + s.end} | ${s.place}${s.text === s.place ? "" : " · " + s.text.replace(/\n/g, " ")}`).join("\n")}`);
   sections.push("시각은 이동·주차 여유를 포함한 계획안입니다.");
   if (plan.reasons) sections.push(`이렇게 짠 이유\n${plan.reasons}`);
   if (plan.tips.length) sections.push(`딱 기억할 팁\n${plan.tips.slice(0, 2).map(t => `• ${t}`).join("\n")}`);

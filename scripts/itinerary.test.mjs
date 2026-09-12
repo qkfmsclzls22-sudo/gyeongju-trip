@@ -31,3 +31,12 @@ test('keeps simple answers and deterministic readable timeline', () => {
   assert.match(renderPlan(p),/14:00–15:00 \| 라원\n15:30–16:00 \| 숙소/);
   assert.deepEqual(inspectPlan({...p,days:[],answer:'경주에는 언제 도착하시나요?'},''),[]);
 });
+test('always renders the destination even when descriptive text omits it', () => {
+  const p=plan([{...stop('14:00','15:00','플래시백 계림'),text:'미디어아트 관람'}]);
+  assert.match(renderPlan(p),/플래시백 계림 · 미디어아트 관람/);
+});
+test('rejects known Monday closures and museum visit before opening', () => {
+  assert(inspectPlan(plan([stop('14:00','15:00','라원')]),'9월 14일 월요일 당일치기').some(x=>x.includes('휴관')));
+  assert.deepEqual(inspectPlan(plan([stop('14:00','15:00','라원')]),'2026-09-15 당일치기'),[]);
+  assert(inspectPlan(plan([stop('09:20','10:40','국립경주박물관','도심')]),'').some(x=>x.includes('10:00')));
+});
