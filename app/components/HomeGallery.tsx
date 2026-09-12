@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IconArrow } from "./icons";
 import { useSnapCarousel } from "./useSnapCarousel";
-import { GalleryVideo } from "./GalleryVideo";
 import { useCarouselPlayback } from "./useCarouselPlayback";
 import styles from "../homepage.module.css";
 
@@ -21,36 +20,45 @@ const photos = [
   { src: "gallery-night-story", alt: "경주의 밤길에서 함께 해설을 듣는 여행자들", label: "함께여서 더 즐거운 여행" },
 ];
 
-type GalleryItem = { kind: "photo"; src: string; alt: string; label: string } | { kind: "video"; src: string; poster: string; alt: string; label: string; portrait: boolean };
+type GalleryItem = { kind: "photo"; src: string; alt: string; label: string } | { kind: "motion"; src: string; poster: string; alt: string; label: string; portrait: boolean };
 const videos = [
-  { after: 0, slug: "reel", label: "영상 · 경주트립의 밤", alt: "경주 야경투어의 여러 순간을 담은 영상" },
-  { after: 1, slug: "museum-docent", label: "영상 · 박물관 도슨트", alt: "박물관에서 유물 이야기를 들려주는 경주트립 해설사" },
-  { after: 4, slug: "bulguksa-day", label: "영상 · 불국사를 함께 걷다", alt: "불국사 돌계단 앞에서 함께하는 문화유산 해설투어" },
-  { after: 7, slug: "lantern-night", label: "영상 · 청사초롱의 밤", alt: "청사초롱과 경주의 밤 풍경을 담은 영상" },
+  { slug: "reel", label: "영상 · 경주트립의 밤", alt: "청사초롱과 월정교를 담은 움직이는 이미지" },
+  { slug: "museum-docent", label: "영상 · 박물관 도슨트", alt: "박물관에서 유물 이야기를 들려주는 경주트립 해설사" },
+  { slug: "bulguksa-day", label: "영상 · 불국사를 함께 걷다", alt: "불국사 돌계단 앞에서 함께하는 문화유산 해설투어" },
+  { slug: "lantern-night", label: "영상 · 청사초롱의 밤", alt: "청사초롱과 경주의 밤 풍경을 담은 움직이는 이미지" },
 ];
-const galleryItems: GalleryItem[] = photos.flatMap((photo, i) => [
-  { kind: "photo" as const, ...photo },
-  ...videos.filter(video => video.after === i).map(video => ({ kind: "video" as const, src: `/videos/gallery-${video.slug}.mp4`, poster: `/images/gallery-video-${video.slug}.webp`, alt: video.alt, label: video.label, portrait: video.slug !== "museum-docent" })),
-]);
+const galleryItems: GalleryItem[] = [
+  ...photos.map(photo => ({ kind: "photo" as const, ...photo })),
+  ...videos.map(video => ({ kind: "motion" as const, src: `/images/gallery-motion-${video.slug}.webp`, poster: `/images/gallery-video-${video.slug}.webp`, alt: video.alt, label: video.label, portrait: video.slug !== "museum-docent" })),
+];
+
+function GalleryMotion({ item, playing }: { item: Extract<GalleryItem, { kind: "motion" }>; playing: boolean }) {
+  const [failed, setFailed] = useState(false);
+  // WebP has no pause API: show its still poster when paused, offscreen, or motion is reduced.
+  const animated = playing && !failed;
+  return <Image src={animated ? item.src : item.poster} alt={item.alt} fill unoptimized
+    className={styles.galleryVideo} style={{ objectFit: "contain" }}
+    sizes="(max-width: 640px) 80vw, (max-width: 1400px) 40vw, 550px"
+    onError={() => { if (animated) setFailed(true); }} />;
+}
 
 export function HomeGallery() {
-  const { track, active, move, goTo, updateActive } = useSnapCarousel(galleryItems.length);
+  const { track, active, move, updateActive } = useSnapCarousel(galleryItems.length);
   const playback = useCarouselPlayback(track);
 
   useEffect(() => {
-    if (!playback.running || galleryItems[active].kind === "video") return;
+    if (!playback.running) return;
     const timer = window.setTimeout(() => move(1), 4000);
     return () => window.clearTimeout(timer);
   }, [active, playback.running, move]);
 
   return <div className={styles.gallery} onPointerDownCapture={playback.onPointerDown} onFocusCapture={playback.onFocus}>
     <div id="gallery-track" ref={track} className={styles.galleryTrack} role="region" aria-roledescription="carousel" aria-label="경주트립 여행 사진과 영상" tabIndex={0} onScroll={updateActive} onKeyDown={(event) => {
-      if ((event.target as HTMLElement).closest("video")) return;
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); move(event.key === "ArrowRight" ? 1 : -1); }
     }}>
-      {galleryItems.map((item, i) => <figure className={`${styles.galleryCard} ${item.kind === "video" && item.portrait ? styles.videoCard : ""}`} key={item.src} role="group" aria-label={`${i + 1} / ${galleryItems.length}`}>
-        <div className={styles.galleryPhoto}>{item.kind === "video"
-          ? <GalleryVideo src={item.src} poster={item.poster} label={item.alt} active={active === i} playing={playback.running} onSelect={() => { goTo(i); playback.play(); }} onAdvance={() => move(1)} />
+      {galleryItems.map((item, i) => <figure className={`${styles.galleryCard} ${item.kind === "motion" && item.portrait ? styles.videoCard : ""}`} key={item.src} role="group" aria-label={`${i + 1} / ${galleryItems.length}`}>
+        <div className={styles.galleryPhoto}>{item.kind === "motion"
+          ? <GalleryMotion item={item} playing={playback.running} />
           : <Image src={`/images/${item.src}.webp`} alt={item.alt} fill sizes="(max-width: 640px) 80vw, (max-width: 1400px) 40vw, 550px" />}</div>
         <figcaption><span>{String(i + 1).padStart(2, "0")}</span>{item.label}</figcaption>
       </figure>)}
