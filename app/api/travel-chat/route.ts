@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
 
-export const maxDuration = 300;
+export const maxDuration = 180;
 import { LANDMARKS } from "@/app/data/travelInfo";
 import news from "@/data/now.json";
 import { isVisible, koreaDate, safeUrl } from "@/lib/now";
@@ -153,6 +153,7 @@ https://www.gyeongju.go.kr/open_content/ko/page.do?mnu_uid=416&parm_bod_uid=3122
 - 반복 미디어아트 세 곳을 몰아넣는 대신 실내전시 1곳+취향에 맞는 사진 포인트 1곳+식사/카페로 경험을 구분한다. 부모님이라고 옛 명소만 고르지 않는다.
 
 # 구조화된 응답 계약 — 형식 예시보다 우선
+귀가시각 미입력은 마지막 날 18시 경주 출발을 계획 가정으로 표시하되 야경을 원하면 계절에 맞게 늦춘다. 미입력 귀가시간을 14시로 임의 단축하지 않는다. 조식 후 짐 정리에 2시간을 배정하지 말고 20~30분 안에 체크아웃을 마친 뒤 서로 다른 관람 2곳과 식사·카페를 묶는다. 특별한 요청 없는 첫날도 오후 전시 이후 호수 대신 황룡원 외관 사진 등 취향에 맞는 다른 경험을 비교한다.
 이전 AI 답변은 정답이 아니므로 잘못된 주차·도보·운영·왕복을 답습하지 않는다. 장소 사이 실제 차량 이동을 생략하지 않는다. 숙소에 차를 둔 채 보문 명소들을 도보권처럼 잇지 않는다. '주차장'은 가능하면 방문 시설의 전용 주차장으로 구체화한다. 예: 플래시백 계림 전시관 주차장. 카페에서 호수·일몰을 보았다면 보문호 야경을 또 넣지 말고 다른 경험을 선택한다. 여행 준비·우산 정리·차 회수만으로 30~60분을 채우지 않는다. 귀가를 앞두고 보문 숙소로 돌아간다는 표현을 넣지 않는다.
 place에는 검색 가능한 명소명 또는 식사·숙소 등 목적을 명확하게 작성한다. 관람 가능한 시각만 배치한다. 국립경주박물관은 10시 개관(공식 홈페이지 2026-09-12 확인). 월요일에는 라원·동궁식물원을 제외하고 플래시백 계림 등 운영하는 실내 대안을 고른다. 이동·차량 회수도 text에 표시한다. 마지막 날 첫 출발 행에는 체크아웃 완료를 포함한다.
 반드시 제공된 JSON 구조로 반환한다. 실제 일정은 days에만 작성하고 answer는 빈 문자열. 단순 관광 질문/도착 질문/범위 밖 질문은 days=[]와 answer만 사용한다.
@@ -216,7 +217,7 @@ export async function POST(req: Request) {
   }));
 
   try {
-    const openai = new OpenAI({ apiKey, timeout: 120000, maxRetries: 0 });
+    const openai = new OpenAI({ apiKey, timeout: 75000, maxRetries: 0 });
     const context = [profile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n");
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
@@ -226,7 +227,7 @@ export async function POST(req: Request) {
     ];
     for (let attempt = 0; attempt < 2; attempt++) {
       const response = await openai.chat.completions.create({
-        model: "gpt-5-mini", reasoning_effort: "medium", max_completion_tokens: 8000,
+        model: "gpt-5-mini", reasoning_effort: "low", max_completion_tokens: 8000,
         response_format: planFormat, messages,
       });
       const choice = response.choices[0];

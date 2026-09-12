@@ -49,6 +49,7 @@ export function inspectPlan(value: unknown, context: string): string[] {
       if (!Number.isFinite(start) || !Number.isFinite(end) || end < start || start < previousEnd) errors.push(`${day.day}일차 ${stop.text}: 시각 역전/겹침`);
       if (day.day === 1 && arrival !== null && start < arrival) errors.push("첫날 도착 이전 일정 금지");
       previousEnd = end;
+      if (end - start > 30 && /준비|짐\s*정리|우산\s*정리/.test(stop.place) && !/숙박|관람|식사|카페|이동|주차/.test(stop.place)) errors.push("짐·우산 정리와 준비만으로 30분 넘게 채우지 말고 관람 또는 휴식 경험을 배치하세요");
       if (stop.kind === "체크인" && start < 900 && !earlyCheckin) errors.push("미확정 체크인은 15시 이후 시작");
       if (tripDays && day.day === tripDays && ["체크인", "숙박"].includes(stop.kind)) errors.push("마지막 날 체크아웃 후 숙소 휴식/숙박 금지");
       if (stop.kind === "귀가" && i !== day.stops.length - 1) errors.push("귀가 뒤 추가 일정 금지");

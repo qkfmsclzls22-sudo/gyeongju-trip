@@ -35,6 +35,9 @@ test('always renders the destination even when descriptive text omits it', () =>
   const p=plan([{...stop('14:00','15:00','플래시백 계림'),text:'미디어아트 관람'}]);
   assert.match(renderPlan(p),/플래시백 계림 · 미디어아트 관람/);
 });
+test('rejects long blocks filled only with packing', () => {
+  assert(inspectPlan(plan([stop('09:00','11:00','숙소 짐 정리','보문','이동')]),'1박2일').some(x=>x.includes('30분')));
+});
 test('rejects known Monday closures and museum visit before opening', () => {
   assert(inspectPlan(plan([stop('14:00','15:00','라원')]),'9월 14일 월요일 당일치기').some(x=>x.includes('휴관')));
   assert.deepEqual(inspectPlan(plan([stop('14:00','15:00','라원')]),'2026-09-15 당일치기'),[]);
