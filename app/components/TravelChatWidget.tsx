@@ -199,13 +199,20 @@ export default function TravelChatWidget() {
                           : "bg-white text-gray-800 border border-gray-200 rounded-bl-sm"
                       }`}
                     >
-                      {m.content.split(/(https:\/\/[^\s<>]+)/g).map((part, partIndex) => {
-                        if (!part.startsWith("https://")) return part;
-                        try {
-                          const url = new URL(part);
-                          if (url.username || url.password) return part;
-                          return <a key={partIndex} href={url.href} target="_blank" rel="noopener noreferrer" className="underline break-all">{part}</a>;
-                        } catch { return part; }
+                      {m.role === "user" ? m.content : m.content.split("\n").map((line, lineIndex) => {
+                        const timed = line.match(/^\s*(\d{1,2}:\d{2}(?:\s*[–—~-]\s*\d{1,2}:\d{2})?)\s*\|\s*(.+)$/);
+                        if (timed) return <span key={lineIndex} className="grid grid-cols-[92px_1fr] gap-2 border-b border-gray-100 py-2.5 whitespace-normal">
+                          <strong className="text-xs tabular-nums text-brand-700 pt-0.5">{timed[1]}</strong>
+                          <span className="text-sm leading-relaxed">{timed[2]}</span>
+                        </span>;
+                        return <span key={lineIndex} className="block min-h-3 leading-relaxed">{line.split(/(https:\/\/[^\s<>]+)/g).map((part, partIndex) => {
+                          if (!part.startsWith("https://")) return part;
+                          try {
+                            const url = new URL(part);
+                            if (url.username || url.password) return part;
+                            return <a key={partIndex} href={url.href} target="_blank" rel="noopener noreferrer" className="underline break-all">{part}</a>;
+                          } catch { return part; }
+                        })}</span>;
                       })}
                     </div>
                   </div>
