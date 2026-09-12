@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
 
-export const maxDuration = 120;
+export const maxDuration = 180;
 import { LANDMARKS } from "@/app/data/travelInfo";
 import news from "@/data/now.json";
 import { isVisible, koreaDate, safeUrl } from "@/lib/now";
@@ -214,7 +214,7 @@ export async function POST(req: Request) {
   }));
 
   try {
-    const openai = new OpenAI({ apiKey, timeout: 50000, maxRetries: 0 });
+    const openai = new OpenAI({ apiKey, timeout: 75000, maxRetries: 0 });
     const context = [profile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n");
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
@@ -224,7 +224,7 @@ export async function POST(req: Request) {
     ];
     for (let attempt = 0; attempt < 2; attempt++) {
       const response = await openai.chat.completions.create({
-        model: "gpt-5-mini", reasoning_effort: "medium", max_completion_tokens: 8000,
+        model: "gpt-5-mini", reasoning_effort: "low", max_completion_tokens: 8000,
         response_format: planFormat, messages,
       });
       const choice = response.choices[0];
