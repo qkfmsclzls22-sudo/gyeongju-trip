@@ -61,10 +61,12 @@ export default function TravelChatWidget() {
   const [transport, setTransport] = useState("");
   const [stay, setStay] = useState("");
   const [duration, setDuration] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
   const [details, setDetails] = useState("");
   const [pace, setPace] = useState("여유롭게");
   const [profile, setProfile] = useState("");
-  const formComplete = companion && transport && stay && duration;
+  const formComplete = companion && transport && stay && duration && arrival;
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -107,7 +109,7 @@ export default function TravelChatWidget() {
   function handleSubmitForm(e: React.FormEvent) {
     e.preventDefault();
     if (!formComplete) return;
-    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n여행 속도: ${pace}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
+    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
     setProfile(summary);
     setStage("chat");
     setMessages([{ role: "user", content: summary }]);
@@ -131,9 +133,19 @@ export default function TravelChatWidget() {
     setTransport("");
     setStay("");
     setDuration("");
+    setArrival("");
+    setArrivalTime("");
     setDetails("");
     setPace("여유롭게");
     setProfile("");
+  }
+
+  function updateArrivalTime(value: string) {
+    setArrivalTime(value);
+    if (value) {
+      const hour = Number(value.slice(0, 2));
+      setArrival(hour < 12 ? "오전 도착" : hour < 18 ? "오후 도착" : "저녁 도착");
+    }
   }
 
   return (
@@ -166,6 +178,11 @@ export default function TravelChatWidget() {
               <ChipGroup label="이동수단은요?" options={TRANSPORT_OPTIONS} value={transport} onChange={setTransport} />
               <ChipGroup label="숙소는 어디쪽인가요?" options={STAY_OPTIONS} value={stay} onChange={setStay} />
               <ChipGroup label="여행 기간은요?" options={DURATION_OPTIONS} value={duration} onChange={setDuration} />
+              <ChipGroup label="첫날 경주에 언제 도착하나요? (필수)" options={["오전 도착", "오후 도착", "저녁 도착"]} value={arrival} onChange={value => { setArrival(value); setArrivalTime(""); }} />
+              <label className="block text-xs font-semibold text-gray-500">
+                정확한 도착 시각을 아시면 입력해 주세요 (선택)
+                <input type="time" value={arrivalTime} onChange={event => updateArrivalTime(event.currentTarget.value)} onInput={event => updateArrivalTime(event.currentTarget.value)} className="mt-2 block w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800" />
+              </label>
               <ChipGroup label="어떤 속도로 여행할까요?" options={["여유롭게", "적당히", "알차게"]} value={pace} onChange={setPace} />
               <label className="block text-xs font-semibold text-gray-500">
                 추가로 알려주시면 더 정확해요 (선택)
