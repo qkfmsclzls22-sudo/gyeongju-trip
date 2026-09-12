@@ -45,7 +45,7 @@ export default function NowFeed({ data, initialToday }: { data: NewsData; initia
         </div>
         <div className={styles.filters}>
           <div className={styles.dates} aria-label="여행 날짜 필터">{[["all", "전체 일정"], ["today", "오늘"], ["weekend", "이번 주말"], ["date", "날짜 선택"]].map(([value, label]) => <button type="button" key={value} aria-pressed={when === value} onClick={() => setWhen(value)}>{label}</button>)}
-            {when === "date" && <input aria-label="여행 날짜" type="date" min={today} value={date} onChange={event => setDate(event.target.value || today)} />}
+            {when === "date" && <input aria-label="여행 날짜" type="date" min={today} value={date} onChange={event => setDate(event.currentTarget.value || today)} onInput={event => { if (event.currentTarget.validity.valid && event.currentTarget.value) setDate(event.currentTarget.value); }} onBlur={event => setDate(event.currentTarget.value || today)} />}
           </div>
           <label className={styles.search}><span>검색</span><input type="search" placeholder="행사명, 장소, 출처 검색" value={query} onChange={event => setQuery(event.target.value)} /></label>
         </div>
