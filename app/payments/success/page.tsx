@@ -1,5 +1,7 @@
 "use client";
 
+import { SiteHeader, SiteFooter } from "@/app/components/site";
+
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -58,20 +60,11 @@ function SuccessContent() {
   }, [searchParams]);
 
   return (
-    <main className="min-h-screen bg-brand-50">
-      <header className="bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center">
-            <img src="/logo.png" alt="경주트립" className="h-12 w-auto" />
-          </a>
-          <a href="/" className="text-sm text-gray-500 hover:text-ink transition-colors">
-            ← 홈으로
-          </a>
-        </div>
-      </header>
+    <main className="inner-page min-h-screen bg-brand-50">
+      <SiteHeader back={{ href: "/", label: "홈으로" }} showCta={false} />
 
       <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="bg-white rounded-2xl shadow-sm p-10 text-center">
+        <div className="bg-white   p-10 text-center">
           {status === "confirming" && (
             <>
               <div className="text-5xl mb-4">⏳</div>
@@ -119,6 +112,7 @@ function SuccessContent() {
           )}
         </div>
       </div>
+      <SiteFooter />
     </main>
   );
 }
@@ -127,7 +121,7 @@ export default function PaymentSuccessPage() {
   return (
     <Suspense
       fallback={
-        <main className="min-h-screen bg-brand-50 flex items-center justify-center">
+        <main className="inner-page min-h-screen bg-brand-50 flex items-center justify-center">
           <p className="text-gray-400 text-sm">불러오는 중...</p>
         </main>
       }

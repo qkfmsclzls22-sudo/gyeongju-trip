@@ -65,7 +65,7 @@ export default function QuotePage() {
   }
 
   return (
-    <main className="min-h-screen bg-cream">
+    <main className="inner-page min-h-screen bg-cream">
       <SiteHeader back={{ href: "/", label: "홈으로" }} showCta={false} />
 
       <div className="max-w-2xl mx-auto px-4 pt-28 pb-16">
@@ -80,8 +80,8 @@ export default function QuotePage() {
         </p>
 
         {status === "done" ? (
-          <div className="bg-white rounded-3xl border border-brand-100 p-10 text-center">
-            <span className="inline-flex w-14 h-14 rounded-2xl bg-blush text-brand-500 items-center justify-center mb-5">
+          <div className="bg-white  border border-brand-100 p-10 text-center">
+            <span className="inline-flex w-14 h-14  bg-blush text-brand-500 items-center justify-center mb-5">
               <IconCheck className="w-7 h-7" />
             </span>
             <h2 className="text-xl font-black text-ink mb-2">문의가 접수되었습니다</h2>
@@ -105,7 +105,7 @@ export default function QuotePage() {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-brand-100 p-6 sm:p-8 space-y-6">
+          <form onSubmit={handleSubmit} className="bg-white  border border-brand-100 p-6 sm:p-8 space-y-6">
             <div>
               <label className="block text-sm font-semibold text-ink mb-2">
                 참가일시 (날짜 및 시간) <span className="text-brand-500">*</span>
@@ -116,14 +116,14 @@ export default function QuotePage() {
                   required
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="flex-1 border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                  className="min-w-0 flex-1 border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
                 />
                 <input
                   type="time"
                   required
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="flex-1 border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                  className="min-w-0 flex-1 border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function QuotePage() {
                 placeholder="예: 15"
                 value={people}
                 onChange={(e) => setPeople(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
               />
             </div>
 
@@ -150,7 +150,7 @@ export default function QuotePage() {
               <select
                 value={tourType}
                 onChange={(e) => setTourType(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400 bg-white"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400 bg-white"
               >
                 {TOUR_OPTIONS.map((t) => (
                   <option key={t} value={t}>{t}</option>
@@ -167,7 +167,7 @@ export default function QuotePage() {
                 placeholder="개인이신 경우 비워두셔도 됩니다"
                 value={orgName}
                 onChange={(e) => setOrgName(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
               />
             </div>
 
@@ -181,7 +181,7 @@ export default function QuotePage() {
                 placeholder="010-0000-0000"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default function QuotePage() {
                 placeholder="example@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400"
               />
               <p className="text-xs text-gray-400 mt-1">견적서를 이메일로 보내드리기 위해 필요해요</p>
             </div>
@@ -207,7 +207,7 @@ export default function QuotePage() {
                 placeholder="궁금하신 점을 자유롭게 남겨주세요"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full border border-brand-100 rounded-2xl px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400 resize-none"
+                className="w-full border border-brand-100  px-4 py-3 text-sm text-ink focus:outline-none focus:border-brand-400 resize-none"
               />
             </div>
 
@@ -220,7 +220,7 @@ export default function QuotePage() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-50 text-white font-bold py-4 rounded-2xl transition-colors"
+              className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-50 text-white font-bold py-4  transition-colors"
             >
               {status === "submitting" ? "제출 중..." : "문의 제출하기"}
             </button>

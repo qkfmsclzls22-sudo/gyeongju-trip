@@ -5,7 +5,7 @@ import { IconGuide, IconMedal, IconStar, IconTower, IconUsers } from "@/app/comp
 export const metadata: Metadata = {
   title: "기업소개 - 경주트립",
   description:
-    "경주트립은 경주 여행의 즐거움과 알찬 정보를 함께 전하는 경주 전문 여행 플랫폼입니다. 기업·기관 단체와 학교 수학여행 진행 이력을 확인하세요.",
+    "경주트립은 경주의 역사·문화에 콘텐츠 기획력과 디지털 기술을 더해 새로운 여행 경험을 만드는 문화관광콘텐츠기업입니다. 기업·기관 단체와 학교 수학여행 진행 이력을 확인하세요.",
 };
 
 const doing = [
@@ -81,7 +81,7 @@ const companyInfo = [
 
 function ClientList({ items }: { items: { name: string; count: string; program: string }[] }) {
   return (
-    <div className="bg-white rounded-3xl border border-brand-50 divide-y divide-brand-50 overflow-hidden">
+    <div className="bg-white  border border-brand-50 divide-y divide-brand-50 overflow-hidden">
       {items.map((c) => (
         <div key={c.name} className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 p-5">
           <span className="font-bold text-ink text-sm sm:w-60 shrink-0">{c.name}</span>
@@ -97,23 +97,19 @@ function ClientList({ items }: { items: { name: string; count: string; program: 
 
 export default function CompanyPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="inner-page min-h-screen bg-white">
       <SiteHeader />
 
       <section className="relative overflow-hidden bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-24 -right-24 w-[26rem] h-[26rem] rounded-full bg-brand-100 blur-3xl opacity-60"
-        />
-        <div className="relative max-w-3xl mx-auto px-4 text-center">
+        <div className="relative max-w-5xl mx-auto px-4">
           <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-4">COMPANY</p>
           <h1 className="text-4xl md:text-5xl font-black text-ink leading-[1.2] tracking-tight mb-5">
-            경주를 가장 재미있게,
+            경주를 더 깊게,
             <br />
-            가장 <span className="text-brand-500">의미있게</span>
+            여행은 더 <span className="text-brand-500">즐겁게.</span>
           </h1>
           <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-            경주트립은 경주 여행의 즐거움과 알찬 정보를 함께 전하는 경주 전문 여행 플랫폼입니다.
+            경주트립은 경주의 역사·문화에 콘텐츠 기획력과 디지털 기술을 더해 새로운 여행 경험을 만드는 문화관광콘텐츠기업입니다.
           </p>
         </div>
       </section>
@@ -138,9 +134,9 @@ export default function CompanyPage() {
               기억에 남지 않고, 기억에 남지 않으면 여행이 아니니까요.
             </p>
             <p>
-              투어뿐 아니라 경주 유적지 정보, 방문하기 좋은 시간대, 사진 찍기 좋은 자리까지
-              여행에 필요한 정보를 함께 정리해 전합니다. 경주에 오는 분들이 가장 재미있게, 가장
-              의미있게 돌아가시는 것이 저희의 목표입니다.
+              현장에서 쌓은 지역 전문성을 바탕으로 AI 기술을 활용한 맞춤형 여행 추천과 일정 설계,
+              디지털 문화유산 체험으로 사업을 확장해 나가고자 합니다. 여행의 발견부터 계획·예약·체험까지,
+              여행자와 지역을 잇는 경주 대표 여행 플랫폼으로 성장하는 것이 목표입니다.
             </p>
           </div>
         </div>
@@ -152,8 +148,8 @@ export default function CompanyPage() {
           <h2 className="text-3xl font-black text-ink tracking-tight mb-10">경주트립이 하는 일</h2>
           <div className="grid md:grid-cols-3 gap-5">
             {doing.map(({ Icon, title, text }) => (
-              <div key={title} className="bg-white rounded-3xl border border-brand-50 p-7">
-                <span className="inline-flex w-12 h-12 rounded-2xl bg-blush text-brand-500 items-center justify-center mb-5">
+              <div key={title} className="bg-white  border border-brand-50 p-7">
+                <span className="inline-flex w-12 h-12  bg-blush text-brand-500 items-center justify-center mb-5">
                   <Icon className="w-6 h-6" />
                 </span>
                 <h3 className="font-bold text-ink mb-2">{title}</h3>
@@ -168,13 +164,13 @@ export default function CompanyPage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="grid sm:grid-cols-3 gap-4 mb-4">
             {stats.map((s) => (
-              <div key={s.label} className="bg-white rounded-3xl px-6 py-8 text-center">
+              <div key={s.label} className="bg-white  px-6 py-8 text-center">
                 <div className="text-3xl font-black text-brand-500 mb-1.5">{s.value}</div>
                 <div className="text-xs text-gray-400">{s.label}</div>
               </div>
             ))}
           </div>
-          <div className="bg-white rounded-3xl px-6 py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+          <div className="bg-white  px-6 py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
             <span className="inline-flex items-center gap-2 font-semibold text-ink">
               <IconMedal className="w-5 h-5 text-sun-500" />
               네이버 스마트스토어 프리미엄 우수셀러
@@ -230,7 +226,7 @@ export default function CompanyPage() {
         <div className="max-w-3xl mx-auto px-4">
           <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">COMPANY INFO</p>
           <h2 className="text-3xl font-black text-ink tracking-tight mb-8">회사 정보</h2>
-          <dl className="bg-cream rounded-3xl p-7 space-y-4 text-sm">
+          <dl className="bg-cream  p-7 space-y-4 text-sm">
             {companyInfo.map((row) => (
               <div key={row.label} className="flex flex-col sm:flex-row gap-1 sm:gap-6">
                 <dt className="text-gray-400 sm:w-36 shrink-0">{row.label}</dt>

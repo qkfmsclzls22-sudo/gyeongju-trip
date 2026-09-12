@@ -28,7 +28,7 @@ export function TourHero({
   discount: number;
 }) {
   return (
-    <section className="bg-cream pt-24 pb-10 md:pt-32">
+    <section className="tour-hero bg-cream pt-24 pb-10 md:pt-32">
       <div className="max-w-4xl mx-auto px-4">
         <span className="inline-block bg-blush text-brand-600 text-xs font-semibold px-3 py-1 rounded-full mb-4">
           {category}
@@ -53,7 +53,7 @@ export function TourHero({
           </span>
         </div>
 
-        <div className="rounded-3xl overflow-hidden aspect-[16/9] bg-blush">
+        <div className=" overflow-hidden aspect-[16/9] bg-blush">
           <img src={image} alt="" className="w-full h-full object-cover" />
         </div>
       </div>
@@ -70,7 +70,7 @@ export function SectionTitle({
 }) {
   return (
     <h2 className="flex items-center gap-2.5 text-xl font-black text-ink tracking-tight mb-5">
-      <span className="w-9 h-9 rounded-xl bg-blush text-brand-500 flex items-center justify-center shrink-0">
+      <span className="w-9 h-9  bg-blush text-brand-500 flex items-center justify-center shrink-0">
         <Icon className="w-4.5 h-4.5" />
       </span>
       {children}
@@ -80,7 +80,7 @@ export function SectionTitle({
 
 export function InfoTable({ rows }: { rows: { label: string; value: string }[] }) {
   return (
-    <dl className="bg-cream rounded-2xl p-6 space-y-3.5 text-sm">
+    <dl className="bg-cream  p-6 space-y-3.5 text-sm">
       {rows.map((row) => (
         <div key={row.label} className="flex gap-4">
           <dt className="text-gray-400 w-20 shrink-0">{row.label}</dt>
@@ -104,7 +104,7 @@ export function PointCard({
 }) {
   return (
     <div
-      className={`rounded-2xl p-6 border ${
+      className={` p-6 border ${
         highlight ? "border-brand-200 bg-brand-50" : "border-brand-50 bg-white"
       }`}
     >
@@ -151,7 +151,7 @@ const refundRows = [
 
 export function RefundTable({ note }: { note: string }) {
   return (
-    <div className="bg-cream rounded-2xl p-6 text-sm">
+    <div className="bg-cream  p-6 text-sm">
       <div className="space-y-2.5">
         {refundRows.map((row) => (
           <div
@@ -173,7 +173,7 @@ export function RefundTable({ note }: { note: string }) {
 
 export function SafetyNote({ children }: { children: React.ReactNode }) {
   return (
-    <section className="bg-cream rounded-2xl p-6">
+    <section className="bg-cream  p-6">
       <p className="font-semibold text-gray-500 text-sm mb-2">안전 및 보험 안내</p>
       <p className="text-xs text-gray-400 leading-relaxed">{children}</p>
     </section>
@@ -207,7 +207,7 @@ export function BookingCard({
   ];
 
   return (
-    <div className="sticky top-24 bg-white border border-brand-100 rounded-3xl p-6 shadow-sm">
+    <div className="booking-card sticky top-24 bg-white border border-brand-100  p-6 ">
       <div className="text-xs text-gray-300 line-through">{originalPrice.toLocaleString()}원</div>
       <div className="flex items-baseline gap-1 mb-1">
         <span className="text-3xl font-black text-ink">{price.toLocaleString()}</span>
@@ -231,14 +231,14 @@ export function BookingCard({
         href="https://smartstore.naver.com/gjtrip"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 rounded-2xl transition-colors mb-2.5"
+        className="flex items-center justify-center gap-2 w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5  transition-colors mb-2.5"
       >
         네이버스토어에서 예약
         <IconArrow className="w-4 h-4" />
       </a>
       <a
         href="tel:010-8402-8543"
-        className="flex items-center justify-center gap-2 w-full bg-white hover:bg-cream border border-brand-100 text-ink font-semibold py-3.5 rounded-2xl transition-colors text-sm"
+        className="flex items-center justify-center gap-2 w-full bg-white hover:bg-cream border border-brand-100 text-ink font-semibold py-3.5  transition-colors text-sm"
       >
         <IconPhone className="w-4 h-4 text-brand-500" />
         010-8402-8543

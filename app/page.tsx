@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { Outfit } from "next/font/google";
 import { SiteHeader } from "./components/site";
 import { IconArrow } from "./components/icons";
 import { HomeGallery } from "./components/HomeGallery";
 import { TourCarousel } from "./components/TourCarousel";
 import styles from "./homepage.module.css";
 
-const outfit = Outfit({ subsets: ["latin"], weight: ["500", "700", "800", "900"], variable: "--font-home-display", display: "swap" });
 const storeUrl = "https://smartstore.naver.com/gjtrip";
 const illustrations = [
   { name: "blossom", alt: "봄꽃이 핀 나무와 경주의 초록 고분을 그린 일러스트", href: "/landmarks/daereungwon" },
@@ -22,7 +20,7 @@ const tours = [
 
 export default function Home() {
   return (
-    <main className={`${styles.home} ${outfit.variable}`}>
+    <main className={styles.home}>
       <a href="#home-content" className={styles.skipLink}>본문 바로가기</a>
       <div className={styles.yellow}>
         <SiteHeader variant="home" className={styles.header} />

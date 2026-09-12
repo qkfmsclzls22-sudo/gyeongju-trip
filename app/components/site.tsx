@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { IconArrow, IconClose, IconMenu } from "./icons";
+import styles from "../homepage.module.css";
 
 const navItems = [
   { href: "/#tours", label: "투어" },
-  { href: "/#landmarks", label: "유적지" },
+  { href: "/#gallery", label: "갤러리" },
   { href: "/company", label: "기업소개" },
   { href: "/now", label: "지금 경주" },
   { href: "/#contact", label: "문의" },
@@ -26,25 +27,19 @@ export function SiteHeader({
   variant?: "default" | "home";
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const items = variant === "home" ? [
-    { href: "/#about", label: "About" },
-    { href: "/#gallery", label: "Gallery" },
-    { href: "/#tours", label: "Tours" },
-    { href: "/now", label: "지금 경주" },
-    { href: "/#contact", label: "Contact" },
-  ] : navItems;
+  const items = navItems;
 
   return (
-    <header className={`fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-brand-100 ${className}`}>
+    <header data-site-header data-variant={variant} className={`relative w-full z-50 ${styles.header} ${className}`}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center shrink-0">
-          {variant === "home" ? <span data-home-wordmark>GYEONGJU TRIP</span> : <img src="/logo.png" alt="경주트립" className="h-11 w-auto" />}
+          <span data-home-wordmark>GYEONGJU TRIP</span>
         </Link>
 
         {back ? (
           <a
             href={back.href}
-            className="text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors"
+            className="hidden lg:block text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors"
           >
             ← {back.label}
           </a>
@@ -77,7 +72,7 @@ export function SiteHeader({
               견적문의
             </a>
           )}
-          {!back && (
+          {(
             <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
@@ -91,7 +86,7 @@ export function SiteHeader({
         </div>
       </div>
 
-      {menuOpen && !back && (
+      {menuOpen && (
         <nav className="lg:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
           {items.map((item) => (
             <a
@@ -124,14 +119,14 @@ export function SiteHeader({
 
 export function SiteFooter() {
   return (
-    <footer className="bg-white border-t border-brand-100 py-12">
-      <div className="max-w-6xl mx-auto px-4 text-center text-sm text-gray-500">
-        <img src="/logo.png" alt="경주트립" className="h-11 w-auto mx-auto mb-5" />
-        <p className="mb-1">경상북도 경주시 계림로107 경북관광기업지원센터 6층</p>
-        <p className="mb-1">사업자등록번호 694-75-00685</p>
-        <p className="mb-1">문의 010-8402-8543 (문자) · 단체문의 010-5552-7971</p>
-        <p className="mb-5">이메일 gjtrip11@naver.com</p>
-        <p className="text-xs text-gray-400">© 2026 경주트립. All rights reserved.</p>
+    <footer id="contact" className={styles.red}>
+      <div className={`${styles.container} ${styles.contact}`}>
+        <Link href="/" className={styles.contactHeading}><h2 lang="en">Gyeongju Trip</h2><IconArrow /></Link>
+        <div className={styles.contactDetails}>
+          <div><p>개인 예약 · 문자문의</p><a href="sms:01084028543">010-8402-8543</a></div>
+          <div><a href="/quote">단체 · MICE 견적문의 ↗</a><p><a href="tel:01055527971">010-5552-7971</a><span> · </span><a href="mailto:gjtrip11@naver.com">gjtrip11@naver.com</a></p></div>
+        </div>
+        <div className={styles.legal}><p>경주트립 · 경상북도 경주시 계림로107 경북관광기업지원센터 6층</p><p>사업자등록번호 694-75-00685 <span>© 2026 Gyeongju Trip.</span></p></div>
       </div>
     </footer>
   );

@@ -13,7 +13,7 @@ import {
 
 export default function MuseumTour() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="inner-page min-h-screen bg-white">
       <SiteHeader back={{ href: "/#tours", label: "투어 목록" }} />
 
       <TourHero

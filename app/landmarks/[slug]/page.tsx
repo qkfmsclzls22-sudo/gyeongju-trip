@@ -209,7 +209,7 @@ export default async function LandmarkPage({ params }: { params: Promise<{ slug:
   if (!data) return notFound();
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="inner-page min-h-screen bg-white">
       <SiteHeader back={{ href: "/#landmarks", label: "유적지 목록" }} />
 
       {/* 히어로 */}
@@ -222,7 +222,7 @@ export default async function LandmarkPage({ params }: { params: Promise<{ slug:
             {data.name}
           </h1>
           <p className="text-gray-500 text-lg mb-8">{data.subtitle}</p>
-          <div className="rounded-3xl overflow-hidden aspect-[16/9] bg-blush">
+          <div className=" overflow-hidden aspect-[16/9] bg-blush">
             <img
               src={data.image}
               alt={data.name}
@@ -268,7 +268,7 @@ export default async function LandmarkPage({ params }: { params: Promise<{ slug:
           <h2 className="text-2xl font-black text-ink tracking-tight mb-6">이런 점이 특별해요</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {data.highlights.map((h) => (
-              <div key={h.title} className="bg-cream rounded-2xl p-5">
+              <div key={h.title} className="bg-cream  p-5">
                 <p className="font-bold text-ink text-sm mb-1.5">{h.title}</p>
                 <p className="text-gray-500 text-sm leading-relaxed">{h.text}</p>
               </div>
@@ -278,7 +278,7 @@ export default async function LandmarkPage({ params }: { params: Promise<{ slug:
 
         {/* 여행 팁 */}
         <section className="mb-16">
-          <div className="bg-brand-50 border border-brand-200 rounded-2xl p-6">
+          <div className="bg-brand-50 border border-brand-200  p-6">
             <h2 className="flex items-center gap-2 text-lg font-bold text-brand-700 mb-3">
               <IconSparkle className="w-5 h-5" />
               여행 팁
@@ -295,7 +295,7 @@ export default async function LandmarkPage({ params }: { params: Promise<{ slug:
             </h2>
             <a
               href={`/tours/${tourLinks[data.relatedTour].slug}`}
-              className="group flex items-center justify-between gap-4 p-6 rounded-3xl bg-white border border-brand-100 hover:border-brand-300 hover:shadow-lg transition-all"
+              className="group flex items-center justify-between gap-4 p-6  bg-white border border-brand-100 hover:border-brand-300  transition-all"
             >
               <div>
                 <p className="text-xs font-bold text-brand-500 tracking-[0.15em] mb-1.5">

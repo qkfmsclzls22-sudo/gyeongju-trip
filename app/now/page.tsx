@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function NowPage() {
   await connection();
   return <div className={styles.page}>
-    <SiteHeader variant="home" showCta={false} className={styles.header} />
+    <SiteHeader variant="home" />
     <main id="main-content"><NowFeed data={data} initialToday={koreaDate()} /></main>
     <SiteFooter />
   </div>;
