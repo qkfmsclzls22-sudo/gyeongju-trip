@@ -45,10 +45,10 @@ export default function Home() {
             <div className={styles.aboutPhoto}><Image src="/images/about-cheongsachorong.webp" alt="어둠 속에서 따뜻하게 빛나는 경주트립의 청사초롱" fill sizes="(max-width: 640px) 88vw, 42vw" /></div>
           </div>
           <div className={styles.aboutCopy}>
-            <p>경주트립은 경주의 역사와 문화를<br className={styles.desktopBreak} /> 여행자의 눈높이로 전하는 로컬 여행 기업입니다.</p>
-            <p>박물관 도슨트·문화유산 해설·청사초롱 야경투어와<br className={styles.desktopBreak} /> 기업·학교·MICE 맞춤 여행을 기획하고 운영합니다.</p>
-            <p>유적 속 사람들의 삶을 쉬운 이야기로 풀고,<br className={styles.desktopBreak} /> 여행의 목적과 동행에 맞는 코스와 시간을 설계합니다.</p>
-            <p>경주를 깊이 이해하고 오래 기억하는 여행,<br className={styles.desktopBreak} /> 배움과 즐거움이 함께하는 경험을 만드는 것이 목표입니다.</p>
+            <p>경주트립은 경주의 역사·문화에 콘텐츠 기획력과 디지털 기술을 더해 새로운 여행 경험을 만드는 문화관광 콘텐츠 기업입니다.</p>
+            <p>박물관 도슨트·문화유산 해설·청사초롱 야경투어부터 기업·학교·MICE 맞춤 여행까지, 지역의 문화자원을 여행자가 즐길 수 있는 콘텐츠로 기획하고 운영합니다.</p>
+            <p>현장에서 쌓은 지역 전문성을 바탕으로 AI 기술을 활용한 맞춤형 여행 추천과 일정 설계, 디지털 문화유산 체험으로 사업을 확장해 나가고자 합니다.</p>
+            <p>여행의 발견부터 계획·예약·체험까지 연결하며, 여행자와 지역을 잇는 경주 대표 여행 플랫폼으로 성장하는 것이 경주트립의 목표입니다.</p>
             <a className={styles.textLink} href="/company">경주트립 알아보기 <IconArrow /></a>
           </div>
         </div>
