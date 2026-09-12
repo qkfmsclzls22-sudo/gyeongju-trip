@@ -1,4 +1,7 @@
 import OpenAI from "openai";
+import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
+
+export const maxDuration = 120;
 import { LANDMARKS } from "@/app/data/travelInfo";
 import news from "@/data/now.json";
 import { isVisible, koreaDate, safeUrl } from "@/lib/now";
@@ -133,7 +136,27 @@ https://www.gyeongju.go.kr/open_content/ko/page.do?mnu_uid=416&parm_bod_uid=3122
 - 날짜별 행은 최대11줄로 정리한다. 짧은 접근/회수/이동은 목적지와 같은 행으로 합칠 수 있으나 시간을 빼먹지 않는다.
 
 답변 전에 조건 충돌, 불필요한 왕복, 누락된 식사/휴식, 무리한 보행, 근거 없는 숫자·링크, 요청하지 않은 상품 추천 여부를 점검해 고친다.
-경주 여행과 무관한 요청에는 경주 여행 안내 범위임을 간단히 설명한다.`;
+경주 여행과 무관한 요청에는 경주 여행 안내 범위임을 간단히 설명한다.
+# 구체적 명소 선택과 왕복 방지 — 2026-09-12 운영자 교정
+- '여유롭게'는 하루를 숙소·샤워·라운지·같은 호수 산책으로 채우라는 뜻이 아니다. 호캉스 요청이 없으면 서로 다른 성격의 주관람 2~3곳과 식사·카페를 편하게 연결한다. 오후 도착일은 주관람 1~2곳이면 된다.
+- 커플이면 사진·전시·디저트 취향을 기본 후보로 고려하되 모든 커플이 같은 취향이라고 단정하지 않는다. 사용자가 말한 사진·실내·역사 등 선호가 우선이다.
+- 보문 물레방아를 기본 필수 코스로 넣지 않는다. 보문호 산책은 취향에 맞을 때 짧게 한 번만. 같은 호수를 낮·밤 두 번 관람시키지 않는다. 재방문을 사용자가 명시한 경우만 예외.
+- 보문권 실내·사진 후보: 플래시백 계림(몰입형 미디어아트, 천북남로14), 라원(디지털 전시와 야외정원, 경감로233), 동궁식물원(온실, 보문로74-14), 엑스포대공원 안 솔거미술관·경주타워·타임리스 미디어아트. 방문일에 유효한 지금 경주 자료의 운영조건을 우선한다.
+- 동궁원과 라원은 별도 운영·별도 주차장이다. 동궁원과 도심의 동궁과월지도 다른 장소다. 플래시백 계림은 첨성대 옆 계림 숲이 아니다. 엑스포대공원은 전부 실내가 아니고 전시관 간 이동은 야외다. 온실은 비를 피하는 후보지만 냉방된 시원한 공간이라고 단정하지 않는다.
+- 황룡원 중도타워 외관은 운영자가 추천한 보문 사진 후보. 내부 자유입장/무료/주차를 보장하지 말고 허용된 보행 공간에서 짧게 외관 촬영. 차도 한가운데 촬영·정차를 시키지 않는다. 황룡사지와 혼동 금지.
+- 경북천년숲정원은 남산권 야외 숲·사진 후보로 검토하고 보문호 옆 도보권처럼 연결하지 않는다. 운영자 추천은 유효하나 운영시간·요금은 새 공식자료를 확인하지 못하면 숫자를 단정하지 않는다. 비·한낮 더위에는 긴 산책 제외.
+- 서악마을(서악동 삼층석탑·무열왕릉 주변)은 서쪽 별도 권역이다. 운영자 추천 시즌은 5월 작약·10월 구절초, 개화는 매년 달라진다. 현재 만개로 단정하거나 9월에 10월 꽃을 넣지 않는다. 시내 출입 방향과 맞을 때 기존 야외 관람 하나를 대체하며 보문 일정에 무조건 추가하지 않는다.
+- 권역 순서를 먼저 정하고 장소와 시간을 채운다. '도심 관광→보문 숙소 2시간 휴식→도심 야경' 대신 도심 카페→저녁→야경→숙소로 마무리한다. 필요한 체크인/짐수령/환승/사용자가 요청한 숙소 휴식은 합리적인 예외이지 모든 왕복을 절대 금지하는 것은 아니다.
+- 1박2일은 첫날만 숙박하고 둘째 날 체크아웃 후 경주에서 귀가 출발로 끝난다. 2박3일은 셋째 날이 출발일이다. 체크아웃한 객실·샤워·수영장을 다시 이용 가능하다고 가정하지 않는다. 체크아웃은 예약조건 확인 필요, 미입력시 11시 이전 완료를 계획 가정으로 표시한다.
+- 체크인15시 기준이면 체크인 행 시작도15시 이후. 14:30–15:30 체크인처럼 30분 먼저 들이밀지 않는다. 체크인을 꼭15시에 할 필요는 없다. 도착 후 가까운 전시를 보고16시쯤 입실하는 것도 가능하다.
+- 식당 마감·전시 휴관·월요일·입장마감과 방문일을 대조한다. 야경 대기만 1시간 채우지 말고 해질 때까지 가까운 식사/카페를 배치한다. 숙소·시설을 모르면 뷔페/온천/수영장/라운지를 임의 생성하지 않는다.
+- 반복 미디어아트 세 곳을 몰아넣는 대신 실내전시 1곳+취향에 맞는 사진 포인트 1곳+식사/카페로 경험을 구분한다. 부모님이라고 옛 명소만 고르지 않는다.
+
+# 구조화된 응답 계약 — 형식 예시보다 우선
+반드시 제공된 JSON 구조로 반환한다. 실제 일정은 days에만 작성하고 answer는 빈 문자열. 단순 관광 질문/도착 질문/범위 밖 질문은 days=[]와 answer만 사용한다.
+days에는 요청한 일차별 stops. start/end는 HH:MM, 마지막 귀가 출발은 같은 시각 가능. place는 정확한 대표 장소명(보문호 야경도 place=보문호). area는 목적지 실제 권역, 이동뿐인 행은 이동. text는 '차 회수·이동·주차 후 플래시백 계림 관람'처럼 사용자에게 보일 짧은 내용. 관람 행 안에 서로 다른 명소를 여러 개 숨기지 않는다.
+체크인·체크아웃·숙박·귀가 종류를 정확하게 구분한다. 숙소 휴식/샤워도 kind=숙박이다. reasons는 짧은 두 문장, tips는 가장 유용한 최대2개(검증된 링크 포함 가능). assumptions에는 미입력 조건의 가정만 한 줄. Markdown 굵게나 시간표 전체를 answer에 쓰지 않는다.
+`;
 
 const MAX_MESSAGE_LENGTH = 400;
 const MAX_HISTORY = 8;
@@ -191,29 +214,31 @@ export async function POST(req: Request) {
   }));
 
   try {
-    const openai = new OpenAI({ apiKey });
-    const response = await openai.chat.completions.create({
-      // 모델명은 OpenAI가 종종 새 버전으로 바꿉니다. "model not found" 오류가 나면
-      // https://platform.openai.com/docs/models 에서 현재 쓸 수 있는 저비용 모델명으로 교체하세요.
-      model: "gpt-5-mini",
-      reasoning_effort: "low",
-      // gpt-5-mini는 답변 전에 눈에 안 보이는 "추론" 토큰을 먼저 쓰는데, 이것도 이 한도 안에 포함됨.
-      // 한도가 너무 낮으면 추론만 하다 끝나서 실제 답변은 빈 문자열로 나옴(2026-07-27 실제로 발생한 문제:
-      // 1200으로는 추론 토큰만으로 꽉 차서 답변이 하나도 안 나왔음) - 넉넉하게 잡아야 함.
-      // 답변 자체는 시스템 프롬프트에서 500~700자로 짧게 쓰도록 지시하므로, 이 한도를 낮춰도 답변이
-      // 짧아지지는 않고 추론 토큰이 부족해 다시 빈 답변이 나올 위험만 커짐 - 낮추지 말 것.
-      max_completion_tokens: 4000,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
-        { role: "user", content: `[선택한 여행 조건]\n${profile}\n이후 대화에서 바꾼 조건이 있으면 최신 요청을 적용해 주세요.` },
-        ...history,
-        { role: "user", content: message },
-      ],
-    });
-
-    const reply = response.choices[0]?.message?.content || "죄송해요, 답변을 생성하지 못했어요.";
-
-    return Response.json({ reply });
+    const openai = new OpenAI({ apiKey, timeout: 50000, maxRetries: 0 });
+    const context = [profile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n");
+    const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
+      { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
+      { role: "user", content: `[선택한 여행 조건]\n${profile}\n이후 대화에서 바꾼 조건이 있으면 최신 요청을 적용해 주세요.` },
+      ...history,
+      { role: "user", content: message },
+    ];
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const response = await openai.chat.completions.create({
+        model: "gpt-5-mini", reasoning_effort: "medium", max_completion_tokens: 8000,
+        response_format: planFormat, messages,
+      });
+      const choice = response.choices[0];
+      if (choice?.message.refusal) return Response.json({ reply: choice.message.refusal });
+      let plan: unknown;
+      try { plan = JSON.parse(choice?.message.content || "null"); } catch { plan = null; }
+      const issues = choice?.finish_reason === "stop" ? inspectPlan(plan, context) : ["응답이 완성되지 않았습니다"];
+      if (!issues.length) return Response.json({ reply: renderPlan(plan as Plan) });
+      if (attempt === 0) {
+        messages.push({ role: "assistant", content: choice?.message.content || "{}" });
+        messages.push({ role: "system", content: `시간표 검증에서 다음 오류가 발견되었습니다. 조건과 장소를 재검토하여 완전한 JSON 답변을 다시 작성하세요. 날짜별 여행과 식사를 유지하고 같은 장소나 권역을 반복하지 마세요. 단순 질문으로 바꿔 검사를 피하지 마세요.\n${issues.join("\n")}` });
+      }
+    }
+    return Response.json({ error: "동선과 시간을 다시 확인하는 중 문제가 생겼습니다. 잠시 후 다시 요청해주세요." }, { status: 502 });
   } catch (err) {
     console.error("travel-chat error:", err);
     return Response.json({ error: "일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
