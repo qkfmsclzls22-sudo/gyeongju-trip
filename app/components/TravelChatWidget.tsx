@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
-type Message = { role: "user" | "assistant"; content: string };
+type Message = { role: "user" | "assistant"; content: string; planUrl?: string; failed?: boolean };
 
 const GREETING: Message = {
   role: "assistant",
@@ -50,6 +51,9 @@ function ChipGroup({
 }
 
 export default function TravelChatWidget() {
+  const pathname = usePathname();
+  const [retry, setRetry] = useState<{ text: string; history: Message[]; profile: string } | null>(null);
+  const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
   const [stage, setStage] = useState<"form" | "chat">("form");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -81,6 +85,7 @@ export default function TravelChatWidget() {
 
   async function sendMessage(text: string, historyBase: Message[], travelProfile = profile) {
     setLoading(true);
+    setRetry(null);
     try {
       const res = await fetch("/api/travel-chat", {
         method: "POST",
@@ -88,14 +93,17 @@ export default function TravelChatWidget() {
         body: JSON.stringify({
           message: text,
           profile: travelProfile,
-          history: historyBase.map((m) => ({ role: m.role, content: m.content })),
+          history: historyBase.filter(m => !m.failed).map((m) => ({ role: m.role, content: m.content })),
         }),
       });
       const data = await res.json();
-      const reply = res.ok ? data.reply : data.error || "오류가 발생했어요.";
-      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+      const success = res.ok && typeof data.reply === "string" && !!data.reply.trim();
+      const reply = success ? data.reply : data.error || "답변 연결이 지연되고 있어요. 잠시 후 다시 시도해주세요.";
+      setMessages((prev) => [...prev, { role: "assistant", content: reply, failed: !success, planUrl: success && typeof data.planUrl === "string" && data.planUrl.startsWith("/travel-plan#v1.") ? data.planUrl : undefined }]);
+      if (!success && data.retryable !== false) setRetry({ text, history: historyBase, profile: travelProfile });
     } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "연결에 문제가 생겼어요. 잠시 후 다시 시도해주세요." }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: "연결에 문제가 생겼어요. 입력하신 조건은 그대로 남아 있습니다.", failed: true }]);
+      setRetry({ text, history: historyBase, profile: travelProfile });
     } finally {
       setLoading(false);
     }
@@ -127,6 +135,7 @@ export default function TravelChatWidget() {
   }
 
   function handleRestartForm() {
+    setRetry(null);
     setStage("form");
     setMessages([]);
     setCompanion("");
@@ -148,16 +157,19 @@ export default function TravelChatWidget() {
     }
   }
 
+  if (pathname === "/travel-plan") return null;
+
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
       {open && (
-        <div className="mb-3 w-[min(90vw,380px)] h-[min(75vh,560px)] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <div className={`${expanded ? "fixed inset-3 sm:inset-6" : "mb-3 w-[min(92vw,460px)] h-[min(82dvh,720px)]"} bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden`}>
           <div className="bg-brand-500 text-white px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div>
               <p className="font-semibold text-sm">AI경트</p>
               <p className="text-brand-100 text-xs">처음 가는 경주 · 맞춤 일정 도우미</p>
             </div>
             <div className="flex items-center gap-3">
+              <button onClick={() => setExpanded(v => !v)} className="text-sm underline" aria-label={expanded ? "채팅 축소" : "채팅 크게 보기"}>{expanded ? "축소" : "크게"}</button>
               {stage === "chat" && (
                 <button disabled={loading} onClick={handleRestartForm} className="text-white/80 hover:text-white text-xs underline underline-offset-2">
                   여행 조건 변경
@@ -210,12 +222,13 @@ export default function TravelChatWidget() {
                 {messages.map((m, i) => (
                   <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                     <div
-                      className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-wrap ${
+                      className={`max-w-full px-3 py-2 rounded-2xl text-base whitespace-pre-wrap ${
                         m.role === "user"
                           ? "bg-brand-500 text-white rounded-br-sm"
                           : "bg-white text-gray-800 border border-gray-200 rounded-bl-sm"
                       }`}
                     >
+                      {m.planUrl && <a href={m.planUrl} target="_blank" rel="noopener noreferrer" className="block mb-3 px-4 py-3 bg-brand-500 text-white rounded-lg font-bold text-center whitespace-normal">일정 크게 보기 · 공유 / PDF</a>}
                       {m.role === "user" ? m.content : m.content.split("\n").map((line, lineIndex) => {
                         const timed = line.match(/^\s*(\d{1,2}:\d{2}(?:\s*[–—~-]\s*\d{1,2}:\d{2})?)\s*\|\s*(.+)$/);
                         if (timed) return <span key={lineIndex} className="grid grid-cols-[92px_1fr] gap-2 border-b border-gray-100 py-2.5 whitespace-normal">
@@ -244,6 +257,7 @@ export default function TravelChatWidget() {
                 <div ref={bottomRef} />
               </div>
 
+              {retry && !loading && <button className="mx-3 mb-2 rounded-lg border border-brand-500 px-3 py-3 text-sm font-bold text-brand-700" onClick={() => { setMessages(prev => prev.filter(m => !m.failed)); void sendMessage(retry.text, retry.history, retry.profile); }}>같은 조건으로 다시 만들기</button>}
               <form onSubmit={handleSend} className="p-2 border-t border-gray-200 flex gap-2 bg-white flex-shrink-0">
                 <input
                   value={input}

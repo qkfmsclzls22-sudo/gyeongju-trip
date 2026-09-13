@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { gzipSync } from "node:zlib";
 import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
 
 export const maxDuration = 180;
@@ -217,7 +218,7 @@ export async function POST(req: Request) {
   }));
 
   try {
-    const openai = new OpenAI({ apiKey, timeout: 75000, maxRetries: 0 });
+    const openai = new OpenAI({ apiKey, timeout: 45000, maxRetries: 0 });
     const context = [profile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n");
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
@@ -225,25 +226,31 @@ export async function POST(req: Request) {
       ...history,
       { role: "user", content: message },
     ];
-    for (let attempt = 0; attempt < 2; attempt++) {
+    for (let attempt = 0; attempt < 3; attempt++) {
       const response = await openai.chat.completions.create({
         model: "gpt-5-mini", reasoning_effort: "low", max_completion_tokens: 8000,
         response_format: planFormat, messages,
       });
       const choice = response.choices[0];
-      if (choice?.message.refusal) return Response.json({ reply: choice.message.refusal });
+      if (choice?.message.refusal) return Response.json({ error: "이 요청으로는 일정을 만들지 못했어요. 여행 장소나 시간 중심으로 질문을 바꿔주세요.", retryable: false }, { status: 422 });
       let plan: unknown;
       try { plan = JSON.parse(choice?.message.content || "null"); } catch { plan = null; }
       const issues = choice?.finish_reason === "stop" ? inspectPlan(plan, context) : ["응답이 완성되지 않았습니다"];
-      if (!issues.length) return Response.json({ reply: renderPlan(plan as Plan) });
-      if (attempt === 0) {
+      if (!issues.length) {
+        const result = plan as Plan;
+        // Self-contained snapshot: excludes the customer's profile and chat history.
+        const snapshot = gzipSync(JSON.stringify({ version: 1, plan: result })).toString("base64url");
+        return Response.json({ reply: renderPlan(result), planUrl: result.days.length ? `/travel-plan#v1.${snapshot}` : undefined });
+      }
+      console.warn("travel-chat validation", { attempt: attempt + 1, finishReason: choice?.finish_reason, issues });
+      if (attempt < 2) {
         messages.push({ role: "assistant", content: choice?.message.content || "{}" });
         messages.push({ role: "system", content: `시간표 검증에서 다음 오류가 발견되었습니다. 조건과 장소를 재검토하여 완전한 JSON 답변을 다시 작성하세요. 날짜별 여행과 식사를 유지하고 같은 장소나 권역을 반복하지 마세요. 단순 질문으로 바꿔 검사를 피하지 마세요.\n${issues.join("\n")}` });
       }
     }
-    return Response.json({ error: "동선과 시간을 다시 확인하는 중 문제가 생겼습니다. 잠시 후 다시 요청해주세요." }, { status: 502 });
+    return Response.json({ error: "일정의 시간과 동선을 맞추지 못했어요. 입력하신 조건은 그대로 남아 있습니다. ‘같은 조건으로 다시 만들기’를 눌러주세요.", retryable: true }, { status: 502 });
   } catch (err) {
     console.error("travel-chat error:", err);
-    return Response.json({ error: "일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요." }, { status: 500 });
+    return Response.json({ error: "답변 연결이 지연되고 있어요. 입력하신 조건은 그대로 남아 있습니다. 잠시 후 다시 시도해주세요.", retryable: true }, { status: 503 });
   }
 }
