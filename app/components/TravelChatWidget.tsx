@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-type Message = { role: "user" | "assistant"; content: string; planUrl?: string; failed?: boolean };
+type Message = { role: "user" | "assistant"; content: string; planUrl?: string; elapsedMs?: number; firstPreviewMs?: number; failed?: boolean };
 
 const GREETING: Message = {
   role: "assistant",
@@ -59,6 +59,7 @@ export default function TravelChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const [companion, setCompanion] = useState("");
@@ -68,6 +69,9 @@ export default function TravelChatWidget() {
   const [arrival, setArrival] = useState("");
   const [arrivalTime, setArrivalTime] = useState("");
   const [details, setDetails] = useState("");
+  const [interests, setInterests] = useState<string[]>([]);
+  const [food, setFood] = useState("");
+  const [avoid, setAvoid] = useState("");
   const [pace, setPace] = useState("여유롭게");
   const [profile, setProfile] = useState("");
   const formComplete = companion && transport && stay && duration && arrival;
@@ -85,26 +89,47 @@ export default function TravelChatWidget() {
 
   async function sendMessage(text: string, historyBase: Message[], travelProfile = profile) {
     setLoading(true);
+    setPreview("");
     setRetry(null);
     try {
       const res = await fetch("/api/travel-chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept": "application/x-ndjson" },
         body: JSON.stringify({
           message: text,
           profile: travelProfile,
           history: historyBase.filter(m => !m.failed).map((m) => ({ role: m.role, content: m.content })),
         }),
       });
-      const data = await res.json();
-      const success = res.ok && typeof data.reply === "string" && !!data.reply.trim();
+      let data: { reply?: string; error?: string; planUrl?: string; retryable?: boolean; ok?: boolean; elapsedMs?: number; firstPreviewMs?: number };
+      if (res.headers.get("content-type")?.includes("application/x-ndjson") && res.body) {
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let pending = "", received = false;
+        data = {};
+        while (true) {
+          const { done, value } = await reader.read();
+          pending += decoder.decode(value, { stream: !done });
+          const lines = pending.split("\n"); pending = lines.pop() || "";
+          for (const line of lines) {
+            if (!line.trim()) continue;
+            const event = JSON.parse(line);
+            if (event.type === "preview" && typeof event.reply === "string") setPreview(event.reply);
+            if (event.type === "result") { data = event; received = true; }
+          }
+          if (done) break;
+        }
+        if (!received) throw new Error("Incomplete response");
+      } else data = await res.json();
+      const success = res.ok && data.ok !== false && typeof data.reply === "string" && !!data.reply.trim();
       const reply = success ? data.reply : data.error || "답변 연결이 지연되고 있어요. 잠시 후 다시 시도해주세요.";
-      setMessages((prev) => [...prev, { role: "assistant", content: reply, failed: !success, planUrl: success && typeof data.planUrl === "string" && data.planUrl.startsWith("/travel-plan#v1.") ? data.planUrl : undefined }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: reply || "답변을 받지 못했어요.", elapsedMs: data.elapsedMs, firstPreviewMs: data.firstPreviewMs, failed: !success, planUrl: success && typeof data.planUrl === "string" && data.planUrl.startsWith("/travel-plan#v1.") ? data.planUrl : undefined }]);
       if (!success && data.retryable !== false) setRetry({ text, history: historyBase, profile: travelProfile });
     } catch {
       setMessages((prev) => [...prev, { role: "assistant", content: "연결에 문제가 생겼어요. 입력하신 조건은 그대로 남아 있습니다.", failed: true }]);
       setRetry({ text, history: historyBase, profile: travelProfile });
     } finally {
+      setPreview("");
       setLoading(false);
     }
   }
@@ -117,7 +142,7 @@ export default function TravelChatWidget() {
   function handleSubmitForm(e: React.FormEvent) {
     e.preventDefault();
     if (!formComplete) return;
-    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
+    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}\n관심사: ${interests.join(", ") || "미입력"}\n음식 취향·예산: ${food.trim() || "미입력"}\n이미 가본 곳·피할 곳: ${avoid.trim() || "미입력"}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
     setProfile(summary);
     setStage("chat");
     setMessages([{ role: "user", content: summary }]);
@@ -145,6 +170,9 @@ export default function TravelChatWidget() {
     setArrival("");
     setArrivalTime("");
     setDetails("");
+    setInterests([]);
+    setFood("");
+    setAvoid("");
     setPace("여유롭게");
     setProfile("");
   }
@@ -196,6 +224,9 @@ export default function TravelChatWidget() {
                 <input type="time" value={arrivalTime} onChange={event => updateArrivalTime(event.currentTarget.value)} onInput={event => updateArrivalTime(event.currentTarget.value)} className="mt-2 block w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800" />
               </label>
               <ChipGroup label="어떤 속도로 여행할까요?" options={["여유롭게", "적당히", "알차게"]} value={pace} onChange={setPace} />
+              <div><p className="text-xs font-semibold text-gray-500 mb-2">어떤 경험을 좋아하세요? (복수 선택)</p><div className="flex flex-wrap gap-2">{["역사·문화", "사진·풍경", "실내 전시", "자연·산책", "아이 체험", "맛집·디저트"].map(item => <button type="button" key={item} aria-pressed={interests.includes(item)} onClick={() => setInterests(prev => prev.includes(item) ? prev.filter(x => x !== item) : [...prev, item])} className={`rounded-full border px-3 py-2 text-sm ${interests.includes(item) ? "bg-brand-500 text-white border-brand-500" : "bg-white border-gray-200 text-gray-700"}`}>{item}</button>)}</div></div>
+              <label className="block text-xs font-semibold text-gray-500">음식 취향·예산 (선택)<input value={food} onChange={e => setFood(e.target.value)} maxLength={120} placeholder="예: 한식, 면은 제외, 식사 1인 2만원, 대기는 싫어요" className="mt-2 block w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800" /></label>
+              <label className="block text-xs font-semibold text-gray-500">가본 곳·피하고 싶은 곳 (선택)<input value={avoid} onChange={e => setAvoid(e.target.value)} maxLength={120} placeholder="예: 불국사는 가봤어요, 계단이 많은 곳은 제외" className="mt-2 block w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800" /></label>
               <label className="block text-xs font-semibold text-gray-500">
                 추가로 알려주시면 더 정확해요 (선택)
                 <textarea value={details} onChange={event => setDetails(event.target.value)} maxLength={500} rows={3} placeholder="예: 10월 10~11일, 경주역 11시 도착·다음 날 17시 출발, 아이 7세, 유모차, 야경·맛집 관심" className="mt-2 w-full resize-none rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-800" />
@@ -220,7 +251,7 @@ export default function TravelChatWidget() {
             <>
               <div className="flex-1 overflow-y-auto px-3 py-3 space-y-2 bg-gray-50">
                 {messages.map((m, i) => (
-                  <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div key={i} data-response-ms={m.elapsedMs} data-first-preview-ms={m.firstPreviewMs} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                     <div
                       className={`max-w-full px-3 py-2 rounded-2xl text-base whitespace-pre-wrap ${
                         m.role === "user"
@@ -250,7 +281,7 @@ export default function TravelChatWidget() {
                 {loading && (
                   <div className="flex justify-start">
                     <div className="bg-white text-gray-400 border border-gray-200 px-3 py-2 rounded-2xl rounded-bl-sm text-sm">
-                      동선과 이동 여유를 살펴보고 있어요…
+                      {preview ? <><p className="mb-2 text-xs font-semibold text-brand-700">일정 작성 중 · 검사 후 내용이 조정될 수 있어요</p><div className="whitespace-pre-wrap text-base leading-relaxed text-gray-800">{preview}</div></> : "동선과 이동 여유를 살펴보고 있어요…"}
                     </div>
                   </div>
                 )}
