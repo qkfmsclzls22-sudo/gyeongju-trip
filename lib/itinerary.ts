@@ -33,6 +33,16 @@ export function inspectPlan(value: unknown, context: string): string[] {
   const earlyCheckin = /(?:얼리|조기)\s*체크인.*(?:확정|예약|가능)/.test(context);
   const arrivalMatch = [...context.matchAll(/(?:도착\s*(?:시각|시간)?\s*:?\s*)(\d{1,2}):(\d{2})|(\d{1,2}):(\d{2})\s*(?:경주\s*)?도착/g)].at(-1);
   const arrival = arrivalMatch ? Number(arrivalMatch[1] ?? arrivalMatch[3]) * 60 + Number(arrivalMatch[2] ?? arrivalMatch[4]) : null;
+  const departureMatch = [...context.matchAll(/(?:(오전|오후|저녁)\s*)?(\d{1,2})(?::(\d{2})|시(?:\s*(\d{1,2})분)?)[ \t]*(?:경주(?:에서)?[ \t]*)?귀가|(?:(오전|오후|저녁)\s*)?(\d{1,2})(?::(\d{2})|시(?:\s*(\d{1,2})분)?)[ \t]*경주(?:에서)?[ \t]*출발/g)].at(-1);
+  let departure: number | null = null;
+  if (departureMatch) {
+    const period = departureMatch[1] ?? departureMatch[5];
+    let hour = Number(departureMatch[2] ?? departureMatch[6]);
+    if (["오후", "저녁"].includes(period) && hour < 12) hour += 12;
+    if (period === "오전" && hour === 12) hour = 0;
+    const minutes = Number(departureMatch[3] ?? departureMatch[4] ?? departureMatch[7] ?? departureMatch[8] ?? 0);
+    if (hour < 24 && minutes < 60) departure = hour * 60 + minutes;
+  }
   const places = new Set<string>();
   const dateMatch = [...context.matchAll(/(?:(\d{4})[-년]\s*)?(\d{1,2})[-월]\s*(\d{1,2})(?:일)?/g)].at(-1);
   const startDate = dateMatch ? Date.UTC(Number(dateMatch[1] || new Date().getUTCFullYear()), Number(dateMatch[2]) - 1, Number(dateMatch[3])) : null;
@@ -49,6 +59,8 @@ export function inspectPlan(value: unknown, context: string): string[] {
       if (!Number.isFinite(start) || !Number.isFinite(end) || end < start || start < previousEnd) errors.push(`${day.day}일차 ${stop.text}: 시각 역전/겹침`);
       if (day.day === 1 && arrival !== null && start < arrival) errors.push("첫날 도착 이전 일정 금지");
       previousEnd = end;
+      if (departure !== null && day.day === (tripDays || p.days.at(-1)?.day) && end > departure) errors.push("마지막 날 경주 귀가 출발시각 이후 일정 금지");
+      if (stop.kind === "식사" && end - start < 45) errors.push("식사 자체에 최소45분 확보: 관람을 줄여서라도 식사시간을 확보하세요");
       if (end - start > 30 && /준비|짐\s*정리|우산\s*정리/.test(stop.place) && !/숙박|관람|식사|카페|이동|주차/.test(stop.place)) errors.push("짐·우산 정리와 준비만으로 30분 넘게 채우지 말고 관람 또는 휴식 경험을 배치하세요");
       if (stop.kind === "체크인" && start < 900 && !earlyCheckin) errors.push("미확정 체크인은 15시 이후 시작");
       if (tripDays && day.day === tripDays && ["체크인", "숙박"].includes(stop.kind)) errors.push("마지막 날 체크아웃 후 숙소 휴식/숙박 금지");

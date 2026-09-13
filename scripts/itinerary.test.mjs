@@ -43,3 +43,10 @@ test('rejects known Monday closures and museum visit before opening', () => {
   assert.deepEqual(inspectPlan(plan([stop('14:00','15:00','라원')]),'2026-09-15 당일치기'),[]);
   assert(inspectPlan(plan([stop('09:20','10:40','국립경주박물관','도심')]),'').some(x=>x.includes('10:00')));
 });
+
+test('keeps enough meal time and respects an explicit Gyeongju departure', () => {
+  assert(inspectPlan(plan([stop('17:10','17:40','한식 저녁','보문','식사')]),'당일치기').some(x=>x.includes('45분')));
+  assert(inspectPlan(plan([stop('17:00','18:00','전시 관람')]),'당일치기 17시 귀가').some(x=>x.includes('귀가')));
+  assert(inspectPlan(plan([stop('17:00','18:00','전시 관람')]),'당일치기 오후 5시 경주에서 출발').some(x=>x.includes('귀가')));
+  assert.deepEqual(inspectPlan(plan([stop('17:00','18:00','한식 저녁','보문','식사')]),'당일치기 18시 경주에서 귀가 출발'),[]);
+});

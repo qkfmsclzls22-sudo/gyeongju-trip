@@ -54,7 +54,11 @@ export async function POST(req: Request) {
   const history = (Array.isArray(body.history) ? body.history : []).filter(
     (m): m is { role: "user" | "assistant"; content: string } => !!m && typeof m === "object" && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.length <= 8000
   ).slice(-MAX_HISTORY);
-  const profile = typeof body.profile === "string" ? body.profile.slice(0, 1600) : "미입력";
+  const rawProfile = typeof body.profile === "string" ? body.profile.slice(0, 1600) : "미입력";
+  const latestDuration = [...[rawProfile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n").matchAll(/\d+박\s*\d+일|당일치기/g)].at(-1)?.[0];
+  const profile = latestDuration === "당일치기"
+    ? rawProfile.replace(/숙소 위치:/g, "당일 방문 희망 권역:") + "\n당일치기이며 숙박 예약은 없습니다. 체크인·호텔 주차·객실 사용을 가정하지 마세요."
+    : rawProfile;
   const today = koreaDate();
   const currentNews = news.items.filter(item => isVisible(item, today) && safeUrl(item.sourceUrl)).sort((a, b) => {
     const priority = (category: string) => category === "운영·교통" ? 0 : category === "여행정보" ? 1 : 2;
@@ -85,8 +89,8 @@ export async function POST(req: Request) {
     for (let attempt = 0; attempt < 2; attempt++) {
       let content = "", finishReason = "", refusal = "", previousPreview = "";
       const stream = await openai.chat.completions.create({
-        model: attempt === 0 ? "gpt-5.4-mini" : "gpt-5-mini",
-        reasoning_effort: attempt === 0 ? "none" : "low", max_completion_tokens: 8000,
+        model: "gpt-5.4-mini",
+        reasoning_effort: "low", max_completion_tokens: 8000,
         response_format: planFormat, messages, stream: true,
       }, { signal: abort.signal });
       for await (const chunk of stream) {
