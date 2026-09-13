@@ -7,12 +7,13 @@ type Message = { role: "user" | "assistant"; content: string; planUrl?: string; 
 
 const GREETING: Message = {
   role: "assistant",
-  content: "처음 가는 경주, 덜 헤매고 여유롭게 여행하도록 도와드릴게요. 동행자·이동수단·숙소 위치·여행 기간을 알려주시면 동선과 놓치기 쉬운 팁을 함께 정리해드려요.",
+  content: "처음 가는 경주, 덜 헤매고 여유롭게 여행하도록 도와드릴게요. 동행자·이동수단·숙소 위치·여행 시기와 기간을 알려주시면 동선과 놓치기 쉬운 팁을 함께 정리해드려요.",
 };
 
 const COMPANION_OPTIONS = ["가족여행(자녀 동반)", "부모님과 함께", "커플·신혼여행", "친구와 함께", "나홀로 여행"];
 const TRANSPORT_OPTIONS = ["자차·렌터카", "시내버스·도보", "대중교통·택시 병행", "관광버스 이용"];
 const STAY_OPTIONS = ["경주 시내(황리단길 인근)", "보문관광단지", "불국사·석굴암 인근", "경주역(KTX) 인근", "숙박 없음", "아직 미정"];
+const SEASON_OPTIONS = ["봄 3–5월", "여름 6–9월", "가을 10–11월", "겨울 12–2월"];
 const DURATION_OPTIONS = ["당일치기", "1박 2일", "2박 3일", "3박 이상"];
 
 function ChipGroup({
@@ -65,6 +66,7 @@ export default function TravelChatWidget() {
   const [companion, setCompanion] = useState("");
   const [transport, setTransport] = useState("");
   const [stay, setStay] = useState("");
+  const [season, setSeason] = useState("");
   const [duration, setDuration] = useState("");
   const [arrival, setArrival] = useState("");
   const [arrivalTime, setArrivalTime] = useState("");
@@ -74,7 +76,7 @@ export default function TravelChatWidget() {
   const [avoid, setAvoid] = useState("");
   const [pace, setPace] = useState("여유롭게");
   const [profile, setProfile] = useState("");
-  const formComplete = companion && transport && stay && duration && arrival;
+  const formComplete = companion && transport && stay && season && duration && arrival;
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -142,7 +144,7 @@ export default function TravelChatWidget() {
   function handleSubmitForm(e: React.FormEvent) {
     e.preventDefault();
     if (!formComplete) return;
-    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}\n관심사: ${interests.join(", ") || "미입력"}\n음식 취향·예산: ${food.trim() || "미입력"}\n이미 가본 곳·피할 곳: ${avoid.trim() || "미입력"}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
+    const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 계절: ${season}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}\n관심사: ${interests.join(", ") || "미입력"}\n음식 취향·예산: ${food.trim() || "미입력"}\n이미 가본 곳·피할 곳: ${avoid.trim() || "미입력"}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
     setProfile(summary);
     setStage("chat");
     setMessages([{ role: "user", content: summary }]);
@@ -167,6 +169,7 @@ export default function TravelChatWidget() {
     setTransport("");
     setStay("");
     setDuration("");
+    setSeason("");
     setArrival("");
     setArrivalTime("");
     setDetails("");
@@ -217,7 +220,12 @@ export default function TravelChatWidget() {
               <ChipGroup label="누구와 함께 가세요?" options={COMPANION_OPTIONS} value={companion} onChange={setCompanion} />
               <ChipGroup label="이동수단은요?" options={TRANSPORT_OPTIONS} value={transport} onChange={setTransport} />
               <ChipGroup label="숙소는 어디쪽인가요?" options={STAY_OPTIONS} value={stay} onChange={setStay} />
-              <ChipGroup label="여행 기간은요?" options={DURATION_OPTIONS} value={duration} onChange={setDuration} />
+              <fieldset className="space-y-3 rounded-xl border border-gray-200 p-3">
+                <legend className="px-1 text-sm font-semibold text-gray-700">여행 시기·기간 (필수)</legend>
+                <ChipGroup label="어느 계절에 오세요?" options={SEASON_OPTIONS} value={season} onChange={setSeason} />
+                <ChipGroup label="얼마나 머무르세요?" options={DURATION_OPTIONS} value={duration} onChange={setDuration} />
+                <p className="text-xs text-gray-500">날짜나 비·더위 등 날씨 조건은 아래 추가 입력에 알려주세요.</p>
+              </fieldset>
               <ChipGroup label="첫날 경주에 언제 도착하나요? (필수)" options={["오전 도착", "오후 도착", "저녁 도착"]} value={arrival} onChange={value => { setArrival(value); setArrivalTime(""); }} />
               <label className="block text-xs font-semibold text-gray-500">
                 정확한 도착 시각을 아시면 입력해 주세요 (선택)
