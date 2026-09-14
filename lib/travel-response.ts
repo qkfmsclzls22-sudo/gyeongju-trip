@@ -2,7 +2,7 @@ import { basicTravelReply } from "./travel-fallback.ts";
 
 export type TravelRequest = { message: string; profile: string; history: { role: string; content: string }[] };
 export type TravelResponse = { reply: string; fallback?: boolean; planUrl?: string; elapsedMs?: number; firstPreviewMs?: number };
-export const CHAT_DEADLINE_MS = 15000;
+export const CHAT_DEADLINE_MS = 30000;
 
 /** One deadline covers fetch headers AND stream body; a hung reader cannot hold the UI. */
 export async function requestTravelReply(input: TravelRequest, options: {
@@ -18,7 +18,7 @@ export async function requestTravelReply(input: TravelRequest, options: {
       method: "POST", headers: { "Content-Type": "application/json", Accept: "application/x-ndjson" },
       body: JSON.stringify(input), signal: controller.signal,
     });
-    if (!response.ok) return fallback();
+    if (!response.ok) { void response.body?.cancel().catch(() => {}); throw new Error("Response unavailable"); }
     let data: Record<string, unknown> | undefined;
     if (response.headers.get("content-type")?.includes("application/x-ndjson") && response.body) {
       const reader = response.body.getReader();
@@ -42,7 +42,7 @@ export async function requestTravelReply(input: TravelRequest, options: {
         }
       } finally { void reader.cancel().catch(() => {}); }
     } else data = await response.json();
-    if (!data || data.ok === false || typeof data.reply !== "string" || !data.reply.trim()) return fallback();
+    if (!data || data.ok === false || typeof data.reply !== "string" || !data.reply.trim()) throw new Error("Incomplete response");
     return { reply: data.reply, fallback: data.fallback === true,
       planUrl: typeof data.planUrl === "string" && data.planUrl.startsWith("/travel-plan#v1.") ? data.planUrl : undefined,
       elapsedMs: typeof data.elapsedMs === "number" ? data.elapsedMs : undefined,
@@ -54,6 +54,17 @@ export async function requestTravelReply(input: TravelRequest, options: {
     if (options.signal?.aborted) cancel();
     else options.signal?.addEventListener("abort", cancel, { once: true });
   });
-  try { return await Promise.race([read().catch(fallback), deadline]); }
+  const readWithRecovery = async (): Promise<TravelResponse> => {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      if (controller.signal.aborted) return fallback();
+      try { return await read(); }
+      catch {
+        if (controller.signal.aborted || attempt === 1) return fallback();
+        if (!finished) options.onPreview?.("연결을 복구하고 있어요. 같은 여행 조건으로 답변을 이어갑니다.");
+      }
+    }
+    return fallback();
+  };
+  try { return await Promise.race([readWithRecovery(), deadline]); }
   finally { finished = true; clearTimeout(timer); options.signal?.removeEventListener("abort", cancel); controller.abort(); }
 }

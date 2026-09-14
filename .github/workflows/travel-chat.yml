@@ -1,0 +1,27 @@
+name: Travel chat reliability
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/api/travel-chat/**'
+      - 'lib/**'
+      - 'scripts/**'
+      - '.github/workflows/travel-chat.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: node --test scripts/itinerary.test.mjs scripts/travel-response.test.mjs
+      - run: npx eslint app/api/travel-chat/route.ts lib/travel-response.ts
+      - run: npm run build
+      - run: node scripts/travel-server.test.mjs

@@ -41,3 +41,19 @@ test('conservative templates distinguish lodging, exclusions, weather and latest
  const two=basicTravelReply('보문관광단지\n1박 2일\n오후 도착','일정 알려줘');assert.match(two,/1일차/);assert.match(two,/마지막 날/);
  const changed=basicTravelReply('1박 2일','당일치기로 바꿔줘');assert.doesNotMatch(changed,/1일차|마지막 날/);
 });
+
+test('recovers one transient network failure without replacing the AI answer',async()=>{
+ let calls=0;
+ const result=await requestTravelReply(input,{fetcher:async()=>{
+  if(++calls===1)throw new TypeError('temporary disconnect');
+  return Response.json({reply:'복구된 맞춤 일정'});
+ }});
+ assert.equal(calls,2);assert.equal(result.reply,'복구된 맞춤 일정');assert.notEqual(result.fallback,true);
+});
+test('an AI response taking longer than the old 15-second cutoff is preserved',async()=>{
+ const result=await requestTravelReply(input,{fetcher:async()=>{
+  await new Promise(resolve=>setTimeout(resolve,16000));
+  return Response.json({reply:'충분히 검토한 맞춤 일정'});
+ }});
+ assert.equal(result.reply,'충분히 검토한 맞춤 일정');assert.notEqual(result.fallback,true);
+});

@@ -5,7 +5,7 @@ import { planPreview } from "@/lib/plan-preview";
 import { gzipSync } from "node:zlib";
 import { inspectPlan, repairPreparationBlocks, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
 
-export const maxDuration = 180;
+export const maxDuration = 60;
 import { LANDMARKS } from "@/app/data/travelInfo";
 import news from "@/data/now.json";
 import { isVisible, koreaDate, safeUrl } from "@/lib/now";
@@ -15,26 +15,7 @@ const SYSTEM_PROMPT = TRAVEL_CHAT_PROMPT + TOUR_CHAT_CONTEXT + "\n그 밖의 명
 const MAX_MESSAGE_LENGTH = 400;
 const MAX_HISTORY = 8;
 
-// 서버가 재시작되면 초기화되는 임시 저장소(서버리스 환경 특성상 완벽한 방어는 아니지만,
-// 짧은 시간 내 과도한 요청으로 비용이 급증하는 것을 최소한으로 막기 위한 용도)
-const requestLog = new Map<string, number[]>();
-const RATE_LIMIT = 10; // 시간당 요청 수
-const RATE_WINDOW_MS = 60 * 60 * 1000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (timestamps.length >= RATE_LIMIT) return true;
-  timestamps.push(now);
-  if (requestLog.size >= 2000 && !requestLog.has(ip)) {
-    for (const [key, values] of requestLog) {
-      if (now - values[values.length - 1] >= RATE_WINDOW_MS) requestLog.delete(key);
-    }
-    if (requestLog.size >= 2000) return true;
-  }
-  requestLog.set(ip, timestamps);
-  return false;
-}
+// No application-level request quota: repeated exhibition use stays on the AI path.
 
 export async function POST(req: Request) {
   let body: { message?: unknown; profile?: unknown; history?: unknown };
@@ -60,9 +41,8 @@ export async function POST(req: Request) {
   const fallbackData = () => ({ reply: basicTravelReply(profile, message, history), fallback: true });
   const fallbackResult = () => ({ data: fallbackData(), status: 200 });
   const apiKey = process.env.OPENAI_API_KEY;
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (!apiKey || isRateLimited(ip)) {
-    console.info("travel-chat basic", { reason: apiKey ? "rate_limit" : "configuration" });
+  if (!apiKey) {
+    console.info("travel-chat basic", { reason: "configuration" });
     return Response.json(fallbackData());
   }
   const today = koreaDate();
@@ -83,7 +63,7 @@ export async function POST(req: Request) {
   let emit: ((event: Record<string, unknown>) => void) | undefined;
   const run = async (): Promise<{ data: Result; status: number }> => {
   try {
-    const openai = new OpenAI({ apiKey, timeout: 45000, maxRetries: 0 });
+    const openai = new OpenAI({ apiKey, timeout: 25000, maxRetries: 1 });
     const context = [profile, ...history.filter(m => m.role === "user").map(m => m.content), message].join("\n");
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       { role: "system", content: SYSTEM_PROMPT + `\n한국 기준 오늘: ${today}\n확인된 지금 경주 자료(JSON):\n${JSON.stringify(currentNews)}` },
@@ -92,8 +72,9 @@ export async function POST(req: Request) {
       { role: "user", content: message },
     ];
     let firstPreviewMs = 0;
-    for (let attempt = 0; attempt < 2; attempt++) {
+    for (let attempt = 0; attempt < 3; attempt++) {
       let content = "", finishReason = "", refusal = "", previousPreview = "";
+      try {
       const stream = await openai.chat.completions.create({
         model: "gpt-5.4-mini",
         reasoning_effort: "low", max_completion_tokens: 8000,
@@ -114,6 +95,12 @@ export async function POST(req: Request) {
           }
         }
       }
+      } catch (error) {
+        if (abort.signal.aborted || attempt >= 2) throw error;
+        console.warn("travel-chat automatic recovery", { attempt: attempt + 1 });
+        emit?.({ type: "preview", reply: "답변 연결을 복구하고 있어요. 입력하신 조건으로 계속 작성합니다." });
+        continue;
+      }
       if (refusal) return fallbackResult();
       let plan: unknown;
       try { plan = repairPreparationBlocks(JSON.parse(content || "null")); } catch { plan = null; }
@@ -127,7 +114,7 @@ export async function POST(req: Request) {
         return { data: { reply: renderPlan(result), planUrl: result.days.length ? `/travel-plan#v1.${snapshot}` : undefined, elapsedMs, firstPreviewMs }, status: 200 };
       }
       console.warn("travel-chat validation", { attempt: attempt + 1, finishReason, issues });
-      if (attempt < 1) {
+      if (attempt < 2) {
         emit?.({ type: "preview", reply: "이동시간과 동선을 다시 조정하고 있어요. 검사가 끝나면 최종 일정을 보여드릴게요." });
         messages.push({ role: "assistant", content: content || "{}" });
         messages.push({ role: "system", content: `시간표 검증에서 다음 오류가 발견되었습니다. 조건과 장소를 재검토하여 완전한 JSON 답변을 다시 작성하세요. 날짜별 여행과 식사를 유지하고 같은 장소나 권역을 반복하지 마세요. 단순 질문으로 바꿔 검사를 피하지 마세요.\n${issues.join("\n")}` });
@@ -144,7 +131,7 @@ export async function POST(req: Request) {
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {
       return await Promise.race([run(), new Promise<{ data: Result; status: number }>(resolve => {
-        timer = setTimeout(() => { abort.abort(); resolve(fallbackResult()); }, 12000);
+        timer = setTimeout(() => { abort.abort(); resolve(fallbackResult()); }, 27000);
       })]);
     } finally { clearTimeout(timer); }
   };
@@ -157,8 +144,12 @@ export async function POST(req: Request) {
   return new Response(new ReadableStream({
     async start(controller) {
       emit = event => { if (!closed) controller.enqueue(encoder.encode(JSON.stringify(event) + "\n")); };
-      const { data, status } = await runWithDeadline();
-      emit({ type: "result", ...data, ok: status === 200 });
+      emit({ type: "preview", reply: "입력하신 조건에 맞춰 일정을 작성하고 있어요. 이동시간과 운영정보까지 확인합니다." });
+      const heartbeat = setInterval(() => emit?.({ type: "heartbeat" }), 10000);
+      try {
+        const { data, status } = await runWithDeadline();
+        emit({ type: "result", ...data, ok: status === 200 });
+      } finally { clearInterval(heartbeat); }
       if (!closed) { closed = true; controller.close(); }
     },
     cancel() { closed = true; abort.abort(); },
