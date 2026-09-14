@@ -21,6 +21,32 @@ const canonicalPlace = (place: string) => {
   return /보문(호|관광단지|단지|정|물레방아)/.test(compact) ? "보문산책" : compact.replace(/경주|산책|야경|관람|사진촬영/g, "");
 };
 
+// Only standalone preparation is capped; hotel formalities, meals, transit and
+// explicitly planned rest are real activities even if they mention packing.
+function isPreparationOnly(stop: Stop): boolean {
+  if (["체크인", "체크아웃", "숙박", "식사", "카페"].includes(stop.kind)) return false;
+  if (!/준비|짐\s*정리|우산\s*정리/.test(stop.place)) return false;
+  return !/휴식|쉬기|쉬는|체크인|체크아웃|식사|카페|관람|이동|주차|차량|회수|탑승|산책/.test(stop.place + " " + stop.text);
+}
+
+/** Shorten a standalone packing block without shifting any other appointments. */
+export function repairPreparationBlocks(value: unknown): unknown {
+  if (!value || typeof value !== "object") return value;
+  const plan = value as Plan;
+  if (!Array.isArray(plan.days)) return value;
+  return { ...plan, days: plan.days.map(day => {
+    if (!day || !Array.isArray(day.stops)) return day;
+    return { ...day, stops: day.stops.map(stop => {
+      if (!stop || [stop.start, stop.end, stop.place, stop.kind, stop.text].some(v => typeof v !== "string")) return stop;
+      const start = minute(stop.start), end = minute(stop.end);
+      if (!isPreparationOnly(stop) || !Number.isFinite(start) || !Number.isFinite(end) || end - start <= 30) return stop;
+      const revisedEnd = start + 30;
+      return { ...stop, end: `${String(Math.floor(revisedEnd / 60)).padStart(2, "0")}:${String(revisedEnd % 60).padStart(2, "0")}`,
+        text: "짐 정리·출발 준비 (30분 이내). 다음 일정 전 남는 시간은 자유시간입니다." };
+    }) };
+  }) };
+}
+
 export function inspectPlan(value: unknown, context: string, today = new Date().toISOString().slice(0, 10)): string[] {
   const errors: string[] = [];
   if (!value || typeof value !== "object") return ["응답 구조 오류"];
@@ -63,7 +89,7 @@ export function inspectPlan(value: unknown, context: string, today = new Date().
       previousEnd = end;
       if (departure !== null && day.day === (tripDays || p.days.at(-1)?.day) && end > departure) errors.push("마지막 날 경주 귀가 출발시각 이후 일정 금지");
       if (stop.kind === "식사" && end - start < 45) errors.push("식사 자체에 최소45분 확보: 관람을 줄여서라도 식사시간을 확보하세요");
-      if (end - start > 30 && /준비|짐\s*정리|우산\s*정리/.test(stop.place) && !/숙박|관람|식사|카페|이동|주차/.test(stop.place)) errors.push("짐·우산 정리와 준비만으로 30분 넘게 채우지 말고 관람 또는 휴식 경험을 배치하세요");
+      if (end - start > 30 && isPreparationOnly(stop)) errors.push("짐·우산 정리와 준비만으로 30분 넘게 채우지 말고 관람 또는 휴식 경험을 배치하세요");
       if (stop.kind === "체크인" && start < 900 && !earlyCheckin) errors.push("미확정 체크인은 15시 이후 시작");
       if (tripDays && day.day === tripDays && ["체크인", "숙박"].includes(stop.kind)) errors.push("마지막 날 체크아웃 후 숙소 휴식/숙박 금지");
       if (stop.kind === "귀가" && i !== day.stops.length - 1) errors.push("귀가 뒤 추가 일정 금지");

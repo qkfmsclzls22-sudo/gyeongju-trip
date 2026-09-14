@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { inspectPlan, renderPlan } from '../lib/itinerary.ts';
+import { inspectPlan, repairPreparationBlocks, renderPlan } from '../lib/itinerary.ts';
 
 const stop = (start, end, place, area='보문', kind='관람') => ({ start, end, place, area, kind, text:place });
 const plan = stops => ({ answer:'', assumptions:'', days:[{day:1,stops}], reasons:'권역을 묶었습니다.', tips:[] });
@@ -69,4 +69,25 @@ test('does not extend Sep 14 restrictions to other dates or explicitly open exhi
   }
   assert.deepEqual(inspectPlan(plan([stop('10:00','12:00','국립경주박물관 특별전시관','도심')]),'2026-09-14 당일치기'),[]);
   assert.deepEqual(inspectPlan(plan([stop('10:00','12:00','국립경주박물관','도심')]),'내일 당일치기','2026-09-14'),[]);
+});
+
+
+test('hotel formalities and family rest mentioning packing are not preparation-only', () => {
+  for (const [place,kind] of [['짐 정리 및 체크인','체크인'],['귀가 준비 및 체크아웃','체크아웃'],['숙소 짐 정리 및 가족 휴식','숙박'],['출발 준비 후 카페 휴식','카페']]) {
+    const p=plan([stop('15:00','16:00',place,'보문',kind)]);
+    assert.deepEqual(inspectPlan(p,'1박2일'),[],place);
+    assert.deepEqual(repairPreparationBlocks(p),p);
+  }
+});
+
+test('repairs standalone packing without moving reservations or bypassing closure checks', () => {
+  const p=plan([stop('09:00','10:00','숙소 짐 정리','도심','이동'),stop('10:00','12:00','국립경주박물관','도심')]);
+  const repaired=repairPreparationBlocks(p);
+  assert.equal(repaired.days[0].stops[0].end,'09:30');
+  assert.equal(p.days[0].stops[0].end,'10:00');
+  assert.deepEqual(repaired.days[0].stops[1],p.days[0].stops[1]);
+  assert.deepEqual(inspectPlan(repaired,'2026-09-15 당일치기'),[]);
+  assert(inspectPlan(repaired,'2026-09-14 당일치기').some(x=>x.includes('운영 불가')));
+  assert.deepEqual(repairPreparationBlocks(repaired),repaired);
+  assert.equal(repairPreparationBlocks(null),null);
 });

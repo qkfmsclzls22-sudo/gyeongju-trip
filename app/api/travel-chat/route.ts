@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { TRAVEL_CHAT_PROMPT, TOUR_CHAT_CONTEXT } from "@/lib/travel-chat-prompt";
 import { planPreview } from "@/lib/plan-preview";
 import { gzipSync } from "node:zlib";
-import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
+import { inspectPlan, repairPreparationBlocks, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
 
 export const maxDuration = 180;
 import { LANDMARKS } from "@/app/data/travelInfo";
@@ -110,7 +110,7 @@ export async function POST(req: Request) {
       }
       if (refusal) return { data: { error: "이 요청으로는 일정을 만들지 못했어요. 여행 장소나 시간 중심으로 질문을 바꿔주세요.", retryable: false }, status: 422 };
       let plan: unknown;
-      try { plan = JSON.parse(content || "null"); } catch { plan = null; }
+      try { plan = repairPreparationBlocks(JSON.parse(content || "null")); } catch { plan = null; }
       const issues = finishReason === "stop" ? inspectPlan(plan, context, today) : ["응답이 완성되지 않았습니다"];
       if (!issues.length) {
         const result = plan as Plan;
