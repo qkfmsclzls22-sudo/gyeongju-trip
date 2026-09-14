@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { basicTravelReply } from "@/lib/travel-fallback";
+import { requestTravelReply } from "@/lib/travel-response";
 import { usePathname } from "next/navigation";
 
-type Message = { role: "user" | "assistant"; content: string; planUrl?: string; elapsedMs?: number; firstPreviewMs?: number; failed?: boolean };
+type Message = { role: "user" | "assistant"; content: string; planUrl?: string; elapsedMs?: number; firstPreviewMs?: number; failed?: boolean; fallback?: boolean };
 
 const GREETING: Message = {
   role: "assistant",
@@ -53,7 +55,7 @@ function ChipGroup({
 
 export default function TravelChatWidget() {
   const pathname = usePathname();
-  const [retry, setRetry] = useState<{ text: string; history: Message[]; profile: string } | null>(null);
+  const activeRequest = useRef<AbortController | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
   const [stage, setStage] = useState<"form" | "chat">("form");
@@ -89,51 +91,25 @@ export default function TravelChatWidget() {
     return () => window.removeEventListener("open-travel-chat", handler);
   }, []);
 
-  async function sendMessage(text: string, historyBase: Message[], travelProfile = profile) {
+  useEffect(() => () => { activeRequest.current?.abort(); activeRequest.current = null; }, []);
+
+  async function sendMessage(text: string, historyBase: Message[], travelProfile = profile, basicOnly = false) {
+    activeRequest.current?.abort();
+    const controller = new AbortController();
+    activeRequest.current = controller;
     setLoading(true);
     setPreview("");
-    setRetry(null);
-    try {
-      const res = await fetch("/api/travel-chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/x-ndjson" },
-        body: JSON.stringify({
-          message: text,
-          profile: travelProfile,
-          history: historyBase.filter(m => !m.failed).map((m) => ({ role: m.role, content: m.content })),
-        }),
-      });
-      let data: { reply?: string; error?: string; planUrl?: string; retryable?: boolean; ok?: boolean; elapsedMs?: number; firstPreviewMs?: number };
-      if (res.headers.get("content-type")?.includes("application/x-ndjson") && res.body) {
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        let pending = "", received = false;
-        data = {};
-        while (true) {
-          const { done, value } = await reader.read();
-          pending += decoder.decode(value, { stream: !done });
-          const lines = pending.split("\n"); pending = lines.pop() || "";
-          for (const line of lines) {
-            if (!line.trim()) continue;
-            const event = JSON.parse(line);
-            if (event.type === "preview" && typeof event.reply === "string") setPreview(event.reply);
-            if (event.type === "result") { data = event; received = true; }
-          }
-          if (done) break;
-        }
-        if (!received) throw new Error("Incomplete response");
-      } else data = await res.json();
-      const success = res.ok && data.ok !== false && typeof data.reply === "string" && !!data.reply.trim();
-      const reply = success ? data.reply : data.error || "답변 연결이 지연되고 있어요. 잠시 후 다시 시도해주세요.";
-      setMessages((prev) => [...prev, { role: "assistant", content: reply || "답변을 받지 못했어요.", elapsedMs: data.elapsedMs, firstPreviewMs: data.firstPreviewMs, failed: !success, planUrl: success && typeof data.planUrl === "string" && data.planUrl.startsWith("/travel-plan#v1.") ? data.planUrl : undefined }]);
-      if (!success && data.retryable !== false) setRetry({ text, history: historyBase, profile: travelProfile });
-    } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "연결에 문제가 생겼어요. 입력하신 조건은 그대로 남아 있습니다.", failed: true }]);
-      setRetry({ text, history: historyBase, profile: travelProfile });
-    } finally {
-      setPreview("");
-      setLoading(false);
-    }
+    const input = { message: text, profile: travelProfile,
+      history: historyBase.filter(m => !m.failed).map(m => ({ role: m.role, content: m.content })) };
+    const data = basicOnly ? { reply: basicTravelReply(travelProfile, text, input.history), fallback: true }
+      : await requestTravelReply(input, { signal: controller.signal, onPreview: reply => {
+        if (activeRequest.current === controller) setPreview(reply);
+      } });
+    if (activeRequest.current !== controller) return;
+    activeRequest.current = null;
+    setMessages(prev => [...prev, { role: "assistant", content: data.reply, ...data }]);
+    setPreview("");
+    setLoading(false);
   }
 
   function handleSkipForm() {
@@ -141,14 +117,14 @@ export default function TravelChatWidget() {
     setMessages([GREETING]);
   }
 
-  function handleSubmitForm(e: React.FormEvent) {
+  function handleSubmitForm(e: React.FormEvent, basicOnly = false) {
     e.preventDefault();
-    if (!formComplete) return;
+    if (!formComplete || loading) return;
     const summary = `동행자: ${companion}\n이동수단: ${transport}\n숙소 위치: ${stay}\n여행 계절: ${season}\n여행 기간: ${duration}\n경주 도착 시간대: ${arrival}${arrivalTime ? `\n정확한 경주 도착 시각: ${arrivalTime}` : ""}\n여행 속도: ${pace}\n관심사: ${interests.join(", ") || "미입력"}\n음식 취향·예산: ${food.trim() || "미입력"}\n이미 가본 곳·피할 곳: ${avoid.trim() || "미입력"}${details.trim() ? `\n추가 조건: ${details.trim()}` : ""}`;
     setProfile(summary);
     setStage("chat");
     setMessages([{ role: "user", content: summary }]);
-    sendMessage("선택한 조건에 맞춰 경주 여행 동선과 일정을 짜줘. 이동과 휴식 여유, 헤매지 않는 팁도 알려줘.", [], summary);
+    sendMessage("선택한 조건에 맞춰 경주 여행 동선과 일정을 짜줘. 이동과 휴식 여유, 헤매지 않는 팁도 알려줘.", [], summary, basicOnly);
   }
 
   function handleSend(e: React.FormEvent) {
@@ -162,7 +138,10 @@ export default function TravelChatWidget() {
   }
 
   function handleRestartForm() {
-    setRetry(null);
+    activeRequest.current?.abort();
+    activeRequest.current = null;
+    setLoading(false);
+    setPreview("");
     setStage("form");
     setMessages([]);
     setCompanion("");
@@ -213,7 +192,7 @@ export default function TravelChatWidget() {
           </div>
 
           {stage === "form" ? (
-            <form onSubmit={handleSubmitForm} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-gray-50">
+            <form onSubmit={event => handleSubmitForm(event)} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-gray-50">
               <p className="text-sm text-gray-600">
                 여행 조건을 고르면 <b>동선·이동 여유·놓치기 쉬운 팁</b>을 함께 정리해드려요.
               </p>
@@ -247,6 +226,11 @@ export default function TravelChatWidget() {
               >
                 동선과 여행 팁 받기
               </button>
+              <button type="button" disabled={!formComplete || loading} onClick={event => handleSubmitForm(event, true)}
+                className="w-full rounded-xl border border-brand-500 py-2.5 text-sm font-semibold text-brand-700 disabled:opacity-40">
+                기본 일정 바로 보기
+              </button>
+              <p className="text-xs text-gray-500">기본 일정은 기다림 없이 준비된 동선을 보여드려요. 최신 운영·예약 여부는 별도 확인이 필요합니다.</p>
               <button
                 type="button"
                 onClick={handleSkipForm}
@@ -259,7 +243,7 @@ export default function TravelChatWidget() {
             <>
               <div className="flex-1 overflow-y-auto px-3 py-3 space-y-2 bg-gray-50">
                 {messages.map((m, i) => (
-                  <div key={i} data-response-ms={m.elapsedMs} data-first-preview-ms={m.firstPreviewMs} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div key={i} data-fallback={m.fallback || undefined} data-response-ms={m.elapsedMs} data-first-preview-ms={m.firstPreviewMs} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                     <div
                       className={`max-w-full px-3 py-2 rounded-2xl text-base whitespace-pre-wrap ${
                         m.role === "user"
@@ -296,7 +280,8 @@ export default function TravelChatWidget() {
                 <div ref={bottomRef} />
               </div>
 
-              {retry && !loading && <button className="mx-3 mb-2 rounded-lg border border-brand-500 px-3 py-3 text-sm font-bold text-brand-700" onClick={() => { setMessages(prev => prev.filter(m => !m.failed)); void sendMessage(retry.text, retry.history, retry.profile); }}>같은 조건으로 다시 만들기</button>}
+              {loading && <button className="mx-3 mb-2 rounded-lg border border-brand-500 px-3 py-3 text-sm font-bold text-brand-700" onClick={() => activeRequest.current?.abort()}>기다리지 않고 기본 안내 보기</button>}
+              {!loading && <button className="mx-3 mb-2 rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-600" onClick={() => void sendMessage(input.trim() || "기본 여행 동선 알려줘", messages, profile, true)}>기본 일정 바로 보기</button>}
               <form onSubmit={handleSend} className="p-2 border-t border-gray-200 flex gap-2 bg-white flex-shrink-0">
                 <input
                   value={input}

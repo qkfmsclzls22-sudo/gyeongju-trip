@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { basicTravelReply } from "@/lib/travel-fallback";
 import { TRAVEL_CHAT_PROMPT, TOUR_CHAT_CONTEXT } from "@/lib/travel-chat-prompt";
 import { planPreview } from "@/lib/plan-preview";
 import { gzipSync } from "node:zlib";
@@ -23,22 +24,19 @@ const RATE_WINDOW_MS = 60 * 60 * 1000;
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (timestamps.length >= RATE_LIMIT) return true;
   timestamps.push(now);
+  if (requestLog.size >= 2000 && !requestLog.has(ip)) {
+    for (const [key, values] of requestLog) {
+      if (now - values[values.length - 1] >= RATE_WINDOW_MS) requestLog.delete(key);
+    }
+    if (requestLog.size >= 2000) return true;
+  }
   requestLog.set(ip, timestamps);
-  return timestamps.length > RATE_LIMIT;
+  return false;
 }
 
 export async function POST(req: Request) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return Response.json({ error: "서비스 설정이 완료되지 않았습니다." }, { status: 500 });
-  }
-
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (isRateLimited(ip)) {
-    return Response.json({ error: "잠시 후 다시 시도해주세요." }, { status: 429 });
-  }
-
   let body: { message?: unknown; profile?: unknown; history?: unknown };
   try {
     body = await req.json();
@@ -59,6 +57,14 @@ export async function POST(req: Request) {
   const profile = latestDuration === "당일치기"
     ? rawProfile.replace(/숙소 위치:/g, "당일 방문 희망 권역:") + "\n당일치기이며 숙박 예약은 없습니다. 체크인·호텔 주차·객실 사용을 가정하지 마세요."
     : rawProfile;
+  const fallbackData = () => ({ reply: basicTravelReply(profile, message, history), fallback: true });
+  const fallbackResult = () => ({ data: fallbackData(), status: 200 });
+  const apiKey = process.env.OPENAI_API_KEY;
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!apiKey || isRateLimited(ip)) {
+    console.info("travel-chat basic", { reason: apiKey ? "rate_limit" : "configuration" });
+    return Response.json(fallbackData());
+  }
   const today = koreaDate();
   const currentNews = news.items.filter(item => isVisible(item, today) && safeUrl(item.sourceUrl)).sort((a, b) => {
     const priority = (category: string) => category === "운영·교통" ? 0 : category === "여행정보" ? 1 : 2;
@@ -70,7 +76,7 @@ export async function POST(req: Request) {
     sourceKind: news.sources.find(source => source.id === item.sourceId)?.kind ?? "unknown",
   }));
 
-  type Result = { reply?: string; planUrl?: string; error?: string; retryable?: boolean; elapsedMs?: number; firstPreviewMs?: number };
+  type Result = { fallback?: boolean; reply?: string; planUrl?: string; error?: string; retryable?: boolean; elapsedMs?: number; firstPreviewMs?: number };
   const started = Date.now();
   const abort = new AbortController();
   req.signal.addEventListener("abort", () => abort.abort(), { once: true });
@@ -108,7 +114,7 @@ export async function POST(req: Request) {
           }
         }
       }
-      if (refusal) return { data: { error: "이 요청으로는 일정을 만들지 못했어요. 여행 장소나 시간 중심으로 질문을 바꿔주세요.", retryable: false }, status: 422 };
+      if (refusal) return fallbackResult();
       let plan: unknown;
       try { plan = repairPreparationBlocks(JSON.parse(content || "null")); } catch { plan = null; }
       const issues = finishReason === "stop" ? inspectPlan(plan, context, today) : ["응답이 완성되지 않았습니다"];
@@ -127,14 +133,23 @@ export async function POST(req: Request) {
         messages.push({ role: "system", content: `시간표 검증에서 다음 오류가 발견되었습니다. 조건과 장소를 재검토하여 완전한 JSON 답변을 다시 작성하세요. 날짜별 여행과 식사를 유지하고 같은 장소나 권역을 반복하지 마세요. 단순 질문으로 바꿔 검사를 피하지 마세요.\n${issues.join("\n")}` });
       }
     }
-    return { data: { error: "일정의 시간과 동선을 맞추지 못했어요. 입력하신 조건은 그대로 남아 있습니다. ‘같은 조건으로 다시 만들기’를 눌러주세요.", retryable: true }, status: 502 };
+    return fallbackResult();
   } catch (err) {
-    console.error("travel-chat error:", err);
-    return { data: { error: "답변 연결이 지연되고 있어요. 입력하신 조건은 그대로 남아 있습니다. 잠시 후 다시 시도해주세요.", retryable: true }, status: 503 };
+    console.warn("travel-chat basic", { reason: abort.signal.aborted ? "deadline_or_disconnect" : "upstream", error: err instanceof Error ? err.name : "unknown" });
+    return fallbackResult();
   }
   };
+  // Deadline includes all model attempts and stream reading, not just connection setup.
+  const runWithDeadline = async () => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      return await Promise.race([run(), new Promise<{ data: Result; status: number }>(resolve => {
+        timer = setTimeout(() => { abort.abort(); resolve(fallbackResult()); }, 12000);
+      })]);
+    } finally { clearTimeout(timer); }
+  };
   if (!req.headers.get("accept")?.includes("application/x-ndjson")) {
-    const { data, status } = await run();
+    const { data, status } = await runWithDeadline();
     return Response.json(data, { status });
   }
   const encoder = new TextEncoder();
@@ -142,7 +157,7 @@ export async function POST(req: Request) {
   return new Response(new ReadableStream({
     async start(controller) {
       emit = event => { if (!closed) controller.enqueue(encoder.encode(JSON.stringify(event) + "\n")); };
-      const { data, status } = await run();
+      const { data, status } = await runWithDeadline();
       emit({ type: "result", ...data, ok: status === 200 });
       if (!closed) { closed = true; controller.close(); }
     },
