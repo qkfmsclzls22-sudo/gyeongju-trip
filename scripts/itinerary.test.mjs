@@ -50,3 +50,23 @@ test('keeps enough meal time and respects an explicit Gyeongju departure', () =>
   assert(inspectPlan(plan([stop('17:00','18:00','전시 관람')]),'당일치기 오후 5시 경주에서 출발').some(x=>x.includes('귀가')));
   assert.deepEqual(inspectPlan(plan([stop('17:00','18:00','한식 저녁','보문','식사')]),'당일치기 18시 경주에서 귀가 출발'),[]);
 });
+
+test('blocks Sep 14 museum rooms and tours, including relative dates and day two', () => {
+  for (const name of ['국립경주박물관', '경주 박물관', '신라역사관', '신라미술관', '박물관 도슨트']) {
+    for (const context of ['2026-09-14 당일치기', '9월 14일 당일치기', '오늘 당일치기']) {
+      assert(inspectPlan(plan([stop('10:00','12:00',name,'도심')]),context,'2026-09-14').some(x=>x.includes('운영 불가')), `${name}: ${context}`);
+    }
+  }
+  const p=plan([stop('10:00','12:00','신라역사관','도심')]);
+  p.days[0].day=2;
+  assert(inspectPlan(p,'2026-09-13 1박2일').some(x=>x.includes('운영 불가')));
+  assert(inspectPlan(plan([stop('10:00','12:00','국립경주박물관','도심')]),'내일 당일치기','2026-09-13').some(x=>x.includes('운영 불가')));
+});
+
+test('does not extend Sep 14 restrictions to other dates or explicitly open exhibits', () => {
+  for (const date of ['2026-09-15', '2026-09-21', '2027-09-14']) {
+    assert.deepEqual(inspectPlan(plan([stop('10:00','12:00','국립경주박물관','도심')]),`${date} 당일치기`),[]);
+  }
+  assert.deepEqual(inspectPlan(plan([stop('10:00','12:00','국립경주박물관 특별전시관','도심')]),'2026-09-14 당일치기'),[]);
+  assert.deepEqual(inspectPlan(plan([stop('10:00','12:00','국립경주박물관','도심')]),'내일 당일치기','2026-09-14'),[]);
+});

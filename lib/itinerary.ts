@@ -21,7 +21,7 @@ const canonicalPlace = (place: string) => {
   return /보문(호|관광단지|단지|정|물레방아)/.test(compact) ? "보문산책" : compact.replace(/경주|산책|야경|관람|사진촬영/g, "");
 };
 
-export function inspectPlan(value: unknown, context: string): string[] {
+export function inspectPlan(value: unknown, context: string, today = new Date().toISOString().slice(0, 10)): string[] {
   const errors: string[] = [];
   if (!value || typeof value !== "object") return ["응답 구조 오류"];
   const p = value as Plan;
@@ -45,7 +45,9 @@ export function inspectPlan(value: unknown, context: string): string[] {
   }
   const places = new Set<string>();
   const dateMatch = [...context.matchAll(/(?:(\d{4})[-년]\s*)?(\d{1,2})[-월]\s*(\d{1,2})(?:일)?/g)].at(-1);
-  const startDate = dateMatch ? Date.UTC(Number(dateMatch[1] || new Date().getUTCFullYear()), Number(dateMatch[2]) - 1, Number(dateMatch[3])) : null;
+  const relativeDay = [...context.matchAll(/오늘|내일|모레/g)].at(-1)?.[0];
+  const startDate = dateMatch ? Date.UTC(Number(dateMatch[1] || today.slice(0, 4)), Number(dateMatch[2]) - 1, Number(dateMatch[3]))
+    : relativeDay ? Date.parse(today + "T00:00:00Z") + ({ 오늘: 0, 내일: 1, 모레: 2 }[relativeDay] ?? 0) * 86400000 : null;
   let previousDay = 0;
   for (const day of p.days) {
     if (!day || !Number.isInteger(day.day) || day.day <= previousDay || (tripDays && day.day > tripDays) || !Array.isArray(day.stops) || !day.stops.length) return ["숙박일수/일차 구조 오류"];
@@ -70,6 +72,13 @@ export function inspectPlan(value: unknown, context: string): string[] {
         const venue = stop.place + " " + stop.text;
         if (monday && /라원|동궁식물원|동궁원/.test(venue)) errors.push("월요일 정기휴관인 라원·동궁식물원 대신 플래시백 계림 등 운영하는 대안을 선택하세요");
         if (/국립\s*경주\s*박물관/.test(venue) && start < 600) errors.push("국립경주박물관 관람은 10:00 개관 이후 배치하세요");
+        const visitDate = startDate === null ? "" : new Date(startDate + (day.day - 1) * 86400000).toISOString().slice(0, 10);
+        const closedMuseumRoom = /신라역사관|신라미술관|월지관|신라천년보고|어린이박물관|신라천년서고/.test(venue);
+        const museumVisit = /(?:국립\s*)?경주\s*박물관|박물관.*(?:도슨트|투어)/.test(venue);
+        const openExhibitionOnly = /특별전시관|옥외전시장/.test(venue) && !/도슨트|투어|상설/.test(venue);
+        if (visitDate === "2026-09-14" && (closedMuseumRoom || (museumVisit && !openExhibitionOnly))) {
+          errors.push("2026-09-14 국립경주박물관 실내 전시실 휴관: 박물관 투어는 오전·오후 모두 운영 불가이며 스토어 품절 처리. 박물관 상설전시·도슨트 대신 운영하는 다른 시설을 배치하세요");
+        }
         const key = canonicalPlace(stop.place);
         if (places.has(key) && !repeatsAllowed) errors.push(`명소 중복: ${stop.place}`);
         places.add(key);

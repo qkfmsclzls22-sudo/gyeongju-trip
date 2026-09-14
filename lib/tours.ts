@@ -28,7 +28,7 @@ export const TOURS: Record<TourId, Tour> = {
     childPrice: null,
     minPeople: 7,
     meetingPoint: "동궁과월지 입구 앞",
-    operatingHours: "저녁 19:00",
+    operatingHours: "18:30–20:30 (18:20 집결)",
   },
   museum: {
     id: "museum",

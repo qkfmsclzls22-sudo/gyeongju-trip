@@ -33,6 +33,12 @@ export default function MuseumTour() {
       />
 
       <div className="max-w-4xl mx-auto px-4 py-14">
+        <aside className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-stone-800" aria-label="박물관 투어 운영 안내">
+          <strong className="block text-base">2026년 9월 14일(월) 박물관 투어 운영 불가</strong>
+          투어 코스인 신라역사관·신라미술관 등 실내 전시실 휴관으로 실내 전시 관람이 불가하여,
+          오전·오후 투어 모두 운영하지 않습니다. 네이버 스마트스토어는 해당 날짜를 품절 처리했습니다.
+          다른 운영일을 선택해 주세요.
+        </aside>
         <div className="grid md:grid-cols-3 gap-10">
           <div className="md:col-span-2 space-y-12">
             <section>

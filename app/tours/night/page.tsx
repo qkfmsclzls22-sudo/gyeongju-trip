@@ -39,8 +39,8 @@ export default function NightTour() {
               <InfoTable
                 rows={[
                   { label: "집결 장소", value: "동궁과월지 입구 앞 (해설사 대기)" },
-                  { label: "집결 시간", value: "투어 시작 10분 전" },
-                  { label: "운영 시간", value: "저녁 19:00 (약 2시간 소요)" },
+                  { label: "집결 시간", value: "18:20 (투어 시작 10분 전)" },
+                  { label: "운영 시간", value: "18:30–20:30 (약 2시간 소요)" },
                   { label: "투어 코스", value: "동궁과월지 → 첨성대 → 월정교" },
                   { label: "모집 인원", value: "최소 7명 이상 출발" },
                   { label: "대상", value: "연령 제한 없음 (전 연령 참여 가능)" },
@@ -100,7 +100,7 @@ export default function NightTour() {
               originalPrice={30000}
               price={16900}
               priceNote="44% 할인 적용가 (전 연령 동일)"
-              times="저녁 19:00"
+              times="18:30–20:30 (18:20 집결)"
               duration="약 2시간 소요"
               minPeople="최소 7명 이상 출발"
               meetingPoint="동궁과월지 입구 앞"

@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { TRAVEL_CHAT_PROMPT } from "@/lib/travel-chat-prompt";
+import { TRAVEL_CHAT_PROMPT, TOUR_CHAT_CONTEXT } from "@/lib/travel-chat-prompt";
 import { planPreview } from "@/lib/plan-preview";
 import { gzipSync } from "node:zlib";
 import { inspectPlan, planFormat, renderPlan, type Plan } from "@/lib/itinerary";
@@ -9,7 +9,7 @@ import { LANDMARKS } from "@/app/data/travelInfo";
 import news from "@/data/now.json";
 import { isVisible, koreaDate, safeUrl } from "@/lib/now";
 
-const SYSTEM_PROMPT = TRAVEL_CHAT_PROMPT + "\n그 밖의 명소 이름·권역 참고: " + LANDMARKS.map(l => l.name + "(" + l.area + ")").join(", ");
+const SYSTEM_PROMPT = TRAVEL_CHAT_PROMPT + TOUR_CHAT_CONTEXT + "\n그 밖의 명소 이름·권역 참고: " + LANDMARKS.map(l => l.name + "(" + l.area + ")").join(", ");
 
 const MAX_MESSAGE_LENGTH = 400;
 const MAX_HISTORY = 8;
@@ -111,7 +111,7 @@ export async function POST(req: Request) {
       if (refusal) return { data: { error: "이 요청으로는 일정을 만들지 못했어요. 여행 장소나 시간 중심으로 질문을 바꿔주세요.", retryable: false }, status: 422 };
       let plan: unknown;
       try { plan = JSON.parse(content || "null"); } catch { plan = null; }
-      const issues = finishReason === "stop" ? inspectPlan(plan, context) : ["응답이 완성되지 않았습니다"];
+      const issues = finishReason === "stop" ? inspectPlan(plan, context, today) : ["응답이 완성되지 않았습니다"];
       if (!issues.length) {
         const result = plan as Plan;
         // Self-contained snapshot: excludes the customer's profile and chat history.

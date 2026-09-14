@@ -1,7 +1,5 @@
-// AI경트(여행정보 챗봇)가 참조하는 공식 데이터. 가격/운영정보는 반드시 이 파일 기준으로만 답하게 하고,
-// 여기 없는 숫자는 시스템 프롬프트에서 지어내지 않도록 지시함. 가격이 바뀌면 이 파일만 고치면 됨
-// (app/page.tsx의 tours 배열 표시 가격과 실제 연령별 단가가 다를 수 있어 혼선이 있었음 -
-// 2026-07-27, OrderAutomation.gs의 AGE_PRICE_MAP에 있는 실제 결제 단가를 기준으로 맞춤).
+// 투어 가격·운영시간의 기준은 lib/tours.ts입니다.
+import { TOURS as TOUR_CATALOG } from "@/lib/tours";
 
 export type TourInfo = {
   id: string;
@@ -21,8 +19,8 @@ export const TOURS: TourInfo[] = [
     name: "국립경주박물관 역사 도슨트 프리미엄 투어",
     duration: "약 2시간",
     times: ["오전 10:00", "오후 14:00"],
-    priceAdult: 25000,
-    priceChild: 22000,
+    priceAdult: TOUR_CATALOG.museum.adultPrice,
+    priceChild: TOUR_CATALOG.museum.childPrice ?? TOUR_CATALOG.museum.adultPrice,
     includes: "성덕대왕신종, 신라역사관, 신라미술관 문화해설사 안내 + 블루투스 송수신기 무료대여",
     slug: "museum",
   },
@@ -30,9 +28,9 @@ export const TOURS: TourInfo[] = [
     id: "night",
     name: "경주 야경투어 청사초롱 신라별빛야행",
     duration: "약 2시간",
-    times: ["저녁 19:00"],
-    priceAdult: 16900,
-    priceChild: 16900,
+    times: [TOUR_CATALOG.night.operatingHours],
+    priceAdult: TOUR_CATALOG.night.adultPrice,
+    priceChild: TOUR_CATALOG.night.childPrice ?? TOUR_CATALOG.night.adultPrice,
     sameAgePrice: true,
     includes: "청사초롱을 들고 동궁과월지·첨성대·월정교를 도보로 둘러보는 야간 투어",
     slug: "night",
@@ -42,8 +40,8 @@ export const TOURS: TourInfo[] = [
     name: "불국사·석굴암 문화해설사 역사투어",
     duration: "약 2시간",
     times: ["오전 10:00", "오후 14:00"],
-    priceAdult: 24800,
-    priceChild: 19800,
+    priceAdult: TOUR_CATALOG.bulguksa.adultPrice,
+    priceChild: TOUR_CATALOG.bulguksa.childPrice ?? TOUR_CATALOG.bulguksa.adultPrice,
     includes: "불국사와 석굴암을 문화해설사와 함께 탐방(석굴암 포함)",
     slug: "bulguksa",
   },
