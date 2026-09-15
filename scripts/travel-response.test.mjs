@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { requestTravelReply } from '../lib/travel-response.ts';
+import { requestTravelReply, prefersCompleteReply } from '../lib/travel-response.ts';
 import { basicTravelReply } from '../lib/travel-fallback.ts';
 const input={message:'동선과 여행 팁 알려줘',profile:'동행자: 가족여행(자녀 동반)\n이동수단: 자차·렌터카\n숙소 위치: 경주 시내(황리단길 인근)\n여행 계절: 봄 3–5월\n여행 기간: 당일치기\n경주 도착 시간대: 오전 도착',history:[]};
 const basic = data => { assert.equal(data.fallback,true); assert.match(data.reply,/기본 여행안내/); assert.match(data.reply,/당일 기본 동선/); assert.doesNotMatch(data.reply,/다시 시도|답변을 받지|연결에 문제/); };
@@ -56,4 +56,56 @@ test('an AI response taking longer than the old 15-second cutoff is preserved',a
   return Response.json({reply:'충분히 검토한 맞춤 일정'});
  }});
  assert.equal(result.reply,'충분히 검토한 맞춤 일정');assert.notEqual(result.fallback,true);
+});
+
+test('phones, in-app browsers and desktop-mode iPads use complete replies',()=>{
+ for (const ua of ['iPhone OS 18 Safari', 'Android SamsungBrowser', 'iPhone KAKAOTALK']) assert(prefersCompleteReply(ua));
+ assert(prefersCompleteReply('Macintosh Safari',5));
+ assert(!prefersCompleteReply('Macintosh Safari',0));
+ assert(!prefersCompleteReply('Windows Chrome',0));
+});
+test('mobile JSON response works without a readable-stream API',async()=>{
+ const result=await requestTravelReply(input,{transport:'json',fetcher:async(url,init)=>{
+  assert.equal(init.headers.Accept,'application/json');
+  assert.equal(init.cache,'no-store');
+  return {ok:true,headers:new Headers({'content-type':'application/json'}),
+   get body(){throw new Error('stream unavailable');},json:async()=>({reply:'모바일 맞춤 일정'})};
+ }});
+ assert.equal(result.reply,'모바일 맞춤 일정'); assert.notEqual(result.fallback,true);
+});
+test('a broken stream retries as JSON, rather than repeating the broken transport',async()=>{
+ const accepts=[];
+ const result=await requestTravelReply(input,{transport:'stream',fetcher:async(url,init)=>{
+  accepts.push(init.headers.Accept);
+  if(accepts.length===1)return new Response('{"type":"preview","reply":"중간"}\n',{headers:{'content-type':'application/x-ndjson'}});
+  return Response.json({reply:'복구된 전체 일정'});
+ }});
+ assert.deepEqual(accepts,['application/x-ndjson','application/json']);
+ assert.equal(result.reply,'복구된 전체 일정');
+});
+test('suspended mobile tab expires on return without waiting for its paused timer',async(t)=>{
+ const page=new EventTarget(),doc=new EventTarget();
+ globalThis.window=page; globalThis.document=doc;
+ t.after(()=>{delete globalThis.window;delete globalThis.document;});
+ let now=1000;
+ t.mock.method(Date,'now',()=>now);
+ let calls=0;
+ const reply=requestTravelReply(input,{fetcher:()=>{calls++;return new Promise(()=>{});}});
+ now+=31000;
+ page.dispatchEvent(new Event('pageshow'));
+ basic(await reply);assert.equal(calls,1);
+});
+test('a short app switch retains the pending AI answer',async(t)=>{
+ const page=new EventTarget();globalThis.window=page;t.after(()=>{delete globalThis.window;});
+ let finish;
+ const reply=requestTravelReply(input,{fetcher:()=>new Promise(resolve=>{finish=resolve;})});
+ page.dispatchEvent(new Event('focus'));
+ finish(Response.json({reply:'화면 복귀 후 맞춤 일정'}));
+ assert.equal((await reply).reply,'화면 복귀 후 맞춤 일정');
+});
+test('progress rendering failure does not discard a valid answer',async()=>{
+ const result=await requestTravelReply(input,{onPreview:()=>{throw new Error('view unavailable');},fetcher:async()=>new Response(
+  '{"type":"preview","reply":"진행"}\n{"type":"result","reply":"정상 답변"}\n',
+  {headers:{'content-type':'application/x-ndjson'}})});
+ assert.equal(result.reply,'정상 답변');
 });

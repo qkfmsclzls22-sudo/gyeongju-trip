@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { basicTravelReply } from "@/lib/travel-fallback";
-import { requestTravelReply } from "@/lib/travel-response";
+import { requestTravelReply, type TravelResponse } from "@/lib/travel-response";
 import { usePathname } from "next/navigation";
 
 type Message = { role: "user" | "assistant"; content: string; planUrl?: string; elapsedMs?: number; firstPreviewMs?: number; failed?: boolean; fallback?: boolean };
@@ -101,10 +101,16 @@ export default function TravelChatWidget() {
     setPreview("");
     const input = { message: text, profile: travelProfile,
       history: historyBase.filter(m => !m.failed).map(m => ({ role: m.role, content: m.content })) };
-    const data = basicOnly ? { reply: basicTravelReply(travelProfile, text, input.history), fallback: true }
+    let data: TravelResponse;
+    try {
+      data = basicOnly ? { reply: basicTravelReply(travelProfile, text, input.history), fallback: true }
       : await requestTravelReply(input, { signal: controller.signal, onPreview: reply => {
         if (activeRequest.current === controller) setPreview(reply);
       } });
+    } catch {
+      // Async event-handler failures are not caught by React error boundaries.
+      data = { reply: basicTravelReply(travelProfile, text, input.history), fallback: true };
+    }
     if (activeRequest.current !== controller) return;
     activeRequest.current = null;
     setMessages(prev => [...prev, { role: "assistant", content: data.reply, ...data }]);
@@ -241,7 +247,7 @@ export default function TravelChatWidget() {
             </form>
           ) : (
             <>
-              <div className="flex-1 overflow-y-auto px-3 py-3 space-y-2 bg-gray-50">
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-3 space-y-2 bg-gray-50" aria-busy={loading}>
                 {messages.map((m, i) => (
                   <div key={i} data-fallback={m.fallback || undefined} data-response-ms={m.elapsedMs} data-first-preview-ms={m.firstPreviewMs} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                     <div
@@ -289,7 +295,7 @@ export default function TravelChatWidget() {
                   aria-label="여행 추가 질문"
                   placeholder="예: 둘째 날은 비가 오면 어떻게 바꿀까요?"
                   maxLength={400}
-                  className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-brand-400"
+                  className="min-w-0 flex-1 border border-gray-200 rounded-full px-4 py-2 text-base focus:outline-none focus:border-brand-400"
                 />
                 <button
                   type="submit"

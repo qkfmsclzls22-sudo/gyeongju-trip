@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'app/api/travel-chat/**'
+      - 'app/components/TravelChatWidget.tsx'
       - 'lib/**'
       - 'scripts/**'
       - '.github/workflows/travel-chat.yml'
@@ -22,6 +23,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node --test scripts/itinerary.test.mjs scripts/travel-response.test.mjs
-      - run: npx eslint app/api/travel-chat/route.ts lib/travel-response.ts
+      - run: npx eslint app/api/travel-chat/route.ts app/components/TravelChatWidget.tsx lib/travel-response.ts
       - run: npm run build
       - run: node scripts/travel-server.test.mjs
