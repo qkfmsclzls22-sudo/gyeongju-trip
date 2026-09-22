@@ -1,4 +1,6 @@
 BEGIN;
+SET LOCAL lock_timeout = '15s';
+SELECT pg_advisory_xact_lock(712483091);
 CREATE TABLE IF NOT EXISTS gj_members (
   id uuid PRIMARY KEY,
   provider text NOT NULL CHECK (provider IN ('naver','google')),

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/validate-now.mjs && next build",
+    "build": "node scripts/validate-now.mjs && next build && node scripts/migrate-commerce.mjs --vercel-production",
     "start": "next start",
     "lint": "eslint",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate-commerce.mjs",

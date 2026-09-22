@@ -75,6 +75,23 @@ const paid = (
   ...overrides,
 });
 
+test("repeated schema setup preserves existing members and tour sessions", async () => {
+  await db.exec(
+    await readFile(
+      new URL("../migrations/001-commerce.sql", import.meta.url),
+      "utf8",
+    ),
+  );
+  const members = await db.query<{ id: string }>(
+    "SELECT id FROM gj_members ORDER BY id",
+  );
+  assert.deepEqual(members.rows.map((row) => row.id), [user, other].sort());
+  const sessions = await db.query<{ id: string; adult_price: number }>(
+    "SELECT id,adult_price FROM gj_sessions",
+  );
+  assert.deepEqual(sessions.rows, [{ id: slot, adult_price: 25000 }]);
+});
+
 test("server derives amount from stored prices; client price fields have no effect", async () => {
   const b = await tx((c) =>
     reserve(c, user, input({ amount: 1, adultPrice: 1 })),
