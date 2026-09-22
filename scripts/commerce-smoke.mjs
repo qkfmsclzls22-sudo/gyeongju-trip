@@ -73,6 +73,9 @@ try {
     { enabled: false, sessions: [] },
   );
   assert.equal((await fetch(base + "/checkout/toString")).status, 404);
+  const authResponse = await fetch(base + "/api/auth/providers");
+  assert.equal(authResponse.status, 503);
+  assert.ok((await authResponse.json()).message.includes("준비"));
   console.log("Closed checkout and unknown tour OK");
 } finally {
   child.kill("SIGTERM");
