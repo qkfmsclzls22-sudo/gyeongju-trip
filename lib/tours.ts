@@ -42,7 +42,7 @@ export const TOURS: Record<TourId, Tour> = {
 };
 
 export function getTour(id: string): Tour | undefined {
-  return TOURS[id as TourId];
+  return Object.hasOwn(TOURS, id) ? TOURS[id as TourId] : undefined;
 }
 
 export function calcAmount(tour: Tour, adultCount: number, childCount: number): number {

@@ -100,6 +100,7 @@ export default function BulguksaTour() {
 
           <div className="md:col-span-1">
             <BookingCard
+              tourId="bulguksa"
               originalPrice={60000}
               price={24800}
               childPrice={19800}

@@ -181,6 +181,7 @@ export function SafetyNote({ children }: { children: React.ReactNode }) {
 }
 
 export function BookingCard({
+  tourId,
   originalPrice,
   price,
   childPrice,
@@ -190,6 +191,7 @@ export function BookingCard({
   minPeople,
   meetingPoint,
 }: {
+  tourId: "museum" | "night" | "bulguksa";
   originalPrice: number;
   price: number;
   childPrice?: number;
@@ -227,6 +229,7 @@ export function BookingCard({
         ))}
       </ul>
 
+      <a href={`/checkout/${tourId}`} className="flex items-center justify-center gap-2 w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 transition-colors mb-2.5">날짜 선택·예약하기<IconArrow className="w-4 h-4" /></a>
       <a
         href="https://smartstore.naver.com/gjtrip"
         target="_blank"

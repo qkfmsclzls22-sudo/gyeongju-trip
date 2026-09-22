@@ -129,6 +129,7 @@ export default function MuseumTour() {
 
           <div className="md:col-span-1">
             <BookingCard
+              tourId="museum"
               originalPrice={40000}
               price={25000}
               childPrice={22000}

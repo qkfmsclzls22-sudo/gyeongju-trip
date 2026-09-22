@@ -1,132 +1,94 @@
 "use client";
-
-import { SiteHeader, SiteFooter } from "@/app/components/site";
-
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
-type Status = "confirming" | "success" | "error";
-
-function SuccessContent() {
-  const searchParams = useSearchParams();
-  const [status, setStatus] = useState<Status>("confirming");
-  const [message, setMessage] = useState("");
-  const [orderName, setOrderName] = useState("");
-  const [amount, setAmount] = useState(0);
-
+import CommerceShell from "@/app/components/CommerceShell";
+import { bookingLabels } from "@/lib/commerce/display";
+function PaymentResult() {
+  const params = useSearchParams();
+  const started = useRef(false);
+  const [state, setState] = useState<{
+    error?: string;
+    amount?: number;
+    status?: string;
+    id?: string;
+  }>({});
+  const paymentKey = params.get("paymentKey"),
+    orderId = params.get("orderId"),
+    amount = params.get("amount");
   useEffect(() => {
-    const paymentKey = searchParams.get("paymentKey");
-    const orderId = searchParams.get("orderId");
-    const amountParam = searchParams.get("amount");
-    const tourName = searchParams.get("tourName") || "";
-
-    if (!paymentKey || !orderId || !amountParam) {
-      setStatus("error");
-      setMessage("결제 정보가 올바르지 않습니다. 처음부터 다시 시도해주세요.");
-      return;
-    }
-
-    setOrderName(tourName);
-    setAmount(Number(amountParam));
-
+    if (started.current) return;
+    started.current = true;
     fetch("/api/payments/confirm", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        paymentKey,
-        orderId,
-        amount: amountParam,
-        tourId: searchParams.get("tourId"),
-        adultCount: searchParams.get("adultCount"),
-        childCount: searchParams.get("childCount"),
-        date: searchParams.get("date"),
-        time: searchParams.get("time"),
-        name: searchParams.get("name"),
-        phone: searchParams.get("phone"),
-        email: searchParams.get("email"),
-      }),
+      body: JSON.stringify({ paymentKey, orderId, amount: Number(amount) }),
     })
-      .then(async (res) => {
-        const json = await res.json();
-        if (json.result !== "success") {
-          throw new Error(json.message || "결제 확인에 실패했습니다.");
-        }
-        setStatus("success");
+      .then(async (r) => {
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.message);
+        setState({ amount: d.amount, status: d.status, id: d.orderId });
+        window.history.replaceState(null, "", "/payments/success");
       })
-      .catch((err: Error) => {
-        setStatus("error");
-        setMessage(err.message || "결제 확인 중 오류가 발생했습니다.");
-      });
-  }, [searchParams]);
-
+      .catch((e) =>
+        setState({ error: e.message || "결제 결과를 확인하지 못했습니다." }),
+      );
+  }, [paymentKey, orderId, amount]);
   return (
-    <main className="inner-page min-h-screen bg-brand-50">
-      <SiteHeader back={{ href: "/", label: "홈으로" }} showCta={false} />
-
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="bg-white   p-10 text-center">
-          {status === "confirming" && (
-            <>
-              <div className="text-5xl mb-4">⏳</div>
-              <h2 className="text-xl font-bold text-ink mb-2">결제를 확인하고 있어요</h2>
-              <p className="text-gray-500 text-sm">잠시만 기다려주세요.</p>
-            </>
-          )}
-
-          {status === "success" && (
-            <>
-              <div className="text-5xl mb-4">✅</div>
-              <h2 className="text-xl font-bold text-ink mb-2">예약 결제가 완료되었습니다</h2>
-              {orderName && (
-                <p className="text-gray-700 text-sm mb-1">{orderName}</p>
-              )}
-              {amount > 0 && (
-                <p className="text-2xl font-bold text-brand-600 mb-4">{amount.toLocaleString()}원</p>
-              )}
-              <p className="text-gray-500 text-sm mb-6">
-                확인 후 담당자가 예약 내용을 안내드릴게요. 급하신 경우 아래로 바로 연락 주세요.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="tel:010-8402-8543" className="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-full transition-colors">
-                  📞 010-8402-8543
-                </a>
-                <a href="/" className="border-2 border-gray-200 hover:border-brand-400 text-gray-700 font-semibold px-6 py-3 rounded-full transition-colors">
-                  홈으로 가기
-                </a>
-              </div>
-            </>
-          )}
-
-          {status === "error" && (
-            <>
-              <div className="text-5xl mb-4">⚠️</div>
-              <h2 className="text-xl font-bold text-ink mb-2">결제 확인 중 문제가 발생했어요</h2>
-              <p className="text-gray-500 text-sm mb-6">{message}</p>
-              <p className="text-xs text-gray-400 mb-6">
-                카드 결제가 이미 되었는데 이 화면이 보인다면, 아래 번호로 연락 주시면 바로 확인해드릴게요.
-              </p>
-              <a href="tel:010-8402-8543" className="inline-block bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-full transition-colors">
-                📞 010-8402-8543
-              </a>
-            </>
-          )}
-        </div>
+    <CommerceShell>
+      <div className="panel stack max-w-2xl mx-auto" aria-live="polite">
+        {state.error ? (
+          <>
+            <h1>결제 결과를 확인해 주세요</h1>
+            <p className="error" role="alert">
+              {state.error}
+            </p>
+            <p>
+              이미 승인된 결제일 수 있습니다. 다시 결제하기 전에 내 예약을
+              확인해 주세요.
+            </p>
+            <a className="button" href="/account">
+              내 예약 확인
+            </a>
+            <a className="text-link" href="tel:01084028543">
+              고객센터 010-8402-8543
+            </a>
+          </>
+        ) : state.status ? (
+          <>
+            <p className="eyebrow">MY RESERVATION</p>
+            <h1>{bookingLabels[state.status] || "예약 확인"}</h1>
+            <p className="amount">{state.amount?.toLocaleString()}원</p>
+            <p className="booking-id">예약번호 {state.id}</p>
+            <p className="notice">
+              출발 확정 여부는 내 예약에서 확인해 주세요. 모집 인원 미달로
+              운영이 취소되면 전액 환불됩니다.
+            </p>
+            <a className="button" href="/account">
+              내 예약 보기
+            </a>
+          </>
+        ) : (
+          <>
+            <h1>결제를 확인하고 있어요</h1>
+            <p>
+              잠시만 기다려 주세요. 이 화면에서 다시 결제하지 않으셔도 됩니다.
+            </p>
+          </>
+        )}
       </div>
-      <SiteFooter />
-    </main>
+    </CommerceShell>
   );
 }
-
-export default function PaymentSuccessPage() {
+export default function SuccessPage() {
   return (
     <Suspense
       fallback={
-        <main className="inner-page min-h-screen bg-brand-50 flex items-center justify-center">
-          <p className="text-gray-400 text-sm">불러오는 중...</p>
-        </main>
+        <CommerceShell>
+          <p>결제 내역을 불러오고 있습니다.</p>
+        </CommerceShell>
       }
     >
-      <SuccessContent />
+      <PaymentResult />
     </Suspense>
   );
 }

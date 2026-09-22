@@ -8,7 +8,8 @@ import { useSearchParams } from "next/navigation";
 function FailContent() {
   const searchParams = useSearchParams();
   const message = searchParams.get("message") || "결제가 진행되지 않았습니다.";
-  const tourId = searchParams.get("tourId");
+  const tourIdParam = searchParams.get("tourId");
+  const tourId = ["museum", "night", "bulguksa"].includes(tourIdParam || "") ? tourIdParam : null;
 
   return (
     <main className="inner-page min-h-screen bg-brand-50">

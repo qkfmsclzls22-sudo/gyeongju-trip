@@ -1,0 +1,239 @@
+.commerce {
+  background: #fdf6ef;
+  color: #401804;
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+.commerce-main {
+  max-width: 1100px;
+  padding: 48px 24px 80px;
+  margin: 0 auto;
+}
+.commerce h1 {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  margin: 10px 0 20px;
+}
+.commerce h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 20px;
+}
+.commerce h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.commerce .eyebrow {
+  color: #aa2525;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+.commerce .muted {
+  color: #755e50;
+  font-size: 14px;
+}
+.commerce .panel {
+  background: white;
+  border: 1px solid #e8d9cb;
+  padding: 28px;
+}
+.commerce .stack {
+  display: grid;
+  gap: 20px;
+}
+.commerce .columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.commerce .login-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: white;
+  border: 1px solid #e8d9cb;
+}
+.commerce .login-visual {
+  position: relative;
+  min-height: 520px;
+  background: #401804;
+}
+.commerce .login-visual img {
+  object-fit: cover;
+}
+.commerce .login-form {
+  padding: 44px 36px;
+  align-self: center;
+}
+.commerce .notice {
+  padding: 16px 18px;
+  border-left: 3px solid #c62b23;
+  background: #fff0c2;
+  font-size: 14px;
+}
+.commerce .error {
+  padding: 14px;
+  background: #fff0ed;
+  color: #a21b11;
+  font-size: 14px;
+}
+.commerce .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 22px;
+  font-weight: 700;
+  font-size: 16px;
+  background: #df2525;
+  color: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.commerce .button.secondary {
+  background: white;
+  color: #401804;
+  border-color: #cab8a8;
+}
+.commerce .button.naver {
+  background: #03a94d;
+  color: #fff;
+}
+.commerce .button.google {
+  background: white;
+  color: #242424;
+  border-color: #b7b7b7;
+}
+.commerce .button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.commerce .button.full {
+  width: 100%;
+}
+.commerce .text-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #98201c;
+}
+.commerce label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+}
+.commerce input:not([type="checkbox"]),
+.commerce select,
+.commerce textarea {
+  display: block;
+  background: #fff;
+  color: #401804;
+  border: 1px solid #b9a696;
+  border-radius: 0;
+  padding: 12px;
+  width: 100%;
+  margin-top: 6px;
+  min-height: 48px;
+  font-size: 16px;
+}
+.commerce input[type="checkbox"] {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin-top: 4px;
+  accent-color: #df2525;
+}
+.commerce .check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 14px;
+}
+.commerce .field-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.commerce .amount {
+  font-size: 30px;
+  font-weight: 900;
+}
+.commerce .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.commerce .rule {
+  border-top: 1px solid #e8d9cb;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.commerce .pill {
+  display: inline-flex;
+  padding: 4px 10px;
+  background: #fce08b;
+  font-size: 14px;
+  font-weight: 700;
+}
+.commerce .booking-id {
+  word-break: break-all;
+  font-size: 13px;
+  color: #755e50;
+}
+.commerce .order-card {
+  border-top: 4px solid #df2525;
+}
+.commerce .actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.commerce :is(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid #a82d18;
+  outline-offset: 4px;
+}
+.commerce .compact {
+  font-size: 14px;
+  padding: 8px 14px;
+  min-height: 42px;
+}
+.commerce .policy p {
+  margin: 0 0 18px;
+}
+.commerce .policy h2 {
+  margin-top: 30px;
+}
+@media (max-width: 760px) {
+  .commerce-main {
+    padding: 28px 18px 48px;
+  }
+  .commerce .columns,
+  .commerce .login-grid {
+    grid-template-columns: 1fr;
+  }
+  .commerce .login-visual {
+    min-height: 200px;
+  }
+  .commerce .login-form,
+  .commerce .panel {
+    padding: 22px 18px;
+  }
+  .commerce .field-pair {
+    gap: 12px;
+  }
+  .commerce .button {
+    padding-inline: 16px;
+  }
+}
+
+.commerce .button.naver, .commerce .button.google { min-height: 56px; gap: 8px; padding-block: 0; }

@@ -6,6 +6,7 @@ import { IconArrow, IconClose, IconMenu } from "./icons";
 import styles from "../homepage.module.css";
 
 const navItems = [
+  { href: "/account", label: "로그인·예약내역" },
   { href: "/#tours", label: "투어" },
   { href: "/#gallery", label: "갤러리" },
   { href: "/company", label: "기업소개" },
@@ -39,12 +40,12 @@ export function SiteHeader({
         {back ? (
           <a
             href={back.href}
-            className="hidden lg:block text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors"
+            className="hidden xl:block text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors"
           >
             ← {back.label}
           </a>
         ) : (
-          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-600 whitespace-nowrap">
+          <nav className="hidden xl:flex items-center gap-5 text-sm font-medium text-gray-600 whitespace-nowrap">
             {items.map((item) => (
               <a key={item.href} href={item.href} className="hover:text-brand-600 transition-colors">
                 {item.label}
@@ -78,7 +79,7 @@ export function SiteHeader({
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
               aria-expanded={menuOpen}
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand-600 transition-colors"
+              className="xl:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand-600 transition-colors"
             >
               {menuOpen ? <IconClose className="w-6 h-6" /> : <IconMenu className="w-6 h-6" />}
             </button>
@@ -87,7 +88,7 @@ export function SiteHeader({
       </div>
 
       {menuOpen && (
-        <nav className="lg:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
+        <nav className="xl:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
           {items.map((item) => (
             <a
               key={item.href}
@@ -126,7 +127,7 @@ export function SiteFooter() {
           <div><p>개인 예약 · 문자문의</p><a href="sms:01084028543">010-8402-8543</a></div>
           <div><a href="/quote">단체 · MICE 견적문의 ↗</a><p><a href="tel:01055527971">010-5552-7971</a><span> · </span><a href="mailto:gjtrip11@naver.com">gjtrip11@naver.com</a></p></div>
         </div>
-        <div className={styles.legal}><p>경주트립 · 경상북도 경주시 계림로107 경북관광기업지원센터 6층</p><p>사업자등록번호 694-75-00685 <span>© 2026 Gyeongju Trip.</span></p></div>
+        <div className={styles.legal}><p>경주트립 · 경상북도 경주시 계림로107 경북관광기업지원센터 6층</p><p>사업자등록번호 694-75-00685 <span>© 2026 Gyeongju Trip.</span></p><p><Link href="/terms">이용약관</Link> · <Link href="/privacy">개인정보처리방침</Link> · <Link href="/account">내 예약</Link></p></div>
       </div>
     </footer>
   );

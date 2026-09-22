@@ -97,6 +97,7 @@ export default function NightTour() {
 
           <div className="md:col-span-1">
             <BookingCard
+              tourId="night"
               originalPrice={30000}
               price={16900}
               priceNote="44% 할인 적용가 (전 연령 동일)"
