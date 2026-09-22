@@ -14,6 +14,18 @@ export const authOptions: NextAuthOptions = {
           NaverProvider({
             clientId: process.env.NAVER_CLIENT_ID!,
             clientSecret: process.env.NAVER_CLIENT_SECRET!,
+            profile(profile) {
+              // Use the optional member name, not the separate nickname field.
+              return {
+                id: profile.response.id,
+                name:
+                  typeof profile.response.name === "string"
+                    ? profile.response.name
+                    : null,
+                email: null,
+                image: null,
+              };
+            },
           }),
         ]
       : []),
@@ -43,7 +55,7 @@ export const authOptions: NextAuthOptions = {
         const [member] = await query<{ id: string }>(
           `INSERT INTO gj_members(id, provider, provider_account_id, name, email)
            VALUES($1,$2,$3,$4,$5) ON CONFLICT(provider, provider_account_id)
-           DO UPDATE SET email=EXCLUDED.email RETURNING id`,
+           DO UPDATE SET name=EXCLUDED.name,email=EXCLUDED.email RETURNING id`,
           [
             randomUUID(),
             account.provider,
