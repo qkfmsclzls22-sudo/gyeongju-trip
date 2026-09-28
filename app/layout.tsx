@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Outfit } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR, Outfit } from "next/font/google";
 import "./globals.css";
 import TravelChatWidget from "./components/TravelChatWidget";
+
+const editorial = Noto_Serif_KR({ subsets: ["latin"], weight: ["500"], variable: "--font-editorial", display: "swap" });
 
 const outfit = Outfit({ subsets: ["latin"], weight: ["500", "700", "800", "900"], variable: "--font-home-display", display: "swap" });
 
@@ -29,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${outfit.variable} h-full antialiased`}
+      className={`${notoSansKr.variable} ${outfit.variable} ${editorial.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
