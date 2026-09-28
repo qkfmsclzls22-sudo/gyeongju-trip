@@ -2,14 +2,14 @@
 
 @theme {
   /* Shared palette matches the current homepage. */
-  --color-brand-50: #fcfcfa;
-  --color-brand-100: #dbe5df;
-  --color-brand-200: #b9cfc0;
-  --color-brand-300: #83ad94;
-  --color-brand-400: #183c34;
-  --color-brand-500: #183c34;
-  --color-brand-600: #28584b;
-  --color-brand-700: #102e27;
+  --color-brand-50: #ffffff;
+  --color-brand-100: #e5e5e7;
+  --color-brand-200: #d2d2d7;
+  --color-brand-300: #86baf0;
+  --color-brand-400: #0071e3;
+  --color-brand-500: #0071e3;
+  --color-brand-600: #0077ed;
+  --color-brand-700: #004f9f;
 
   /* 골드 — 별점, 포인트 뱃지 */
   --color-sun-100: #fff6df;
@@ -18,9 +18,9 @@
   --color-sun-500: #ffb020;
 
   /* 배경 뉴트럴 */
-  --color-cream: #fcfcfa;
-  --color-blush: #edf3ee;
-  --color-ink: #193b34;
+  --color-cream: #ffffff;
+  --color-blush: #f5f5f7;
+  --color-ink: #1d1d1f;
 
   --font-sans: var(--font-noto-sans-kr), system-ui, sans-serif;
 }
@@ -28,24 +28,24 @@
 body {
   background: #ffffff;
   color: var(--color-ink);
-  font-family: var(--font-sans);
+  font-family: -apple-system, BlinkMacSystemFont, var(--font-sans);
 }
 
-:root { --yellow: #edf3ee; --paper: #fcfcfa; --red: #183c34; --ink: #193b34; }
+:root { --yellow: #f5f5f7; --paper: #ffffff; --red: #1d1d1f; --ink: #1d1d1f; }
 .inner-page { background: var(--paper); color: var(--ink); word-break: keep-all; overflow-wrap: anywhere; }
 .inner-page :is(h1,h2,h3) { letter-spacing: -.05em; }
-.inner-page h1 { color: var(--red); font-size: clamp(36px,5vw,68px); font-family:var(--font-editorial),serif; font-weight:500; line-height: 1.2; }
+.inner-page h1 { color: var(--red); font-size: clamp(36px,5vw,68px); font-family:var(--font-sans); font-weight:700; line-height: 1.2; }
 .inner-page h2 { font-weight: 900; }
 .inner-page > section:first-of-type { background: var(--yellow); padding-top: 48px; padding-bottom: 56px; }
 .inner-page > :is(section,div) > :is(.max-w-3xl,.max-w-4xl,.max-w-5xl) { width: min(88%,1120px); max-width: 1120px; padding-inline: 0; }
 .inner-page > .max-w-4xl { width: min(88%,1120px); max-width:1120px; padding-inline:0; }
 .inner-page > .max-w-2xl { width:min(88%,720px); padding-inline:0; padding-top:48px; }
 .inner-page section.bg-white { background: var(--paper); }
-.inner-page :is(.text-gray-400,.text-gray-500,.text-gray-600) { color:#53635d; }
+.inner-page :is(.text-gray-400,.text-gray-500,.text-gray-600) { color:#6e6e73; }
 .inner-page :is(a,button).rounded-full { border-radius:0; }
 .inner-page :is(input,select,textarea) { border-radius:0; background:#ffffff; }
 .inner-page :is(a,button,input,select,textarea):focus-visible { outline:2px solid var(--red); outline-offset:4px; }
-.inner-page :is(dl,form) { border:1px solid #193b3430; }
+.inner-page :is(dl,form) { border:1px solid #1d1d1f30; }
 .inner-page .booking-card { border-top:4px solid var(--red); padding:28px; }
 .inner-page .tour-hero > div { display:grid; grid-template-columns:1.1fr 1fr; column-gap:48px; align-items:start; }
 .inner-page .tour-hero > div > :not(:last-child) { grid-column:1; }
