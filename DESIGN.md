@@ -1,30 +1,24 @@
-# 경주트립 — 제품 쇼케이스형 웹 디자인
+# Gyeongju Trip — Local Travel Studio
 
-## 기준과 참고
-사용자의 2026-09-29 수정 지시: 이전 매거진형·초록색·명조 디자인을 폐기하고 Apple 같은 대기업 홈페이지를 직접 참고한다.
-공식 참고: https://www.apple.com/kr/ — 간결한 상단 메뉴, 중앙 정렬 대형 제목, 짧은 소개, 둥근 CTA, 전폭 제품 이미지, 2열 제품 패널.
-이 기준은 이전 편집형 디자인 기준을 대체한다. 경주트립의 사진·상품·브랜드를 사용한다.
+This direction supersedes the rejected generic product-hero homepage. The website is a place to choose a trip, not just a stack of advertisements.
 
-## 화면
-- 전체 배경 흰색. 제목 #1d1d1f, 보조 텍스트 #6e6e73, 보조 패널 #f5f5f7.
-- 주요 버튼 #0071e3, 흰 글자, 완전한 pill 모양. 한 패널에 행동은 1~2개.
-- 기본 서체 -apple-system, BlinkMacSystemFont, Noto Sans KR. 제목 굵기 700, 자간 -.055em.
-- 명조체, 초록색 테마, 장식 번호, 긴 소개 문단, 테두리로 나눈 작은 상품 카드를 사용하지 않는다.
-- 이미지 위 그라데이션은 텍스트 가독성을 위한 어둡기 조절에만 쓴다.
+## Visual language
+- Warm paper #f4f1e9, charcoal #242b27, restrained vermilion #b64025.
+- Hahmlet for Korean editorial titles, Barlow Condensed for the masthead, chapter numbers and English display; Noto Sans KR for controls and body copy. Fonts self-host through Next/font.
+- Asymmetric photo cover, oversized daylight/nightfall type, ruled sections, staggered tour collection. No repeated centered hero blocks, gradients as decoration, or generic pill cards.
+- Real Gyeongju and tour photographs. Homepage scopes the new typography; readable operational pages retain their body system.
 
-## 구성
-1. 52px 메뉴와 짧은 서비스 안내.
-2. 동궁과월지 대형 사진을 배경으로 한 전폭 브랜드 화면, 투어/단체 문의.
-3. 박물관 도슨트의 독립된 전폭 화면.
-4. 야경·불국사·프라이빗·단체 상품을 2열 대형 패널로 구성.
-5. 기존 네 유적지 정보 링크.
-6. 간결한 기업 소개와 현장 갤러리.
-7. 회색 바탕의 조용한 연락처·법적 안내.
+## Product experience
+1. Change the cover between Gyeongju by day and night, on request with no automatic cycling.
+2. Pick a companion and interest to see an immediate tour suggestion. Groups route to custom planning. Family guidance states guardian requirements.
+3. Optional travel date is a note, explicitly not a live inventory search.
+4. Compare all three tours using the same prices as lib/tours.ts.
+5. Save selected tours into a browser-local travel notebook, remove individually and copy for companions. It is a shortlist, not a booked or timed itinerary.
+6. Continue to existing tour details, booking/account or group quote flows.
 
-## 이미지와 모바일
-- 대표 화면에는 현장 인물 스냅 대신 경주의 공간을 크게 사용한다. 참여 사진은 단체 패널과 갤러리에 둔다.
-- 메인 동궁과월지 이미지는 기존 4032×3024 실사 자산.
-- 데스크톱 대형 패널 사이 여백 12px. 모바일에서는 한 열로 전환.
-- 320px부터 가로 넘침 없이 동작. 제목의 한국어 줄바꿈과 이미지 크롭을 별도로 점검.
-- gallery의 자동재생/일시정지/스와이프/키보드 기능과 reduced-motion 지원을 유지.
-- 투어·예약·로그인·AI경트·문의 로직, 가격·일정·정책은 디자인 수정 중 변경하지 않는다.
+## Quality gates
+- SSR default content remains useful. Client state is hydrated without mismatches. Invalid storage fails safely.
+- Mobile 320/390px through desktop 1440px: no horizontal overflow, clear tap targets and readable labels.
+- Keyboard-visible focus, pressed states, live result feedback, reduced-motion support, semantic headings and image alternatives.
+- Browser test day/night, all suggestion combinations, comparisons, save/remove/persistence/copy, date note, menus and existing links.
+- Production build and Vercel preview before production release.

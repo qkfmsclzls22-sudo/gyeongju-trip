@@ -169,3 +169,23 @@
 }
 @media (max-width:360px) { .header [data-home-wordmark] { font-size: 15px; } .hero { height: 630px; } .featureCopy > p { font-size: 17px; } .featureCopy h2 { font-size: 32px; } .tileCopy p { font-size: 16px; } .galleryControls > div { gap: 5px; } }
 @media (prefers-reduced-motion:reduce) { .placePhoto img,.primaryButton,.outlineButton { transition: none; } }
+
+/* Travel studio: shared navigation and field-notes gallery. */
+.header { background:#f4f1e9f5; color:#242b27; border-bottom:1px solid #242b2726; backdrop-filter:blur(12px); }
+.header > div { width:90%; max-width:1440px; height:72px; min-height:72px; }
+.header [data-home-wordmark] { font-family:var(--font-condensed),sans-serif; font-size:27px; font-weight:600; letter-spacing:-.01em; }
+.header nav { font-size:11px; }
+.header nav a:hover,.header nav button:hover { color:#b64025; }
+.header a[href="/quote"] { background:#242b27; border-radius:0; padding:11px 16px; min-height:40px; font-size:11px; }
+.header a[href="/quote"]:hover { background:#b64025; }
+.header > nav { background:#f4f1e9; }
+.red { background:#e8e5dc; color:#242b27; }
+.contactHeading h2 { font-family:var(--font-condensed),sans-serif; font-size:31px; }
+.container { width:min(90%,1440px); }
+.galleryTrack { gap:24px; padding-inline:5%; }
+.galleryCard { scroll-margin-left:5%; }
+.galleryCard figcaption { font-size:12px; }
+.galleryCard figcaption span,.galleryCount { font-family:var(--font-condensed),sans-serif; }
+.galleryControls button { border-color:#9caa96; border-radius:0; }
+.galleryControls .autoplayButton { border-radius:0; }
+@media(max-width:760px) { .header > div { height:62px; min-height:62px; } .header [data-home-wordmark] { font-size:23px; } .header a[href="/quote"] { font-size:11px; padding:9px 12px; } .header > nav { max-height:calc(100svh - 62px); } }

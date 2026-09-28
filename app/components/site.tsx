@@ -6,9 +6,10 @@ import { IconArrow, IconClose, IconMenu } from "./icons";
 import styles from "../homepage.module.css";
 
 const navItems = [
+  { href: "/#discover", label: "내 취향의 경주" },
   { href: "/#tours", label: "도슨트 투어" },
-  { href: "/#gallery", label: "갤러리" },
-  { href: "/company", label: "기업소개" },
+  { href: "/#travel-note", label: "여행노트" },
+    { href: "/company", label: "기업소개" },
   { href: "/now", label: "지금 경주" },
   { href: "/account", label: "로그인·예약내역" },
 ];

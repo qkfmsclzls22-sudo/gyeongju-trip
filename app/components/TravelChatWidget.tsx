@@ -322,7 +322,7 @@ export default function TravelChatWidget() {
       ) : (
         <button
           onClick={() => setOpen(true)}
-          className="bg-brand-500 hover:bg-brand-600 text-white rounded-full shadow-xl flex items-center gap-2 pl-4 pr-5 py-3 transition-transform hover:scale-105"
+          className="bg-[#242b27] hover:bg-[#b64025] text-white rounded-none shadow-lg flex items-center gap-2 px-4 py-3 transition-colors"
           aria-label="AI경트 열기"
         >
           <span className="text-xl"></span>
