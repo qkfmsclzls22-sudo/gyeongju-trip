@@ -2,21 +2,79 @@
   "items": [
     {
       "category": "운영·교통",
-      "checkedAt": "2026-09-27T09:02:36+09:00",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
       "dateKind": "continuous",
-      "endDate": "2026-09-27",
-      "id": "gyeongju-fog-shower-20260927",
-      "location": "경주시 전역 · 특히 내륙 도로와 야외 관광지",
+      "endDate": "2026-09-28",
+      "id": "gyeongju-fog-20260928",
+      "location": "경주시 내륙 · 강·호수·골짜기 인접 도로",
       "occurrenceDates": [],
       "price": "해당 없음",
-      "reviewBy": "2026-09-27",
-      "schedule": "9/27 08:10 발표 · 오전 10시까지 내륙 짙은 안개 · 오후~저녁 경북남동내륙 소나기 가능",
+      "reviewBy": "2026-09-28",
+      "schedule": "9/28 05:30 발표 · 오전 10시까지 경북내륙 가시거리 200m 미만 짙은 안개 가능",
       "sourceId": "kma",
       "sourceUrl": "https://www.weather.go.kr/w/wnuri-fct2021/weather/warning.do",
-      "startDate": "2026-09-27",
+      "startDate": "2026-09-28",
       "status": "published",
-      "summary": "기상청은 오늘 오전 10시까지 경주 등 경북내륙에 가시거리 200m 미만 안개가 낄 수 있고, 오후부터 저녁 사이 경북남동내륙에 5mm 안팎 소나기가 올 수 있다고 안내합니다. 자차는 감속하고 야외 일정은 우산·실내 대안을 준비하되 이 당일 자료를 이후 여행에 적용하지 마세요.",
-      "title": "9/27 오전 안개·오후 소나기 가능"
+      "summary": "오늘 오전 10시까지 경북내륙에 가시거리 200m 미만 짙은 안개가 낄 수 있습니다. 자차는 강·호수·골짜기 인접 도로에서 감속하고, 대중교통도 지연 여유를 두세요. 이 당일 정보를 이후 여행 날짜에 적용하지 마세요.",
+      "title": "9/28 오전 경북내륙 짙은 안개"
+    },
+    {
+      "category": "운영·교통",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
+      "dateKind": "occurrences",
+      "endDate": "2026-09-29",
+      "id": "gyeongju-eastcoast-rain-20260929",
+      "location": "경북남부동해안 · 경주 동해안권",
+      "occurrenceDates": [
+        "2026-09-29"
+      ],
+      "price": "해당 없음",
+      "reviewBy": "2026-09-29",
+      "schedule": "9/28 04:20 발표 · 9/29 아침부터 오후 사이 경북동해안 비 · 예상 강수량 약 5mm",
+      "sourceId": "kma",
+      "sourceUrl": "https://www.weather.go.kr/w/wnuri-fct2021/weather/warning.do",
+      "startDate": "2026-09-29",
+      "status": "published",
+      "summary": "9월 29일 경북동해안은 아침부터 오후 사이 약 5mm 비가 예보됐습니다. 감포·양남처럼 야외 노출이 큰 동해안 일정은 실내 대안과 우산을 준비하고 출발 직전 예보를 다시 확인하세요. 경주시 전역에 같은 시간 비가 온다고 확대 적용하지 않습니다.",
+      "title": "9/29 경주 동해안권 비 가능성"
+    },
+    {
+      "category": "운영·교통",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
+      "dateKind": "occurrences",
+      "endDate": "2026-09-28",
+      "id": "donggung-lawon-monday-closure-20260928",
+      "location": "보문권 · 동궁식물원·라원",
+      "occurrenceDates": [
+        "2026-09-28"
+      ],
+      "price": "휴원",
+      "reviewBy": "2026-09-29",
+      "schedule": "9/28 월요일 정기휴원 · 동궁식물원·라원 모두 해당",
+      "sourceId": "epg",
+      "sourceUrl": "https://www.gyeongju.go.kr/epg/",
+      "startDate": "2026-09-28",
+      "status": "published",
+      "summary": "오늘은 동궁식물원과 라원이 월요일 정기휴원이라 비·안개 대체 코스로 방문하면 안 됩니다. 동궁과월지는 별도 야외 유적이며 이 휴원 대상이 아닙니다. 다음 운영일에도 입장은 18시에 마감됩니다.",
+      "title": "9/28 동궁식물원·라원 월요일 휴원"
+    },
+    {
+      "category": "공연·전시",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
+      "dateKind": "continuous",
+      "endDate": "2027-03-14",
+      "id": "oar-yukimasa-ida-2026",
+      "location": "구도심 · 노서동 오아르미술관 2F·B1F",
+      "occurrenceDates": [],
+      "price": "유료 · 연령별 관람료는 공식 방문안내 확인",
+      "reviewBy": "2026-10-12",
+      "schedule": "2026-08-23–2027-03-14 · 10:00–19:00 · 매주 화요일 휴관",
+      "sourceId": "oar",
+      "sourceUrl": "https://oar-museum.com/bbs/board.php?category=&en_flag=&findType=&findWord=&it_id=&mobile_flag=&mode=VIEW&num=26&page=1&shop_flag=&sort1=&sort2=&tbl=bbs21&type=1",
+      "startDate": "2026-08-23",
+      "status": "published",
+      "summary": "회화·조각·영상을 함께 보는 이다 유키마사 개인전으로 사진·현대미술을 원하는 커플과 악천후 실내 일정에 맞습니다. 역사 유물 중심 여행에는 우선순위가 낮습니다. 전용 주차장은 유료이며 최신요금·빈자리·층 이동 편의는 방문 전 확인하세요.",
+      "title": "오아르미술관 이다 유키마사 개인전"
     },
     {
       "category": "공연·전시",
@@ -41,8 +99,8 @@
       "sourceUrl": "https://www.cultureexpo.or.kr/open.content/ko/program/performance/busking/",
       "startDate": "2026-09-20",
       "status": "published",
-      "summary": "9월 27일 14시 회차를 공식 프로그램에서 확인했습니다. 사진·공연을 원하는 보문권 여행객은 엑스포대공원 관람과 묶고, 이것만 보러 도심에서 왕복하지 마세요. 정확한 공연 지점·우천 변경과 공원 입장 조건은 당일 확인해야 합니다.",
-      "title": "EX버스킹 · 9/27 14시"
+      "summary": "다음 확인 회차는 10월 3일 14시입니다. 사진·공연을 원하는 보문권 여행객은 엑스포대공원 관람과 묶고, 이것만 보러 도심에서 왕복하지 마세요. 정확한 공연 지점·우천 변경과 공원 입장 조건은 당일 확인해야 합니다.",
+      "title": "EX버스킹 · 다음 회차 10/3 14시"
     },
     {
       "category": "체험·프로그램",
@@ -208,14 +266,14 @@
     },
     {
       "category": "체험·프로그램",
-      "checkedAt": "2026-09-20T09:01:21+09:00",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
       "dateKind": "season",
       "endDate": "2026-09-30",
       "id": "lawon-september-2026",
       "location": "경주시 경감로 233",
       "occurrenceDates": [],
       "price": "대상·현장 발권 조건 충족 시 동반 1인 무료",
-      "reviewBy": "2026-09-27",
+      "reviewBy": "2026-09-30",
       "schedule": "9월 운영일에 한함. 월요일·추석 당일 등 휴관일 제외",
       "sourceId": "epg",
       "sourceUrl": "https://www.gyeongju.go.kr/epg/?bid=05_notice&m=bbs&uid=1755",
@@ -388,7 +446,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-09-20T09:01:21+09:00",
+      "checkedAt": "2026-09-28T08:57:14+09:00",
       "dateKind": "occurrences",
       "endDate": "2026-09-30",
       "id": "little-prince-gyeongju-2026",
@@ -462,7 +520,7 @@
         "2026-09-30"
       ],
       "price": "무료 · 개인 현장 관람, 회차별 수용인원 제한",
-      "reviewBy": "2026-09-27",
+      "reviewBy": "2026-09-30",
       "schedule": "7/15–9/30 화~일 10:00–17:30 · 매주 월요일·9/25 휴관",
       "sourceId": "garts",
       "sourceUrl": "https://garts.kr/index.do?menuId=00000261&menuLink=/user/sched/detl.do&schedId=SCHED_0000021285",
@@ -560,24 +618,6 @@
       "status": "published",
       "summary": "9월 26~28일은 추석 휴무라 오늘 방문하면 안 됩니다. 이후 면 요리를 피하고 숯불고기를 원하는 자차·가족 여행객 후보지만 기본 주문 3인분이라 혼자나 가벼운 식사에는 맞지 않습니다. 전용주차장은 없고 공식 안내상 일부 시간 대로변 주차가 가능하나 현장 통제·빈자리는 보장하지 않습니다.",
       "title": "마장동숯불구이 경주본점, 성건동 고기 식사 후보"
-    },
-    {
-      "category": "축제·행사",
-      "checkedAt": "2026-09-27T09:02:36+09:00",
-      "dateKind": "continuous",
-      "endDate": "2026-09-27",
-      "id": "daereungwon-media-art-2026",
-      "location": "도심권 · 대릉원 일원",
-      "occurrenceDates": [],
-      "price": "프로그램별 공식 안내 확인",
-      "reviewBy": "2026-09-28",
-      "schedule": "2026-09-04–09-27 매일 19:30–21:30",
-      "sourceId": "tour",
-      "sourceUrl": "https://www.gyeongju.go.kr/tour/page.do?mnu_uid=4881",
-      "startDate": "2026-09-04",
-      "status": "published",
-      "summary": "오늘 19:30–21:30이 마지막 회차인 야외 야간 행사입니다. 도심에서 저녁까지 머무는 역사·사진 여행객에게 맞지만 비·강풍에는 피하고, 동궁과월지·월정교까지 모두 넣어 보행을 늘리지 마세요. 공식 주차 후보는 대릉원·봉황대 공영주차장이며 빈자리·요금은 보장하지 않습니다.",
-      "title": "국가유산 미디어아트 ‘대릉원, 영원’"
     },
     {
       "category": "공연·전시",
@@ -693,27 +733,6 @@
       "title": "문무대왕 페스티벌 ‘과거에서 미래로’"
     },
     {
-      "category": "운영·교통",
-      "checkedAt": "2026-09-26T09:00:11+09:00",
-      "dateKind": "occurrences",
-      "endDate": "2026-09-27",
-      "id": "museum-guide-suspension-20260924",
-      "location": "도심권 · 국립경주박물관",
-      "occurrenceDates": [
-        "2026-09-26",
-        "2026-09-27"
-      ],
-      "price": "9/24·26·27 전시해설 미운영 · 자유관람 가능",
-      "reviewBy": "2026-09-28",
-      "schedule": "9/26·27 신라역사관·신라미술관·특별전시관·뮤지엄투어 해설 미운영 · 전시실 자유관람 가능",
-      "sourceId": "museum",
-      "sourceUrl": "https://gyeongju.museum.go.kr/kor/html/sub07/0701.html?menu_dvs_cd=0701&mode=V&no=5542&site_dvs_cd=kor",
-      "startDate": "2026-09-26",
-      "status": "published",
-      "summary": "9월 27일은 전시실 자유관람은 가능하지만 모든 전시해설이 중지되는 마지막 날입니다. 오늘 공식 본문 재확인은 시간 초과로 실패했으므로 9월 26일 확인 내용을 유지합니다. 해설을 기대하고 방문하지 말고 공식 전시안내 앱이나 자유관람으로 계획하세요.",
-      "title": "국립경주박물관 9/26·27 전시해설 중지"
-    },
-    {
       "category": "여행정보",
       "checkedAt": "2026-09-26T09:00:11+09:00",
       "dateKind": "undated",
@@ -736,140 +755,140 @@
     {
       "id": "city",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
-      "lastSuccessAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
       "name": "경주시청",
-      "note": "9/27 공식 문화관광·시정뉴스에서 문무대왕 페스티벌과 오늘 종료하는 대릉원 미디어아트 일정을 확인. 주차·교통통제 상세는 미확인.",
+      "note": "9/28 공식 행사 목록을 확인했으며 종료된 대릉원 미디어아트 외 새로운 교통통제·주차 변경 공지는 찾지 못함. 신라문화제 주차·통제 상세는 계속 미확인.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/"
     },
     {
       "id": "tour",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
-      "lastSuccessAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
       "name": "경주문화관광",
-      "note": "9/27 공식 문화관광 원문에서 대릉원 미디어아트가 오늘 19:30–21:30 마지막 회차이며 대릉원·봉황대 공영주차장을 안내하는 것을 확인.",
+      "note": "9/28 공식 행사·여행정보 목록을 확인하고 9/27 종료한 대릉원 미디어아트 카드를 제거. 새 주차·진입 변경은 확인되지 않음.",
       "status": "checked",
       "url": "https://www.gyeongju.go.kr/tour/"
     },
     {
       "id": "facilities",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": "2026-09-19T09:04:14+09:00",
       "name": "경주시시설관리공단",
-      "note": "9/27 공식 홈페이지 본문이 비어 공영주차장 최신 단기요금·진입 변경·통제를 검증하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공식 홈페이지 검색 결과는 확인했지만 공영주차장 최신 단기요금·진입 변경·통제 본문을 검증하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjfmc.or.kr/gjsiseol/"
     },
     {
       "id": "garts",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
-      "lastSuccessAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
       "name": "경주문화재단",
-      "note": "9/27 공식 일정에서 알천미술관 공유전 2편, 신라문화제 월정교 19:00–19:40, 10/3–4 문무대왕 페스티벌 세부 시간을 확인.",
+      "note": "9/28 어린왕자 전시의 월요일 휴관·9/30 종료·10:00–17:30·전용주차장 없음과 회차당 30~40명 조건을 공식 상세에서 재확인.",
       "status": "checked",
       "url": "https://garts.kr/index.do"
     },
     {
       "id": "culture",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": "2026-09-26T09:00:11+09:00",
       "name": "경주문화원",
-      "note": "9/27 공식 홈페이지 본문이 비어 신규 행사·운영 변경을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공식 홈페이지는 열렸으나 본문이 비어 신규 행사·운영 변경을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjucc.or.kr/"
     },
     {
       "id": "silla",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원",
-      "note": "9/27 공식 홈페이지가 접근 오류로 행사 본문을 확보하지 못함. 마지막 성공 정보 없음.",
+      "note": "9/28 공식 홈페이지가 접근 제한으로 행사 본문을 확보하지 못함. 마지막 성공 정보 없음.",
       "status": "blocked",
       "url": "https://www.silla.or.kr/"
     },
     {
       "id": "gbct",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원",
-      "note": "9/27 공식 사이트가 접근 오류로 행사·여행정보 본문을 확보하지 못함. 마지막 성공 정보 없음.",
+      "note": "9/28 공식 사이트가 접근 제한으로 행사·여행정보 본문을 확보하지 못함. 마지막 성공 정보 없음.",
       "status": "blocked",
       "url": "https://www.gyeongjuonna.co.kr/"
     },
     {
       "id": "gbct-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원 · Instagram",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gbct0114/"
     },
     {
       "id": "local",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경주로컬 · @gyeongju_local",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju_local/"
     },
     {
       "id": "special",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경주특별시 · @gyeongju.si",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju.si/"
     },
     {
       "id": "hwangridan",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "황리단st",
-      "note": "9/27에도 정확한 공식 계정 주소를 확인하지 못해 추정하지 않음. 계정 식별 전까지 게시물 수집을 보류.",
+      "note": "9/28에도 정확한 공식 계정 주소를 확인하지 못해 추정하지 않음. 계정 식별 전까지 게시물 수집을 보류.",
       "status": "pending_identity",
       "url": null
     },
     {
       "id": "garts-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경주문화재단 · YouTube",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCpM3_K9Of7yUX9Tc7GcKKoQ"
     },
     {
       "id": "silla-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원 · YouTube",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/%40sillawonTv"
     },
     {
       "id": "tour-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경주관광 · YouTube",
-      "note": "9/27 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 공개 검색에서 최근 게시물 본문·실제 방문일·광고 여부 또는 현재 운영정보를 충분히 검증하지 못함. 로그인 제한을 우회하지 않았고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCQh-jbXM1DkVnC8vUYqfkVw"
     },
@@ -886,10 +905,10 @@
     {
       "id": "epg",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
-      "lastSuccessAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
       "name": "경주시 동궁원·라원",
-      "note": "9/27 공식 홈페이지에서 동궁식물원·라원 09:30–19:00·18:00 입장마감과 10월 경주시민 라원 체험 조건을 확인.",
+      "note": "9/28 공식 운영안내에서 동궁식물원·라원 모두 매주 월요일 휴원, 09:30–19:00·18:00 입장마감을 재확인. 오늘 방문 금지 카드로 분리.",
       "status": "checked",
       "url": "https://www.gyeongju.go.kr/epg/"
     },
@@ -966,20 +985,20 @@
     {
       "id": "hwangnyongwon",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "황룡원",
-      "note": "9/27 자체 홈페이지가 시간 초과로 현재 운영조건을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "9/28 자체 홈페이지가 시간 초과로 현재 운영조건을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.hwangnyongwon.com"
     },
     {
       "id": "museum",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": "2026-09-26T09:00:11+09:00",
       "name": "국립경주박물관",
-      "note": "9/27 공식 메인 접근이 시간 초과되어 전시해설 중지 공지의 9/26 확인 내용을 유지. 오늘은 해설 중지 마지막 날이며 전시실 휴관으로 확대 해석하지 않음.",
+      "note": "9/28 공식 메인 접근이 시간 초과됨. 9/27 종료한 전시해설 중지 카드는 제거했고 마지막 성공 시각은 연장하지 않음.",
       "status": "partial",
       "url": "https://gyeongju.museum.go.kr/"
     },
@@ -1016,10 +1035,10 @@
     {
       "id": "dml",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": "2026-09-27T09:02:36+09:00",
       "name": "동리목월문학관",
-      "note": "9/27 공식 홈페이지에서 하절기 09:00–18:00·월요일 및 명절 당일 휴관을 확인. 임시휴관·주차·계단 조건은 미확인.",
+      "note": "9/28 공식 홈페이지가 내부 오류로 본문 재확인에 실패. 월요일 휴관의 마지막 성공 내용은 유지하고 성공 시각은 연장하지 않음.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/dml/?r=home"
     },
@@ -1036,22 +1055,32 @@
     {
       "id": "gyeongju-its",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
       "lastSuccessAt": null,
       "name": "경주시교통정보센터",
-      "note": "9/27 교통정보센터가 502 오류로 실시간 교통·보문 자율주행버스 조건을 확인하지 못함. 마지막 성공 정보 없음.",
+      "note": "9/28 교통정보센터가 시간 초과로 실시간 교통·보문 자율주행버스 조건을 확인하지 못함. 마지막 성공 정보 없음.",
       "status": "blocked",
       "url": "https://its.gyeongju.go.kr/autoinfo.do"
     },
     {
       "id": "kma",
       "kind": "official",
-      "lastAttemptAt": "2026-09-27T09:02:36+09:00",
-      "lastSuccessAt": "2026-09-27T09:02:36+09:00",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
       "name": "기상청 날씨누리",
-      "note": "9/27 08:10 발표에서 오전 10시까지 경북내륙 안개와 오후~저녁 경북남동내륙 소나기 가능성을 당일 유효기간으로 확인.",
+      "note": "9/28 05:30·04:20 발표에서 오전 10시까지 경북내륙 짙은 안개와 9/29 경북동해안 아침~오후 비 약 5mm 전망을 유효기간별로 확인.",
       "status": "checked",
       "url": "https://www.weather.go.kr/w/wnuri-fct2021/weather/warning.do"
+    },
+    {
+      "id": "oar",
+      "kind": "official",
+      "lastAttemptAt": "2026-09-28T08:57:14+09:00",
+      "lastSuccessAt": "2026-09-28T08:57:14+09:00",
+      "name": "오아르미술관",
+      "note": "9/28 공식 전시·공지에서 이다 유키마사 개인전 2026-08-23–2027-03-14, 2F·B1F, 10:00–19:00, 매주 화요일 휴관과 유료 전용주차장 조건을 확인.",
+      "status": "checked",
+      "url": "https://oar-museum.com/"
     },
     {
       "id": "mediaart-instagram",
@@ -1084,6 +1113,6 @@
       "url": "https://www.facebook.com/gyeongjuexpopark/"
     }
   ],
-  "updatedAt": "2026-09-27T09:02:36+09:00",
+  "updatedAt": "2026-09-28T08:57:14+09:00",
   "version": 1
 }
