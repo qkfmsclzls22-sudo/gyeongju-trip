@@ -6,12 +6,11 @@ import { IconArrow, IconClose, IconMenu } from "./icons";
 import styles from "../homepage.module.css";
 
 const navItems = [
-  { href: "/account", label: "로그인·예약내역" },
-  { href: "/#tours", label: "투어" },
+  { href: "/#tours", label: "도슨트 투어" },
   { href: "/#gallery", label: "갤러리" },
   { href: "/company", label: "기업소개" },
   { href: "/now", label: "지금 경주" },
-  { href: "/#contact", label: "문의" },
+  { href: "/account", label: "로그인·예약내역" },
 ];
 
 const openTravelChat = () => window.dispatchEvent(new Event("open-travel-chat"));
