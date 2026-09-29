@@ -214,3 +214,31 @@
 }
 @media(max-width:360px) { .coverPhoto { height:375px; } .coverAside h2 { font-size:25px; } .sectionIntro h2,.collectionHeading h2 { font-size:30px; } .noteGrid h2 { font-size:26px; } .noteHeader { gap:10px; } .groupCopy h2 { font-size:29px; } }
 @media(prefers-reduced-motion:reduce) { .tourImage > img { transition:none; } }
+
+/* Original Gyeongju artwork, restored as postcards and a closing panorama. */
+.placeGrid > a { background:#fffcf4; border:1px solid #242b271c; padding:12px 12px 18px; }
+.placeImage { aspect-ratio:1; overflow:visible; margin-bottom:32px; }
+.placeImage > img { object-fit:contain; }
+.placeImage > span { top:auto; bottom:-24px; left:0; color:#63685f; text-shadow:none; font-size:10px; letter-spacing:.12em; }
+.placeGrid h3 { font-size:22px; margin-top:0; }
+.placeGrid p { margin-top:7px; }
+.noteIllustration { float:right; width:112px; padding:6px 6px 7px; background:#fffcf4; margin:15px 0 16px 18px; transform:rotate(5deg); box-shadow:0 3px 8px #242b2710; }
+.noteIllustration img { display:block; width:100%; height:auto; }
+.noteIllustration span { display:block; font-family:var(--font-condensed),sans-serif; letter-spacing:.06em; font-size:9px; text-align:center; padding-top:5px; }
+.illustratedHorizon { width:100%; background:#142e58; }
+.illustratedHorizon img { display:block; width:100%; height:auto; object-fit:contain; }
+@media(max-width:1100px) { .noteIllustration { width:85px; margin-left:10px; } }
+@media(max-width:760px) {
+ .placeGrid { gap:20px 12px; }
+ .placeGrid > a { padding:8px 8px 14px; }
+ .placeGrid h3 { font-size:18px; }
+ .placeGrid p { font-size:10px; line-height:1.7; }
+ .placeImage > span { font-size:9px; }
+ .noteIllustration { width:82px; margin:16px 0 12px 12px; }
+ .noteIllustration span { font-size:7px; }
+ .noteGrid h2 { font-size:26px; }
+ .noteGrid h2 br { display:block; }
+ .noteDate { clear:both; }
+ .illustratedHorizon { overflow:hidden; }
+ .illustratedHorizon img { width:100%; margin-left:0; }
+}

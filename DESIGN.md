@@ -22,3 +22,10 @@ This direction supersedes the rejected generic product-hero homepage. The websit
 - Keyboard-visible focus, pressed states, live result feedback, reduced-motion support, semantic headings and image alternatives.
 - Browser test day/night, all suggestion combinations, comparisons, save/remove/persistence/copy, date note, menus and existing links.
 - Production build and Vercel preview before production release.
+
+## Original illustration integration
+- Four existing landmark illustrations form an illustrated postcard index linking to the existing landmark pages. Preserve square artwork without cropping.
+- Blossom artwork is a small paper postcard beside the notebook introduction, leaving all controls and text readable.
+- The original panoramic night illustration closes the page, after the studio statement and before contact information.
+- Photo-led cover and real tour photographs retain their existing role. No new images or altered artwork.
+- This change is preview-only pending owner review; do not merge or promote to production without approval.
