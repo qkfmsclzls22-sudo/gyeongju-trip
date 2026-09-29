@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Outfit, Hahmlet, Barlow_Condensed } from "next/font/google";
+import { Hahmlet, Barlow_Condensed } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import TravelChatWidget from "./components/TravelChatWidget";
 
 const hahmlet = Hahmlet({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-editorial", display: "swap", preload: false });
 const condensed = Barlow_Condensed({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-condensed", display: "swap" });
 
-const outfit = Outfit({ subsets: ["latin"], weight: ["500", "700", "800", "900"], variable: "--font-home-display", display: "swap" });
-
-const notoSansKr = Noto_Sans_KR({
-  variable: "--font-noto-sans-kr",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+// Rounded Korean and Latin UI typography, served with the site.
+const suite = localFont({
+  src: "./fonts/SUITE-Variable.woff2",
+  variable: "--font-suite",
+  weight: "300 900",
+  style: "normal",
+  display: "swap",
+  fallback: ["sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${outfit.variable} ${hahmlet.variable} ${condensed.variable} h-full antialiased`}
+      className={`${suite.variable} ${hahmlet.variable} ${condensed.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
