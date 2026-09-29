@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import MobileRail from "./MobileRail";
 import { useEffect, useState } from "react";
 import { TOURS, type TourId } from "@/lib/tours";
 import s from "../journey.module.css";
@@ -100,10 +101,10 @@ export default function JourneyExplorer() {
     <section id="tours" className={s.collection} aria-labelledby="tours-title">
       <div className={s.collectionHeading}><div><span className={s.overline}>02 / THE COLLECTION</span><h2 id="tours-title">경주를 만나는<br /><em>세 가지 시선.</em></h2></div><button type="button" className={s.lineButton} aria-expanded={showCompare} aria-controls="tour-comparison" onClick={() => setShowCompare(!showCompare)}>{showCompare ? "비교 접기 −" : "투어 한눈에 비교 +"}</button></div>
       {showCompare && <div id="tour-comparison" className={s.comparison}><table><caption>정규 투어 비교 · 성인 1인 기준</caption><thead><tr><th scope="col">투어</th><th scope="col">공간 / 시간</th><th scope="col">성인 요금</th><th scope="col">자세히</th></tr></thead><tbody>{tours.map(tour => <tr key={tour.id}><th scope="row">{tour.subtitle}</th><td>{tour.setting}<br />{TOURS[tour.id].operatingHours}</td><td>{TOURS[tour.id].adultPrice.toLocaleString("ko-KR")}원</td><td><a href={`/tours/${tour.id}`} aria-label={`${tour.subtitle} 상세 보기`}>보기 ↗</a></td></tr>)}</tbody></table><p>최소 7명 모집 시 출발합니다. 실제 운영·요금·포함 사항은 각 상품에서 확인해주세요.</p></div>}
-      <div className={s.tourGrid}>{tours.map(tour => <article key={tour.id} className={s.tourCard}>
+      <MobileRail id="tour-rail" label="투어" count={3} className={s.tourGrid}>{tours.map(tour => <article key={tour.id} className={s.tourCard}>
         <div className={s.productEdition}>{tour.no} / {tour.id.toUpperCase()}</div><a href={`/tours/${tour.id}`} className={s.tourImage}><Image src={`/images/${tour.image}`} alt={tour.subtitle} fill sizes="(max-width: 760px) 90vw, 30vw" /></a>
         <div className={s.tourMeta}><span>{tour.setting}</span><button type="button" aria-label={`${tour.subtitle} ${saved.includes(tour.id) ? "여행노트에서 빼기" : "여행노트에 담기"}`} aria-pressed={saved.includes(tour.id)} disabled={!storageReady} onClick={() => toggleSaved(tour.id)}>{saved.includes(tour.id) ? "✓ 담김" : "+ 담기"}</button></div><h3><a href={`/tours/${tour.id}`}>{tour.title}</a></h3><p>{tour.subtitle}</p><div className={s.tourPrice}><span>성인 1인</span><strong>{TOURS[tour.id].adultPrice.toLocaleString("ko-KR")}<small>원</small></strong></div>
-      </article>)}</div>
+      </article>)}</MobileRail>
     </section>
 
     <section className={s.notebook} id="travel-note" aria-labelledby="notebook-title">

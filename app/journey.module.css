@@ -1,9 +1,9 @@
-.home { --studio-paper:#f4f1e9; --studio-ink:#242b27; --studio-orange:#b64025; --studio-line:#242b2733; background:var(--studio-paper); color:var(--studio-ink); font-family:var(--font-noto-sans-kr),sans-serif; }
-.home :is(h1,h2,h3) { font-weight:500; letter-spacing:-.055em; }
-.home :is(h1,h2) { font-family:var(--font-editorial),serif; }
-.home :is(h1,h2) em { font-style:normal; color:var(--studio-orange); }
-.home :is(section,[id]) { scroll-margin-top:88px; }
-.home :is(a,button,input,textarea):focus-visible { outline:2px solid var(--studio-orange); outline-offset:5px; }
+.home.home { --studio-paper:#f4f1e9; --studio-ink:#242b27; --studio-orange:#b64025; --studio-line:#242b2733; background:var(--studio-paper); color:var(--studio-ink); font-family:var(--font-noto-sans-kr),sans-serif; }
+.home.home :is(h1,h2,h3) { font-weight:500; letter-spacing:-.055em; }
+.home.home :is(h1,h2) { font-family:var(--font-editorial),serif; }
+.home.home :is(h1,h2) em { font-style:normal; color:var(--studio-orange); }
+.home.home :is(section,[id]) { scroll-margin-top:88px; }
+.home.home :is(a,button,input,textarea):focus-visible { outline:2px solid var(--studio-orange); outline-offset:5px; }
 .home button { cursor:pointer; }
 .home button:disabled { cursor:wait; opacity:.5; }
 .cover,.discovery,.collection,.notebook,.placeSection { width:min(90%,1440px); margin-inline:auto; }
@@ -251,3 +251,30 @@
 .resultPhoto { height:auto; aspect-ratio:1; }
 .resultPhoto > img { object-fit:contain; }
 @media(hover:hover) { .tourImage:hover img { transform:none; } }
+
+/* Mobile collections are manual swipe rails; desktop keeps its editorial grid. */
+.railWrap { min-width:0; }
+.railControls { display:none; }
+@media(max-width:760px) {
+ .mobileRail { display:flex; gap:16px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scrollbar-width:none; padding:4px 0 12px; }
+ .mobileRail::-webkit-scrollbar { display:none; }
+ .mobileRail > * { flex:0 0 87%; min-width:0; scroll-snap-align:start; }
+ .mobileRail::after { content:""; flex:0 0 calc(13% - 16px); }
+ .mobileRail.tourGrid { gap:16px; }
+ .mobileRail.placeGrid { gap:16px; }
+ .mobileRail .tourCard h3 { font-size:25px; }
+ .railControls { display:flex; align-items:center; justify-content:space-between; gap:5px; padding-top:8px; border-top:1px solid var(--studio-line); }
+ .railControls > span { font-size:10px; color:#60685e; }
+ .railDots,.railArrows { display:flex; align-items:center; }
+ .railDots button { width:25px; height:44px; border:0; background:transparent; display:grid; place-items:center; }
+ .railDots button > span { width:5px; height:5px; background:#a7ab9e; border-radius:50%; }
+ .railDots button[aria-current="true"] > span { background:var(--studio-orange); width:15px; border-radius:3px; }
+ .railArrows button { min-width:40px; height:44px; border:0; background:transparent; font-size:21px; }
+ .railArrows > span { font-size:11px; font-variant-numeric:tabular-nums; }
+ .collectionHeading h2 { font-size:29px; }
+ .collectionHeading { margin-bottom:22px; }
+ .lineButton { margin-top:12px; }
+ .collection { padding-bottom:42px; }
+ .placeSection { padding-block:42px; }
+}
+@media(max-width:360px) { .railDots button { width:20px; } .railArrows button { min-width:34px; } .railControls > span { font-size:9px; } }

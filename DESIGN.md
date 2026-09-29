@@ -32,3 +32,6 @@ This direction supersedes the rejected generic product-hero homepage. The websit
 
 ## Store product images
 Use the existing product-smartstore-museum/night/bulguksa assets for the homepage collection and suggestion result. Keep 1:1 frames, no cropping, no text/icon overlays, and no hover zoom that crops lettering. Editorial numbering sits above each image.
+
+## Mobile page length
+Below 761px, tour and landmark collections use manual scroll-snap rails with visible next-card previews, dot navigation, previous/next controls, keyboard arrows and counts. Keep tour artwork square. No autoplay for purchasing decisions. Desktop grid stays unchanged. Forms, notebook and company content remain linear.
