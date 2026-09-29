@@ -28,6 +28,14 @@ export default async function LoginPage({
             sizes="(max-width:760px) 100vw, 520px"
             priority
           />
+          <div className="login-caption">
+            <span>YOUR STORY CONTINUES HERE</span>
+            <p>
+              경주에서의 다음 장면,
+              <br />
+              함께 이어가요.
+            </p>
+          </div>
         </div>
         <div className="login-form stack">
           <div>

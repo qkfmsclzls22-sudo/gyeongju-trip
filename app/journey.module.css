@@ -1,4 +1,4 @@
-.home.home { --studio-paper:#f4f1e9; --studio-ink:#242b27; --studio-orange:#b64025; --studio-line:#242b2733; background:var(--studio-paper); color:var(--studio-ink); font-family:var(--font-suite),sans-serif; }
+.home.home { --studio-paper:#f4f1e9; --studio-ink:#242b27; --studio-orange:#b64025; --studio-line:#242b2733; background:var(--studio-paper); color:var(--studio-ink); font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; }
 .home.home :is(h1,h2,h3) { font-weight:500; letter-spacing:-.04em; }
 .home.home :is(h1,h2) { font-family:var(--font-editorial),serif; }
 .home.home :is(h1,h2) em { font-style:normal; color:var(--studio-orange); }
@@ -7,7 +7,7 @@
 .home button { cursor:pointer; }
 .home button:disabled { cursor:wait; opacity:.5; }
 .cover,.discovery,.collection,.notebook,.placeSection { width:min(90%,1440px); margin-inline:auto; }
-.overline { display:block; font-family:var(--font-condensed),var(--font-suite),sans-serif; font-size:13px; letter-spacing:.1em; font-weight:500; line-height:1.6; }
+.overline { display:block; font-family:var(--font-condensed),var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:13px; letter-spacing:.1em; font-weight:500; line-height:1.6; }
 .coverTop { display:flex; justify-content:space-between; gap:16px; font-size:12px; padding-top:26px; letter-spacing:.06em; }
 .coverTop span:first-child { font-family:var(--font-condensed),sans-serif; font-size:14px; letter-spacing:.13em; }
 .coverTitle { display:flex; justify-content:space-between; align-items:center; padding:28px 0 33px; }
@@ -55,7 +55,7 @@
 .resultPhoto { position:relative; height:165px; overflow:hidden; }
 .resultBody { padding:20px; }
 .result .overline { font-size:12px; color:#5f675d; }
-.result h3 { font-family:var(--font-suite),sans-serif; font-size:20px; line-height:1.5; margin-top:8px; }
+.result h3 { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:20px; line-height:1.5; margin-top:8px; }
 .resultBody > p { font-size:13px; line-height:1.8; margin-top:12px; color:#485344; }
 .resultBody > .familyNote { font-size:12px; border-top:1px solid #242b2726; padding-top:10px; }
 .resultActions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:16px; }
@@ -75,11 +75,11 @@
 .tourImage > .imageArrow { top:auto; left:auto; right:15px; bottom:15px; display:grid; place-items:center; width:45px; height:45px; border-radius:50%; color:var(--studio-ink); background:var(--studio-paper); font-family:Arial,sans-serif; font-size:25px; }
 .tourMeta { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:10px; color:#5b645a; font-size:12px; }
 .tourMeta button { min-height:44px; padding:8px 0 8px 14px; border:0; background:none; color:var(--studio-orange); font-size:13px; }
-.tourCard h3 { font-family:var(--font-suite),sans-serif; font-size:clamp(22px,2.4vw,33px); line-height:1.5; }
+.tourCard h3 { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:clamp(22px,2.4vw,33px); line-height:1.5; }
 .tourCard > p { font-size:13px; color:#60685e; margin-top:8px; }
 .tourPrice { display:flex; justify-content:space-between; align-items:baseline; padding-top:18px; margin-top:20px; border-top:1px solid var(--studio-line); font-size:12px; }
-.tourPrice strong { font-family:var(--font-suite),sans-serif; font-size:26px; font-weight:650; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
-.tourPrice small { font-family:var(--font-suite),sans-serif; font-size:13px; padding-left:3px; }
+.tourPrice strong { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:26px; font-weight:650; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
+.tourPrice small { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:13px; padding-left:3px; }
 .comparison { margin-bottom:35px; overflow-x:auto; background:#e8e8dc; padding:20px; }
 .comparison table { border-collapse:collapse; width:100%; text-align:left; font-size:13px; min-width:560px; }
 .comparison caption { text-align:left; margin-bottom:15px; font-weight:700; }
@@ -126,7 +126,7 @@
 .placeGrid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:25px; }
 .placeImage { position:relative; aspect-ratio:4/5; overflow:hidden; }
 .placeImage > span { position:absolute; top:10px; left:15px; font-family:var(--font-condensed),sans-serif; font-size:26px; color:white; text-shadow:0 1px 4px #0008; }
-.placeGrid h3 { display:flex; justify-content:space-between; font-family:var(--font-suite),sans-serif; font-size:21px; margin-top:15px; }
+.placeGrid h3 { display:flex; justify-content:space-between; font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:21px; margin-top:15px; }
 .placeGrid p { font-size:12px; color:#62685d; margin-top:8px; }
 .gallerySection { background:#ebe9e0; padding-block:65px; }
 .studio { padding:85px 5% 0; text-align:center; overflow:hidden; }
@@ -292,7 +292,7 @@
 .finderDisclosure { border:1px solid var(--studio-line); }
 .finderDisclosure > summary,.noteDisclosure > summary { list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:24px 28px; cursor:pointer; }
 .finderDisclosure > summary::-webkit-details-marker,.noteDisclosure > summary::-webkit-details-marker { display:none; }
-.finderDisclosure summary h2,.noteDisclosure summary h2 { font-family:var(--font-suite),sans-serif; font-size:21px; font-weight:500; letter-spacing:-.035em; margin-top:6px; line-height:1.6; }
+.finderDisclosure summary h2,.noteDisclosure summary h2 { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:21px; font-weight:500; letter-spacing:-.035em; margin-top:6px; line-height:1.6; }
 .finderDisclosure summary p,.noteDisclosure summary p { font-size:13px; color:#60685e; margin-top:6px; line-height:1.8; }
 .disclosurePlus { font-size:25px; flex-shrink:0; transition:transform .2s; }
 .finderDisclosure[open] > summary .disclosurePlus,.noteDisclosure[open] > summary .disclosurePlus { transform:rotate(45deg); }
@@ -303,7 +303,7 @@
 .notebook { padding:0; margin-bottom:36px; border-top:1px solid var(--studio-line); }
 .noteDisclosure summary h2 > span { color:var(--studio-orange); font-family:var(--font-condensed),sans-serif; margin-left:8px; }
 .noteGrid { margin:0 28px; border-top:1px solid var(--studio-line); padding-block:20px 28px; }
-.noteInnerTitle { font-family:var(--font-suite),sans-serif; font-size:24px; padding-top:20px; }
+.noteInnerTitle { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size:24px; padding-top:20px; }
 .emptyNote { min-height:130px; }
 .groupCompact { width:min(90%,1440px); margin:0 auto 22px; background:#28352b; color:#f4f1e9; display:flex; align-items:center; justify-content:space-between; gap:30px; padding:35px 40px; }
 .groupCompact h2 { font-size:29px; line-height:1.5; margin-top:9px; }
@@ -345,7 +345,7 @@
 
 /* Rounded UI typography supports the editorial cover and chapter titles. */
 .home.home :is(.tourCard,.result,.placeGrid) h3 { font-weight:650; letter-spacing:-.025em; line-height:1.4; }
-.home.home :is(.finderDisclosure,.noteDisclosure) summary h2 { font-family:var(--font-suite),sans-serif; font-weight:650; letter-spacing:-.025em; }
+.home.home :is(.finderDisclosure,.noteDisclosure) summary h2 { font-family:var(--font-suite),var(--font-glyph-fallback), sans-serif; font-weight:650; letter-spacing:-.025em; }
 .home.home .noteInnerTitle { font-weight:600; letter-spacing:-.025em; }
 .home :is(.editionSwitch button,.chapterBar a,.choices button,.copyButton,.tourBooking,.coverLink,.lineButton) { font-weight:600; }
 .home :is(.fieldHint,.noteHint,.familyNote,.tourMeta,.photoCaption) { letter-spacing:0; }

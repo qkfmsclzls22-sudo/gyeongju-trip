@@ -1,5 +1,5 @@
 import { SiteFooter, SiteHeader } from "@/app/components/site";
-import { IconHeadphones, IconRoute, IconSparkle, IconWallet } from "@/app/components/icons";
+import { IconHeadphones, IconRoute, IconSparkle } from "@/app/components/icons";
 import {
   BookingCard,
   InfoTable,
@@ -9,100 +9,91 @@ import {
   SafetyNote,
   SectionTitle,
   TourHero,
+  RelatedTours,
 } from "@/app/components/tour";
+
+export const metadata = { title: "국립경주박물관 도슨트 | 경주트립" };
 
 export default function MuseumTour() {
   return (
-    <main className="inner-page min-h-screen bg-white">
+    <main className="inner-page tour-page">
       <SiteHeader back={{ href: "/#tours", label: "투어 목록" }} />
 
       <TourHero
         category="박물관투어"
+        tourId="museum"
+        intro="유물 앞에 잠깐 멈춰, 그 안에 담긴 신라 사람들의 삶을 만나보세요."
         title={
           <>
-            국립경주박물관
-            <br />
-            역사 도슨트 프리미엄 투어
+            국립경주박물관<span>도슨트 투어</span>
           </>
         }
         subtitle="성덕대왕신종 · 신라역사관 · 신라미술관"
-        image="/images/tour-museum-field.webp"
-        rating={4.92}
-        reviews={536}
-        discount={37}
+        image="/images/product-smartstore-museum.webp"
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-14">
-        <aside className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-stone-800" aria-label="박물관 투어 운영 안내">
-          <strong className="block text-base">2026년 9월 14일(월) 박물관 투어 운영 불가</strong>
-          투어 코스인 신라역사관·신라미술관 등 실내 전시실 휴관으로 실내 전시 관람이 불가하여,
-          오전·오후 투어 모두 운영하지 않습니다. 네이버 스마트스토어는 해당 날짜를 품절 처리했습니다.
-          다른 운영일을 선택해 주세요.
-        </aside>
-        <div className="grid md:grid-cols-3 gap-10">
-          <div className="md:col-span-2 space-y-12">
-            <section>
-              <SectionTitle Icon={IconRoute}>투어 개요</SectionTitle>
+      <div className="page-width tour-content">
+        <div className="tour-layout">
+          <div className="tour-story">
+            <section id="overview">
+              <SectionTitle Icon={IconRoute}>출발 전, 핵심 정보</SectionTitle>
               <InfoTable
                 rows={[
-                  { label: "집결 장소", value: "국립경주박물관 정문 앞 안내데스크" },
+                  {
+                    label: "집결 장소",
+                    value: "국립경주박물관 정문 앞 안내데스크",
+                  },
                   { label: "집결 시간", value: "투어 시작 10분 전" },
-                  { label: "운영 시간", value: "오전 10:00 / 오후 14:00 (약 2시간 소요)" },
+                  {
+                    label: "운영 시간",
+                    value: "오전 10:00 / 오후 14:00 (약 2시간 소요)",
+                  },
                   {
                     label: "투어 코스",
-                    value: "성덕대왕신종 → 신라역사관 → 신라미술관 → 월지관(자유관람)",
+                    value:
+                      "성덕대왕신종 → 신라역사관 → 신라미술관 → 월지관(자유관람)",
                   },
                   { label: "모집 인원", value: "최소 7명 이상 출발" },
                   {
                     label: "대상",
                     value:
-                      "초등 고학년 이상 권장 (초등 4학년 미만 참여 불가, 부모 1명 이상 동참 필수)",
+                      "초등 고학년 이상 권장 · 초등 4학년 미만은 보호자 1명 이상 동반 필수",
                   },
                   { label: "연령 원칙", value: "36개월 이상부터 1인 1매 원칙" },
                 ]}
               />
             </section>
 
-            <section>
-              <SectionTitle Icon={IconHeadphones}>투어의 매력 포인트</SectionTitle>
-              <div className="space-y-4">
+            <section id="experience">
+              <SectionTitle Icon={IconHeadphones}>
+                이 여행에서 만나는 것
+              </SectionTitle>
+              <div className="tour-points">
                 <PointCard
-                  title="프리미엄 블루투스 송수신기 무료 대여 (오픈이벤트)"
-                  highlight
+                  title="해설이 또렷하게 들리는 시간"
                   note="수신기 분실·파손 시 100% 전액 배상 / 투어 종료 후 반드시 반납"
                 >
-                  귀에 꽂는 이어폰이 아닌 <strong>귀에 거는 오픈형 수신기</strong> 사용.
-                  <br />
-                  통증 없이 위생적이고 편안하며, 음질이 선명한 고급 장비.
-                  <br />
-                  단체 관람에서도 또렷하게 들리는 고품격 해설 환경.
-                  <br />
-                  이어폰 별도 지참 없이 참여 가능!
+                  귀에 거는 오픈형 블루투스 수신기를 무료로 빌려드립니다. 여러
+                  사람이 함께 관람해도 해설에 집중할 수 있도록 준비했습니다.
+                  별도 이어폰 없이 참여하세요.
                 </PointCard>
-
-                <PointCard
-                  title="스토리로 듣는 신라의 예술"
-                  note="&ldquo;역사는 외우는 게 아니라, 이야기를 통해 기억하는 것이다.&rdquo;"
-                >
-                  유물 설명 중심이 아닌, 그 시대 사람들의 삶과 감정을 담은 이야기 해설.
-                  <br />
-                  성덕대왕신종의 전설, 신라 왕들의 예술적 감각, 신라 불교미술의 정수까지
-                  <br />
-                  아이와 부모가 함께 몰입할 수 있는 <strong>감성형 도슨트 투어</strong>.
+                <PointCard title="유물에서 시작하는 신라의 이야기">
+                  성덕대왕신종부터 신라의 불교미술까지. 유물이 만들어진 배경과
+                  그 시대 사람들의 삶을 따라가며, 전시실 안의 작은 디테일을
+                  발견합니다.
                 </PointCard>
-
-                <PointCard title="전문 해설사의 감성 도슨트">
-                  박물관·문화유산 전문해설사들이 직접 진행.
-                  <br />
-                  지루한 나열식 설명이 아닌, 공감과 감동이 있는 해설로 구성.
-                  <br />
-                  해설사마다 다른 시선으로 만나는 &lsquo;살아있는 유물의 이야기&rsquo;.
+                <PointCard title="해설사와 함께 바라보는 박물관">
+                  박물관·문화유산 전문해설사가 관람을 이끕니다. 아이와 어른이
+                  함께 이야기를 듣고, 혼자 보았다면 지나쳤을 유물의 의미를
+                  만나보세요.
                 </PointCard>
               </div>
             </section>
 
-            <section>
-              <SectionTitle Icon={IconSparkle}>이런 분께 추천드립니다</SectionTitle>
+            <section id="recommend">
+              <SectionTitle Icon={IconSparkle}>
+                이런 분께 추천드립니다
+              </SectionTitle>
               <RecommendList
                 items={[
                   "아이에게 역사보다 흥미로운 '이야기 여행'을 선물하고 싶은 부모님",
@@ -114,20 +105,21 @@ export default function MuseumTour() {
               />
             </section>
 
-            <section>
-              <SectionTitle Icon={IconWallet}>환불 규정</SectionTitle>
+            <details className="tour-policy">
+              <summary>취소·환불 규정</summary>
               <RefundTable note="개인 일정 변경·단순 변심·교통 지연·개인 질병·동행인 취소는 환불 불가" />
-            </section>
+            </details>
 
             <SafetyNote>
-              본 상품은 여행자보험이 포함되어 있지 않으며, 개인정보보호법에 따라 여행자보험은
-              참가자 본인이 개별 가입하셔야 합니다. 투어는 도보 이동을 포함한 실내 프로그램으로,
-              참가자의 부주의·개인 질환으로 발생한 사고에 대해서는 주최 측의 법적·재정적 책임이
-              제한됩니다. 기상 및 현장 상황에 따라 코스가 일부 변경될 수 있습니다.
+              본 상품은 여행자보험이 포함되어 있지 않으며, 개인정보보호법에 따라
+              여행자보험은 참가자 본인이 개별 가입하셔야 합니다. 투어는 도보
+              이동을 포함한 실내 프로그램으로, 참가자의 부주의·개인 질환으로
+              발생한 사고에 대해서는 주최 측의 법적·재정적 책임이 제한됩니다.
+              기상 및 현장 상황에 따라 코스가 일부 변경될 수 있습니다.
             </SafetyNote>
           </div>
 
-          <div className="md:col-span-1">
+          <div className="tour-sidebar">
             <BookingCard
               tourId="museum"
               originalPrice={40000}
@@ -143,6 +135,7 @@ export default function MuseumTour() {
         </div>
       </div>
 
+      <RelatedTours current="museum" />
       <SiteFooter />
     </main>
   );
