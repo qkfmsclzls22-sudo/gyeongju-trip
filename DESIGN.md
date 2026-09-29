@@ -35,3 +35,7 @@ Use the existing product-smartstore-museum/night/bulguksa assets for the homepag
 
 ## Mobile page length
 Below 761px, tour and landmark collections use manual scroll-snap rails with visible next-card previews, dot navigation, previous/next controls, keyboard arrows and counts. Keep tour artwork square. No autoplay for purchasing decisions. Desktop grid stays unchanged. Forms, notebook and company content remain linear.
+
+## Browse-first revision (2026-09-29)
+Research: STAYFOLIO /ko (editorial collections, exploration/bookmarks), MyRealTrip (clear product names and prices), GetYourGuide /ko-kr (duration and price alongside experiences).
+Show tours immediately after a shorter mobile cover; sticky mobile jump navigation. Put the optional preference form and notebook behind native disclosures. Remove the duplicate recommendation product image entirely, and remove the large tour photograph below the notebook. Keep a compact school/company/private inquiry block. Retain store artwork and original illustrations. Product names and booking links are explicit. Still preview-only pending approval.

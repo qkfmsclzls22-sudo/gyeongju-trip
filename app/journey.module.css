@@ -278,3 +278,67 @@
  .placeSection { padding-block:42px; }
 }
 @media(max-width:360px) { .railDots button { width:20px; } .railArrows button { min-width:34px; } .railControls > span { font-size:9px; } }
+
+/* Browse first; optional planning tools use progressive disclosure. */
+.chapterBar { width:min(90%,1440px); margin-inline:auto; background:var(--studio-paper); }
+.chapterBar a { text-align:center; padding:18px 10px; }
+.chapterBar a + a { padding-left:10px; }
+.chapterBar a span { float:none; display:inline-block; margin-left:5px; }
+.collection { border-top:0; padding-top:55px; padding-bottom:50px; }
+.tourCard:nth-child(2),.tourCard:nth-child(3) { padding-top:0; }
+.tourCard h3 { font-size:26px; }
+.tourBooking { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--studio-line); margin-top:14px; padding-top:14px; min-height:44px; font-size:12px; color:var(--studio-orange); }
+.discovery { display:block; padding:0; margin-bottom:22px; }
+.finderDisclosure { border:1px solid var(--studio-line); }
+.finderDisclosure > summary,.noteDisclosure > summary { list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:24px 28px; cursor:pointer; }
+.finderDisclosure > summary::-webkit-details-marker,.noteDisclosure > summary::-webkit-details-marker { display:none; }
+.finderDisclosure summary h2,.noteDisclosure summary h2 { font-family:var(--font-noto-sans-kr),sans-serif; font-size:21px; font-weight:500; letter-spacing:-.035em; margin-top:6px; line-height:1.6; }
+.finderDisclosure summary p,.noteDisclosure summary p { font-size:12px; color:#60685e; margin-top:6px; line-height:1.8; }
+.disclosurePlus { font-size:25px; flex-shrink:0; transition:transform .2s; }
+.finderDisclosure[open] > summary .disclosurePlus,.noteDisclosure[open] > summary .disclosurePlus { transform:rotate(45deg); }
+.finderDisclosure .finder { border:0; border-top:1px solid var(--studio-line); grid-template-columns:1.2fr 1fr; }
+.finderForm { display:flex; flex-direction:column; }
+.result { display:flex; align-items:center; }
+.resultBody { padding:30px; }
+.notebook { padding:0; margin-bottom:36px; border-top:1px solid var(--studio-line); }
+.noteDisclosure summary h2 > span { color:var(--studio-orange); font-family:var(--font-condensed),sans-serif; margin-left:8px; }
+.noteGrid { margin:0 28px; border-top:1px solid var(--studio-line); padding-block:20px 28px; }
+.noteInnerTitle { font-family:var(--font-editorial),serif; font-size:24px; padding-top:20px; }
+.emptyNote { min-height:130px; }
+.groupCompact { width:min(90%,1440px); margin:0 auto 22px; background:#28352b; color:#f4f1e9; display:flex; align-items:center; justify-content:space-between; gap:30px; padding:35px 40px; }
+.groupCompact h2 { font-size:29px; line-height:1.5; margin-top:9px; }
+.groupCompact p { font-size:12px; line-height:1.9; color:#d3d8cd; margin-top:12px; }
+.groupCompact > a { display:flex; align-items:center; gap:30px; white-space:nowrap; border-bottom:1px solid #c6d0bc; padding:14px 0; font-size:14px; }
+.home.home summary:focus-visible { outline:2px solid var(--studio-orange); outline-offset:4px; }
+@media(max-width:760px) {
+ .coverPhoto { height:300px; }
+ .coverAside { padding-block:19px; }
+ .coverAside h2 { font-size:23px; margin-top:8px; }
+ .coverAside > p { display:none; }
+ .coverLink { padding:12px 0 4px; }
+ .chapterBar { position:sticky; top:62px; z-index:35; width:100%; padding-inline:5%; border-top:1px solid var(--studio-line); box-shadow:0 3px 6px #242b2708; }
+ .chapterBar a { font-size:12px; padding:15px 5px; }
+ .chapterBar a + a { padding-left:5px; }
+ .chapterBar a span { display:inline-block; }
+ .home.home :is(section,[id]) { scroll-margin-top:125px; }
+ .collection { padding-block:30px; }
+ .collectionHeading h2 { font-size:27px; }
+ .tourCard h3 { font-size:23px; }
+ .discovery { padding:0; margin-bottom:14px; }
+ .finderDisclosure > summary,.noteDisclosure > summary { padding:20px; gap:12px; }
+ .finderDisclosure summary h2,.noteDisclosure summary h2 { font-size:18px; }
+ .finderDisclosure summary p,.noteDisclosure summary p { font-size:11px; }
+ .finderDisclosure summary .overline,.noteDisclosure summary .overline { font-size:10px; }
+ .finderDisclosure .finder { grid-template-columns:1fr; }
+ .resultBody { padding:22px; }
+ .notebook { padding:0; margin-bottom:28px; }
+ .noteGrid { margin:0 20px; padding-top:12px; }
+ .noteInnerTitle { font-size:21px; }
+ .groupCompact { display:block; padding:26px 23px; }
+ .groupCompact h2 { font-size:25px; }
+ .groupCompact p { font-size:12px; }
+ .groupCompact > a { margin-top:12px; justify-content:space-between; font-size:13px; }
+ .studio { padding-top:40px; }
+ .studio h2 { font-size:23px; }
+}
+@media(prefers-reduced-motion:reduce) { .disclosurePlus { transition:none; } }
