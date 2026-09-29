@@ -1,29 +1,27 @@
 import { notFound } from "next/navigation";
 import { CtaBanner, SiteFooter, SiteHeader } from "@/app/components/site";
-import {
-  IconArrow,
-  IconCalendar,
-  IconClock,
-  IconMapPin,
-  IconSparkle,
-  IconWallet,
-} from "@/app/components/icons";
+import Image from "next/image";
+import Link from "next/link";
+import { Breadcrumb, SectionLabel } from "@/app/components/inside";
 
-const landmarkData: Record<string, {
-  name: string;
-  subtitle: string;
-  image: string;
-  images: string[];
-  period: string;
-  address: string;
-  hours: string;
-  fee: string;
-  tip: string;
-  description: string[];
-  highlights: { title: string; text: string }[];
-  nearBy: string[];
-  relatedTour?: string;
-}> = {
+const landmarkData: Record<
+  string,
+  {
+    name: string;
+    subtitle: string;
+    image: string;
+    images: string[];
+    period: string;
+    address: string;
+    hours: string;
+    fee: string;
+    tip: string;
+    description: string[];
+    highlights: { title: string; text: string }[];
+    nearBy: string[];
+    relatedTour?: string;
+  }
+> = {
   cheomseongdae: {
     name: "첨성대",
     subtitle: "동양 최고(最古)의 천문대",
@@ -44,15 +42,27 @@ const landmarkData: Record<string, {
       "첨성대는 1962년 국보 제31호로 지정되었으며, 경주 역사 유적 지구의 일부로 유네스코 세계문화유산에 등재되어 있습니다. 천 수백 년의 세월을 견디고 원형에 가까운 모습을 유지하고 있다는 것 자체가 경이로운 일입니다.",
     ],
     highlights: [
-      { title: "국보 제31호", text: "1962년 국보로 지정, 유네스코 세계문화유산" },
-      { title: "정교한 설계", text: "362개의 돌 = 음력 1년의 날수, 27단 = 선덕여왕의 즉위 순서" },
-      { title: "야경 명소", text: "조명이 켜지는 해 질 무렵부터 밤이 가장 아름다워요" },
-      { title: "사진 포인트", text: "정면보다 살짝 비껴서 촬영하면 입체감 있는 사진이 나와요" },
+      {
+        title: "국보 제31호",
+        text: "1962년 국보로 지정, 유네스코 세계문화유산",
+      },
+      {
+        title: "정교한 설계",
+        text: "362개의 돌 = 음력 1년의 날수, 27단 = 선덕여왕의 즉위 순서",
+      },
+      {
+        title: "야경 명소",
+        text: "조명이 켜지는 해 질 무렵부터 밤이 가장 아름다워요",
+      },
+      {
+        title: "사진 포인트",
+        text: "정면보다 살짝 비껴서 촬영하면 입체감 있는 사진이 나와요",
+      },
     ],
     nearBy: ["동궁과월지", "황리단길", "대릉원"],
     relatedTour: "night",
   },
-  "daereungwon": {
+  daereungwon: {
     name: "대릉원",
     subtitle: "신라 왕들이 잠든 고분군",
     image: "/images/landmark-daereungwon.png",
@@ -68,10 +78,22 @@ const landmarkData: Record<string, {
       "황남대총은 대릉원에서 가장 큰 고분으로, 발굴 과정에서 5만 8천여 점의 유물이 출토되었습니다. 지금도 발굴되지 않은 고분들이 많아 신라 역사의 보물창고라 불립니다.",
     ],
     highlights: [
-      { title: "23기 대형 고분", text: "최대 높이 23m, 12만 5천 평 규모의 거대한 고분군" },
-      { title: "천마총 관람 가능", text: "유일하게 내부를 볼 수 있는 고분, 천마도 출토지" },
-      { title: "사계절 아름다운 경관", text: "봄 벚꽃, 여름 녹음, 가을 단풍, 겨울 설경 모두 특별해요" },
-      { title: "황금 유물의 보고", text: "금관, 귀걸이, 팔찌 등 화려한 신라 금 세공품이 쏟아진 곳" },
+      {
+        title: "23기 대형 고분",
+        text: "최대 높이 23m, 12만 5천 평 규모의 거대한 고분군",
+      },
+      {
+        title: "천마총 관람 가능",
+        text: "유일하게 내부를 볼 수 있는 고분, 천마도 출토지",
+      },
+      {
+        title: "사계절 아름다운 경관",
+        text: "봄 벚꽃, 여름 녹음, 가을 단풍, 겨울 설경 모두 특별해요",
+      },
+      {
+        title: "황금 유물의 보고",
+        text: "금관, 귀걸이, 팔찌 등 화려한 신라 금 세공품이 쏟아진 곳",
+      },
     ],
     nearBy: ["첨성대", "황리단길", "국립경주박물관"],
     relatedTour: "museum",
@@ -92,9 +114,18 @@ const landmarkData: Record<string, {
       "1975년 발굴 조사에서 '月池(월지)'라고 쓰인 토기 파편이 발견되어 '월지'가 원래 이름임이 밝혀졌습니다. 과거엔 '안압지(雁鴨池)'라 불렸으나 지금은 공식적으로 동궁과월지로 부릅니다.",
     ],
     highlights: [
-      { title: "경주 최고의 야경", text: "야간 조명이 연못에 반사되는 풍경은 경주에서 가장 아름다운 뷰" },
-      { title: "복원된 신라 건축", text: "임해전 등 신라 양식의 건물들이 연못 옆에 복원되어 있어요" },
-      { title: "원래 이름은 월지", text: "오리와 기러기가 노닌다는 안압지로 불렸으나 월지가 원래 이름" },
+      {
+        title: "경주 최고의 야경",
+        text: "야간 조명이 연못에 반사되는 풍경은 경주에서 가장 아름다운 뷰",
+      },
+      {
+        title: "복원된 신라 건축",
+        text: "임해전 등 신라 양식의 건물들이 연못 옆에 복원되어 있어요",
+      },
+      {
+        title: "원래 이름은 월지",
+        text: "오리와 기러기가 노닌다는 안압지로 불렸으나 월지가 원래 이름",
+      },
       { title: "야경투어 주요 코스", text: "경주트립 야경투어의 핵심 방문지" },
     ],
     nearBy: ["첨성대", "월정교", "황리단길"],
@@ -116,10 +147,22 @@ const landmarkData: Record<string, {
       "1995년 석굴암과 함께 유네스코 세계문화유산으로 등재되었습니다. 현재 사찰은 고려 말 왜구에 의해 불타고 조선 시대에 중수된 것이지만, 석조 구조물들은 신라 시대 원형을 그대로 유지하고 있습니다.",
     ],
     highlights: [
-      { title: "국보 7점 보유", text: "다보탑, 석가탑, 청운교·백운교, 금동아미타여래좌상 등" },
-      { title: "유네스코 세계문화유산", text: "1995년 석굴암과 함께 세계문화유산 등재" },
-      { title: "계절별 아름다운 경관", text: "봄 벚꽃과 가을 단풍철이 가장 아름다워요" },
-      { title: "전문 해설사 투어", text: "경주트립 문화해설사와 함께하면 깊이가 달라집니다" },
+      {
+        title: "국보 7점 보유",
+        text: "다보탑, 석가탑, 청운교·백운교, 금동아미타여래좌상 등",
+      },
+      {
+        title: "유네스코 세계문화유산",
+        text: "1995년 석굴암과 함께 세계문화유산 등재",
+      },
+      {
+        title: "계절별 아름다운 경관",
+        text: "봄 벚꽃과 가을 단풍철이 가장 아름다워요",
+      },
+      {
+        title: "전문 해설사 투어",
+        text: "경주트립 문화해설사와 함께하면 깊이가 달라집니다",
+      },
     ],
     nearBy: ["석굴암", "국립경주박물관"],
     relatedTour: "bulguksa",
@@ -140,10 +183,22 @@ const landmarkData: Record<string, {
       "석굴 내부의 습도와 온도 조절, 음향 설계까지 완벽하게 계산된 당시의 과학적 수준에 현대 건축가들도 놀라움을 금치 못합니다. 1995년 불국사와 함께 유네스코 세계문화유산에 등재되었습니다.",
     ],
     highlights: [
-      { title: "일출 명소", text: "동해를 향한 본존불과 해돋이가 만드는 환상적인 장면" },
-      { title: "신라의 건축 과학", text: "습도·온도·음향 조절까지 설계된 1,200년 전 건축 공학의 결정체" },
-      { title: "유네스코 세계문화유산", text: "불국사와 함께 1995년 등재된 세계적 문화재" },
-      { title: "조용한 영적 공간", text: "이른 아침 방문 시 고요하고 신성한 분위기 경험 가능" },
+      {
+        title: "일출 명소",
+        text: "동해를 향한 본존불과 해돋이가 만드는 환상적인 장면",
+      },
+      {
+        title: "신라의 건축 과학",
+        text: "습도·온도·음향 조절까지 설계된 1,200년 전 건축 공학의 결정체",
+      },
+      {
+        title: "유네스코 세계문화유산",
+        text: "불국사와 함께 1995년 등재된 세계적 문화재",
+      },
+      {
+        title: "조용한 영적 공간",
+        text: "이른 아침 방문 시 고요하고 신성한 분위기 경험 가능",
+      },
     ],
     nearBy: ["불국사"],
     relatedTour: "bulguksa",
@@ -164,10 +219,22 @@ const landmarkData: Record<string, {
       "월정교 위 누각에 올라가면 남천과 경주 시내가 한눈에 내려다보입니다. 경주 야경투어의 주요 코스 중 하나로, 동궁과월지·첨성대와 함께 경주 야경 3대 명소로 꼽힙니다.",
     ],
     highlights: [
-      { title: "경주 야경 3대 명소", text: "동궁과월지, 첨성대와 함께 경주 밤을 대표하는 명소" },
-      { title: "누각이 있는 다리", text: "다리 위에 누각이 올려진 신라 양식의 특이한 구조" },
-      { title: "수면 반영 사진", text: "야간 조명이 남천에 반사되는 사진이 SNS 인기 포인트" },
-      { title: "야경투어 필수 코스", text: "경주트립 청사초롱 야경투어의 핵심 방문 장소" },
+      {
+        title: "경주 야경 3대 명소",
+        text: "동궁과월지, 첨성대와 함께 경주 밤을 대표하는 명소",
+      },
+      {
+        title: "누각이 있는 다리",
+        text: "다리 위에 누각이 올려진 신라 양식의 특이한 구조",
+      },
+      {
+        title: "수면 반영 사진",
+        text: "야간 조명이 남천에 반사되는 사진이 SNS 인기 포인트",
+      },
+      {
+        title: "야경투어 필수 코스",
+        text: "경주트립 청사초롱 야경투어의 핵심 방문 장소",
+      },
     ],
     nearBy: ["동궁과월지", "첨성대", "황리단길"],
     relatedTour: "night",
@@ -188,10 +255,22 @@ const landmarkData: Record<string, {
       "한복을 대여해 입고 황리단길을 산책하거나, 전통 찻집에서 쌍화차 한 잔을 마시며 천년 도시의 감성을 느낄 수 있습니다. 경주 빵, 찰보리빵, 황남빵 등 경주의 대표 먹거리도 이곳에서 맛볼 수 있습니다.",
     ],
     highlights: [
-      { title: "감성 한옥 카페", text: "100년 한옥을 개조한 독특하고 아름다운 카페들" },
-      { title: "한복 대여 & 체험", text: "한복 입고 고분 배경 사진 찍기 — 경주 여행 필수 체험" },
-      { title: "경주 대표 먹거리", text: "황남빵, 찰보리빵 등 경주만의 전통 먹거리 골목" },
-      { title: "인생샷 명소", text: "한옥 골목과 고분이 어우러진 SNS 인기 포토 스팟" },
+      {
+        title: "감성 한옥 카페",
+        text: "100년 한옥을 개조한 독특하고 아름다운 카페들",
+      },
+      {
+        title: "한복 대여 & 체험",
+        text: "한복 입고 고분 배경 사진 찍기 — 경주 여행 필수 체험",
+      },
+      {
+        title: "경주 대표 먹거리",
+        text: "황남빵, 찰보리빵 등 경주만의 전통 먹거리 골목",
+      },
+      {
+        title: "인생샷 명소",
+        text: "한옥 골목과 고분이 어우러진 SNS 인기 포토 스팟",
+      },
     ],
     nearBy: ["대릉원", "첨성대", "동궁과월지"],
   },
@@ -203,153 +282,143 @@ const tourLinks: Record<string, { slug: string; name: string }> = {
   bulguksa: { slug: "bulguksa", name: "불국사·석굴암 문화해설사 역사투어" },
 };
 
-export default async function LandmarkPage({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const data = landmarkData[(await params).slug];
+  return {
+    title: data
+      ? `${data.name} 여행 가이드 | 경주트립`
+      : "경주 명소 | 경주트립",
+  };
+}
+
+export default async function LandmarkPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const data = landmarkData[slug];
   if (!data) return notFound();
 
+  const related = data.relatedTour && tourLinks[data.relatedTour];
   return (
-    <main className="inner-page min-h-screen bg-white">
-      <SiteHeader back={{ href: "/#landmarks", label: "유적지 목록" }} />
-
-      {/* 히어로 */}
-      <section className="bg-cream pt-24 pb-10 md:pt-32">
-        <div className="max-w-4xl mx-auto px-4">
-          <span className="inline-block bg-blush text-brand-600 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-            경주 유적지
-          </span>
-          <h1 className="text-4xl md:text-6xl font-black text-ink tracking-tight mb-3">
-            {data.name}
-          </h1>
-          <p className="text-gray-500 text-lg mb-8">{data.subtitle}</p>
-          <div className=" overflow-hidden aspect-[16/9] bg-blush">
-            <img
-              src={data.image}
-              alt={data.name}
-              className="w-full h-full object-cover object-center"
-            />
+    <main className="inner-page place-page">
+      <SiteHeader back={{ href: "/#landmarks", label: "경주 명소" }} />
+      <div className="page-width">
+        <Breadcrumb
+          current={data.name}
+          parent={{ href: "/#landmarks", label: "경주 명소" }}
+        />
+        <section className="place-hero">
+          <div>
+            <span className="page-kicker">
+              GYEONGJU FIELD GUIDE / {slug.toUpperCase().replaceAll("-", " ")}
+            </span>
+            <h1>{data.name}</h1>
           </div>
-        </div>
-      </section>
-
-      {/* 기본 정보 */}
-      <section className="bg-white border-b border-brand-100">
-        <div className="max-w-4xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-          {[
-            { Icon: IconCalendar, label: "시대", value: data.period },
-            { Icon: IconMapPin, label: "주소", value: data.address },
-            { Icon: IconClock, label: "운영시간", value: data.hours },
-            { Icon: IconWallet, label: "입장료", value: data.fee },
-          ].map(({ Icon, label, value }) => (
-            <div key={label} className="flex flex-col gap-1.5">
-              <span className="inline-flex items-center gap-1.5 text-brand-500 font-semibold text-xs">
-                <Icon className="w-3.5 h-3.5" />
-                {label}
-              </span>
-              <span className="text-gray-600 leading-snug">{value}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        {/* 소개 */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-ink mb-6">소개</h2>
-          <div className="space-y-4">
-            {data.description.map((para, i) => (
-              <p key={i} className="text-gray-600 leading-relaxed text-base">{para}</p>
-            ))}
-          </div>
+          <p>{data.subtitle}</p>
         </section>
-
-        {/* 이런 점이 특별해요 */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-black text-ink tracking-tight mb-6">이런 점이 특별해요</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {data.highlights.map((h) => (
-              <div key={h.title} className="bg-cream  p-5">
-                <p className="font-bold text-ink text-sm mb-1.5">{h.title}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{h.text}</p>
+        <figure className="place-panorama">
+          <Image src={data.image} alt={data.name} fill priority sizes="90vw" />
+        </figure>
+        <div className="place-layout">
+          <div className="place-copy">
+            <section>
+              <SectionLabel number="01">이곳의 이야기</SectionLabel>
+              {data.description.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </section>
+            <section>
+              <SectionLabel number="02">눈여겨볼 장면들</SectionLabel>
+              <div className="place-highlights">
+                {data.highlights.map((highlight, i) => (
+                  <article key={highlight.title}>
+                    <span>0{i + 1}</span>
+                    <h3>{highlight.title}</h3>
+                    <p>{highlight.text}</p>
+                  </article>
+                ))}
               </div>
-            ))}
+            </section>
+            <section className="place-tip">
+              <span className="page-kicker">A NOTE FOR YOUR VISIT</span>
+              <h2>조금 더 잘 즐기는 방법</h2>
+              <p>{data.tip}</p>
+            </section>
+            {related && (
+              <Link className="place-related" href={`/tours/${related.slug}`}>
+                <Image
+                  src={`/images/product-smartstore-${related.slug}.webp`}
+                  alt=""
+                  width={112}
+                  height={112}
+                />
+                <div>
+                  <span className="page-kicker">CONTINUE THE STORY</span>
+                  <h3>{related.name} ↗</h3>
+                  <p>해설과 함께 경주의 이야기를 더 만나보세요.</p>
+                </div>
+              </Link>
+            )}
           </div>
-        </section>
-
-        {/* 여행 팁 */}
-        <section className="mb-16">
-          <div className="bg-brand-50 border border-brand-200  p-6">
-            <h2 className="flex items-center gap-2 text-lg font-bold text-brand-700 mb-3">
-              <IconSparkle className="w-5 h-5" />
-              여행 팁
-            </h2>
-            <p className="text-brand-700/90 leading-relaxed">{data.tip}</p>
-          </div>
-        </section>
-
-        {/* 관련 투어 */}
-        {data.relatedTour && tourLinks[data.relatedTour] && (
-          <section className="mb-16">
-            <h2 className="text-2xl font-black text-ink tracking-tight mb-6">
-              이곳을 방문하는 경주트립 투어
-            </h2>
-            <a
-              href={`/tours/${tourLinks[data.relatedTour].slug}`}
-              className="group flex items-center justify-between gap-4 p-6  bg-white border border-brand-100 hover:border-brand-300  transition-all"
-            >
-              <div>
-                <p className="text-xs font-bold text-brand-500 tracking-[0.15em] mb-1.5">
-                  RECOMMENDED TOUR
-                </p>
-                <p className="font-bold text-ink text-lg leading-snug">
-                  {tourLinks[data.relatedTour].name}
-                </p>
-                <p className="text-gray-500 text-sm mt-1">
-                  해설사와 함께 걸으며 듣는 특별한 경주 여행
-                </p>
-              </div>
-              <span className="shrink-0 w-11 h-11 rounded-full bg-blush group-hover:bg-brand-500 text-brand-500 group-hover:text-white flex items-center justify-center transition-colors">
-                <IconArrow className="w-4 h-4" />
-              </span>
+          <aside className="place-practical">
+            <span className="page-kicker">BEFORE YOU GO</span>
+            <h2>방문을 위한 메모</h2>
+            <dl>
+              {[
+                { label: "시대", value: data.period },
+                { label: "주소", value: data.address },
+                { label: "운영시간", value: data.hours },
+                { label: "입장료", value: data.fee },
+              ].map((row) => (
+                <div key={row.label}>
+                  <dt>{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p>
+              운영시간과 요금은 방문 전 공식 안내에서 한 번 더 확인해 주세요.
+            </p>
+            <a className="page-link" href="/now">
+              지금 경주 소식 보기 ↗
             </a>
-          </section>
-        )}
-
-        {/* 주변 유적지 */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-black text-ink tracking-tight mb-6">함께 보면 좋은 유적지</h2>
-          <div className="flex flex-wrap gap-2.5">
+          </aside>
+        </div>
+        <section className="page-section">
+          <SectionLabel number="03">다음 산책을 이어갈 곳</SectionLabel>
+          <div className="place-nearby">
             {data.nearBy.map((name) => {
-              const nearSlug = Object.keys(landmarkData).find((k) => landmarkData[k].name === name);
-              return (
-                <a
+              const entry = Object.entries(landmarkData).find(
+                ([, place]) => place.name === name,
+              );
+              return entry ? (
+                <Link key={name} href={`/landmarks/${entry[0]}`}>
+                  {name} <span aria-hidden="true">↗</span>
+                </Link>
+              ) : (
+                <Link
                   key={name}
-                  href={nearSlug ? `/landmarks/${nearSlug}` : "#"}
-                  className="px-4 py-2 bg-white border border-brand-100 hover:border-brand-400 hover:bg-blush rounded-full text-sm font-medium text-gray-600 transition-colors"
+                  href={
+                    name === "국립경주박물관" ? "/tours/museum" : "/#landmarks"
+                  }
                 >
-                  {name}
-                </a>
+                  {name} <span aria-hidden="true">↗</span>
+                </Link>
               );
             })}
           </div>
         </section>
-
-        {/* 돌아가기 */}
-        <div className="text-center">
-          <a
-            href="/#landmarks"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-ink text-sm transition-colors"
-          >
-            ← 유적지 목록으로 돌아가기
-          </a>
-        </div>
       </div>
-
       <CtaBanner
-        title={`${data.name}, 해설사와 함께 걸어보세요`}
-        desc="같은 유적지도 이야기를 들으며 보면 완전히 달라집니다"
+        title="당신의 경주, 함께 계획해요."
+        desc="가족 여행부터 우리 팀만의 일정까지, 경주트립이 여행을 함께 만듭니다."
       />
-
       <SiteFooter />
     </main>
   );

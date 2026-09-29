@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { Breadcrumb, SectionLabel } from "@/app/components/inside";
 import { CtaBanner, SiteFooter, SiteHeader } from "@/app/components/site";
-import { IconGuide, IconMedal, IconStar, IconTower, IconUsers } from "@/app/components/icons";
+import { IconGuide, IconTower, IconUsers } from "@/app/components/icons";
 
 export const metadata: Metadata = {
   title: "기업소개 - 경주트립",
@@ -50,11 +52,23 @@ const corporateClients = [
     count: "40여명",
     program: "원전사후관리처 · 국립경주박물관 도슨트투어",
   },
-  { name: "부산교육연수원", count: "100여명", program: "원감교육 · 국립경주박물관 도슨트투어" },
-  { name: "금산군가족센터", count: "70여명", program: "국립경주박물관 도슨트투어" },
+  {
+    name: "부산교육연수원",
+    count: "100여명",
+    program: "원감교육 · 국립경주박물관 도슨트투어",
+  },
+  {
+    name: "금산군가족센터",
+    count: "70여명",
+    program: "국립경주박물관 도슨트투어",
+  },
   { name: "풍산금속", count: "VIP", program: "역사투어 (영어 진행)" },
   { name: "슈프리마", count: "70여명", program: "경주 야경투어 신라별빛야행" },
-  { name: "군산시공무원노동조합", count: "40여명", program: "국립경주박물관 도슨트투어" },
+  {
+    name: "군산시공무원노동조합",
+    count: "40여명",
+    program: "국립경주박물관 도슨트투어",
+  },
   { name: "한국체육진흥공단", count: "30여명", program: "불국사투어" },
 ];
 
@@ -73,176 +87,170 @@ const companyInfo = [
   { label: "대표자", value: "김봉열" },
   { label: "설립일", value: "2025년 9월" },
   { label: "사업자등록번호", value: "694-75-00685" },
-  { label: "주소", value: "경상북도 경주시 계림로107 경북관광기업지원센터 6층" },
+  {
+    label: "주소",
+    value: "경상북도 경주시 계림로107 경북관광기업지원센터 6층",
+  },
   { label: "일반 문의", value: "010-8402-8543 (문자 요망)" },
   { label: "단체 문의", value: "010-5552-7971" },
   { label: "이메일", value: "gjtrip11@naver.com" },
   { label: "운영시간", value: "매일 09:00 ~ 18:00 (연중무휴)" },
 ];
 
-function ClientList({ items }: { items: { name: string; count: string; program: string }[] }) {
+function ClientList({
+  items,
+}: {
+  items: { name: string; count: string; program: string }[];
+}) {
   return (
-    <div className="bg-white  border border-brand-50 divide-y divide-brand-50 overflow-hidden">
-      {items.map((c) => (
-        <div key={c.name} className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 p-5">
-          <span className="font-bold text-ink text-sm sm:w-60 shrink-0">{c.name}</span>
-          <span className="text-sm text-gray-500 flex-1 leading-relaxed">{c.program}</span>
-          <span className="self-start sm:self-auto text-xs font-semibold text-brand-600 bg-blush px-2.5 py-1 rounded-full shrink-0">
-            {c.count}
-          </span>
-        </div>
+    <ul className="company-client-list">
+      {items.map((client) => (
+        <li key={client.name}>
+          <strong>{client.name}</strong>
+          <p>{client.program}</p>
+          <span>{client.count}</span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
-
 export default function CompanyPage() {
   return (
-    <main className="inner-page min-h-screen bg-white">
+    <main className="inner-page company-page">
       <SiteHeader />
-
-      <section className="relative overflow-hidden bg-cream pt-28 pb-16 md:pt-36 md:pb-20">
-        <div className="relative max-w-5xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-4">COMPANY</p>
-          <h1 className="text-4xl md:text-5xl font-black text-ink leading-[1.2] tracking-tight mb-5">
-            경주를 더 깊게,
+      <div className="page-width">
+        <Breadcrumb current="기업소개" />
+        <section className="company-hero">
+          <div>
+            <span className="page-kicker">
+              A LOCAL TRAVEL STUDIO / GYEONGJU
+            </span>
+            <h1>
+              경주를 더 깊게,
+              <br />
+              여행은 더 <em>즐겁게.</em>
+            </h1>
+          </div>
+          <p className="page-lead">
+            경주에 살며, 경주의 다음 여행을 만듭니다.
             <br />
-            여행은 더 <span className="text-brand-500">즐겁게.</span>
-          </h1>
-          <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-            경주트립은 경주의 역사·문화에 콘텐츠 기획력과 디지털 기술을 더해 새로운 여행 경험을 만드는 문화관광콘텐츠기업입니다.
+            지역의 이야기와 콘텐츠 기획, 디지털 경험을 잇는 문화관광콘텐츠기업
+            경주트립입니다.
           </p>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">OUR STORY</p>
-          <h2 className="text-3xl font-black text-ink tracking-tight mb-8">
-            그냥 지나치면 돌덩이,
-            <br />
-            알고 보면 천년의 이야기
-          </h2>
-          <div className="space-y-5 text-gray-600 leading-relaxed">
+        </section>
+        <figure className="company-panorama">
+          <Image
+            src="/images/tour-bulguksa-field.webp"
+            alt="해설사와 여행객이 함께한 불국사 현장"
+            fill
+            priority
+            sizes="90vw"
+          />
+          <figcaption>이야기가 있는 현장, 경주트립과 함께.</figcaption>
+        </figure>
+        <nav className="page-jump" aria-label="기업소개 목차">
+          <a href="#our-story">우리의 이야기</a>
+          <a href="#our-work">하는 일</a>
+          <a href="#our-clients">함께한 곳</a>
+          <a href="#our-company">회사 정보</a>
+        </nav>
+        <section id="our-story" className="page-section company-intro">
+          <div>
+            <span className="page-kicker">01 / OUR STORY</span>
+            <h2>
+              같은 풍경에도,
+              <br />
+              다른 이야기가 있습니다.
+            </h2>
+          </div>
+          <div className="company-intro-copy">
             <p>
-              경주는 도시 전체가 박물관이라고 불립니다. 그런데 정작 다녀온 사람들에게 물어보면
-              &ldquo;돌탑이랑 무덤 봤다&rdquo;는 말이 돌아오곤 합니다. 아는 만큼 보이는 곳인데,
-              알려주는 사람이 없었기 때문입니다.
+              돌탑 앞에서 조금 더 머물고, 유물 속 사람들의 삶을 상상하는 일.
+              경주트립은 익숙한 풍경을 새롭게 바라보는 여행을 기획합니다.
             </p>
             <p>
-              경주트립은 여기서 시작했습니다. 유물 앞에 붙은 설명문을 읽어주는 것이 아니라, 그
-              시대 사람들이 어떤 마음으로 이것을 만들었는지 이야기로 풀어드립니다. 재미없으면
-              기억에 남지 않고, 기억에 남지 않으면 여행이 아니니까요.
+              설명문을 읽는 데서 그치지 않고, 문화유산이 만들어진 배경과 그 안에
+              담긴 이야기를 함께 나눕니다. 아이와 어른이 각자의 시선으로 경주를
+              발견할 수 있도록요.
             </p>
             <p>
-              현장에서 쌓은 지역 전문성을 바탕으로 AI 기술을 활용한 맞춤형 여행 추천과 일정 설계,
-              디지털 문화유산 체험으로 사업을 확장해 나가고자 합니다. 여행의 발견부터 계획·예약·체험까지,
-              여행자와 지역을 잇는 경주 대표 여행 플랫폼으로 성장하는 것이 목표입니다.
+              현장에서 쌓은 지역 전문성을 바탕으로 맞춤 여행, AI 일정 설계,
+              디지털 문화유산 체험으로 경험을 넓혀갑니다. 여행의 발견부터
+              계획·예약·체험까지 연결하는 경주 여행 플랫폼을 지향합니다.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-cream">
-        <div className="max-w-5xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">WHAT WE DO</p>
-          <h2 className="text-3xl font-black text-ink tracking-tight mb-10">경주트립이 하는 일</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {doing.map(({ Icon, title, text }) => (
-              <div key={title} className="bg-white  border border-brand-50 p-7">
-                <span className="inline-flex w-12 h-12  bg-blush text-brand-500 items-center justify-center mb-5">
-                  <Icon className="w-6 h-6" />
-                </span>
-                <h3 className="font-bold text-ink mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{text}</p>
+        </section>
+        <section id="our-work" className="page-section">
+          <SectionLabel number="02">여행을 만드는 세 가지 일</SectionLabel>
+          <div className="company-services">
+            {doing.map(({ title, text }, i) => (
+              <article key={title}>
+                <span>0{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="company-stats">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-blush">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="grid sm:grid-cols-3 gap-4 mb-4">
-            {stats.map((s) => (
-              <div key={s.label} className="bg-white  px-6 py-8 text-center">
-                <div className="text-3xl font-black text-brand-500 mb-1.5">{s.value}</div>
-                <div className="text-xs text-gray-400">{s.label}</div>
-              </div>
-            ))}
-          </div>
-          <div className="bg-white  px-6 py-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-            <span className="inline-flex items-center gap-2 font-semibold text-ink">
-              <IconMedal className="w-5 h-5 text-sun-500" />
-              네이버 스마트스토어 프리미엄 우수셀러
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-gray-500">
-              <IconStar className="w-4 h-4 text-sun-400" />
-              경북관광기업지원센터 입주기업
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">HISTORY</p>
-          <h2 className="text-3xl font-black text-ink tracking-tight mb-10">연혁</h2>
-          <ol>
-            {history.map((h, i) => (
-              <li key={`${h.date}-${i}`} className="grid grid-cols-[4.5rem_1.25rem_1fr] gap-x-4">
-                <span className="text-sm font-black text-brand-500 pt-4">{h.date}</span>
-                <span className="relative flex justify-center">
-                  <span
-                    className={`w-px bg-brand-100 ${i === history.length - 1 ? "h-5" : "h-full"}`}
-                  />
-                  <span className="absolute top-4 w-2.5 h-2.5 rounded-full bg-brand-500 ring-4 ring-white" />
-                </span>
-                <span className="text-ink font-medium py-4 leading-snug">{h.text}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-cream">
-        <div className="max-w-4xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">CLIENTS</p>
-          <h2 className="text-3xl font-black text-ink tracking-tight mb-3">단체 진행 이력</h2>
-          <p className="text-gray-500 mb-10">
-            기업·기관 워크숍부터 학교 수학여행까지, 규모에 맞춰 진행해왔습니다.
+          <p className="company-credentials">
+            네이버 스마트스토어 프리미엄 우수셀러 · 경북관광기업지원센터
+            입주기업
           </p>
-
-          <h3 className="font-bold text-ink mb-4">기업·기관 및 MICE</h3>
-          <div className="mb-10">
-            <ClientList items={corporateClients} />
-          </div>
-
-          <h3 className="font-bold text-ink mb-4">학교 수학여행 및 단체</h3>
+        </section>
+        <section id="our-clients" className="page-section company-clients">
+          <SectionLabel number="03">함께 걸어온 곳들</SectionLabel>
+          <p className="page-lead">
+            기업 연수부터 학교 수학여행까지.
+            <br />
+            인원과 목적에 맞는 경주의 하루를 설계합니다.
+          </p>
+          <h3>기업·기관 및 MICE</h3>
+          <ClientList items={corporateClients.slice(0, 3)} />
+          <details className="company-client-more">
+            <summary>
+              기업·기관 진행 이력 더 보기 <span aria-hidden="true">+</span>
+            </summary>
+            <ClientList items={corporateClients.slice(3)} />
+          </details>
+          <h3>학교 수학여행 및 단체</h3>
           <ClientList items={schoolClients} />
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <p className="text-brand-500 font-bold text-xs tracking-[0.2em] mb-3">COMPANY INFO</p>
-          <h2 className="text-3xl font-black text-ink tracking-tight mb-8">회사 정보</h2>
-          <dl className="bg-cream  p-7 space-y-4 text-sm">
-            {companyInfo.map((row) => (
-              <div key={row.label} className="flex flex-col sm:flex-row gap-1 sm:gap-6">
-                <dt className="text-gray-400 sm:w-36 shrink-0">{row.label}</dt>
-                <dd className="text-gray-700 leading-relaxed">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
+        </section>
+        <section id="our-company" className="page-section company-archive">
+          <details>
+            <summary>경주트립이 걸어온 길</summary>
+            <ol className="company-history">
+              {history.map((item, i) => (
+                <li key={`${item.date}-${i}`}>
+                  <span>{item.date}</span>
+                  <p>{item.text}</p>
+                </li>
+              ))}
+            </ol>
+          </details>
+          <details>
+            <summary>회사 정보와 연락처</summary>
+            <dl className="company-info">
+              {companyInfo.map((row) => (
+                <div key={row.label}>
+                  <dt>{row.label}</dt>
+                  <dd>{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </details>
+        </section>
+      </div>
       <CtaBanner
-        title="단체 일정도 맞춰 진행해드립니다"
-        desc="인원과 일정만 알려주시면 코스와 견적을 정리해 보내드릴게요"
+        title="우리 팀의 경주를 함께 만들어볼까요?"
+        desc="인원과 일정, 여행의 목적을 알려주세요. 알맞은 코스와 견적을 제안합니다."
       />
-
       <SiteFooter />
     </main>
   );
