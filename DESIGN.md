@@ -29,3 +29,6 @@ This direction supersedes the rejected generic product-hero homepage. The websit
 - The original panoramic night illustration closes the page, after the studio statement and before contact information.
 - Photo-led cover and real tour photographs retain their existing role. No new images or altered artwork.
 - This change is preview-only pending owner review; do not merge or promote to production without approval.
+
+## Store product images
+Use the existing product-smartstore-museum/night/bulguksa assets for the homepage collection and suggestion result. Keep 1:1 frames, no cropping, no text/icon overlays, and no hover zoom that crops lettering. Editorial numbering sits above each image.

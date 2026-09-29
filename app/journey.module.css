@@ -242,3 +242,12 @@
  .illustratedHorizon { overflow:hidden; }
  .illustratedHorizon img { width:100%; margin-left:0; }
 }
+
+/* Preserve the store artwork and all embedded lettering without overlays/cropping. */
+.productEdition { font-family:var(--font-condensed),sans-serif; font-size:13px; letter-spacing:.12em; padding-bottom:10px; color:#5b645a; }
+.tourImage { aspect-ratio:1; }
+.tourImage::after { display:none; }
+.tourImage > img { object-fit:contain; }
+.resultPhoto { height:auto; aspect-ratio:1; }
+.resultPhoto > img { object-fit:contain; }
+@media(hover:hover) { .tourImage:hover img { transform:none; } }

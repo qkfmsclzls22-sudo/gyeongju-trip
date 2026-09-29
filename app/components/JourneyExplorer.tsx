@@ -10,9 +10,9 @@ const editions = {
   night: { word: "NIGHTFALL", title: "해가 지면,\n다른 경주가 열린다.", caption: "동궁과월지, 경주의 밤", image: "landmark-donggung-wolji.jpg", alt: "연못 위로 황금빛 반영이 펼쳐지는 동궁과월지의 밤", copy: "손에는 청사초롱, 발걸음에는 이야기.\n경주의 밤을 함께 걸어보세요." },
 };
 const tours: { id: TourId; no: string; title: string; subtitle: string; image: string; setting: string; note: string; route: string[] }[] = [
-  { id: "museum", no: "01", title: "유물 앞의 두 시간", subtitle: "국립경주박물관 도슨트", image: "gallery-museum-story.webp", setting: "실내 중심 · 오전 / 오후", note: "유물을 자세히 들여다보고 싶은 날. 해설과 함께 신라의 사람과 생활을 만나봅니다.", route: ["성덕대왕신종", "신라역사관", "신라미술관"] },
-  { id: "bulguksa", no: "02", title: "돌에 새긴 이야기", subtitle: "불국사 도슨트", image: "gyeongju-bulguksa-sky.webp", setting: "야외 · 계단 · 오전 / 오후", note: "산책에 이야기를 더하고 싶은 날. 불국사의 건축과 돌에 담긴 뜻을 읽어봅니다.", route: ["일주문", "청운교·백운교", "대웅전", "극락전"] },
-  { id: "night", no: "03", title: "청사초롱을 드는 밤", subtitle: "신라별빛야행", image: "gallery-bridge-walk.webp", setting: "야외 도보 · 저녁", note: "경주의 밤을 천천히 누리고 싶은 날. 청사초롱을 들고 해설사와 함께 걷습니다.", route: ["동궁과월지 집결", "월성해자", "월정교", "첨성대"] },
+  { id: "museum", no: "01", title: "유물 앞의 두 시간", subtitle: "국립경주박물관 도슨트", image: "product-smartstore-museum.webp", setting: "실내 중심 · 오전 / 오후", note: "유물을 자세히 들여다보고 싶은 날. 해설과 함께 신라의 사람과 생활을 만나봅니다.", route: ["성덕대왕신종", "신라역사관", "신라미술관"] },
+  { id: "bulguksa", no: "02", title: "돌에 새긴 이야기", subtitle: "불국사 도슨트", image: "product-smartstore-bulguksa.webp", setting: "야외 · 계단 · 오전 / 오후", note: "산책에 이야기를 더하고 싶은 날. 불국사의 건축과 돌에 담긴 뜻을 읽어봅니다.", route: ["일주문", "청운교·백운교", "대웅전", "극락전"] },
+  { id: "night", no: "03", title: "청사초롱을 드는 밤", subtitle: "신라별빛야행", image: "product-smartstore-night.webp", setting: "야외 도보 · 저녁", note: "경주의 밤을 천천히 누리고 싶은 날. 청사초롱을 들고 해설사와 함께 걷습니다.", route: ["동궁과월지 집결", "월성해자", "월정교", "첨성대"] },
 ];
 const companions = [{ value: "family", label: "아이와 함께" }, { value: "couple", label: "연인·친구와" }, { value: "solo", label: "나 혼자" }, { value: "group", label: "학교·기업 단체" }];
 const interests = [{ value: "museum", label: "유물과 이야기" }, { value: "bulguksa", label: "건축과 산책" }, { value: "night", label: "야경과 사진" }];
@@ -101,7 +101,7 @@ export default function JourneyExplorer() {
       <div className={s.collectionHeading}><div><span className={s.overline}>02 / THE COLLECTION</span><h2 id="tours-title">경주를 만나는<br /><em>세 가지 시선.</em></h2></div><button type="button" className={s.lineButton} aria-expanded={showCompare} aria-controls="tour-comparison" onClick={() => setShowCompare(!showCompare)}>{showCompare ? "비교 접기 −" : "투어 한눈에 비교 +"}</button></div>
       {showCompare && <div id="tour-comparison" className={s.comparison}><table><caption>정규 투어 비교 · 성인 1인 기준</caption><thead><tr><th scope="col">투어</th><th scope="col">공간 / 시간</th><th scope="col">성인 요금</th><th scope="col">자세히</th></tr></thead><tbody>{tours.map(tour => <tr key={tour.id}><th scope="row">{tour.subtitle}</th><td>{tour.setting}<br />{TOURS[tour.id].operatingHours}</td><td>{TOURS[tour.id].adultPrice.toLocaleString("ko-KR")}원</td><td><a href={`/tours/${tour.id}`} aria-label={`${tour.subtitle} 상세 보기`}>보기 ↗</a></td></tr>)}</tbody></table><p>최소 7명 모집 시 출발합니다. 실제 운영·요금·포함 사항은 각 상품에서 확인해주세요.</p></div>}
       <div className={s.tourGrid}>{tours.map(tour => <article key={tour.id} className={s.tourCard}>
-        <a href={`/tours/${tour.id}`} className={s.tourImage}><Image src={`/images/${tour.image}`} alt={tour.subtitle} fill sizes="(max-width: 760px) 90vw, 30vw" /><span>{tour.no} / {tour.id.toUpperCase()}</span><span className={s.imageArrow} aria-hidden="true">↗</span></a>
+        <div className={s.productEdition}>{tour.no} / {tour.id.toUpperCase()}</div><a href={`/tours/${tour.id}`} className={s.tourImage}><Image src={`/images/${tour.image}`} alt={tour.subtitle} fill sizes="(max-width: 760px) 90vw, 30vw" /></a>
         <div className={s.tourMeta}><span>{tour.setting}</span><button type="button" aria-label={`${tour.subtitle} ${saved.includes(tour.id) ? "여행노트에서 빼기" : "여행노트에 담기"}`} aria-pressed={saved.includes(tour.id)} disabled={!storageReady} onClick={() => toggleSaved(tour.id)}>{saved.includes(tour.id) ? "✓ 담김" : "+ 담기"}</button></div><h3><a href={`/tours/${tour.id}`}>{tour.title}</a></h3><p>{tour.subtitle}</p><div className={s.tourPrice}><span>성인 1인</span><strong>{TOURS[tour.id].adultPrice.toLocaleString("ko-KR")}<small>원</small></strong></div>
       </article>)}</div>
     </section>
