@@ -2,30 +2,30 @@
   "items": [
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-09T09:03:47+09:00",
+      "checkedAt": "2026-10-10T09:03:43+09:00",
       "dateKind": "occurrences",
-      "endDate": "2026-10-12",
+      "endDate": "2026-10-13",
       "id": "gyeongju-wind-swell-20260930",
       "location": "경주시 전역",
       "occurrenceDates": [
-        "2026-10-09",
         "2026-10-10",
         "2026-10-11",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-13"
       ],
       "price": "해당 없음",
-      "reviewBy": "2026-10-09",
-      "schedule": "10/9 05:00 발표 · 9일 대체로 맑다가 오전부터 가끔 구름많음 · 10일 오전~오후 경북권 비 · 11일 오전~저녁 경북권 비 · 12일 오후부터 전국 곳에 따라 비",
+      "reviewBy": "2026-10-10",
+      "schedule": "10/10 05:00 발표 · 10일 09~18시 경북 중·남부 비 5~10㎜ · 11일 06~21시 대구·경북 비 5~20㎜ · 12일 오후 경상권 비 · 13일 낮까지 전국 곳에 따라 비",
       "sourceId": "kma",
       "sourceUrl": "https://www.weather.go.kr/w/forecast/overall/short-term.do",
-      "startDate": "2026-10-09",
+      "startDate": "2026-10-10",
       "status": "published",
-      "summary": "오늘은 대체로 맑다가 오전부터 가끔 구름이 많겠습니다. 10일 오전~오후와 11일 오전~저녁 경북권에 비가 예보돼 신라문화제·황금정원·펌킨나잇 같은 야외 일정은 출발 직전 운영 여부를 확인하고 실내 대안을 함께 두세요. 이 10월 9일 발표 자료는 여행 당일 최신 예보를 대신하지 않으며 이후 날짜로 자동 연장하지 않습니다.",
-      "title": "10/9 구름 증가 · 10~11일 경북권 비"
+      "summary": "오늘 오전부터 오후 사이 경북 중·남부에 5~10㎜ 비가 예보됐습니다. 신라문화제 화백제전·힙합·거리공연 등 야외 일정은 우산 이동과 젖은 노면을 고려하고, 출발 직전 공식 운영 공지를 확인하세요. 이 10월 10일 05시 발표 자료는 이후 여행일의 최신 예보를 대신하지 않습니다.",
+      "title": "10/10 경북 중·남부 비 · 야외 축제 운영 재확인"
     },
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-09T09:03:47+09:00",
+      "checkedAt": "2026-10-10T09:03:43+09:00",
       "dateKind": "occurrences",
       "endDate": "2026-10-11",
       "id": "museum-guide-suspension-20261009",
@@ -42,7 +42,7 @@
       "sourceUrl": "https://gyeongju.museum.go.kr/kor/html/sub07/0701.html?GotoPage=1&mode=V&no=5550",
       "startDate": "2026-10-09",
       "status": "published",
-      "summary": "신라문화제 기간 혼잡·안전 관리를 위해 10월 9~11일 전시해설만 중지합니다. 전시실 휴관은 아니므로 개별 관람은 가능하며, 해설을 기대한 일정은 공식 전시안내 앱이나 다른 날짜로 조정하세요.",
+      "summary": "신라문화제 기간 혼잡·안전 관리를 위해 10월 9~11일 전시해설만 중지합니다. 전시실 휴관은 아니며 토요일인 오늘은 공식 관람안내상 20시까지 개별 관람할 수 있습니다. 해설을 기대한 일정은 공식 전시안내 앱이나 다른 날짜로 조정하세요.",
       "title": "10/9–11 국립경주박물관 전시해설 중지 · 관람 가능"
     },
     {
@@ -143,7 +143,7 @@
     },
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-09T09:03:47+09:00",
+      "checkedAt": "2026-10-10T09:03:43+09:00",
       "dateKind": "continuous",
       "endDate": "2026-10-12",
       "id": "silla-festival-traffic-2026",
@@ -156,7 +156,7 @@
       "sourceUrl": "https://www.gyeongju.go.kr/news/page.do?mnu_uid=1342&parm_bod_uid=336330&step=258",
       "startDate": "2026-10-08",
       "status": "published",
-      "summary": "신라문화제 기간 중앙로와 봉황로, 월정교 공영주차장–박물관 네거리 구간이 시간대별로 통제됩니다. 오늘 09시부터 봉황로 통제도 시작됐으므로 자차 여행자는 행사마다 차를 옮기지 말고 진입 경로를 먼저 정하세요. 우회로·셔틀·주차요금·실시간 빈자리는 공식 기사에 없어 보장하지 않습니다.",
+      "summary": "신라문화제 기간 중앙로와 봉황로가 계속 통제되고, 오늘 18:30~20:30에는 월정교 공영주차장–박물관 네거리 구간도 통제됩니다. 자차 여행자는 봉황대·월정교·내남네거리 행사마다 차를 옮기지 말고 한 권역 중심으로 진입 경로를 정하세요. 우회로·셔틀·주차요금·실시간 빈자리는 공식 기사에 없어 보장하지 않습니다.",
       "title": "신라문화제 도심 차량 통제 · 10/8 낮부터 시작"
     },
     {
@@ -486,26 +486,8 @@
       "sourceUrl": "https://www.gyeongju.go.kr/sillafestival/page.do?mnu_uid=3962",
       "startDate": "2026-10-09",
       "status": "published",
-      "summary": "화백제전은 월정교에서 10월 9~10일 19시, 실크로드페스타와 달빛난장은 봉황대, 화랑힙합은 10일 내남네거리에서 열립니다. 공식 주차 후보는 봉황대권 제1공영·봉황대·중심상가 주차장과 월정교 공영주차장이지만 행사 통제·혼잡이 있어 두 권역을 모두 차로 오가지 마세요. 주차요금·실시간 빈자리는 보장하지 않습니다.",
+      "summary": "오늘은 월정교 화백제전 19시, 내남네거리 화랑힙합 17~21시, 봉황대 실크로드페스타 13~22시·달빛난장 15~22시가 예정돼 있습니다. 비 예보가 있으나 09:03 확인 당시 공식 취소·시간 변경 공지는 찾지 못했으므로 정상 진행도 단정하지 말고 출발 직전 공식 공지를 확인하세요. 세 권역을 모두 차로 오가지 말고 한 권역 중심으로 고르세요.",
       "title": "제53회 신라문화제"
-    },
-    {
-      "category": "공연·전시",
-      "checkedAt": "2026-10-09T09:03:47+09:00",
-      "dateKind": "continuous",
-      "endDate": "2026-10-09",
-      "id": "youth-concerto-night-20261009",
-      "location": "도심 북쪽 · 경주예술의전당 화랑홀",
-      "occurrenceDates": [],
-      "price": "전석 무료 · 선착순",
-      "reviewBy": "2026-10-09",
-      "schedule": "10/9 17:00 · 80분 · 5세 이상 관람",
-      "sourceId": "garts",
-      "sourceUrl": "https://www.garts.kr/index.do?menuId=00000121&menuLink=%2Fuser%2Fsched%2Fdetl.do&schedId=SCHED_0000021729&searchTxt=&ym=202610",
-      "startDate": "2026-10-09",
-      "status": "published",
-      "summary": "비 예보 전인 오늘 실내 클래식 공연을 원하는 가족·음악 관심 여행자에게 맞습니다. 선착순 무료라 좌석을 보장할 수 없고, 5세 미만 동반이나 17시 이전 도착이 어려우면 피하세요. 신라문화제 도심권과는 다른 장소이므로 공연 뒤 축제장 이동·주차 시간을 따로 잡아야 합니다.",
-      "title": "제10회 청소년 협주곡의 밤"
     },
     {
       "category": "여행정보",
@@ -938,140 +920,140 @@
     {
       "id": "city",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
-      "lastSuccessAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
+      "lastSuccessAt": "2026-10-10T09:03:43+09:00",
       "name": "경주시청",
-      "note": "10/9 공식 기사에서 신라문화제 중앙로·봉황로·월정교 구간별 차량 통제를 재확인함. 봉황로는 오늘 09시부터 통제 중이며 우회로·셔틀·공영주차장 요금·실시간 빈자리는 미확인.",
+      "note": "10/10 신라문화제 공식 페이지·시청 기사에서 오늘 화백제전·화랑힙합·실크로드페스타 일정과 월정교 구간 차량 통제를 재확인함. 09:03 현재 우천 취소·시간 변경 공지는 찾지 못했으며 우회로·셔틀·공영주차장 요금·실시간 빈자리는 미확인.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/"
     },
     {
       "id": "tour",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": "2026-10-09T09:03:47+09:00",
       "name": "경주문화관광",
-      "note": "10/9 공식 10월 여행안내에서 신라문화제 날짜·장소·주요 회차를 재확인함. 서악 구절초는 계절 후보로만 유지하며 개화 상태·공영주차장 요금·실시간 빈자리는 미확인.",
+      "note": "10/10 공개 검색에서 신규·변경 여행정보의 공식 본문을 추가 확보하지 못함. 10/9 확인한 신라문화제와 계절 후보는 유지하며 서악 구절초 개화 상태·공영주차장 요금·실시간 빈자리는 미확인.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/tour/"
     },
     {
       "id": "facilities",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": "2026-09-19T09:04:14+09:00",
       "name": "경주시시설관리공단",
-      "note": "10/9 공식 시설·주차장 검색에서도 공영주차장 최신 단기요금·진입 변경 본문을 확보하지 못함. 신라문화제 주차 후보는 축제 공식 안내만 사용하고 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/10 공식 시설·주차장 검색에서도 공영주차장 최신 단기요금·진입 변경 본문을 확보하지 못함. 신라문화제 주차 후보는 축제 공식 안내만 사용하고 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjfmc.or.kr/gjsiseol/"
     },
     {
       "id": "garts",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": "2026-10-09T09:03:47+09:00",
       "name": "경주문화재단",
-      "note": "10/9 공식 상세에서 오늘 17시 청소년 협주곡의 밤이 80분·5세 이상·선착순 무료임을 확인함. 좌석·주차 가능 여부는 보장하지 않음.",
-      "status": "checked",
+      "note": "10/10 공개 검색에서 신규·변경 공연 본문을 추가 확보하지 못함. 10/9 청소년 협주곡의 밤은 종료되어 카드에서 제거했고 마지막 성공 시각은 연장하지 않음.",
+      "status": "partial",
       "url": "https://garts.kr/index.do"
     },
     {
       "id": "culture",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": "2026-09-26T09:00:11+09:00",
       "name": "경주문화원",
-      "note": "10/9 공식 홈페이지 최신 행사 본문을 공개 검색에서 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/10 공식 홈페이지 최신 행사 본문을 공개 검색에서 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjucc.or.kr/"
     },
     {
       "id": "silla",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원",
-      "note": "10/9 공식 홈페이지 최신 프로그램 본문을 공개 검색에서 확보하지 못함. 신라문화제 공식 사이트와는 별개 기관이므로 마지막 성공 정보는 만들지 않음.",
+      "note": "10/10 공식 홈페이지 최신 프로그램 본문을 공개 검색에서 확보하지 못함. 신라문화제 공식 사이트와는 별개 기관이므로 마지막 성공 정보는 만들지 않음.",
       "status": "blocked",
       "url": "https://www.silla.or.kr/"
     },
     {
       "id": "gbct",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원",
-      "note": "10/9 공개 검색에서도 10월 경주 프로그램의 날짜·장소·운영조건을 담은 공식 상세페이지를 확인하지 못해 보류함. 마지막 성공 정보는 만들지 않음.",
+      "note": "10/10 공개 검색에서도 10월 경주 프로그램의 날짜·장소·운영조건을 담은 공식 상세페이지를 확인하지 못해 보류함. 마지막 성공 정보는 만들지 않음.",
       "status": "blocked",
       "url": "https://www.gyeongjuonna.co.kr/"
     },
     {
       "id": "gbct-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원 · Instagram",
-      "note": "10/9 공개 검색에서 최근 게시물 본문·게시일·광고 여부를 확인하지 못함. 로그인 제한을 우회하지 않음.",
+      "note": "10/10 공개 검색에서 최근 게시물 본문·게시일·광고 여부를 확인하지 못함. 로그인 제한을 우회하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gbct0114/"
     },
     {
       "id": "local",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경주로컬 · @gyeongju_local",
-      "note": "10/9 공개 검색에서 최근 게시물 본문·방문일을 확인하지 못함. 로그인 제한을 우회하지 않음.",
+      "note": "10/10 공개 검색에서 최근 게시물 본문·방문일을 확인하지 못함. 로그인 제한을 우회하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju_local/"
     },
     {
       "id": "special",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경주특별시 · @gyeongju.si",
-      "note": "10/9 공개 검색에서 최근 게시물의 게시일·운영 사실을 검증하지 못해 새 카드에 사용하지 않음.",
+      "note": "10/10 공개 검색에서 최근 게시물의 게시일·운영 사실을 검증하지 못해 새 카드에 사용하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju.si/"
     },
     {
       "id": "hwangridan",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "황리단st",
-      "note": "10/9 공개 검색에서도 정확한 공식 계정 주소를 확인하지 못해 URL을 추정하지 않음.",
+      "note": "10/10 공개 검색에서도 정확한 공식 계정 주소를 확인하지 못해 URL을 추정하지 않음.",
       "status": "pending_identity",
       "url": null
     },
     {
       "id": "garts-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경주문화재단 · YouTube",
-      "note": "10/9 공개 검색에서 최근 영상 본문·게시일을 검증하지 못함.",
+      "note": "10/10 공개 검색에서 최근 영상 본문·게시일을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCpM3_K9Of7yUX9Tc7GcKKoQ"
     },
     {
       "id": "silla-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원 · YouTube",
-      "note": "10/9 공개 검색에서 최신 프로그램 영상 본문을 검증하지 못함.",
+      "note": "10/10 공개 검색에서 최신 프로그램 영상 본문을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/%40sillawonTv"
     },
     {
       "id": "tour-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": null,
       "name": "경주관광 · YouTube",
-      "note": "10/9 공개 검색에서 최근 여행 영상 본문·게시일을 검증하지 못함.",
+      "note": "10/10 공개 검색에서 최근 여행 영상 본문·게시일을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCQh-jbXM1DkVnC8vUYqfkVw"
     },
@@ -1178,10 +1160,10 @@
     {
       "id": "museum",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
-      "lastSuccessAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
+      "lastSuccessAt": "2026-10-10T09:03:43+09:00",
       "name": "국립경주박물관",
-      "note": "10/9 공식 공지에서 오늘부터 11일까지 신라역사관·신라미술관·특별전시관·뮤지엄투어의 해설만 중지되고 전시실은 개별 관람 가능함을 재확인함.",
+      "note": "10/10 공식 공지에서 11일까지 신라역사관·신라미술관·특별전시관·뮤지엄투어의 해설만 중지되고 전시실은 개별 관람 가능함을 재확인함. 공식 관람안내상 3~10월 토요일은 20시까지 운영.",
       "status": "checked",
       "url": "https://gyeongju.museum.go.kr/"
     },
@@ -1238,20 +1220,20 @@
     {
       "id": "gyeongju-its",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
       "lastSuccessAt": "2026-10-06T08:59:17+09:00",
       "name": "경주시교통정보센터",
-      "note": "10/9 공개 검색에서 교통정보센터의 현재 돌발·통제 건수 본문을 확보하지 못함. 신라문화제 통제는 경주시청 공지를 우선하며 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/10 공개 검색에서 교통정보센터의 현재 돌발·통제 건수 본문을 확보하지 못함. 신라문화제 통제는 경주시청 공지를 우선하며 마지막 성공 시각은 연장하지 않음.",
       "status": "partial",
       "url": "https://its.gyeongju.go.kr/autoinfo.do"
     },
     {
       "id": "kma",
       "kind": "official",
-      "lastAttemptAt": "2026-10-09T09:03:47+09:00",
-      "lastSuccessAt": "2026-10-09T09:03:47+09:00",
+      "lastAttemptAt": "2026-10-10T09:03:43+09:00",
+      "lastSuccessAt": "2026-10-10T09:03:43+09:00",
       "name": "기상청 날씨누리",
-      "note": "10/9 05:00 발표에서 9일 구름 증가, 10일 오전~오후와 11일 오전~저녁 경북권 비, 12일 오후부터 전국 비 가능성을 확인함. 당일 자료를 이후 여행일에 자동 적용하지 않음.",
+      "note": "10/10 05:00 발표에서 오늘 09~18시 경북 중·남부 5~10㎜, 11일 06~21시 대구·경북 5~20㎜, 12일 오후 경상권 비를 확인함. 당일 자료를 이후 여행일에 자동 적용하지 않음.",
       "status": "checked",
       "url": "https://www.weather.go.kr/w/wnuri-fct2021/weather/warning.do"
     },
@@ -1296,7 +1278,7 @@
       "url": "https://www.facebook.com/gyeongjuexpopark/"
     }
   ],
-  "updatedAt": "2026-10-09T09:03:47+09:00",
+  "updatedAt": "2026-10-10T09:03:43+09:00",
   "version": 1
 }
 
