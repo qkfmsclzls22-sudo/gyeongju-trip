@@ -2,26 +2,26 @@
   "items": [
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-13T09:04:17+09:00",
+      "checkedAt": "2026-10-14T09:03:03+09:00",
       "dateKind": "occurrences",
-      "endDate": "2026-10-16",
+      "endDate": "2026-10-17",
       "id": "gyeongju-wind-swell-20260930",
       "location": "경주시 전역",
       "occurrenceDates": [
-        "2026-10-13",
         "2026-10-14",
         "2026-10-15",
-        "2026-10-16"
+        "2026-10-16",
+        "2026-10-17"
       ],
       "price": "해당 없음",
-      "reviewBy": "2026-10-13",
-      "schedule": "10/13 05:00 발표 · 13일 대구·경북 비 5~30㎜, 낮 12~15시 대부분 종료 · 늦은 오후~밤 곳에 따라 0.1㎜ 미만 빗방울 · 14~16일 대체로 맑음",
+      "reviewBy": "2026-10-14",
+      "schedule": "10/14 05:00 발표 · 14일 대체로 맑음 · 15일 경주권 대체로 맑음 · 16일 맑다가 오후 구름많음 · 17일 구름많고 저녁부터 차차 흐림",
       "sourceId": "kma",
       "sourceUrl": "https://www.weather.go.kr/w/forecast/overall/short-term.do",
-      "startDate": "2026-10-13",
+      "startDate": "2026-10-14",
       "status": "published",
-      "summary": "오늘 대구·경북은 비 5~30㎜가 예상되며 낮 12~15시 대부분 그칩니다. 오전 야외·서악 꽃길·해안 일정을 줄이고 같은 권역에서 운영이 확인된 실내 후보를 비교하세요. 늦은 오후~밤에도 곳에 따라 빗방울이 가능하고 14일 아침은 쌀쌀하므로 부모님·아이 동행은 겉옷을 준비하세요. 이 10월 13일 05:00 자료는 이후 여행일의 최신 예보를 대신하지 않습니다.",
-      "title": "오늘 낮까지 비 · 14일 아침 쌀쌀"
+      "summary": "오늘 경주권은 대체로 맑지만 아침 기온이 낮고 낮과 밤의 기온 차가 큽니다. 부모님·아이 동행이나 아침 야외 일정은 겉옷을 준비하고, 서악 꽃길·보문 호수처럼 노출이 긴 일정은 한낮에 배치하세요. 17일 마라톤·야외공연 날씨는 출발 직전 다시 확인하며, 이 10월 14일 05:00 자료를 이후 여행일의 최신 예보로 쓰지 않습니다.",
+      "title": "오늘 대체로 맑음 · 아침 쌀쌀하고 큰 일교차"
     },
     {
       "category": "여행정보",
@@ -120,6 +120,24 @@
       "title": "김연서 ‘피안’"
     },
     {
+      "category": "공연·전시",
+      "checkedAt": "2026-10-14T09:03:03+09:00",
+      "dateKind": "season",
+      "endDate": "2026-12-31",
+      "id": "new-the-gyeongju-chronicle-2026",
+      "location": "도심 북쪽 · 알천미술관 갤러리스페이스Ⅰ(4F)",
+      "occurrenceDates": [],
+      "price": "무료",
+      "reviewBy": "2026-10-27",
+      "schedule": "2025-12-02–2026-12-31 · 10:00–18:00 · 입장마감 17:30 · 휴관일은 방문일 재확인",
+      "sourceId": "garts",
+      "sourceUrl": "https://garts.kr/index.do?menuId=00000260",
+      "startDate": "2025-12-02",
+      "status": "published",
+      "summary": "실감형 미디어아트로 경주의 역사 흐름을 보는 무료 실내 전시라 아이·부모님 동행이나 비·추위 대안에 맞습니다. 공식 현재전시 목록에는 기간·시간·입장마감은 있지만 개별 휴관일이 없어 매일 운영으로 단정하지 않습니다. 4층 접근 편의·주차요금·혼잡도는 방문 전 확인하세요.",
+      "title": "NEW! The경주; 경주연대기 · 실감형 역사 전시"
+    },
+    {
       "category": "운영·교통",
       "checkedAt": "2026-10-01T09:04:58+09:00",
       "dateKind": "season",
@@ -157,7 +175,7 @@
     },
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-13T09:04:17+09:00",
+      "checkedAt": "2026-10-14T09:03:03+09:00",
       "dateKind": "occurrences",
       "endDate": "2026-10-17",
       "id": "gyeongju-marathon-control-20261017",
@@ -613,7 +631,7 @@
     },
     {
       "category": "여행정보",
-      "checkedAt": "2026-10-13T09:04:17+09:00",
+      "checkedAt": "2026-10-14T09:03:03+09:00",
       "dateKind": "season",
       "endDate": "2026-10-24",
       "id": "seoak-season-photo",
@@ -631,7 +649,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-10-13T09:04:17+09:00",
+      "checkedAt": "2026-10-14T09:03:03+09:00",
       "dateKind": "occurrences",
       "endDate": "2026-10-24",
       "id": "seoak-guseolcho-concert-2026",
@@ -866,140 +884,140 @@
     {
       "id": "city",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "경주시청",
-      "note": "10/13 시청 원문에서 10/17 국제마라톤 08:00 출발·07:50~13:30 구간별 통제를 재확인함. 참가자 약 2만 명 규모이나 도로별 상세 시간표·우회로·교통 회복 시각은 미확인.",
+      "note": "10/14 시청 원문에서 10/17 국제마라톤 08:00 출발·07:50~13:30 구간별 통제를 재확인함. 참가자 약 2만 명 규모이나 도로별 상세 시간표·우회로·교통 회복 시각은 미확인.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/"
     },
     {
       "id": "tour",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "경주문화관광",
-      "note": "10/13 공식 원문에서 서악 구절초 권장 시기와 10/17·18·24 15:00 음악회를 확인함. 게시 사진은 2025-10-19 촬영분이라 올해 현장 개화 상태를 보장하지 않으며 주차요금·실시간 빈자리·무장애 접근은 미확인.",
+      "note": "10/14 공식 원문에서 서악 구절초 권장 시기와 10/17·18·24 15:00 음악회를 재확인함. 게시 사진은 2025-10-19 촬영분이라 올해 현장 개화 상태를 보장하지 않으며 주차요금·실시간 빈자리·무장애 접근은 미확인.",
       "status": "partial",
       "url": "https://www.gyeongju.go.kr/tour/"
     },
     {
       "id": "facilities",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": "2026-09-19T09:04:14+09:00",
       "name": "경주시시설관리공단",
-      "note": "10/13 공식 시설·주차장 검색에서도 공영주차장 최신 단기요금·진입 변경 본문을 확보하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/14 공식 시설공단 페이지는 본문 없이 열려 공영주차장 최신 단기요금·진입 변경을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjfmc.or.kr/gjsiseol/"
     },
     {
       "id": "garts",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "경주문화재단",
-      "note": "10/13 공식 전시 일정에서 알천미술관의 한국 미술·최명희·김연서 전시가 10/18까지 진행됨을 확인함. 주차요금·엘리베이터·실시간 관람 여건은 미확인.",
+      "note": "10/14 공식 현재전시 목록에서 한국 미술·최명희·김연서 전시와 NEW! The경주;경주연대기의 기간·시간·요금을 확인함. 경주연대기의 개별 휴관일·주차요금·엘리베이터·실시간 관람 여건은 미확인.",
       "status": "partial",
       "url": "https://garts.kr/index.do"
     },
     {
       "id": "culture",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": "2026-09-26T09:00:11+09:00",
       "name": "경주문화원",
-      "note": "10/13 공식 홈페이지 최신 행사 본문을 공개 검색에서 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/14 공식 홈페이지는 본문 없이 열려 최신 행사 원문을 확인하지 못함. 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.gjucc.or.kr/"
     },
     {
       "id": "silla",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원",
-      "note": "10/13 공식 홈페이지·YouTube의 최신 프로그램 본문을 공개 검색에서 확보하지 못함. 서악 음악회는 경주문화관광 원문만 사용하고 마지막 성공 정보는 만들지 않음.",
+      "note": "10/14 공식 홈페이지 접근이 차단돼 최신 프로그램 본문을 확보하지 못함. 서악 음악회는 경주문화관광 원문만 사용하고 마지막 성공 정보는 만들지 않음.",
       "status": "blocked",
       "url": "https://www.silla.or.kr/"
     },
     {
       "id": "gbct",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원",
-      "note": "10/13 공개 검색에서도 10월 경주 프로그램의 날짜·장소·운영조건을 담은 공식 상세페이지를 확인하지 못해 보류함. 마지막 성공 정보는 만들지 않음.",
+      "note": "10/14 공개 검색에서 종료된 10/10~11 프로그램만 발견했고 현재 운영조건을 담은 공식 상세페이지는 접근되지 않아 보류함. 마지막 성공 정보는 만들지 않음.",
       "status": "blocked",
       "url": "https://www.gyeongjuonna.co.kr/"
     },
     {
       "id": "gbct-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원 · Instagram",
-      "note": "10/13 공개 검색에서 최근 게시물 본문·게시일·광고 여부를 확인하지 못함. 로그인 제한을 우회하지 않음.",
+      "note": "10/14 공개 검색에서 최근 게시물 본문·게시일·광고 여부를 확인하지 못함. 로그인 제한을 우회하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gbct0114/"
     },
     {
       "id": "local",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경주로컬 · @gyeongju_local",
-      "note": "10/13 공개 검색에서 최근 게시물 본문·방문일을 확인하지 못함. 로그인 제한을 우회하지 않음.",
+      "note": "10/14 계정 검색 결과에서 10/17~18 반려동물 행사 문구만 발견했으나 게시물 원문·운영기관 상세를 확인하지 못해 카드로 사용하지 않음. 로그인 제한을 우회하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju_local/"
     },
     {
       "id": "special",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경주특별시 · @gyeongju.si",
-      "note": "10/13 공개 검색에서 최근 게시물의 게시일·운영 사실을 검증하지 못해 새 카드에 사용하지 않음.",
+      "note": "10/14 공개 검색에서 최근 게시물의 게시일·운영 사실을 검증하지 못해 새 카드에 사용하지 않음.",
       "status": "blocked",
       "url": "https://www.instagram.com/gyeongju.si/"
     },
     {
       "id": "hwangridan",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "황리단st",
-      "note": "10/13 공개 검색에서도 정확한 공식 계정 주소를 확인하지 못해 URL을 추정하지 않음.",
+      "note": "10/14 공개 검색에서도 정확한 공식 계정 주소를 확인하지 못해 URL을 추정하지 않음.",
       "status": "pending_identity",
       "url": null
     },
     {
       "id": "garts-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경주문화재단 · YouTube",
-      "note": "10/13 공개 검색에서 최근 영상 본문·게시일을 검증하지 못함.",
+      "note": "10/14 채널 기본 화면만 열려 최근 영상 본문·게시일을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCpM3_K9Of7yUX9Tc7GcKKoQ"
     },
     {
       "id": "silla-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원 · YouTube",
-      "note": "10/13 공개 검색에서 최신 프로그램 영상 본문을 검증하지 못함.",
+      "note": "10/14 공개 검색에서 최신 프로그램 영상 본문을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/%40sillawonTv"
     },
     {
       "id": "tour-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": null,
       "name": "경주관광 · YouTube",
-      "note": "10/13 공개 검색에서 최근 여행 영상 본문·게시일을 검증하지 못함.",
+      "note": "10/14 공개 검색에서 최근 여행 영상 본문·게시일을 검증하지 못함.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCQh-jbXM1DkVnC8vUYqfkVw"
     },
@@ -1016,27 +1034,27 @@
     {
       "id": "epg",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "경주시 동궁원·라원",
-      "note": "10/13 공식 안내에서 동궁원·라원의 별도 주소와 입구, 09:30~19:00·18시 입장마감·월요일 휴원을 재확인함. 오늘은 정기 운영일이며 동궁과월지와 혼동하지 않음.",
+      "note": "10/14 공식 안내에서 동궁원·라원의 별도 주소와 입구, 09:30~19:00·18시 입장마감·월요일 휴원을 재확인함. 오늘은 정기 운영일이며 동궁과월지와 혼동하지 않음.",
       "status": "checked",
       "url": "https://www.gyeongju.go.kr/epg/"
     },
     {
       "id": "expo",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "경주엑스포대공원",
-      "note": "10/13 공식 메인에서 공원 10:00~22:00·전시관 10:00~18:00와 EX버스킹 9~10월 매주 일요일 운영을 재확인함. 공연 지점·우천 변경·셔틀·펌킨나잇 세부는 보장하지 않음.",
+      "note": "10/14 공식 메인에서 공원 10:00~22:00·전시관 10:00~18:00와 EX버스킹 9~10월 매주 일요일 운영을 재확인함. 공연 지점·우천 변경·셔틀·펌킨나잇 세부는 보장하지 않음.",
       "status": "checked",
       "url": "https://www.cultureexpo.or.kr/open.content/ko/"
     },
     {
       "id": "kto",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": "2026-10-13T09:04:17+09:00",
       "name": "한국관광공사 VISITKOREA",
       "note": "10/13 공식 경북천년숲정원 안내에서 3~10월 10:00~17:00, 입장마감 30분 전, 1월1일·설·추석 당일 휴원, 무료 입장·주차를 재확인함. 월요일 휴원으로 잘못 안내하지 않으며 실시간 빈자리는 미확인.",
@@ -1106,10 +1124,10 @@
     {
       "id": "museum",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": "2026-10-11T08:57:23+09:00",
       "name": "국립경주박물관",
-      "note": "10/13 공식 공지 목록 본문 확인에 실패해 10/11 마지막 성공 정보를 유지함. 당시 해설 중지는 전시실 휴관이 아니었으며 오늘의 임시 휴실 여부는 새로 확정하지 않음.",
+      "note": "10/14 공식 검색에서 당일 임시 휴실 공지 본문을 확인하지 못해 10/11 마지막 성공 정보를 유지함. 검색된 예약 달력만으로 전시실 정상 운영을 확정하지 않음.",
       "status": "partial",
       "url": "https://gyeongju.museum.go.kr/"
     },
@@ -1166,20 +1184,20 @@
     {
       "id": "gyeongju-its",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
       "lastSuccessAt": "2026-10-06T08:59:17+09:00",
       "name": "경주시교통정보센터",
-      "note": "10/13 교통정보센터가 502 오류를 반환해 현재 돌발·통제 본문을 확보하지 못함. 10/17 마라톤은 경주시청 원문을 우선하며 마지막 성공 시각은 연장하지 않음.",
+      "note": "10/14 교통정보센터가 시간 초과로 현재 돌발·통제 본문을 확보하지 못함. 10/17 마라톤은 경주시청 원문을 우선하며 마지막 성공 시각은 연장하지 않음.",
       "status": "blocked",
       "url": "https://its.gyeongju.go.kr/autoinfo.do"
     },
     {
       "id": "kma",
       "kind": "official",
-      "lastAttemptAt": "2026-10-13T09:04:17+09:00",
-      "lastSuccessAt": "2026-10-13T09:04:17+09:00",
+      "lastAttemptAt": "2026-10-14T09:03:03+09:00",
+      "lastSuccessAt": "2026-10-14T09:03:03+09:00",
       "name": "기상청 날씨누리",
-      "note": "10/13 05:00 발표에서 오늘 대구·경북 비 5~30㎜가 낮 12~15시 대부분 그치고 늦은 오후~밤 곳에 따라 빗방울이 가능함을 확인함. 14일 아침은 쌀쌀하며 당일 자료를 이후 여행일에 자동 적용하지 않음.",
+      "note": "10/14 05:00 발표에서 오늘 대체로 맑고 아침 기온이 낮으며 일교차가 큼을 확인함. 15일 경주권은 대체로 맑고 16일 오후부터 구름이 늘며 17일 저녁부터 차차 흐려지므로 여행일마다 다시 확인함.",
       "status": "checked",
       "url": "https://www.weather.go.kr/w/wnuri-fct2021/weather/warning.do"
     },
@@ -1224,7 +1242,7 @@
       "url": "https://www.facebook.com/gyeongjuexpopark/"
     }
   ],
-  "updatedAt": "2026-10-13T09:04:17+09:00",
+  "updatedAt": "2026-10-14T09:03:03+09:00",
   "version": 1
 }
 
