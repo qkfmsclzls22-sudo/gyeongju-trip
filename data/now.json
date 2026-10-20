@@ -20,7 +20,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2026-11-01",
       "id": "garts-leehee-woo-four-seasons-2026",
@@ -38,7 +38,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2026-11-01",
       "id": "garts-son-young-lines-time-2026",
@@ -128,7 +128,7 @@
     },
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "occurrences",
       "endDate": "2026-10-21",
       "id": "gyeongju-wind-swell-20260930",
@@ -185,7 +185,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2026-12-31",
       "id": "new-the-gyeongju-chronicle-2026",
@@ -203,7 +203,7 @@
     },
     {
       "category": "운영·교통",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2027-02-20",
       "id": "bomun-autonomous-shuttle-2026",
@@ -239,7 +239,7 @@
     },
     {
       "category": "공연·전시",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2027-03-14",
       "id": "oar-yukimasa-ida-2026",
@@ -283,7 +283,7 @@
     },
     {
       "category": "체험·프로그램",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "season",
       "endDate": "2026-10-31",
       "id": "lawon-october-resident-event-2026",
@@ -391,7 +391,7 @@
     },
     {
       "category": "여행정보",
-      "checkedAt": "2026-10-19T23:58:31Z",
+      "checkedAt": "2026-10-20T08:58:31+09:00",
       "dateKind": "undated",
       "endDate": null,
       "id": "flashback-visit",
@@ -738,8 +738,8 @@
     {
       "id": "city",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "경주시청",
       "note": "10/20 시청 자율주행 셔틀 공식 공지·교통정보센터 공개 검색 결과를 확인. 2026-06-25~2027-02-20, 화~일 운행, 당일예약 우선, 보문 2개 노선과 연령·유모차 제한을 재확인. 시청 메인 본문은 비어 있었고 실시간 잔여좌석·당일 교통변경은 미확인.",
       "status": "partial",
@@ -748,7 +748,7 @@
     {
       "id": "tour",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-10-19T00:07:43Z",
       "name": "경주문화관광",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -758,7 +758,7 @@
     {
       "id": "facilities",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-09-19T09:04:14+09:00",
       "name": "경주시시설관리공단",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -768,8 +768,8 @@
     {
       "id": "garts",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "경주문화재단",
       "note": "10/20 재단 메인과 개별 상세 원문 확인. 이희우 <경주의 사계>(B1)·손 영 <시간이 그은 선>(3F)은 10/20~11/1,10~18시,월요일휴관,무료·전연령. The경주 4F는 17:30 입장마감·월요일휴관 재확인. 주차요금·층별 무장애·혼잡 미확인.",
       "status": "partial",
@@ -778,7 +778,7 @@
     {
       "id": "culture",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-09-26T09:00:11+09:00",
       "name": "경주문화원",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -788,7 +788,7 @@
     {
       "id": "silla",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -798,7 +798,7 @@
     {
       "id": "gbct",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -808,7 +808,7 @@
     {
       "id": "gbct-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경북문화관광진흥원 · Instagram",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -818,7 +818,7 @@
     {
       "id": "local",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경주로컬 · @gyeongju_local",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -828,7 +828,7 @@
     {
       "id": "special",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경주특별시 · @gyeongju.si",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -838,7 +838,7 @@
     {
       "id": "hwangridan",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "황리단st",
       "note": "10/20 공개 검색에서도 ‘황리단st’의 정확한 공식 계정 주소를 확인하지 못함. 유사 계정으로 추정하지 않고 URL·마지막 성공시각 유지.",
@@ -848,7 +848,7 @@
     {
       "id": "garts-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경주문화재단 · YouTube",
       "note": "10/20 공개 채널 접근을 시도했으나 최신 영상 본문·게시일을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일 유지.",
@@ -858,7 +858,7 @@
     {
       "id": "silla-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원 · YouTube",
       "note": "10/20 공개 채널 접근을 시도했으나 최신 영상 본문·게시일을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일 유지.",
@@ -868,7 +868,7 @@
     {
       "id": "tour-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경주관광 · YouTube",
       "note": "10/20 공개 채널 접근을 시도했으나 최신 영상 본문·게시일을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일 유지.",
@@ -878,8 +878,8 @@
     {
       "id": "flashback",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "플래시백 계림",
       "note": "10/20 공식 관람안내 재확인: 천북남로14,10~20시·19시마감·연중무휴·성인25000원·전시관 주차4시간무료·재입장불가. 주차 빈자리·당일 점검 미확인, 도심 계림과 별도 시설.",
       "status": "partial",
@@ -888,8 +888,8 @@
     {
       "id": "epg",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "경주시 동궁원·라원",
       "note": "10/20 메인과 10월 라원 시민체험 상세 확인. 경주시민 결제 후 신분증·영수증 제시,2~3인팀,조기종료 가능. 라원·동궁원은 09:30~19시·18시 입장마감·월요일휴원. 주차 빈자리·당일 체험재고 미확인.",
       "status": "partial",
@@ -898,8 +898,8 @@
     {
       "id": "expo",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "경주엑스포대공원",
       "note": "10/20 공식 메인 본문 접근 성공. 공원10~22시·전시관10~18시 기존 범위 유지. 명칭변경7933·버스킹7930·펌킨나잇7931·셔틀7925 개별 원문은 재시도했으나 실패해 해당 카드 확인일·기한 미연장.",
       "status": "partial",
@@ -908,8 +908,8 @@
     {
       "id": "kto",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "한국관광공사 VISITKOREA",
       "note": "10/20 천년숲정원 공식 본문 재확인. 3~10월10~17시/16:30입장마감,11~2월10~16시/15:30,명절·1/1휴원·무료 입장/주차. 개화·단풍·전체 무장애·빈자리 미확인.",
       "status": "partial",
@@ -918,8 +918,8 @@
     {
       "id": "couple-blog",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "찍는남자 쓰는여자 여행후기",
       "note": "10/20 공개 후기 본문 재확인. 2024-02-06 게시의 오래된 개인 경험이며 실제 방문일·협찬 미확인. 최신 운영·체크인·이동시간 근거로 채택하지 않음.",
       "status": "partial",
@@ -928,7 +928,7 @@
     {
       "id": "flashback-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "플래시백 계림 Instagram",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -938,7 +938,7 @@
     {
       "id": "gyeongju-video",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "경주로ON 여행 영상",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -948,8 +948,8 @@
     {
       "id": "comma-trip",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "콤마트립 | 쉼이 있는 여행",
       "note": "10/20 공개 후기 본문 재확인. 2026-08-12 게시·8월 방문(정확일 미상),협찬 미확인. 포석로주차장 요금판·도보시간·혼잡은 개인기록이라 공식 공단 교차확인 전 현재 사실로 채택하지 않음.",
       "status": "partial",
@@ -958,7 +958,7 @@
     {
       "id": "hwangnam-social",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "황남칼국수 · @hwangnam_kalguksu",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -968,7 +968,7 @@
     {
       "id": "hwangnyongwon",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "황룡원",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -978,8 +978,8 @@
     {
       "id": "museum",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "국립경주박물관",
       "note": "10/20 공식 메인 본문 접근 성공. 관람시간·정기휴실·어린이박물관 별도 휴관은 기존 확인 범위를 유지하고, 새 임시휴실·재개일·주차요금은 미확인.",
       "status": "partial",
@@ -988,8 +988,8 @@
     {
       "id": "hwangnam-bread",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "황남빵 경주 본점",
       "note": "10/20 공식 매장 상세 본문 접근 성공. 기존 태종로783·08~22시·연중무휴 범위 유지. 주차·대기·재고 미확인.",
       "status": "partial",
@@ -998,8 +998,8 @@
     {
       "id": "coffeeplace",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "커피플레이스",
       "note": "10/20 공식 소개 본문 접근 성공. 중앙로18 카페와 충현로65 로스터리 공장 구분 유지. 공장 음료 이용불가; 카페 영업시간·휴무·주차 미확인.",
       "status": "partial",
@@ -1008,7 +1008,7 @@
     {
       "id": "hyanghwajung-social",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "name": "향화정 · @hyanghwajung_gj",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -1018,8 +1018,8 @@
     {
       "id": "dml",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "동리목월문학관",
       "note": "10/20 공식 메인 본문 접근 성공. 하절기09~18시·동절기09~17시 및 월요일/1월1일/설/추석 휴관 범위 유지. 당일 임시운영·주차·계단 미확인.",
       "status": "partial",
@@ -1028,8 +1028,8 @@
     {
       "id": "majangdong",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "마장동숯불구이",
       "note": "10/20 공식 본점 상세 본문 접근 성공. 11~21:30·21시주문마감·월요휴무·첫주문3인분·입구단차없음·주차지원 범위 유지. 좌석·알레르기·빈자리 미확인.",
       "status": "partial",
@@ -1038,7 +1038,7 @@
     {
       "id": "gyeongju-its",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-10-06T08:59:17+09:00",
       "name": "경주시교통정보센터",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -1048,8 +1048,8 @@
     {
       "id": "kma",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "기상청 날씨누리",
       "note": "10/20 05:00 대구·경북 단기전망과 04:10 특보 현황 확인. 20일 경북남부 가끔비,20~21일 경북중남부5~20mm,21일 강풍·풍랑 유의. 경주 육상·경북남부앞바다 예비특보는 확인되지 않아 지역을 확대하지 않음; 재검토기한20일.",
       "status": "checked",
@@ -1058,8 +1058,8 @@
     {
       "id": "oar",
       "kind": "official",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "name": "오아르미술관",
       "note": "10/20 공식 현재전시·운영/주차 상세 재확인. 이다 유키마사26-08-23~27-03-14,수~월10~19시·18:30마감/화휴관. 오늘 화요일 휴관을 카드 앞에 반영. 코드 정적 프롬프트의 ‘운영·전시 미확인’ 문구는 공통데이터와 충돌해 개선 필요; 코드 미수정.",
       "status": "partial",
@@ -1068,7 +1068,7 @@
     {
       "id": "mediaart-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-09-16T09:01:49+09:00",
       "name": "2026 국가유산 미디어아트 경주 대릉원",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -1078,7 +1078,7 @@
     {
       "id": "expo-instagram",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-09-25T09:01:56+09:00",
       "name": "경주엑스포대공원 · @culture_expo",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -1088,7 +1088,7 @@
     {
       "id": "expo-facebook",
       "kind": "social",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": "2026-09-25T09:01:56+09:00",
       "name": "경주엑스포대공원 · Facebook",
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지.",
@@ -1101,8 +1101,8 @@
       "kind": "social",
       "url": "https://ohra-nee.tistory.com/360",
       "status": "partial",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "note": "10/20 개인후기 본문 재확인. 2026-04-12 게시, 실제 방문일·협찬 미확인. 비 오는 날 한산했다는 개인 경험을 일반화하지 않고 운영·요금은 공식 교차확인 전 보류."
     },
     {
@@ -1111,7 +1111,7 @@
       "kind": "official",
       "url": "https://www.gyeongjumarathon.com/52/?bmode=view&idx=175012905",
       "status": "blocked",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
       "lastSuccessAt": null,
       "note": "10/20 등록 공개 원문 접근을 시도했으나 최신 본문을 확인하지 못함. 로그인·접근제한을 우회하지 않고 마지막 성공시각과 카드 확인일·유효기간 유지."
     },
@@ -1121,8 +1121,8 @@
       "kind": "social",
       "url": "https://superchart.com/ko/@the-chopstick-rest/gyeongju-hwangnidan-gil-tardang-giant-mochi-72e8/",
       "status": "partial",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "note": "10/20 타르당 후기 본문 재확인. 2026-10-06 방문·게시와 협찬 표기 확인. 개인 맛·대기·도보분수·가격은 일반화하지 않고 업소 공식 공지 확인 전 카드 보류."
     },
     {
@@ -1131,8 +1131,8 @@
       "kind": "social",
       "url": "https://hmj1205.tistory.com/m/entry/%EA%B2%BD%EC%A3%BC-%EB%8B%B9%EC%9D%BC%EC%B9%98%EA%B8%B0%EA%B2%BD%EC%A3%BC-%EB%A7%9B%EC%A7%91%EA%B2%BD%EC%A3%BC-%EB%B3%B4%EB%AC%B8%EB%8B%A8%EC%A7%80-%EB%A7%9B%EC%A7%91%EA%B2%BD%EC%A3%BC-%ED%98%84%EB%8C%80-%EC%8C%88%EB%B0%A5-%EB%B0%A9%EB%AC%B8-%ED%9B%84%EA%B8%B0",
       "status": "partial",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "note": "10/20 공개 후기 본문 재확인. 제목2026과 게시2025-12-31 불일치, 실제 방문일·협찬 미확인. 불국사권 쌈밥 후보만 기록하고 최신 영업·가격·주차 교차확인 전 보류."
     },
     {
@@ -1141,8 +1141,8 @@
       "kind": "social",
       "url": "https://mysay.tistory.com/105",
       "status": "partial",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "note": "10/20 공개 후기 재확인. 2026-08-31 게시·내돈내산 표기, 실제 방문일 미확인. 업소 공식 시간 미확인으로 카드 보류하며 면 제외 조건에는 부적합."
     },
     {
@@ -1151,12 +1151,13 @@
       "kind": "social",
       "url": "https://elflower0802.com/12",
       "status": "partial",
-      "lastAttemptAt": "2026-10-19T23:58:31Z",
-      "lastSuccessAt": "2026-10-19T23:58:31Z",
+      "lastAttemptAt": "2026-10-20T08:58:31+09:00",
+      "lastSuccessAt": "2026-10-20T08:58:31+09:00",
       "note": "10/20 공개 가족후기 재확인. 2026-09-12 게시, 본문 ‘작년10월25일’은 2025-10-25 방문,협찬 미확인. 부모님·아이 보행 부담 발견에만 활용하고 주차·버기카·현재 꽃 상태는 공식 교차확인 전 채택하지 않음."
     }
   ],
-  "updatedAt": "2026-10-19T23:58:31Z",
+  "updatedAt": "2026-10-20T08:58:31+09:00",
   "version": 1
 }
+
 
