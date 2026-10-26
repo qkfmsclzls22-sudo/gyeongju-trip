@@ -9,14 +9,14 @@ const editions = {
   day: {
     label: "낮의 경주", ending: "그 너머.",
     title: "낯익은 경주에서,\n처음 만나는 이야기.",
-    caption: "대릉원, 경주의 낮", image: "gyeongju-green-tombs.webp",
-    alt: "초록 고분과 푸른 하늘이 이어지는 대릉원",
+    caption: "가을빛 대릉원 · 경주트립 일러스트", image: "illustration-autumn.webp",
+    alt: "푸른 하늘과 초록 고분 위로 노란 단풍나무가 펼쳐지는 대릉원 수채화 일러스트",
   },
   night: {
     label: "밤의 경주", ending: "깊은 밤.",
     title: "해가 지면,\n다른 경주가 열린다.",
-    caption: "동궁과월지, 경주의 밤", image: "landmark-donggung-wolji.jpg",
-    alt: "연못 위로 황금빛 반영이 펼쳐지는 동궁과월지의 밤",
+    caption: "달빛 아래 월정교 · 경주트립 일러스트", image: "illustration-woljeonggyo.webp",
+    alt: "둥근 달 아래 월정교와 물 위의 반영을 그린 푸른색 수채화 일러스트",
   },
 } as const;
 
@@ -42,14 +42,16 @@ export default function CampaignCover() {
           </div>
           <p className={s.signature}>해설사와 걷는 여행, 경주트립.</p>
         </div>
-        <figure className={s.photograph}>
+        <figure className={s.artwork}>
+          <div className={s.artFrame}>
           {(Object.keys(editions) as (keyof typeof editions)[]).map(key => (
-            <div key={key} className={s.photoLayer} data-active={edition === key} aria-hidden={edition !== key}>
+            <div key={key} className={s.artLayer} data-active={edition === key} aria-hidden={edition !== key}>
               <Image src={`/images/${editions[key].image}`} alt={edition === key ? editions[key].alt : ""} fill
-                sizes="(max-width: 760px) 92vw, (max-width: 1600px) 56vw, 864px"
+                sizes="(max-width: 760px) calc(92vw - 32px), (max-width: 1100px) 43vw, 560px"
                 preload={key === "day"} loading={key === "night" ? "eager" : undefined} />
             </div>
           ))}
+          </div>
         </figure>
       </div>
       <div className={s.captionBar}>

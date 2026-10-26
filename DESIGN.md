@@ -1,13 +1,13 @@
 # Gyeongju Trip — Local Travel Studio
 
-## Campaign poster and motion refinement (2026-10-26)
-The owner selected the STAYFOLIO campaign/editorial reference and requested sophisticated motion typography, while prioritising Gyeongju photography and brand atmosphere. This supersedes the quieter photo-and-serif cover. Preserve the existing photographs, square store artwork, illustrations, factual copy, prices and booking destinations.
+## Watercolour campaign and motion refinement (2026-10-26)
+The owner selected the STAYFOLIO campaign/editorial reference, requested sophisticated motion typography, and then chose to feature the existing watercolour illustrations in the cover. The brand's own artwork leads; real tour photography remains in the gallery. Preserve the existing artwork, factual copy, prices and booking destinations.
 
-- Pair a forest-green typographic poster with an unobstructed Gyeongju photograph. Day uses #243e36, night uses #283338, with #f5f1e8 lettering and #c9d5bd / #d0ccba supporting details. Keep controls and captions outside the photograph.
+- Pair a forest-green typographic poster with an existing square watercolour illustration on a #f5f1e8 paper mount: illustration-autumn.webp for day and illustration-woljeonggyo.webp for night. Display the entire original artwork with object-fit:contain, no cropping, filters or text overlays, at up to 560px. Day uses #243e36, night uses #283338, with #f5f1e8 lettering and #c9d5bd / #d0ccba supporting details. Keep controls and captions outside the artwork.
 - Use the existing self-hosted SUITE face for the homepage display and collection headings. Two masked lines arrive with a 780ms exponential ease-out and a 100ms second-line delay. This is the single focal sequence, repeated only when the visitor changes day/night or re-enables motion.
-- Photos crossfade over 480ms when day/night changes. A supported desktop scroll timeline moves the title by at most 24px as the poster exits. There are no timers, continuous loops, scroll event handlers or new animation dependencies.
+- Illustrations crossfade over 480ms when day/night changes. A supported desktop scroll timeline moves the title by at most 24px as the poster exits. There are no timers, continuous loops, scroll event handlers or new animation dependencies.
 - Provide a motion-off control that settles the cover immediately. Respect prefers-reduced-motion with static typography, no spatial motion, a short 120ms image crossfade, and an explicit system-preference label. Default cover content renders on the server and is readable without JavaScript; changing editions requires JavaScript.
-- Stack type and photo on mobile, keeping the main tour link visible before the photograph. Retain manual day/night switching with pressed states and live story/caption updates.
+- Stack type and square artwork on mobile with a 16px paper mount, keeping the main tour link visible before the illustration. Retain manual day/night switching with pressed states and live story/caption updates. Captions and image alternatives identify the correct depicted landmark and illustration medium.
 - Remove repetitive English section labels, arbitrary collection numbering, split-colour headings and the oversized closing wordmark. Keep photographic captions and meaningful carousel position indicators.
 - Keep product images intact, with consistent title, price and action alignment. Show landmarks as unboxed illustrations. Use ruled rows for optional planning tools.
 - Preserve comparison, all companion/interest choices, local notebook persistence/copy, group enquiries, gallery controls and mobile swipe rails. Product details, account, payment and AI services are outside this visual change.
@@ -22,7 +22,7 @@ This direction supersedes the rejected generic product-hero homepage. The websit
 - Warm paper #f4f1e9, charcoal #242b27, restrained vermilion #b64025.
 - SUITE for homepage display titles, controls and body copy; Barlow Condensed for the masthead. Fonts self-host through Next/font. Existing typography on other routes is outside this change.
 - A two-panel campaign cover, generous margins, ruled sections and aligned tour collections. No repeated centered hero blocks, gradients as decoration, or generic pill cards.
-- Real Gyeongju and tour photographs. Homepage scopes the new typography; readable operational pages retain their body system.
+- Original watercolour art on the cover; real Gyeongju tour photographs in the gallery. Homepage scopes the new typography; readable operational pages retain their body system.
 
 ## Product experience
 1. Change the cover between Gyeongju by day and night, on request with no automatic cycling.
@@ -43,7 +43,7 @@ This direction supersedes the rejected generic product-hero homepage. The websit
 - Four existing landmark illustrations form an illustrated postcard index linking to the existing landmark pages. Preserve square artwork without cropping.
 - Blossom artwork is a small paper postcard beside the notebook introduction, leaving all controls and text readable.
 - The original panoramic night illustration closes the page, after the studio statement and before contact information.
-- Photo-led cover and real tour photographs retain their existing role. No new images or altered artwork.
+- The original autumn and Woljeonggyo illustrations also lead the cover. Real tour photographs remain in the gallery. No new images or altered artwork.
 - This change is preview-only pending owner review; do not merge or promote to production without approval.
 
 ## Store product images

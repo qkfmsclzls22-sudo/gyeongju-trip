@@ -43,10 +43,11 @@
 .tourLink:hover svg { transform: translateX(4px); }
 .cover.cover .tourLink.tourLink:focus-visible { outline-color: var(--poster-paper); }
 .signature { margin-top: 35px !important; color: var(--poster-detail); font-size: 12px; line-height: 1.6; }
-.photograph { position: relative; min-width: 0; min-height: 100%; overflow: hidden; background: #526047; }
-.photoLayer { position: absolute; inset: 0; opacity: 0; transition: opacity 480ms ease-out; }
-.photoLayer[data-active="true"] { opacity: 1; }
-.cover .photoLayer img { object-fit: cover; object-position: 50% 55%; }
+.artwork { display: grid; place-items: center; min-width: 0; padding: 28px; background: var(--poster-paper); }
+.artFrame { position: relative; width: min(100%, 560px); aspect-ratio: 1; }
+.artLayer { position: absolute; inset: 0; opacity: 0; transition: opacity 480ms ease-out; }
+.artLayer[data-active="true"] { opacity: 1; }
+.cover .artLayer img { object-fit: contain; }
 .captionBar { display: flex; align-items: center; gap: 28px; padding-block: 12px; min-height: 68px; border-bottom: 1px solid var(--studio-line); }
 .editionSwitch { display: flex; gap: 24px; }
 .editionSwitch button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0; background: transparent; border: 0; font-size: 14px; color: var(--studio-muted); }
@@ -67,11 +68,12 @@
   .titleDrift { animation: posterDrift linear both; animation-timeline: --campaign; animation-range: exit 0% exit 85%; }
 }
 .cover[data-motion="false"] :is(.typeLine > span, .rule, .titleDrift) { animation: none; }
-.cover[data-motion="false"] :is(.photoLayer, .tourLink svg) { transition: none; }
+.cover[data-motion="false"] :is(.artLayer, .tourLink svg) { transition: none; }
 @media (min-width: 1600px) { .poster { min-height: 640px; } }
 @media (min-width: 761px) and (max-width: 1100px) {
   .poster { min-height: 520px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
   .typePanel { padding: 30px; }
+  .artwork { padding: 20px; }
   .cover .title.title { font-size: clamp(56px, 7vw, 76px); }
   .story { margin-top: 26px; }
   .captionBar { gap: 16px; }
@@ -87,7 +89,7 @@
   .story { margin-top: 0; }
   .lead { font-size: 15px; line-height: 1.6; white-space: normal; }
   .tourLink { max-width: none; font-size: 13px; margin-top: 7px; min-height: 44px; padding-block: 10px; }
-  .photograph { height: auto; min-height: 0; aspect-ratio: 1.4; }
+  .artwork { padding: 16px; }
   .captionBar { flex-wrap: wrap; gap: 0 12px; padding-block: 6px 10px; }
   .editionSwitch { gap: 18px; }
   .editionSwitch button { font-size: 13px; }
@@ -98,7 +100,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .cover :is(.typeLine > span, .rule, .titleDrift) { animation: none; }
-  .photoLayer { transition: opacity 120ms ease-out; }
+  .artLayer { transition: opacity 120ms ease-out; }
   .tourLink svg { transition: none; }
   .tourLink:hover svg { transform: none; }
   .motionButton { display: none; }
