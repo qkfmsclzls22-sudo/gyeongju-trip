@@ -2,15 +2,12 @@
 
 import Image from "next/image";
 import MobileRail from "./MobileRail";
+import CampaignCover from "./CampaignCover";
 import { IconArrow, IconCheck, IconClose } from "./icons";
 import { useEffect, useState } from "react";
 import { TOURS, type TourId } from "@/lib/tours";
 import s from "../journey.module.css";
 
-const editions = {
-  day: { title: "낯익은 경주에서,\n처음 만나는 이야기.", caption: "대릉원, 경주의 낮", image: "gyeongju-green-tombs.webp", alt: "초록 고분과 푸른 하늘이 이어지는 대릉원", copy: "능선을 따라 걷고, 유물 앞에 잠깐 멈추고.\n당신의 속도로 경주를 만나세요." },
-  night: { title: "해가 지면,\n다른 경주가 열린다.", caption: "동궁과월지, 경주의 밤", image: "landmark-donggung-wolji.jpg", alt: "연못 위로 황금빛 반영이 펼쳐지는 동궁과월지의 밤", copy: "손에는 청사초롱, 발걸음에는 이야기.\n경주의 밤을 함께 걸어보세요." },
-};
 const tours: { id: TourId; title: string; subtitle: string; image: string; setting: string; note: string; route: string[] }[] = [
   { id: "museum", title: "유물 앞의 두 시간", subtitle: "국립경주박물관 도슨트", image: "product-smartstore-museum.webp", setting: "실내 중심 · 오전 / 오후", note: "유물을 자세히 들여다보고 싶은 날. 해설과 함께 신라의 사람과 생활을 만나봅니다.", route: ["성덕대왕신종", "신라역사관", "신라미술관"] },
   { id: "bulguksa", title: "돌에 새긴 이야기", subtitle: "불국사 도슨트", image: "product-smartstore-bulguksa.webp", setting: "야외 · 계단 · 오전 / 오후", note: "산책에 이야기를 더하고 싶은 날. 불국사의 건축과 돌에 담긴 뜻을 읽어봅니다.", route: ["일주문", "청운교·백운교", "대웅전", "극락전"] },
@@ -21,7 +18,6 @@ const interests = [{ value: "museum", label: "유물과 이야기" }, { value: "
 const storageKey = "gjtrip-travel-note-v1";
 
 export default function JourneyExplorer() {
-  const [edition, setEdition] = useState<keyof typeof editions>("day");
   const [companion, setCompanion] = useState("family");
   const [interest, setInterest] = useState<TourId>("museum");
   const [date, setDate] = useState("");
@@ -33,7 +29,6 @@ export default function JourneyExplorer() {
   const [copyMessage, setCopyMessage] = useState("");
   const [copyFallback, setCopyFallback] = useState("");
   const [minDate, setMinDate] = useState("");
-  const current = editions[edition];
   const selected = tours.find(tour => tour.id === interest)!;
   const group = companion === "group";
 
@@ -65,26 +60,7 @@ export default function JourneyExplorer() {
   }
 
   return <>
-    <section className={s.cover} id="home-content" aria-labelledby="home-title" data-edition={edition}>
-      <div className={s.coverGrid}>
-        <figure className={s.coverFigure}>
-          <div className={s.coverPhoto}>
-            <Image key={edition} src={`/images/${current.image}`} alt={current.alt} fill sizes="(max-width: 760px) 92vw, (max-width: 1440px) 56vw, 800px" preload={edition === "day"} />
-          </div>
-          <figcaption className={s.photoCaption} aria-live="polite">{current.caption}</figcaption>
-        </figure>
-        <div className={s.coverAside}>
-          <h1 id="home-title">경주,<br />그 너머.</h1>
-          <div className={s.coverStory} aria-live="polite">
-            <p className={s.coverLead}>{current.title}</p>
-            <p className={s.coverDescription}>{current.copy}</p>
-          </div>
-          <a className={s.coverLink} href="#tours">도슨트 투어 둘러보기 <IconArrow /></a>
-          <div className={s.editionSwitch} role="group" aria-label="경주의 낮과 밤 선택"><button type="button" aria-pressed={edition === "day"} onClick={() => setEdition("day")}>낮의 경주</button><button type="button" aria-pressed={edition === "night"} onClick={() => setEdition("night")}>밤의 경주</button></div>
-        </div>
-      </div>
-      <p className={s.coverSignature}>해설사와 걷는 여행. 직접 기획하고, 현장에서 함께합니다.</p>
-      </section>
+    <CampaignCover />
     <nav className={s.chapterBar} aria-label="여행 빠른 탐색"><a href="#tours">투어 고르기</a><a href="#discover">취향 찾기</a><a href="#travel-note">여행노트 <span>{saved.length}</span></a></nav>
 
     <section id="tours" className={s.collection} aria-labelledby="tours-title">
