@@ -1,11 +1,23 @@
 # Gyeongju Trip — Local Travel Studio
 
+## Photo and brand refinement (2026-10-26)
+The owner prioritised Gyeongju photography and brand atmosphere. Preserve the existing palette, photographs, square store artwork, illustrations, factual copy, prices and booking destinations.
+
+- Show the cover photograph without English lettering, artificial shading or controls on the image. Pair it with one Korean headline and a clear tour link. Retain manual day/night switching with a selected state and live caption.
+- Remove repetitive English section labels, arbitrary collection numbering, split-colour headings and the oversized closing wordmark. Keep photographic captions and meaningful carousel position indicators.
+- Keep product images intact, with consistent title, price and action alignment. Show landmarks as unboxed illustrations. Use ruled rows for optional planning tools.
+- Preserve comparison, all companion/interest choices, local notebook persistence/copy, group enquiries, gallery controls and mobile swipe rails. Product details, account, payment and AI services are outside this visual change.
+- This refinement remains a preview until owner review, as required by the existing release rule below.
+
+References: [vibe.itji's post](https://www.threads.com/@vibe.itji/post/De6Ofeij72o), [Impeccable](https://github.com/pbakaus/impeccable), [Hallmark](https://github.com/Nutlope/hallmark).
+Applied Impeccable distill/polish and craft-floor guidance. Hallmark principles were reviewed as secondary evidence; no Hallmark theme rebuild or browser-linter run is claimed.
+
 This direction supersedes the rejected generic product-hero homepage. The website is a place to choose a trip, not just a stack of advertisements.
 
 ## Visual language
 - Warm paper #f4f1e9, charcoal #242b27, restrained vermilion #b64025.
-- Hahmlet for Korean editorial titles, Barlow Condensed for the masthead, chapter numbers and English display; Noto Sans KR for controls and body copy. Fonts self-host through Next/font.
-- Asymmetric photo cover, oversized daylight/nightfall type, ruled sections, staggered tour collection. No repeated centered hero blocks, gradients as decoration, or generic pill cards.
+- Hahmlet for Korean editorial titles, Barlow Condensed for the masthead, SUITE for controls and body copy. Fonts self-host through Next/font.
+- Asymmetric photo cover, restrained Korean headlines, ruled sections, aligned tour collection. No repeated centered hero blocks, gradients as decoration, or generic pill cards.
 - Real Gyeongju and tour photographs. Homepage scopes the new typography; readable operational pages retain their body system.
 
 ## Product experience
