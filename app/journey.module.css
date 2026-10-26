@@ -184,7 +184,7 @@
 .home.home [data-site-header][data-variant="home"] { background:var(--studio-paper); backdrop-filter:none; }
 .home.home [data-site-header][data-variant="home"] > div { width:min(90%,1680px); height:84px; }
 .home.home [data-site-header][data-variant="home"] [data-home-wordmark] { font-family:var(--font-pretendard),sans-serif; font-size:23px; font-weight:750; letter-spacing:-.04em; color:var(--studio-ink); }
-.home.home [data-site-header][data-variant="home"] nav { font-family:var(--studio-font); }
+.home.home [data-site-header][data-variant="home"] nav { font-family:var(--studio-font); font-size:14px; }
 .home.home [data-site-header][data-variant="home"] nav :is(a,button):hover { color:var(--studio-orange); }
 .home.home [data-site-header][data-variant="home"] a[href="/quote"] { background:transparent; border:1px solid var(--studio-ink); color:var(--studio-ink); padding:11px 20px; }
 .home.home [data-site-header][data-variant="home"] a[href="/quote"]:hover { color:var(--studio-paper); background:var(--studio-ink); }

@@ -23,10 +23,11 @@ const editions = {
 export default function CampaignCover() {
   const [edition, setEdition] = useState<keyof typeof editions>("day");
   const [motion, setMotion] = useState(true);
+  const [nightVisited, setNightVisited] = useState(false);
   const current = editions[edition];
 
   return (
-    <section id="home-content" className={s.cover} aria-labelledby="home-title" data-edition={edition} data-motion={motion}>
+    <section className={s.cover} aria-labelledby="home-title" data-edition={edition} data-motion={motion}>
       <div className={s.introduction}>
             <h1 id="home-title" className={s.title} key={edition}>
               <span className={s.typeLine}><span>경주,</span></span>
@@ -34,11 +35,11 @@ export default function CampaignCover() {
             </h1>
           <div className={s.story}>
             <p className={s.lead} aria-live="polite" aria-atomic="true">{current.title}</p>
-            <a href="#tours" className={s.tourLink}>도슨트 투어 둘러보기 <IconArrow /></a>
+            <a href="#tours" className={s.tourLink}>해설사와 떠나는 경주 <IconArrow /></a>
           </div>
       </div>
       <figure className={s.panorama}>
-          {(Object.keys(editions) as (keyof typeof editions)[]).map(key => (
+          {(Object.keys(editions) as (keyof typeof editions)[]).filter(key => key === "day" || nightVisited).map(key => (
             <div key={key} className={s.artLayer} data-active={edition === key} aria-hidden={edition !== key}>
               <Image src={`/images/${editions[key].image}`} alt={edition === key ? editions[key].alt : ""} fill
                 sizes="100vw" loading="eager" fetchPriority={key === "day" ? "high" : "low"} />
@@ -48,7 +49,7 @@ export default function CampaignCover() {
       <div className={s.captionBar}>
         <div className={s.editionSwitch} role="group" aria-label="경주의 낮과 밤 선택">
           {(Object.keys(editions) as (keyof typeof editions)[]).map(key => (
-            <button key={key} type="button" aria-pressed={edition === key} onClick={() => setEdition(key)}>
+            <button key={key} type="button" aria-pressed={edition === key} onClick={() => { if (key === "night") setNightVisited(true); setEdition(key); }}>
               <span className={s.editionDot} aria-hidden="true" />{editions[key].label}
             </button>
           ))}
