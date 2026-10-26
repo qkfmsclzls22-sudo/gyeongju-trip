@@ -41,7 +41,7 @@
 .tourLink { display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 290px; min-height: 48px; margin-top: 24px; border-bottom: 1px solid var(--poster-detail); padding-block: 12px; font-size: 15px; font-weight: 600; }
 .tourLink svg { transition: transform 180ms ease-out; }
 .tourLink:hover svg { transform: translateX(4px); }
-.cover .tourLink:focus-visible { outline-color: var(--poster-paper); }
+.cover.cover .tourLink.tourLink:focus-visible { outline-color: var(--poster-paper); }
 .signature { margin-top: 35px !important; color: var(--poster-detail); font-size: 12px; line-height: 1.6; }
 .photograph { position: relative; min-width: 0; min-height: 100%; overflow: hidden; background: #526047; }
 .photoLayer { position: absolute; inset: 0; opacity: 0; transition: opacity 480ms ease-out; }
