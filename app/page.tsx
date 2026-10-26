@@ -1,4 +1,5 @@
 import Image from "next/image";
+import localFont from "next/font/local";
 import { IconArrow } from "./components/icons";
 import MobileRail from "./components/MobileRail";
 import { SiteFooter, SiteHeader } from "./components/site";
@@ -7,6 +8,14 @@ import JourneyExplorer from "./components/JourneyExplorer";
 import styles from "./homepage.module.css";
 import s from "./journey.module.css";
 
+const pretendard = localFont({
+  src: "./fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "100 900",
+  display: "swap",
+  fallback: ["sans-serif"],
+});
+
 const places = [
   { slug: "daereungwon", name: "대릉원", image: "illustration-autumn.webp", line: "능선 사이를 걷는 시간" },
   { slug: "seokguram", name: "석굴암", image: "illustration-buddha.webp", line: "돌로 완성한 고요" },
@@ -14,7 +23,7 @@ const places = [
   { slug: "woljeonggyo", name: "월정교", image: "illustration-woljeonggyo.webp", line: "물 위에 내려앉은 빛" },
 ];
 export default function Home() {
-  return <main className={`${styles.home} ${s.home}`}>
+  return <main className={`${styles.home} ${s.home} ${pretendard.variable}`}>
     <a href="#home-content" className={styles.skipLink}>본문 바로가기</a>
     <SiteHeader variant="home" />
     <JourneyExplorer />

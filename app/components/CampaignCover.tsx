@@ -9,14 +9,14 @@ const editions = {
   day: {
     label: "낮의 경주", ending: "그 너머.",
     title: "낯익은 경주에서,\n처음 만나는 이야기.",
-    caption: "가을빛 대릉원 · 경주트립 일러스트", image: "illustration-autumn.webp",
-    alt: "푸른 하늘과 초록 고분 위로 노란 단풍나무가 펼쳐지는 대릉원 수채화 일러스트",
+    caption: "가을빛 대릉원 · 경주트립 수채화", image: "campaign-autumn-wide.webp",
+    alt: "넓고 푸른 하늘 아래 세이지빛 능선과 황금빛 가을나무가 펼쳐진 대릉원 수채화",
   },
   night: {
     label: "밤의 경주", ending: "깊은 밤.",
     title: "해가 지면,\n다른 경주가 열린다.",
-    caption: "달빛 아래 월정교 · 경주트립 일러스트", image: "illustration-woljeonggyo.webp",
-    alt: "둥근 달 아래 월정교와 물 위의 반영을 그린 푸른색 수채화 일러스트",
+    caption: "달빛 아래 월정교 · 경주트립 수채화", image: "campaign-woljeonggyo-wide.webp",
+    alt: "남색 밤하늘과 은은한 달빛 아래 월정교 전체와 물 위의 반영을 담은 수채화",
   },
 } as const;
 
@@ -27,33 +27,24 @@ export default function CampaignCover() {
 
   return (
     <section id="home-content" className={s.cover} aria-labelledby="home-title" data-edition={edition} data-motion={motion}>
-      <div className={s.poster}>
-        <div className={s.typePanel}>
-          <div className={s.titleDrift}>
+      <div className={s.introduction}>
             <h1 id="home-title" className={s.title} key={edition}>
               <span className={s.typeLine}><span>경주,</span></span>
               <span className={s.typeLine}><span>{current.ending}</span></span>
             </h1>
-            <div className={s.rule} key={`${edition}-rule`} aria-hidden="true" />
-          </div>
           <div className={s.story}>
             <p className={s.lead} aria-live="polite" aria-atomic="true">{current.title}</p>
             <a href="#tours" className={s.tourLink}>도슨트 투어 둘러보기 <IconArrow /></a>
           </div>
-          <p className={s.signature}>해설사와 걷는 여행, 경주트립.</p>
-        </div>
-        <figure className={s.artwork}>
-          <div className={s.artFrame}>
+      </div>
+      <figure className={s.panorama}>
           {(Object.keys(editions) as (keyof typeof editions)[]).map(key => (
             <div key={key} className={s.artLayer} data-active={edition === key} aria-hidden={edition !== key}>
               <Image src={`/images/${editions[key].image}`} alt={edition === key ? editions[key].alt : ""} fill
-                sizes="(max-width: 760px) calc(92vw - 32px), (max-width: 1100px) 43vw, 560px"
-                preload={key === "day"} loading={key === "night" ? "eager" : undefined} />
+                sizes="100vw" loading="eager" fetchPriority={key === "day" ? "high" : "low"} />
             </div>
           ))}
-          </div>
-        </figure>
-      </div>
+      </figure>
       <div className={s.captionBar}>
         <div className={s.editionSwitch} role="group" aria-label="경주의 낮과 밤 선택">
           {(Object.keys(editions) as (keyof typeof editions)[]).map(key => (
