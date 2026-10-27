@@ -164,7 +164,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className={styles.legal}>
-          <p>상호: 경주트립 · 대표자: 김봉열</p>
+          <p>상호: 경주트립 · 대표자: 김봉열 · 김진주</p>
           <p>주소: 경상북도 경주시 계림로107 경북관광기업지원센터 6층</p>
           <p>
             사업자등록번호 694-75-00685 <span>© 2026 Gyeongju Trip.</span>

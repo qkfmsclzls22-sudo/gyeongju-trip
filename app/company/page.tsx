@@ -84,7 +84,7 @@ const schoolClients = [
 
 const companyInfo = [
   { label: "상호", value: "경주트립" },
-  { label: "대표자", value: "김봉열" },
+  { label: "대표자", value: "김봉열 · 김진주" },
   { label: "설립일", value: "2025년 9월" },
   { label: "사업자등록번호", value: "694-75-00685" },
   {
