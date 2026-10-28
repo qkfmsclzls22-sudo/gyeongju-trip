@@ -14,13 +14,13 @@ function subscribeToVisibility(callback: () => void) {
 }
 const pageIsVisible = () => !document.hidden;
 
-export function useCarouselPlayback(track: RefObject<HTMLDivElement | null>) {
+export function useCarouselPlayback(track: RefObject<HTMLDivElement | null>, autoplay = true) {
   const [visible, setVisible] = useState(false);
   const [interacting, setInteracting] = useState(false);
   const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
   const reducedMotion = useSyncExternalStore(subscribeToMotion, prefersReducedMotion, () => true);
   const pageVisible = useSyncExternalStore(subscribeToVisibility, pageIsVisible, () => false);
-  const playing = userPlaying ?? !reducedMotion;
+  const playing = userPlaying ?? (autoplay && !reducedMotion);
 
   useEffect(() => {
     const el = track.current;

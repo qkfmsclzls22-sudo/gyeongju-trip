@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T09:28:30.339Z",
+  "title": "Design System: Gyeongju Trip",
+  "extensions": {
+    "colorMeta": {
+      "studio-paper": {
+        "role": "neutral",
+        "displayName": "Near-white paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.00132 106.47)",
+          "oklch(26.43% 0.00282 106.47)",
+          "oklch(37.86% 0.00395 106.47)",
+          "oklch(49.29% 0.00395 106.47)",
+          "oklch(60.71% 0.00395 106.47)",
+          "oklch(72.14% 0.00395 106.47)",
+          "oklch(83.57% 0.00324 106.47)",
+          "oklch(95.00% 0.00099 106.47)"
+        ]
+      },
+      "studio-ink": {
+        "role": "primary",
+        "displayName": "Spruce ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.01488 181.71)",
+          "oklch(26.43% 0.03189 181.71)",
+          "oklch(37.86% 0.04465 181.71)",
+          "oklch(49.29% 0.04465 181.71)",
+          "oklch(60.71% 0.04465 181.71)",
+          "oklch(72.14% 0.04465 181.71)",
+          "oklch(83.57% 0.03668 181.71)",
+          "oklch(95.00% 0.01116 181.71)"
+        ]
+      },
+      "studio-orange": {
+        "role": "primary",
+        "displayName": "Deep leaf",
+        "tonalRamp": [
+          "oklch(15.00% 0.02008 176.32)",
+          "oklch(26.43% 0.04302 176.32)",
+          "oklch(37.86% 0.06023 176.32)",
+          "oklch(49.29% 0.06023 176.32)",
+          "oklch(60.71% 0.06023 176.32)",
+          "oklch(72.14% 0.06023 176.32)",
+          "oklch(83.57% 0.04947 176.32)",
+          "oklch(95.00% 0.01506 176.32)"
+        ]
+      },
+      "studio-muted": {
+        "role": "neutral",
+        "displayName": "Muted sage",
+        "tonalRamp": [
+          "oklch(15.00% 0.00627 172.01)",
+          "oklch(26.43% 0.01343 172.01)",
+          "oklch(37.86% 0.01880 172.01)",
+          "oklch(49.29% 0.01880 172.01)",
+          "oklch(60.71% 0.01880 172.01)",
+          "oklch(72.14% 0.01880 172.01)",
+          "oklch(83.57% 0.01544 172.01)",
+          "oklch(95.00% 0.00470 172.01)"
+        ]
+      },
+      "studio-line": {
+        "role": "neutral",
+        "displayName": "Spruce hairline",
+        "tonalRamp": [
+          "oklch(15.00% 0.01488 181.71 / 0.14902)",
+          "oklch(26.43% 0.03189 181.71 / 0.14902)",
+          "oklch(37.86% 0.04465 181.71 / 0.14902)",
+          "oklch(49.29% 0.04465 181.71 / 0.14902)",
+          "oklch(60.71% 0.04465 181.71 / 0.14902)",
+          "oklch(72.14% 0.04465 181.71 / 0.14902)",
+          "oklch(83.57% 0.03668 181.71 / 0.14902)",
+          "oklch(95.00% 0.01116 181.71 / 0.14902)"
+        ]
+      },
+      "studio-soft": {
+        "role": "neutral",
+        "displayName": "Soft sage",
+        "tonalRamp": [
+          "oklch(15.00% 0.00250 151.89)",
+          "oklch(26.43% 0.00535 151.89)",
+          "oklch(37.86% 0.00749 151.89)",
+          "oklch(49.29% 0.00749 151.89)",
+          "oklch(60.71% 0.00749 151.89)",
+          "oklch(72.14% 0.00749 151.89)",
+          "oklch(83.57% 0.00615 151.89)",
+          "oklch(95.00% 0.00187 151.89)"
+        ]
+      },
+      "studio-dark": {
+        "role": "primary",
+        "displayName": "Forest field",
+        "tonalRamp": [
+          "oklch(15.00% 0.01558 180.11)",
+          "oklch(26.43% 0.03338 180.11)",
+          "oklch(37.86% 0.04673 180.11)",
+          "oklch(49.29% 0.04673 180.11)",
+          "oklch(60.71% 0.04673 180.11)",
+          "oklch(72.14% 0.04673 180.11)",
+          "oklch(83.57% 0.03839 180.11)",
+          "oklch(95.00% 0.01168 180.11)"
+        ]
+      },
+      "studio-on-dark": {
+        "role": "primary",
+        "displayName": "Pale foliage",
+        "tonalRamp": [
+          "oklch(15.00% 0.00530 154.45)",
+          "oklch(26.43% 0.01135 154.45)",
+          "oklch(37.86% 0.01589 154.45)",
+          "oklch(49.29% 0.01589 154.45)",
+          "oklch(60.71% 0.01589 154.45)",
+          "oklch(72.14% 0.01589 154.45)",
+          "oklch(83.57% 0.01305 154.45)",
+          "oklch(95.00% 0.00397 154.45)"
+        ]
+      },
+      "studio-horizon": {
+        "role": "secondary",
+        "displayName": "Night horizon",
+        "tonalRamp": [
+          "oklch(15.00% 0.02742 259.57)",
+          "oklch(26.43% 0.05876 259.57)",
+          "oklch(37.86% 0.08226 259.57)",
+          "oklch(49.29% 0.08226 259.57)",
+          "oklch(60.71% 0.08226 259.57)",
+          "oklch(72.14% 0.08226 259.57)",
+          "oklch(83.57% 0.06757 259.57)",
+          "oklch(95.00% 0.02056 259.57)"
+        ]
+      },
+      "panorama-sky": {
+        "role": "secondary",
+        "displayName": "Pale blue air",
+        "tonalRamp": [
+          "oklch(15.00% 0.00632 213.42)",
+          "oklch(26.43% 0.01354 213.42)",
+          "oklch(37.86% 0.01896 213.42)",
+          "oklch(49.29% 0.01896 213.42)",
+          "oklch(60.71% 0.01896 213.42)",
+          "oklch(72.14% 0.01896 213.42)",
+          "oklch(83.57% 0.01557 213.42)",
+          "oklch(95.00% 0.00474 213.42)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Campaign display",
+        "purpose": "Homepage title with a 128px desktop ceiling."
+      },
+      "headline": {
+        "displayName": "Editorial section headline",
+        "purpose": "Section headings; explorer and notebook use a 1.27 line-height variant."
+      },
+      "scene-title": {
+        "displayName": "Selected scene title",
+        "purpose": "Tour experience headline; 32px on mobile."
+      },
+      "scene-choice": {
+        "displayName": "Scene choice label",
+        "purpose": "Three visible selection buttons; 17px mobile, 16px at narrowest breakpoint."
+      },
+      "body": {
+        "displayName": "Tour description",
+        "purpose": "Selected-tour copy at 1.9 line-height and max 60ch measure."
+      },
+      "lead": {
+        "displayName": "Campaign invitation",
+        "purpose": "Compact story beside display, below it on mobile."
+      },
+      "label": {
+        "displayName": "Navigation and field label",
+        "purpose": "Chapter links and field legends."
+      },
+      "action": {
+        "displayName": "Primary action",
+        "purpose": "Booking and copy controls."
+      },
+      "estimate": {
+        "displayName": "Party estimate",
+        "purpose": "Tabular numeric total for the selected party."
+      },
+      "masthead": {
+        "displayName": "Homepage masthead",
+        "purpose": "Homepage wordmark; 17px mobile override."
+      }
+    },
+    "shadows": [
+      {
+        "name": "open-mobile-navigation",
+        "value": "0 20px 25px #00000012",
+        "purpose": "Inherited shared menu shadow; all primary homepage content surfaces remain flat."
+      }
+    ],
+    "motion": [
+      {
+        "name": "campaign-title",
+        "value": "900ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Masked translate3d(0,102%,0) to zero; second segment delayed 110ms."
+      },
+      {
+        "name": "campaign-image",
+        "value": "opacity 650ms ease-out",
+        "purpose": "Manual day/night crossfade; night first mounts after selection."
+      },
+      {
+        "name": "campaign-arrow",
+        "value": "transform 200ms ease-out",
+        "purpose": "Cover-link arrow shifts 5px on hover."
+      },
+      {
+        "name": "campaign-motion-off",
+        "value": "none",
+        "purpose": "Removes title animation and cover transitions; reduced-motion also removes arrow shift."
+      },
+      {
+        "name": "gallery-opt-in-timer",
+        "value": "4000ms",
+        "purpose": "Starts only after explicit play; runs while visible and idle. Keyboard-visible focus pauses playback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-controls",
+        "value": "360px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "760px"
+      },
+      {
+        "name": "desktop-min",
+        "value": "761px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1100px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary booking and copy action",
+      "kind": "button",
+      "refersTo": "primary-action",
+      "description": "Shared 52px-high rectangular action; booking flexes in its row and notebook copy spans its sheet.",
+      "html": "<a class=\"ds-primary\" href=\"/tours/museum\">일정·예약 확인 <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M12.5 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-primary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:14px 20px;background:var(--studio-ink,#183e38);color:var(--studio-paper,#fcfcf9);border:1px solid var(--studio-ink,#183e38);border-radius:0;font-size:15px;font-weight:600;text-decoration:none;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-primary:hover{background:var(--studio-orange,#275c50)}.ds-primary:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}"
+    },
+    {
+      "name": "Header enquiry",
+      "kind": "button",
+      "refersTo": "header-enquiry",
+      "description": "Homepage square-cornered outline enquiry action, filled on hover.",
+      "html": "<a class=\"ds-enquiry\" href=\"/quote\">견적문의</a>",
+      "css": ".ds-enquiry{display:inline-block;padding:11px 20px;border:1px solid var(--studio-ink,#183e38);border-radius:0;background:transparent;color:var(--studio-ink,#183e38);font-size:12px;font-weight:650;text-decoration:none;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:0;}.ds-enquiry:hover{background:var(--studio-ink,#183e38);color:var(--studio-paper,#fcfcf9)}.ds-enquiry:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-enquiry{padding:8px 11px;font-size:11px}}"
+    },
+    {
+      "name": "Companion choice",
+      "kind": "chip",
+      "refersTo": "companion-choice",
+      "description": "Optional pressed choices; product-specific guidance updates in the application. Selecting the active choice clears it.",
+      "html": "<div class=\"ds-companions\" role=\"group\" aria-label=\"동행에 맞는 안내\"><button type=\"button\" aria-pressed=\"true\">아이와 함께</button><button type=\"button\" aria-pressed=\"false\">연인·친구와</button><button type=\"button\" aria-pressed=\"false\">혼자</button></div>",
+      "css": ".ds-companions{display:flex;flex-wrap:wrap;gap:8px}.ds-companions button{min-height:44px;padding:10px 14px;border:1px solid var(--studio-line,#183e3826);border-radius:0;background:transparent;color:var(--studio-ink,#183e38);font-size:13px;cursor:pointer;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-companions button[aria-pressed=\"true\"]{background:var(--studio-ink,#183e38);color:var(--studio-paper,#fcfcf9);border-color:var(--studio-ink,#183e38)}.ds-companions button:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-companions button{padding-inline:11px;font-size:12px}}"
+    },
+    {
+      "name": "Persistent date note",
+      "kind": "input",
+      "refersTo": "date-field",
+      "description": "Optional native date persisted with the v2 notebook. The date is not availability or a booking.",
+      "html": "<label class=\"ds-date\">여행 예정일 <span>선택</span><input type=\"date\" aria-label=\"여행 예정일\" aria-describedby=\"ds-date-hint\"></label><p id=\"ds-date-hint\" class=\"ds-date-hint\">날짜는 노트에만 기록돼요. 잔여석 조회나 예약 신청이 아닙니다.</p>",
+      "css": ".ds-date{display:block;max-width:340px;color:var(--studio-ink,#183e38);font-size:14px;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-date>span{margin-left:6px;color:var(--studio-muted,#596762);font-size:12px}.ds-date input{display:block;min-width:0;width:100%;min-height:48px;margin-top:10px;padding:10px 12px;border:1px solid var(--studio-line,#183e3826);border-radius:0;background:transparent;color:var(--studio-ink,#183e38);color-scheme:light;font:inherit;caret-color:var(--studio-orange,#275c50)}.ds-date-hint{max-width:40ch;margin:10px 0 0;color:var(--studio-muted,#596762);font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;font-size:12px;line-height:1.8;letter-spacing:-.015em;}.ds-date input:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-date{max-width:none}}"
+    },
+    {
+      "name": "Chapter navigation",
+      "kind": "nav",
+      "refersTo": "chapter-nav",
+      "description": "Normal-flow row linking to tours, visible notebook and preparation; no sticky chapter behavior.",
+      "html": "<nav class=\"ds-chapters\" aria-label=\"여행 빠른 탐색\"><a href=\"#tours\">투어 고르기</a><a href=\"#travel-note\">여행노트 <span>0</span></a><a href=\"#guide\">여행 준비</a></nav>",
+      "css": ".ds-chapters{display:flex;align-items:center;gap:38px;border-block:1px solid var(--studio-line,#183e3826);color:var(--studio-ink,#183e38);font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-chapters a{display:inline-flex;align-items:center;gap:8px;min-height:58px;color:inherit;font-size:14px;font-weight:600;text-decoration:none}.ds-chapters a:last-child{margin-left:auto}.ds-chapters span{color:var(--studio-muted,#596762);font-variant-numeric:tabular-nums}.ds-chapters a:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-chapters{gap:20px}.ds-chapters a{font-size:12px;min-height:52px}}"
+    },
+    {
+      "name": "Three scene choices",
+      "kind": "custom",
+      "refersTo": "scene-choice",
+      "description": "All three choices are visible: desktop columns become mobile rows. Sample omits live prices; TOURS supplies runtime amounts.",
+      "html": "<div class=\"ds-scenes\" role=\"group\" aria-label=\"탐색할 투어 선택\"><button type=\"button\" aria-pressed=\"true\"><span class=\"ds-scene-name\">박물관 <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M12.5 6l6 6-6 6\"/></svg></span><span class=\"ds-scene-meta\">실내 중심 · 낮</span></button><button type=\"button\" aria-pressed=\"false\"><span class=\"ds-scene-name\">불국사·석굴암 <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M12.5 6l6 6-6 6\"/></svg></span><span class=\"ds-scene-meta\">야외 · 계단 · 낮</span></button><button type=\"button\" aria-pressed=\"false\"><span class=\"ds-scene-name\">별빛야행 <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M12.5 6l6 6-6 6\"/></svg></span><span class=\"ds-scene-meta\">야외 도보 · 밤</span></button></div>",
+      "css": ".ds-scenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--studio-line,#183e3826);font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-scenes button{position:relative;padding:22px 24px 20px 0;text-align:left;border:0;border-bottom:1px solid var(--studio-line,#183e3826);background:transparent;color:var(--studio-muted,#596762);cursor:pointer;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-scenes button+button{padding-left:28px}.ds-scenes button::after{content:\"\";position:absolute;bottom:-1px;left:0;right:0;height:3px;background:transparent}.ds-scenes button[aria-pressed=\"true\"]{color:var(--studio-ink,#183e38)}.ds-scenes button[aria-pressed=\"true\"]::after{background:var(--studio-ink,#183e38)}.ds-scenes button:hover{background:var(--studio-soft,#edf2ee)}.ds-scene-name{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:clamp(20px,2vw,29px);font-weight:600}.ds-scene-name svg{opacity:0;flex-shrink:0}.ds-scenes [aria-pressed=\"true\"] svg{opacity:1}.ds-scene-meta{display:block;margin-top:10px;font-size:13px;line-height:1.6}.ds-scenes button:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-scenes{grid-template-columns:1fr}.ds-scenes button,.ds-scenes button+button{padding:14px 12px}.ds-scenes button[aria-pressed=\"true\"]{background:var(--studio-soft,#edf2ee)}.ds-scenes button::after{height:2px}.ds-scene-name{font-size:17px;letter-spacing:-.025em}.ds-scene-name svg{display:none}.ds-scene-meta{font-size:12px;margin:4px 0 0}}"
+    },
+    {
+      "name": "Visible notebook sheet",
+      "kind": "card",
+      "refersTo": "notebook-sheet",
+      "description": "Always-visible soft-sage sheet. Real saved rows also include operation facts and party estimates from shared data.",
+      "html": "<section class=\"ds-notebook\" aria-label=\"나의 경주 여행노트\"><div class=\"ds-note-title\"><h3>나의 경주 여행노트</h3><span>1개</span></div><div class=\"ds-note-row\"><a href=\"/tours/museum\">국립경주박물관 도슨트 <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h13M12.5 6l6 6-6 6\"/></svg></a><p>성덕대왕신종 → 신라역사관 → 신라미술관 → 월지관</p></div><p class=\"ds-note-hint\">담은 투어·날짜·동행·인원은 이 브라우저에 저장돼요. 예약 확정 내역이나 하루 일정표가 아닙니다.</p></section>",
+      "css": ".ds-notebook{min-width:0;padding:30px;background:var(--studio-soft,#edf2ee);color:var(--studio-ink,#183e38);font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-note-title{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--studio-line,#183e3826);padding-bottom:18px}.ds-note-title h3{margin:0;font-size:22px;font-weight:500;letter-spacing:-.035em}.ds-note-title>span{font-size:13px;font-variant-numeric:tabular-nums}.ds-note-row{padding-block:18px;border-bottom:1px solid var(--studio-line,#183e3826)}.ds-note-row a{display:flex;align-items:center;gap:8px;min-height:44px;color:inherit;font-size:16px;font-weight:600;text-decoration:none}.ds-note-row p,.ds-note-hint{margin:0;color:var(--studio-muted,#596762);font-size:12px;line-height:1.8}.ds-note-hint{margin-top:12px}.ds-note-row a:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-notebook{padding:22px}.ds-note-title h3{font-size:20px}.ds-note-row a{font-size:14px}}"
+    },
+    {
+      "name": "Manual edition switch",
+      "kind": "custom",
+      "refersTo": "edition-switch",
+      "description": "Manual day/night controls. Night artwork is requested only after first selection; no cycling timer.",
+      "html": "<div class=\"ds-editions\" role=\"group\" aria-label=\"경주의 낮과 밤 선택\"><button type=\"button\" aria-pressed=\"true\"><span aria-hidden=\"true\"></span>낮의 경주</button><button type=\"button\" aria-pressed=\"false\"><span aria-hidden=\"true\"></span>밤의 경주</button></div>",
+      "css": ".ds-editions{display:flex;gap:24px}.ds-editions button{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 0;border:0;background:transparent;color:var(--studio-muted,#596762);font-size:14px;cursor:pointer;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-editions button[aria-pressed=\"true\"]{color:var(--studio-ink,#183e38);font-weight:650}.ds-editions button span{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:0}.ds-editions button[aria-pressed=\"true\"] span{opacity:1}.ds-editions button:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-editions{gap:20px}.ds-editions button{font-size:13px}}"
+    },
+    {
+      "name": "Inline comparison toggle",
+      "kind": "button",
+      "refersTo": "line-action",
+      "description": "Expands three inline ruled rows priced for the same party; responsive rows replace the former overflow table.",
+      "html": "<button type=\"button\" class=\"ds-compare\" aria-expanded=\"false\">세 투어 요금 비교<svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 10h12M10 4v12\"/></svg></button>",
+      "css": ".ds-compare{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;padding:10px 0;border:0;border-bottom:1px solid var(--studio-ink,#183e38);background:transparent;color:var(--studio-ink,#183e38);font-size:14px;cursor:pointer;font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-compare:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-compare{width:100%}}"
+    },
+    {
+      "name": "Preparation FAQ",
+      "kind": "custom",
+      "description": "Native details disclosure; a plus becomes a minus without custom animation. This pattern is for FAQ, not the notebook.",
+      "html": "<details class=\"ds-faq\"><summary>여행노트에 담으면 예약되나요?<span aria-hidden=\"true\"></span></summary><p>여행노트는 관심 있는 투어를 모아두는 공간이에요. 날짜와 인원을 기록해도 예약되지는 않습니다. ‘일정·예약 확인’으로 상품 페이지에 이동해 예약을 진행해주세요.</p></details>",
+      "css": ".ds-faq{border-block:1px solid var(--studio-line,#183e3826);color:var(--studio-ink,#183e38);font-family:var(--font-pretendard,Pretendard),var(--font-suite,SUITE),sans-serif;line-height:1.7;letter-spacing:-.015em;}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:24px;list-style:none;cursor:pointer;font-size:17px;font-weight:550}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary>span{position:relative;flex:0 0 18px;width:18px;height:18px}.ds-faq summary>span::before,.ds-faq summary>span::after{content:\"\";position:absolute;top:8px;left:0;width:18px;height:1px;background:currentColor}.ds-faq summary>span::after{transform:rotate(90deg)}.ds-faq[open] summary>span::after{transform:none}.ds-faq p{margin:0;padding:0 30px 24px 0;max-width:75ch;color:var(--studio-muted,#596762);font-size:14px;line-height:1.9}.ds-faq summary:focus-visible{outline:2px solid var(--studio-orange,#275c50);outline-offset:5px}@media(max-width:760px){.ds-faq summary{font-size:15px;padding-block:22px}.ds-faq p{font-size:13px;padding-right:20px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Open landscape",
+    "overview": "A contemporary Korean travel publication: near-white ground, spruce ink, expansive hand-painted landscapes, crisp Korean grotesk typography, quiet rules and sparse navigation. Spacious composition gives the destination room to lead, while real photographs, clear operation facts and restrained planning controls make choosing a visit straightforward.\n\nThe owner selected STAYFOLIO's editorial direction, retained Gyeongju Trip's watercolor identity and delegated the whole-homepage redesign. This document records the implemented system. The homepage story remains in [.impeccable/home-direction.md](.impeccable/home-direction.md); durable product and release commitments remain in [PRODUCT.md](PRODUCT.md). This is a code-led implementation, without an approved image comp or a pixel-fidelity claim.",
+    "keyCharacteristics": [
+      "Full-width painted landscape with unboxed typography and generous margins.",
+      "Precise Pretendard scale contrast, spruce controls and quiet ruled rows.",
+      "Real tour photographs lead selection; original watercolors retain the destination's identity.",
+      "Visible planning tools, explicit estimates and a browser-local travel notebook.",
+      "Manual campaign and gallery defaults, useful server-rendered content and reduced-motion support.",
+      "Homepage-scoped visual changes with existing tour, enquiry and account destinations preserved."
+    ],
+    "rules": [
+      {
+        "name": "The Landscape Color Rule",
+        "body": "Let the painted scene carry the largest color changes; keep surrounding homepage controls within the shared spruce and near-white roles.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scope Rule",
+        "body": "Apply Pretendard through the homepage variable and selectors; do not globally replace the existing typography of operational routes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Use spacing, rules and surface tone for homepage groups; reserve the inherited menu shadow for the open navigation layer.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the near-white, spruce and soft-sage roles for new homepage UI.",
+      "Do distinguish panoramic paintings, cover-cropped editorial photographs and intact landmark originals.",
+      "Do preserve original source artwork, the exact derivative prompt record and bundled font license.",
+      "Do keep all three tour choices visible and use two landmark columns on mobile.",
+      "Do preserve shared pricing, explicit estimate wording, the visible notebook and existing booking destinations.",
+      "Do keep manual defaults, visible keyboard focus and the campaign's motion-off and reduced-motion paths.",
+      "Do deliver this redesign as a preview for owner review; obtain owner authorization before merging or promoting production."
+    ],
+    "donts": [
+      "Don't restore the superseded dark two-panel cover, paper mount or SUITE homepage display requirement.",
+      "Don't substitute advertisement posters for the implemented homepage scene photographs.",
+      "Don't crop product poster lettering or landmark originals, cover them with controls or add a zoom that crops them.",
+      "Don't represent saved notes, chosen dates or party estimates as reservations or live inventory.",
+      "Don't invent reviews, ratings, prices, operating details or business claims.",
+      "Don't claim that this homepage redesign globally replaces typography or shared styles on other routes.",
+      "Don't add automatic cycling or continuous title motion to the manual campaign cover."
+    ]
+  }
+}
