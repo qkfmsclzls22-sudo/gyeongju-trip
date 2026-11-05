@@ -1291,10 +1291,10 @@
     {
       "id": "gtc",
       "kind": "official",
-      "lastAttemptAt": "2026-11-04T09:03:01+09:00",
-      "lastSuccessAt": "2026-11-04T09:03:01+09:00",
+      "lastAttemptAt": "2026-11-05T09:04:50+09:00",
+      "lastSuccessAt": "2026-11-05T09:04:50+09:00",
       "name": "경상북도문화관광공사",
-      "note": "11/4 공식 공지·행사 목록을 확인했으며 10/31 종료 행사 뒤 새 보문 교통통제·시내버스 우회 공지는 찾지 못함.",
+      "note": "11/5 공식 공지·행사 목록을 확인. 10/31 보문 나이트런 종료 뒤 새 보문 교통통제·시내버스 우회 공지는 찾지 못했으며 동해선 연계 상품은 11/30까지라도 예산 소진 시 조기 종료 조건임을 유지.",
       "status": "checked",
       "url": "https://www.gtc.co.kr/"
     },
@@ -1341,30 +1341,30 @@
     {
       "id": "garts-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-11-04T09:03:01+09:00",
+      "lastAttemptAt": "2026-11-05T09:04:50+09:00",
       "lastSuccessAt": null,
       "name": "경주문화재단 · YouTube",
-      "note": "11/4 공개 검색에서 로그인 없이 확인 가능한 경주문화재단 YouTube의 최신 개별 영상 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
+      "note": "11/5 공개 검색에서 로그인 없이 확인 가능한 경주문화재단 YouTube 최신 개별 영상의 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCpM3_K9Of7yUX9Tc7GcKKoQ"
     },
     {
       "id": "silla-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-11-04T09:03:01+09:00",
+      "lastAttemptAt": "2026-11-05T09:04:50+09:00",
       "lastSuccessAt": null,
       "name": "신라문화원 · YouTube",
-      "note": "11/4 공개 검색에서 로그인 없이 확인 가능한 신라문화원 YouTube의 최신 개별 영상 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
+      "note": "11/5 공개 검색에서 로그인 없이 확인 가능한 신라문화원 YouTube 최신 개별 영상의 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/%40sillawonTv"
     },
     {
       "id": "tour-youtube",
       "kind": "social",
-      "lastAttemptAt": "2026-11-04T09:03:01+09:00",
+      "lastAttemptAt": "2026-11-05T09:04:50+09:00",
       "lastSuccessAt": null,
       "name": "경주관광 · YouTube",
-      "note": "11/4 공개 검색에서 로그인 없이 확인 가능한 경주관광 YouTube의 최신 개별 영상 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
+      "note": "11/5 공개 검색에서 로그인 없이 확인 가능한 경주관광 YouTube 최신 개별 영상의 본문·게시일을 확인하지 못함. 기존 성공시각을 연장하지 않음.",
       "status": "blocked",
       "url": "https://www.youtube.com/channel/UCQh-jbXM1DkVnC8vUYqfkVw"
     },
@@ -1649,6 +1649,6 @@
       "note": "10/22 공개 블로그 본문 확인. 게시 2026-09-12이나 실제 방문은 전년도 10월 25일로 구분; 버기카 요금·주차·개화는 현재 공식 정보로 사용하지 않음."
     }
   ],
-  "updatedAt": "2026-11-05T09:02:16+09:00",
+  "updatedAt": "2026-11-05T09:04:50+09:00",
   "version": 1
 }
