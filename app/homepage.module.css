@@ -85,9 +85,9 @@
 .galleryVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .galleryCard:nth-child(3n), .galleryCard.videoCard { flex-basis: min(27vw, 350px); }
 .galleryCard figcaption { display: flex; gap: 14px; font-size: 14px; line-height: 1.7; margin-top: 15px; }
-.galleryCard figcaption span { font-family: var(--font-suite), var(--font-glyph-fallback), sans-serif; font-size: 12px; color: #6e6e73; }
+.galleryCard figcaption span { font-family: var(--font-suite), var(--font-glyph-fallback), sans-serif; font-size: 12px; color: var(--studio-muted, #6e6e73); }
 .galleryControls { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; gap: 12px; }
-.galleryHint { font-size: 14px; color: #6e6e73; }
+.galleryHint { font-size: 14px; color: var(--studio-muted, #6e6e73); }
 .galleryControls > div { display: flex; align-items: center; gap: 12px; }
 .galleryCount { font-family: var(--font-suite), var(--font-glyph-fallback), sans-serif; font-size: 14px; margin-right: 8px; font-variant-numeric: tabular-nums; }
 .galleryControls button { cursor: pointer; display: grid; place-items: center; min-width: 44px; min-height: 44px; border: 1px solid #d2d2d7; border-radius: 50%; background: transparent; }
@@ -101,10 +101,10 @@
 .contactHeading { display: flex; align-items: center; gap: 18px; padding-bottom: 24px; border-bottom: 1px solid #d2d2d7; }
 .contactHeading h2 { font-family: var(--font-suite),var(--font-glyph-fallback), sans-serif; font-size: 27px; font-weight: 500; letter-spacing: -.04em; }
 .contactHeading svg { width: 20px; height: 20px; }
-.contactDetails { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-block: 26px; font-size: 14px; line-height: 1.9; color: #6e6e73; }
+.contactDetails { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-block: 26px; font-size: 14px; line-height: 1.9; color: var(--studio-muted, #6e6e73); }
 .contactDetails > div > :first-child { color: #1d1d1f; font-weight: 500; margin-bottom: 6px; }
 .contactDetails a:hover { text-decoration: underline; }
-.legal { border-top: 1px solid #d2d2d7; padding-top: 20px; font-size: 12px; line-height: 1.85; color: #6e6e73; }
+.legal { border-top: 1px solid #d2d2d7; padding-top: 20px; font-size: 12px; line-height: 1.85; color: var(--studio-muted, #6e6e73); }
 .legal p + p { margin-top: 5px; }
 .legal span { margin-left: 20px; }
 .legal a { display: inline-block; padding-block: 12px; font-size: 13px; }

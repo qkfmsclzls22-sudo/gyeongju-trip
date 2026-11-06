@@ -44,7 +44,7 @@ function GalleryMotion({ item, playing }: { item: Extract<GalleryItem, { kind: "
 
 export function HomeGallery() {
   const { track, active, move, updateActive } = useSnapCarousel(galleryItems.length);
-  const playback = useCarouselPlayback(track);
+  const playback = useCarouselPlayback(track, false);
 
   useEffect(() => {
     if (!playback.running) return;
@@ -66,7 +66,7 @@ export function HomeGallery() {
     <div className={`${styles.container} ${styles.galleryControls}`}>
       <span className={styles.galleryHint}>경주트립과 함께한 순간들</span>
       <div>
-        <button type="button" className={styles.autoplayButton} aria-label={playback.playing ? "자동 슬라이드 일시정지" : "자동 슬라이드 재생"} aria-controls="gallery-track" onClick={playback.toggle}><span aria-hidden="true">{playback.playing ? "Ⅱ" : "▶"}</span>{playback.playing ? "일시정지" : "자동재생"}</button>
+        <button type="button" className={styles.autoplayButton} aria-label={playback.playing ? "자동 슬라이드 일시정지" : "자동 슬라이드 재생"} aria-controls="gallery-track" onClick={playback.toggle}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d={playback.playing ? "M7 5v10M13 5v10" : "m7 4 8 6-8 6Z"} /></svg>{playback.playing ? "일시정지" : "자동재생"}</button>
         <span className={styles.galleryCount} aria-live={playback.playing ? "off" : "polite"}>{String(active + 1).padStart(2, "0")} / {galleryItems.length}</span>
         <button type="button" aria-label="이전 사진" aria-controls="gallery-track" onClick={() => move(-1)}><IconArrow className={styles.previousArrow} /></button>
         <button type="button" aria-label="다음 사진" aria-controls="gallery-track" onClick={() => move(1)}><IconArrow /></button>
