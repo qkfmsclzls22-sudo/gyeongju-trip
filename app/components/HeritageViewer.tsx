@@ -65,21 +65,21 @@ export default function HeritageViewer({
         const key = new THREE.DirectionalLight(0xffffff, 2.2);
         key.position.set(3, 5, 4);
         scene.add(key);
-        const rim = new THREE.DirectionalLight(0xc8f53a, 1.4);
+        const rim = new THREE.DirectionalLight(0xd9b35c, 1.4);
         rim.position.set(-4, 2, -3);
         scene.add(rim);
 
         // 라임색 받침 링
         const ring = new THREE.Mesh(
           new THREE.RingGeometry(1.42, 1.46, 96),
-          new THREE.MeshBasicMaterial({ color: 0xc8f53a, side: THREE.DoubleSide }),
+          new THREE.MeshBasicMaterial({ color: 0xd9b35c, side: THREE.DoubleSide }),
         );
         ring.rotation.x = -Math.PI / 2;
         ring.position.y = -1.12;
         scene.add(ring);
         const ring2 = new THREE.Mesh(
           new THREE.RingGeometry(1.75, 1.76, 96),
-          new THREE.MeshBasicMaterial({ color: 0xc8f53a, side: THREE.DoubleSide, transparent: true, opacity: 0.35 }),
+          new THREE.MeshBasicMaterial({ color: 0xd9b35c, side: THREE.DoubleSide, transparent: true, opacity: 0.35 }),
         );
         ring2.rotation.x = -Math.PI / 2;
         ring2.position.y = -1.12;

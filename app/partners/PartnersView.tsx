@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReelPlayer } from "@/app/components/home-client";
+import { Giwa, Mounds } from "@/app/components/motifs";
 import { corporateClients, schoolClients } from "@/lib/clients";
 
 type Lang = "ko" | "en";
@@ -183,11 +184,11 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
           <h1>
             {t.title[0]}
             <br />
-            <span className="gt-lime">{t.title[1]}</span>
+            <span className="gt-gold">{t.title[1]}</span>
           </h1>
           <p className="gt-lead">{t.sub}</p>
           <div className="gt-actions">
-            <Link href="/quote" className="gt-btn lime">
+            <Link href="/quote" className="gt-btn gold">
               {t.cta} <span className="arr" aria-hidden="true">→</span>
             </Link>
             <a href="#film" className="gt-btn line">
@@ -209,6 +210,8 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
           />
         </div>
       </section>
+
+      <Giwa />
 
       <section className="gt-sec paper">
         <div className="gt-wrap gt-two">
@@ -253,6 +256,8 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
           </div>
         </div>
       </section>
+
+      <Mounds />
 
       <section className="gt-sec">
         <div className="gt-wrap">
@@ -344,6 +349,8 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
         </div>
       </section>
 
+      <Giwa />
+
       <section className="gt-sec paper">
         <div className="gt-wrap gt-two">
           <div>
@@ -351,11 +358,11 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
             <h2 className="gt-h2" style={{ marginTop: 14, fontSize: "clamp(28px, 4.4vw, 56px)" }} data-reveal>
               {t.refTitle}
             </h2>
-            <dl className="gt-stats compact" style={{ borderTopColor: "rgba(11,11,12,.2)", marginTop: 28 }}>
+            <dl className="gt-stats compact" style={{ borderTopColor: "rgba(26,28,32,.2)", marginTop: 28 }}>
               {t.stats.map(([label, value]) => (
                 <div key={label}>
-                  <dt style={{ color: "#3c3c42" }}>{label}</dt>
-                  <dd style={{ color: "#0b0b0c" }}>{value}</dd>
+                  <dt style={{ color: "#45413a" }}>{label}</dt>
+                  <dd style={{ color: "#1a1c20" }}>{value}</dd>
                 </div>
               ))}
             </dl>
@@ -374,10 +381,10 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
               {clients.map((c) => {
                 const en = clientEn[c.name];
                 return (
-                  <li key={c.name} style={{ borderTopColor: "rgba(11,11,12,.18)" }}>
+                  <li key={c.name} style={{ borderTopColor: "rgba(26,28,32,.18)" }}>
                     <strong>{lang === "en" && en ? en[0] : c.name}</strong>
-                    <span style={{ color: "#0b0b0c" }}>{lang === "en" ? countEn(c.count) : c.count}</span>
-                    <p style={{ color: "#55555b" }}>{lang === "en" && en ? en[1] : c.program}</p>
+                    <span style={{ color: "#1a1c20" }}>{lang === "en" ? countEn(c.count) : c.count}</span>
+                    <p style={{ color: "#5a554c" }}>{lang === "en" && en ? en[1] : c.program}</p>
                   </li>
                 );
               })}
@@ -386,7 +393,9 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
         </div>
       </section>
 
-      <section className="gt-sec lime">
+      <div className="gt-dan" aria-hidden="true" />
+
+      <section className="gt-sec green">
         <div className="gt-wrap gt-partner">
           <div>
             <h2 className="gt-h2" data-reveal>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteFooter, SiteHeader } from "./components/site";
 import HeritageViewer, { type HeritageModel } from "./components/HeritageViewer";
 import { OpenChatLink, ReelPlayer } from "./components/home-client";
+import { GatMark, Giwa, Mounds } from "./components/motifs";
 import { TOURS, type TourId } from "@/lib/tours";
 import { corporateClients, schoolClients } from "@/lib/clients";
 
@@ -12,14 +13,14 @@ const tourCards: {
   id: TourId;
   no: string;
   tag: string;
-  tone: "" | "lime" | "night";
+  tone: "" | "green" | "night";
   title: [string, string];
   line: string;
 }[] = [
   {
     id: "museum",
     no: "01",
-    tag: "MUSEUM",
+    tag: "박물관",
     tone: "",
     title: ["국립경주박물관", "프리미엄 도슨트투어"],
     line: "유물 속 신라의 이야기, 해설로 깊어지는 관람.",
@@ -27,15 +28,15 @@ const tourCards: {
   {
     id: "bulguksa",
     no: "02",
-    tag: "WORLD HERITAGE",
-    tone: "lime",
+    tag: "세계유산",
+    tone: "green",
     title: ["불국사·석굴암", "문화해설사 역사투어"],
     line: "돌 하나, 계단 하나에도 신라인의 이야기가 있는 곳.",
   },
   {
     id: "night",
     no: "03",
-    tag: "NIGHT WALK",
+    tag: "야경",
     tone: "night",
     title: ["청사초롱 야경투어", "신라별빛야행"],
     line: "등불을 들고 함께 걷는, 이야기가 있는 경주의 밤.",
@@ -67,7 +68,7 @@ const heritageModels: HeritageModel[] = [
   { id: "queen", src: "/media/3d/queen.glb", name: "선덕여왕", note: "첨성대 시대의 여왕" },
 ];
 
-const marqueeWords = ["HERITAGE", "STORYTELLING", "LOCAL EXPERIENCE", "MICE", "NIGHT WALK", "DOCENT TOUR"];
+const marqueeWords = ["천년 고도 경주", "이야기가 있는 해설", "국립경주박물관", "불국사 · 석굴암", "청사초롱 야행", "신라 왕경"];
 
 function Marquee({ items, dark = false }: { items: string[]; dark?: boolean }) {
   const run = (
@@ -142,7 +143,7 @@ export default function Home() {
             기업·기관·인센티브 단체까지, 경주의 현장은 경주트립이 맡습니다.
           </p>
           <div className="gt-actions gt-fade" style={{ "--d": "0.65s" } as React.CSSProperties}>
-            <a href="#tours" className="gt-btn lime">
+            <a href="#tours" className="gt-btn gold">
               투어 보기 <span className="arr" aria-hidden="true">→</span>
             </a>
             <Link href="/partners" className="gt-btn line">
@@ -175,11 +176,14 @@ export default function Home() {
         <div className="gt-wrap">
           <div className="gt-head split">
             <div>
-              <p className="gt-eyebrow dim">3 Signature Tours</p>
+              <p className="gt-eyebrow plain">
+                <GatMark />
+                해설사와 함께하는 대표 투어
+              </p>
               <h2 id="tours-title" className="gt-h2" data-reveal>
                 해설사와 걷는
                 <br />
-                <span className="gt-lime">세 가지 경주.</span>
+                <span className="gt-gold">세 가지 경주.</span>
               </h2>
             </div>
             <p className="gt-lead" data-reveal>
@@ -252,10 +256,12 @@ export default function Home() {
         </div>
       </section>
 
+      <Giwa />
+
       {/* 바이어·단체 담당자를 위한 WHY */}
       <section id="why" className="gt-sec paper" aria-labelledby="why-title">
         <div className="gt-wrap">
-          <p className="gt-eyebrow ink">For PCO · DMC · Travel Agencies</p>
+          <p className="gt-eyebrow ink">기획사 · 여행사 · 기관 담당자께</p>
           <h2 id="why-title" className="sr-only">
             왜 경주트립인가
           </h2>
@@ -283,11 +289,13 @@ export default function Home() {
         </div>
       </section>
 
+      <Mounds />
+
       {/* 실적 */}
       <section id="record" className="gt-sec" aria-labelledby="record-title">
         <div className="gt-wrap">
           <div className="gt-head">
-            <p className="gt-eyebrow">Proven in the field</p>
+            <p className="gt-eyebrow">현장에서 쌓은 신뢰</p>
             <h2 id="record-title" className="gt-h2" data-reveal>
               숫자로 보는
               <br />
@@ -349,7 +357,7 @@ export default function Home() {
         <div className="gt-wrap">
           <div className="gt-head split">
             <div>
-              <p className="gt-eyebrow">Showreel</p>
+              <p className="gt-eyebrow">영상으로 보기</p>
               <h2 id="reel-title" className="gt-h2" data-reveal>
                 45초로 보는
                 <br />
@@ -369,11 +377,13 @@ export default function Home() {
         </div>
       </section>
 
+      <Giwa />
+
       {/* TOUR × TECH */}
       <section id="tech" className="gt-sec paper" aria-labelledby="tech-title">
         <div className="gt-wrap">
           <div className="gt-head">
-            <p className="gt-eyebrow ink">Tour × AR × 3D × AI</p>
+            <p className="gt-eyebrow ink">투어 × AR × 3D × AI</p>
             <h2 id="tech-title" className="gt-h2" data-reveal>
               투어의 즐거움,
               <br />
@@ -430,16 +440,18 @@ export default function Home() {
         </div>
       </section>
 
+      <Mounds />
+
       {/* 3D 문화유산 */}
       <section id="heritage" className="gt-sec" aria-labelledby="heritage-title">
         <div className="gt-wrap">
           <div className="gt-head split">
             <div>
-              <p className="gt-eyebrow">Silla Heritage in 3D</p>
+              <p className="gt-eyebrow">손끝에서 만나는 신라</p>
               <h2 id="heritage-title" className="gt-h2" data-reveal>
                 신라 유물을,
                 <br />
-                <span className="gt-lime">손끝에서 3D로.</span>
+                <span className="gt-gold">손끝에서 3D로.</span>
               </h2>
             </div>
             <p className="gt-lead" data-reveal>
@@ -454,11 +466,13 @@ export default function Home() {
         </div>
       </section>
 
+      <Giwa on="green" />
+
       {/* 파트너십 */}
-      <section id="partner" className="gt-sec lime" aria-labelledby="partner-title">
+      <section id="partner" className="gt-sec green" aria-labelledby="partner-title">
         <div className="gt-wrap gt-partner">
           <div>
-            <p className="gt-eyebrow ink">Partnership</p>
+            <p className="gt-eyebrow">단체 · MICE · 인바운드 문의</p>
             <h2 id="partner-title" className="gt-h2" data-reveal style={{ marginTop: 14 }}>
               경주 일정에 ‘2시간의 경험’을 더하는 가장 간단한 방법.
             </h2>

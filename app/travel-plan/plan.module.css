@@ -3,7 +3,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 24px 28px 80px;
-  color: #0b0b0c;
+  color: #1a1c20;
   font-size: 16px;
   line-height: 1.7;
   overflow-wrap: anywhere;
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  border-bottom: 2px solid #0b0b0c;
+  border-bottom: 2px solid #1a1c20;
   padding-bottom: 18px;
   margin-bottom: 32px;
   font-size: 14px;
@@ -44,14 +44,14 @@
 }
 .actions button {
   padding: 10px 16px;
-  border: 1px solid #0b0b0c;
+  border: 1px solid #1a1c20;
   background: #fff;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
 }
 .actions button:first-child {
-  background: #ebebe6;
+  background: #ebe4d6;
 }
 .notice {
   font-size: 14px;
@@ -66,7 +66,7 @@
 .tabs button {
   padding: 8px 18px;
   background: #f5f3ed;
-  border-bottom: 2px solid #0b0b0c;
+  border-bottom: 2px solid #1a1c20;
   font-weight: 700;
 }
 .day {
@@ -82,7 +82,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 2px solid #0b0b0c;
+  border-top: 2px solid #1a1c20;
 }
 .day li {
   display: grid;
@@ -228,7 +228,7 @@
   padding-top: 12px;
 }
 .title > div > p {
-  color: #0b0b0c;
+  color: #1a1c20;
   font-size: 13px;
 }
 .actions button {
@@ -237,12 +237,12 @@
   min-height: 44px;
 }
 .actions button:first-child {
-  background: #0b0b0c;
+  background: #1a1c20;
   color: #fff;
 }
 .tabs {
   gap: 12px;
-  border-block: 1px solid #dcdcd6;
+  border-block: 1px solid #ddd5c4;
   padding: 12px 0;
 }
 .tabs button {
@@ -261,7 +261,7 @@
   font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   font-size: 29px;
   font-weight: 500;
-  color: #0b0b0c;
+  color: #1a1c20;
 }
 .day h3 {
   font-size: 19px;
@@ -282,7 +282,7 @@
   display: inline-block;
   margin-top: 24px;
   padding: 12px 22px;
-  background: #0b0b0c;
+  background: #1a1c20;
   color: white;
   font-size: 14px;
 }
@@ -321,19 +321,19 @@
 /* ---------- 2026-11 리뉴얼: 굵은 고딕 · 알약 버튼 · 라임 포인트 ---------- */
 .reader { font-family: var(--gt-kr); letter-spacing: -0.02em; }
 .reader h1 { font-family: var(--gt-kr); font-weight: 900; letter-spacing: -0.06em; font-size: clamp(32px, 5vw, 52px); line-height: 1.15; }
-.header { border-bottom: 2px solid #0b0b0c; }
+.header { border-bottom: 2px solid #1a1c20; }
 .header a { font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 900; font-size: 17px; letter-spacing: 0.02em; }
-.actions button { border-radius: 999px; border: 1.5px solid #0b0b0c; padding: 0 18px; min-height: 46px; font-weight: 800; }
-.actions button:first-child { background: #0b0b0c; color: #c8f53a; }
+.actions button { border-radius: 999px; border: 1.5px solid #1a1c20; padding: 0 18px; min-height: 46px; font-weight: 800; }
+.actions button:first-child { background: #1a1c20; color: #d9b35c; }
 .tabs { border: 0; padding: 0; gap: 8px; }
-.tabs button { border-radius: 999px; background: #f4f4ef; padding: 0 18px; min-height: 44px; font-weight: 800; cursor: pointer; }
-.tabs button:hover { background: #c8f53a; }
+.tabs button { border-radius: 999px; background: #f4efe4; padding: 0 18px; min-height: 44px; font-weight: 800; cursor: pointer; }
+.tabs button:hover { background: #d9b35c; }
 .day h2 { font-weight: 900; letter-spacing: -0.05em; font-size: 26px; }
-.day ol { border-top: 2px solid #0b0b0c; }
+.day ol { border-top: 2px solid #1a1c20; }
 .time strong { font-family: var(--gt-en); font-stretch: 110%; font-weight: 900; font-size: 26px; letter-spacing: -0.02em; }
 .day h3 { font-weight: 800; letter-spacing: -0.04em; }
 .details h2 { font-weight: 900; letter-spacing: -0.045em; }
-.reader > section:first-of-type > a { border-radius: 999px; background: #c8f53a; color: #0b0b0c; font-weight: 800; padding: 14px 24px; }
-.reader button:focus-visible, .reader a:focus-visible { outline: 3px solid #0b0b0c; outline-offset: 3px; }
+.reader > section:first-of-type > a { border-radius: 999px; background: #d9b35c; color: #1a1c20; font-weight: 800; padding: 14px 24px; }
+.reader button:focus-visible, .reader a:focus-visible { outline: 3px solid #1a1c20; outline-offset: 3px; }
 @media (max-width: 600px) { .header a { font-size: 15px; } }
 @media print { .header a { font-size: 14pt; } }

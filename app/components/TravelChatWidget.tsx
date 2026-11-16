@@ -41,7 +41,7 @@ function ChipGroup({
             aria-pressed={value === opt}
             className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
               value === opt
-                ? "bg-ink border-ink text-lime-400 font-bold"
+                ? "bg-ink border-ink text-gold-400 font-bold"
                 : "bg-white border-gray-200 text-gray-600 hover:border-brand-300"
             }`}
           >
@@ -181,7 +181,7 @@ export default function TravelChatWidget() {
         <div className={`${expanded ? "fixed inset-3 sm:inset-6" : "mb-3 w-[min(92vw,460px)] h-[min(82dvh,720px)]"} bg-white rounded-3xl shadow-2xl border-2 border-ink flex flex-col overflow-hidden`}>
           <div className="bg-brand-500 text-white px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div>
-              <p className="font-black text-base text-lime-400 tracking-tight">AI경트</p>
+              <p className="font-black text-base text-gold-400 tracking-tight">AI경트</p>
               <p className="text-brand-100 text-xs">처음 가는 경주 · 맞춤 일정 도우미</p>
             </div>
             <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ export default function TravelChatWidget() {
               <button
                 type="submit"
                 disabled={!formComplete}
-                className="w-full bg-lime-400 hover:bg-ink hover:text-lime-400 disabled:opacity-40 text-ink font-extrabold py-3 rounded-full text-sm transition-colors"
+                className="w-full bg-gold-400 hover:bg-ink hover:text-gold-400 disabled:opacity-40 text-ink font-extrabold py-3 rounded-full text-sm transition-colors"
               >
                 동선과 여행 팁 받기
               </button>
@@ -257,7 +257,7 @@ export default function TravelChatWidget() {
                           : "bg-white text-gray-800 border border-gray-200 rounded-bl-sm"
                       }`}
                     >
-                      {m.planUrl && <a href={m.planUrl} target="_blank" rel="noopener noreferrer" className="block mb-3 px-4 py-3 bg-lime-400 text-ink rounded-full font-extrabold text-center whitespace-normal">일정 크게 보기 · 공유 / PDF</a>}
+                      {m.planUrl && <a href={m.planUrl} target="_blank" rel="noopener noreferrer" className="block mb-3 px-4 py-3 bg-gold-400 text-ink rounded-full font-extrabold text-center whitespace-normal">일정 크게 보기 · 공유 / PDF</a>}
                       {m.role === "user" ? m.content : m.content.split("\n").map((line, lineIndex) => {
                         const timed = line.match(/^\s*(\d{1,2}:\d{2}(?:\s*[–—~-]\s*\d{1,2}:\d{2})?)\s*\|\s*(.+)$/);
                         if (timed) return <span key={lineIndex} className="grid grid-cols-[92px_1fr] gap-2 border-b border-gray-100 py-2.5 whitespace-normal">
@@ -300,7 +300,7 @@ export default function TravelChatWidget() {
                 <button
                   type="submit"
                   disabled={loading || !input.trim()}
-                  className="bg-lime-400 hover:bg-ink hover:text-lime-400 disabled:opacity-40 text-ink rounded-full w-11 h-11 flex items-center justify-center flex-shrink-0 transition-colors"
+                  className="bg-gold-400 hover:bg-ink hover:text-gold-400 disabled:opacity-40 text-ink rounded-full w-11 h-11 flex items-center justify-center flex-shrink-0 transition-colors"
                   aria-label="전송"
                 >
                   ➤
@@ -314,7 +314,7 @@ export default function TravelChatWidget() {
       {open ? (
         <button
           onClick={() => setOpen(false)}
-          className="bg-ink text-lime-400 rounded-full w-14 h-14 shadow-xl flex items-center justify-center text-2xl transition-transform hover:scale-105"
+          className="bg-ink text-gold-400 rounded-full w-14 h-14 shadow-xl flex items-center justify-center text-2xl transition-transform hover:scale-105"
           aria-label="채팅 닫기"
         >
           ×
@@ -322,7 +322,7 @@ export default function TravelChatWidget() {
       ) : (
         <button
           onClick={() => setOpen(true)}
-          className="bg-lime-400 hover:bg-white text-ink rounded-full shadow-lg flex items-center gap-2 px-5 py-3 transition-colors"
+          className="bg-gold-400 hover:bg-white text-ink rounded-full shadow-lg flex items-center gap-2 px-5 py-3 transition-colors"
           aria-label="AI경트 열기"
         >
           <span className="text-sm font-extrabold whitespace-nowrap">AI경트</span>

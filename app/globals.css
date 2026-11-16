@@ -2,17 +2,17 @@
 
 @theme {
   /* 2026 리뉴얼 팔레트: 잉크 블랙 + 라임. 내부 페이지도 같은 토큰을 씁니다. */
-  --color-brand-50: #f4f4ef;
-  --color-brand-100: #ebebe6;
-  --color-brand-200: #dcdcd6;
+  --color-brand-50: #f4efe4;
+  --color-brand-100: #ebe4d6;
+  --color-brand-200: #ddd5c4;
   --color-brand-300: #a8a8a0;
-  --color-brand-400: #0b0b0c;
-  --color-brand-500: #0b0b0c;
-  --color-brand-600: #2a2a2e;
+  --color-brand-400: #1a1c20;
+  --color-brand-500: #1a1c20;
+  --color-brand-600: #363a41;
   --color-brand-700: #000000;
 
-  --color-lime-300: #d8fa6e;
-  --color-lime-400: #c8f53a;
+  --color-gold-300: #e6c987;
+  --color-gold-400: #d9b35c;
 
   /* 골드 — 별점, 포인트 뱃지 */
   --color-sun-100: #fff6df;
@@ -21,9 +21,9 @@
   --color-sun-500: #ffb020;
 
   /* 배경 뉴트럴 */
-  --color-cream: #f4f4ef;
-  --color-blush: #ebebe6;
-  --color-ink: #0b0b0c;
+  --color-cream: #f4efe4;
+  --color-blush: #ebe4d6;
+  --color-ink: #1a1c20;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -36,14 +36,14 @@
   --font-glyph-fallback: "Apple SD Gothic Neo", "Malgun Gothic";
   --font-editorial: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic";
   --font-condensed: "Archivo Variable", "Pretendard Variable";
-  --yellow: #f4f4ef;
-  --paper: #f4f4ef;
-  --red: #0b0b0c;
-  --ink: #0b0b0c;
+  --yellow: #f4efe4;
+  --paper: #f4efe4;
+  --red: #1a1c20;
+  --ink: #1a1c20;
 }
 
 body {
-  background: #f4f4ef;
+  background: #f4efe4;
   color: var(--color-ink);
   font-family: var(--font-suite), sans-serif;
   font-weight: 450;
