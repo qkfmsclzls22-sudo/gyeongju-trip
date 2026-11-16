@@ -10,8 +10,10 @@
   --gt-green: #2f6b5b;  /* 뇌록 */
   --gt-blue: #2c4f8f;   /* 삼청 */
   --gt-lantern: #ff5a1f;
-  /* 단청 띠: 뇌록 · 금 · 석간주 세 줄 */
-  --gt-dan: linear-gradient(to bottom, var(--gt-green) 0 33.4%, var(--gt-gold) 33.4% 66.7%, var(--gt-red) 66.7% 100%);
+  /* 단청은 색띠가 아니라 문양으로: 연주문(구슬 줄) · 주화문(네 잎 꽃) · 칠보문(겹친 원) */
+  --gt-beads: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='7'%3E%3Ccircle cx='7' cy='3.5' r='2.1' fill='%23d9b35c'/%3E%3C/svg%3E");
+  --gt-flower: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='6' r='5'/%3E%3Ccircle cx='12' cy='18' r='5'/%3E%3Ccircle cx='6' cy='12' r='5'/%3E%3Ccircle cx='18' cy='12' r='5'/%3E%3C/svg%3E");
+  --gt-chilbo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.09'%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='44' cy='0' r='22'/%3E%3Ccircle cx='0' cy='44' r='22'/%3E%3Ccircle cx='44' cy='44' r='22'/%3E%3Ccircle cx='22' cy='22' r='22'/%3E%3C/g%3E%3C/svg%3E");
   --gt-kr: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --gt-en: "Archivo Variable", "Pretendard Variable", sans-serif;
@@ -45,7 +47,7 @@
   font-family: var(--gt-kr); font-weight: 800; font-size: 12.5px; letter-spacing: 0.05em; line-height: 1.5; text-transform: uppercase;
   color: var(--gt-gold);
 }
-.gt-eyebrow::before { content: ""; flex: none; width: 15px; height: 9px; border-radius: 1px; background: var(--gt-dan); }
+.gt-eyebrow::before { content: ""; flex: none; width: 13px; height: 13px; background: currentColor; -webkit-mask: var(--gt-flower) center / contain no-repeat; mask: var(--gt-flower) center / contain no-repeat; }
 .gt-eyebrow.plain::before { content: none; }
 .gt-eyebrow.dim { color: #908b82; }
 .gt-eyebrow.ink { color: var(--gt-red); }
@@ -177,8 +179,12 @@
 }
 
 /* ---------- 마키 ---------- */
-.gt-marquee { background: var(--gt-red); color: #f8f1e2; overflow: hidden; padding: 14px 0; border-block: 3px solid var(--gt-gold); box-shadow: inset 0 3px 0 var(--gt-green), inset 0 -3px 0 var(--gt-green); }
-.gt-marquee.dark { background: var(--gt-ink); color: #e8e4db; border-block: 1px solid var(--gt-line); box-shadow: none; }
+.gt-marquee { position: relative; background: var(--gt-red); color: #f8f1e2; overflow: hidden; padding: 24px 0; }
+.gt-marquee::before, .gt-marquee::after { content: ""; position: absolute; left: 0; right: 0; height: 7px; background: var(--gt-beads) 50% 50% / 14px 7px repeat-x; }
+.gt-marquee::before { top: 7px; }
+.gt-marquee::after { bottom: 7px; }
+.gt-marquee.dark { background: var(--gt-ink); color: #e8e4db; border-block: 1px solid var(--gt-line); padding: 13px 0; }
+.gt-marquee.dark::before, .gt-marquee.dark::after { content: none; }
 .gt-marquee-track { display: flex; width: max-content; animation: gt-marquee 46s linear infinite; }
 .gt-marquee-track > span {
   flex: none; padding-right: 0.6em; white-space: nowrap;
@@ -191,7 +197,7 @@
 /* ---------- 섹션 공통 ---------- */
 .gt-sec { padding-block: 72px; }
 .gt-sec.paper { background: var(--gt-paper); color: var(--gt-ink); }
-.gt-sec.green { background: var(--gt-green); color: #fff; }
+.gt-sec.green { background: var(--gt-green) var(--gt-chilbo) 50% 0 / 44px 44px; color: #fff; }
 .gt-sec.paper .gt-lead { color: #45413a; }
 .gt-sec.green .gt-lead { color: #dfe9e4; }
 .gt-sec.green .gt-eyebrow { color: var(--gt-gold); }
@@ -214,7 +220,7 @@
   background: var(--card); color: var(--fg); border-radius: 26px; overflow: hidden; display: grid;
   box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.35);
 }
-.gt-tour.green { --card: var(--gt-green); --fg: #fff; --sub: #d7e4dd; --rule: rgba(255, 255, 255, 0.22); }
+.gt-tour.green { background-image: var(--gt-chilbo); background-size: 44px 44px; --card: var(--gt-green); --fg: #fff; --sub: #d7e4dd; --rule: rgba(255, 255, 255, 0.22); }
 .gt-tour.night { --card: #23262b; --fg: #fff; --sub: #cdc9c0; --rule: rgba(255, 255, 255, 0.16); }
 @media (min-height: 700px) { .gt-tour { position: sticky; top: calc(68px + var(--i, 0) * 10px); } }
 .gt-tour-media { position: relative; aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
@@ -406,7 +412,7 @@
 
 /* ---------- 푸터 ---------- */
 .gt-footer { background: var(--gt-ink); color: #fff; font-family: var(--gt-kr); letter-spacing: -0.02em; overflow: hidden; }
-.gt-footer::before { content: ""; display: block; height: 9px; background: var(--gt-dan); }
+.gt-footer::before { content: ""; display: block; height: 19px; background: var(--gt-beads) 50% 50% / 14px 7px repeat-x; border-block: 1px solid rgba(217, 179, 92, 0.45); }
 .gt-footer-in { padding-block: 44px 110px; display: grid; gap: 30px; }
 .gt-footer-mark { display: flex; flex-direction: column; gap: 6px; color: #fff; text-decoration: none; }
 .gt-footer-mark .kr { font-weight: 900; font-size: clamp(76px, 22vw, 300px); line-height: 0.92; letter-spacing: -0.075em; color: var(--gt-gold); margin-left: -0.04em; }
@@ -496,7 +502,7 @@
 .gt-mounds { display: block; width: 100%; height: clamp(30px, 6vw, 84px); background: var(--gt-paper); color: var(--gt-ink); }
 .gt-mounds.on-green { background: var(--gt-green); }
 .gt-mounds svg { display: block; width: 100%; height: 100%; }
-/* 단청 띠 */
-.gt-dan { height: 9px; background: var(--gt-dan); }
+/* 연주문 띠 */
+.gt-dan { height: 19px; background: var(--gt-green) var(--gt-beads) 50% 50% / 14px 7px repeat-x; border-block: 1px solid rgba(217, 179, 92, 0.45); }
 /* 갓 선화 */
 .gt-gat { width: 46px; height: 28px; flex: none; color: var(--gt-gold); }

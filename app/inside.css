@@ -34,7 +34,7 @@
   display: flex; align-items: center; gap: 9px; color: var(--gt-red);
   font-family: var(--gt-kr); font-weight: 800; font-size: 12px; letter-spacing: 0.08em; line-height: 1.5; text-transform: uppercase;
 }
-.page-kicker::before { content: ""; flex: none; width: 15px; height: 9px; border-radius: 1px; background: var(--gt-dan); }
+.page-kicker::before { content: ""; flex: none; width: 13px; height: 13px; background: currentColor; -webkit-mask: var(--gt-flower) center / contain no-repeat; mask: var(--gt-flower) center / contain no-repeat; }
 .page-lead { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.75; color: var(--muted); max-width: 44ch; }
 .page-button {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -83,7 +83,7 @@
 /* 페이지 끝 CTA */
 .page-cta {
   width: min(100% - 32px, 1240px); margin: 8px auto 56px; padding: 30px 24px; border-radius: 28px;
-  display: flex; flex-direction: column; gap: 22px; background: var(--gt-green); color: #fff;
+  display: flex; flex-direction: column; gap: 22px; background: var(--gt-green) var(--gt-chilbo) 50% 0 / 44px 44px; color: #fff;
 }
 .page-cta .page-kicker { color: var(--gt-gold); margin-bottom: 10px; }
 .inner-page .page-cta h2 { font-size: clamp(26px, 3.6vw, 48px); }
@@ -341,7 +341,7 @@
 .quote-privacy { font-size: 12.5px; color: var(--muted); margin-top: 14px !important; }
 .quote-privacy a { text-decoration: underline; text-underline-offset: 3px; }
 .quote-error { font-size: 14px; font-weight: 700; color: #c0341d; padding: 14px 0; }
-.quote-done { background: var(--gt-green); color: #fff; border-radius: 28px; padding: 32px 24px; }
+.quote-done { background: var(--gt-green) var(--gt-chilbo) 50% 0 / 44px 44px; color: #fff; border-radius: 28px; padding: 32px 24px; }
 .quote-done > svg { width: 36px; margin-bottom: 22px; }
 .quote-done .page-kicker { color: var(--gt-gold); }
 .quote-done h2 { margin: 10px 0 16px; }
