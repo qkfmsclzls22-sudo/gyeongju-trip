@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReelPlayer } from "@/app/components/home-client";
 import { Giwa, Mounds } from "@/app/components/motifs";
+import { ExperienceCards } from "@/app/components/experience";
 import { corporateClients, schoolClients } from "@/lib/clients";
 
 type Lang = "ko" | "en";
@@ -39,6 +40,9 @@ const copy = {
       ["신라 야경 도보투어", "신라왕경의 야경과 역사 스토리텔링을 결합한 야간 프로그램", "야간 도보"],
     ],
     spec: { duration: "소요 시간", durationV: "약 2시간", type: "진행 형태", time: "시작 시간", timeV: "행사 일정에 맞춰 조정", ops: "단체 운영", opsV: "팀 분할 · 수신기" },
+    expTitle: "체험 · 공연 · 유니크베뉴까지 맞춤 기획",
+    expLead: "도슨트 투어에 더해, 행사 성격과 인원에 맞춰 전통문화 체험과 공연, 문화유산 공간을 활용한 프로그램을 기획합니다.",
+    expHint: "옆으로 밀어서 더 보기 →",
     stepsEyebrow: "04 Partnership",
     stepsTitle: "경주 일정에 ‘2시간의 경험’을 더하는 가장 간단한 방법",
     stepsLead: "숙박·식사·행사장에 더해 참가자가 기억할 ‘경주다운 경험’을 제안하세요.",
@@ -100,6 +104,9 @@ const copy = {
       ["Silla Night Walking Tour", "Illuminated heritage combined with historical storytelling.", "Evening walking"],
     ],
     spec: { duration: "Duration", durationV: "Approx. 2 hours", type: "Format", time: "Start time", timeV: "Adjusted to your schedule", ops: "Group operations", opsV: "Team division · audio receivers" },
+    expTitle: "Custom Experiences, Performances and Unique Venues",
+    expLead: "Alongside docent tours, we design hands-on cultural experiences, performances and heritage-venue programs to suit your event and group size.",
+    expHint: "Swipe for more →",
     stepsEyebrow: "04 Partnership",
     stepsTitle: "Add Two Hours of Gyeongju to Your MICE Itinerary",
     stepsLead: "Add a memorable local experience to your venue, accommodation and dining plan.",
@@ -308,6 +315,19 @@ export default function PartnersView({ initialLang }: { initialLang: Lang }) {
               </article>
             ))}
           </div>
+
+          <div className="gt-head" style={{ marginTop: 64 }}>
+            <h3 className="gt-exp-title" data-reveal>
+              {t.expTitle}
+            </h3>
+            <p className="gt-lead" data-reveal>
+              {t.expLead}
+            </p>
+          </div>
+          <ExperienceCards lang={lang} />
+          <p className="gt-exp-hint" aria-hidden="true">
+            {t.expHint}
+          </p>
         </div>
       </section>
 

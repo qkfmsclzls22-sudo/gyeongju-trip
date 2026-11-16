@@ -9,6 +9,8 @@ export interface HeritageModel {
   note: string;
   /** 모델을 살짝 기울여 보여줄 때 (라디안) */
   tilt?: number;
+  /** 앞면이 있는 유물: 한 바퀴 돌지 않고 정면을 중심으로 좌우로만 움직인다 */
+  swing?: boolean;
 }
 
 /**
@@ -104,6 +106,24 @@ export default function HeritageViewer({
         scene.add(holder);
         const cache = new Map<string, import("three").Object3D>();
         let token = 0;
+        const SWING = 0.8;
+        let swinging = false;
+        const setMode = (swing: boolean) => {
+          swinging = swing;
+          if (swing) {
+            // 정면에서 시작
+            const d = camera.position.length();
+            camera.position.set(0, Math.cos(polar) * d, Math.sin(polar) * d);
+            controls.minAzimuthAngle = -SWING;
+            controls.maxAzimuthAngle = SWING;
+            controls.autoRotateSpeed = 2.2;
+          } else {
+            controls.minAzimuthAngle = -Infinity;
+            controls.maxAzimuthAngle = Infinity;
+            controls.autoRotateSpeed = 1.6;
+          }
+          controls.update();
+        };
 
         const fit = (obj: import("three").Object3D, tilt = 0) => {
           const wrap = new THREE.Group();
@@ -126,6 +146,7 @@ export default function HeritageViewer({
             if (mine !== token || disposed) return;
             holder.clear();
             holder.add(obj);
+            setMode(!!m.swing);
             setReady(true);
           };
           const hit = cache.get(m.id);
@@ -161,10 +182,21 @@ export default function HeritageViewer({
 
         let visible = true;
         let raf = 0;
+        let last = performance.now();
         const loop = () => {
           raf = requestAnimationFrame(loop);
           if (!visible) return;
-          controls.update();
+          if (swinging) {
+            // 끝에 닿으면 방향을 바꾼다
+            const az = controls.getAzimuthalAngle();
+            if (az <= -SWING + 0.02) controls.autoRotateSpeed = -2.2;
+            else if (az >= SWING - 0.02) controls.autoRotateSpeed = 2.2;
+          }
+          // 기기 화면 주사율과 상관없이 같은 속도로 돌도록 경과 시간을 넘긴다
+          const now = performance.now();
+          const dt = Math.min(0.1, (now - last) / 1000);
+          last = now;
+          controls.update(dt);
           renderer.render(scene, camera);
         };
         loop();

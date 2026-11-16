@@ -4,6 +4,7 @@ import { SiteFooter, SiteHeader } from "./components/site";
 import HeritageViewer, { type HeritageModel } from "./components/HeritageViewer";
 import { OpenChatLink, ReelPlayer } from "./components/home-client";
 import { GatMark, Giwa, Mounds } from "./components/motifs";
+import { ExperienceCards } from "./components/experience";
 import { TOURS, type TourId } from "@/lib/tours";
 import { corporateClients, schoolClients } from "@/lib/clients";
 
@@ -64,11 +65,12 @@ const why = [
 
 const heritageModels: HeritageModel[] = [
   { id: "crown", src: "/media/3d/crown.glb", name: "천마총 금관", note: "신라 황금 문화의 상징" },
+  { id: "gwansik", src: "/media/3d/gwansik.glb", name: "금제 관식", note: "관모에 꽂는 황금 날개 장식", swing: true },
+  { id: "sumaksae", src: "/media/3d/sumaksae.glb", name: "얼굴무늬 수막새", note: "‘신라의 미소’로 불리는 기와", swing: true },
   { id: "tou", src: "/media/3d/tou.glb", name: "신라 토우", note: "흙으로 빚은 신라 사람들" },
-  { id: "queen", src: "/media/3d/queen.glb", name: "선덕여왕", note: "첨성대 시대의 여왕" },
 ];
 
-const marqueeWords = ["천년 고도 경주", "이야기가 있는 해설", "국립경주박물관", "불국사 · 석굴암", "청사초롱 야행", "신라 왕경"];
+const marqueeWords = ["천년 고도 경주", "이야기가 있는 해설", "국립경주박물관", "불국사 · 석굴암", "청사초롱 야행", "선비 · 화랑 체험", "전통문화 공연", "신라 왕경"];
 
 function Marquee({ items, dark = false }: { items: string[]; dark?: boolean }) {
   const run = (
@@ -252,6 +254,36 @@ export default function Home() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* 단체·MICE 맞춤: 체험 · 공연 · 유니크베뉴 */}
+      <section id="programs" className="gt-sec" style={{ paddingTop: 0 }} aria-labelledby="programs-title">
+        <div className="gt-wrap">
+          <div className="gt-head split">
+            <div>
+              <p className="gt-eyebrow">단체 · MICE 맞춤 프로그램</p>
+              <h2 id="programs-title" className="gt-h2" data-reveal>
+                체험 · 공연 ·
+                <br />
+                <span className="gt-gold">유니크베뉴까지.</span>
+              </h2>
+            </div>
+            <p className="gt-lead" data-reveal>
+              도슨트 투어에 더해, 행사 성격과 인원에 맞춰 전통문화 체험과 공연,
+              문화유산 공간을 활용한 프로그램까지 맞춤 기획합니다.
+            </p>
+          </div>
+          <ExperienceCards />
+          <p className="gt-exp-hint" aria-hidden="true">
+            옆으로 밀어서 더 보기 →
+          </p>
+          <div className="gt-exp-foot">
+            <Link href="/quote" className="gt-btn gold">
+              맞춤 프로그램 문의 <span className="arr" aria-hidden="true">→</span>
+            </Link>
+            <p>인원 · 일정 · 장소에 맞춰 구성을 제안해 드립니다.</p>
           </div>
         </div>
       </section>
@@ -455,13 +487,14 @@ export default function Home() {
               </h2>
             </div>
             <p className="gt-lead" data-reveal>
-              현장에서 들은 이야기를 3D 콘텐츠로 이어갑니다. 금관과 토우를 직접
-              돌려보세요.
+              현장에서 들은 이야기를 3D 콘텐츠로 이어갑니다. 금관과 금제 관식,
+              수막새를 직접 돌려보세요.
             </p>
           </div>
           <HeritageViewer models={heritageModels} poster="/media/photo/crown-preview.webp" />
           <p className="gt-heritage-note" style={{ marginTop: 18 }}>
             교육·홍보용으로 제작한 3D 재현 모델이며, 실제 유물과 세부가 다를 수 있습니다.
+            금제 관식과 수막새는 형태를 단순화해 그린 그래픽 재현입니다.
           </p>
         </div>
       </section>

@@ -79,17 +79,15 @@
 
 /* ---------- 워드마크 ---------- */
 .gt-logo { display: inline-flex; align-items: center; gap: 9px; color: inherit; text-decoration: none; }
-.gt-logo .moon { width: 21px; height: 21px; border-radius: 50%; background: radial-gradient(circle, var(--gt-gold) 0 21%, var(--gt-ink) 22% 37%, var(--gt-gold) 38% 100%); flex: none; transition: transform 0.5s var(--gt-ease); }
-.gt-logo:hover .moon { transform: rotate(180deg) scale(1.15); }
-.gt-logo .kr { font-family: var(--gt-kr); font-weight: 900; font-size: 22px; line-height: 1; letter-spacing: -0.06em; }
+.gt-logo .kr { font-family: var(--gt-kr); font-weight: 900; font-size: 24px; line-height: 1; letter-spacing: -0.06em; transition: color 0.2s; }
+.gt-logo:hover .kr { color: var(--gt-gold); }
 .gt-logo .en {
   font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 800;
   font-size: 8px; line-height: 1; letter-spacing: 0.14em; color: var(--gt-gold); white-space: nowrap;
 }
 .gt-logo .gt-logo-text { display: flex; flex-direction: column; gap: 3px; }
 @media (min-width: 900px) {
-  .gt-logo .moon { width: 24px; height: 24px; }
-  .gt-logo .kr { font-size: 27px; }
+  .gt-logo .kr { font-size: 29px; }
   .gt-logo .gt-logo-text { flex-direction: row; align-items: center; gap: 12px; }
   .gt-logo .en { font-size: 10.5px; padding-left: 12px; border-left: 1px solid #5a554c; line-height: 1.6; }
 }
@@ -366,7 +364,7 @@
 .gt-stage.ready .gt-stage-poster { opacity: 0; pointer-events: none; }
 .gt-stage-hint { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font-size: 12.5px; font-weight: 700; color: #cdc9c0; pointer-events: none; }
 .gt-stage-badge { position: absolute; left: 14px; top: 14px; font-family: var(--gt-en); font-weight: 800; font-size: 11px; letter-spacing: 0.12em; background: var(--gt-gold); color: var(--gt-ink); padding: 6px 11px; border-radius: 999px; }
-.gt-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.gt-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .gt-tabs button {
   text-align: left; min-height: 64px; padding: 12px 14px; border-radius: 16px; border: 1.5px solid var(--gt-line); background: #23262b; color: #fff; cursor: pointer;
   font: inherit; display: flex; flex-direction: column; gap: 2px; transition: border-color 0.2s, background 0.2s, color 0.2s;
@@ -447,6 +445,47 @@
 .gt-stats.compact dd { font-size: clamp(22px, 2.5vw, 36px); }
 .gt-phero-media { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 16 / 10; background: #000; }
 .gt-phero-media video { width: 100%; height: 100%; object-fit: cover; }
+/* ---------- 체험 · 공연 · 유니크베뉴 (가로로 넘겨 보는 사진 카드) ---------- */
+.gt-exp {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  margin-inline: -16px; padding-inline: 16px; scroll-padding-inline: 16px;
+}
+.gt-exp::-webkit-scrollbar { display: none; }
+.gt-exp article { scroll-snap-align: start; display: grid; gap: 16px; align-content: start; }
+.gt-exp .m { position: relative; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; background: var(--gt-night); }
+.gt-exp .m img { object-fit: cover; transition: transform 0.9s var(--gt-ease); }
+.gt-exp article:hover .m img { transform: scale(1.04); }
+.gt-exp .m::after { content: ""; position: absolute; inset: 0 0 auto; height: 36%; background: linear-gradient(rgba(26, 28, 32, 0.6), transparent); pointer-events: none; }
+.gt-exp .m b { position: absolute; left: 16px; top: 12px; z-index: 1; font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 900; font-size: 44px; line-height: 1; color: var(--gt-gold); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5); }
+/* 사진이 여러 장이면 천천히 번갈아 보여준다 */
+.gt-exp .m.n2 img:nth-child(2) { opacity: 0; animation: gt-x2 9s infinite; }
+.gt-exp .m.n3 img:nth-child(2) { opacity: 0; animation: gt-x3a 12s infinite; }
+.gt-exp .m.n3 img:nth-child(3) { opacity: 0; animation: gt-x3b 12s infinite; }
+@keyframes gt-x2 { 0%, 42% { opacity: 0; } 50%, 92% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes gt-x3a { 0%, 28% { opacity: 0; } 34%, 61% { opacity: 1; } 67%, 100% { opacity: 0; } }
+@keyframes gt-x3b { 0%, 61% { opacity: 0; } 67%, 94% { opacity: 1; } 100% { opacity: 0; } }
+.gt-exp .b { display: grid; gap: 9px; padding-inline: 2px; }
+.gt-exp h3 { font-weight: 900; font-size: 23px; line-height: 1.25; letter-spacing: -0.05em; }
+.gt-exp p { font-size: 15px; line-height: 1.65; color: #cdc9c0; }
+.gt-exp ul { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 3px; }
+.gt-exp li { border: 1px solid rgba(217, 179, 92, 0.55); color: var(--gt-gold); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; font-weight: 700; line-height: 1.4; }
+.gt-exp-hint { margin-top: 16px; font-size: 12.5px; font-weight: 700; color: var(--gt-mute); }
+.gt-exp-foot { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.gt-exp-foot .gt-btn { flex: 1 1 100%; }
+.gt-exp-foot p { font-size: 13.5px; color: var(--gt-mute); line-height: 1.6; }
+.gt-exp-title { font-weight: 900; font-size: clamp(24px, 3.4vw, 40px); line-height: 1.2; letter-spacing: -0.05em; }
+@media (min-width: 600px) {
+  .gt-exp { grid-auto-columns: 44%; }
+  .gt-exp-foot .gt-btn { flex: 0 0 auto; }
+}
+@media (min-width: 900px) {
+  .gt-exp { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; overflow: visible; margin-inline: 0; padding-inline: 0; }
+  .gt-exp article { gap: 20px; }
+  .gt-exp-hint { display: none; }
+  .gt-exp-foot { margin-top: 44px; }
+}
+
 .gt-prog { display: grid; gap: 14px; }
 .gt-prog article { background: #fff; color: var(--gt-ink); border-radius: 24px; overflow: hidden; display: grid; }
 .gt-prog .m { position: relative; aspect-ratio: 16 / 10; background: #000; }
@@ -489,6 +528,7 @@
   [data-reveal], [data-reveal].gt-pre { opacity: 1; transform: none; transition: none; }
   .gt-words.js .w { opacity: 1; }
   .gt-btn, .gt-btn .arr, .gt-fan figure { transition: none; }
+  .gt-exp .m img { animation: none !important; transition: none; }
 }
 
 /* ---------- 전통 모티프 ---------- */

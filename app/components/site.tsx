@@ -25,11 +25,23 @@ const landmarks = [
 const openTravelChat = () =>
   window.dispatchEvent(new Event("open-travel-chat"));
 
-/** 달(라임 원) + 굵은 한글 + 넓은 영문 워드마크 */
-export function Wordmark() {
+// 이미 홈에 있을 때는 주소가 바뀌지 않으므로, 직접 맨 위로 올려 준다
+const goHomeTop = () => {
+  if (window.location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+/** 굵은 한글 + 넓은 영문 워드마크. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다. */
+export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <Link href="/" className="gt-logo" aria-label="경주트립 GYEONGJU TRIP 홈">
-      <span className="moon" aria-hidden="true" />
+    <Link
+      href="/"
+      className="gt-logo"
+      aria-label="경주트립 GYEONGJU TRIP 홈으로"
+      onClick={() => {
+        onNavigate?.();
+        goHomeTop();
+      }}
+    >
       <span className="gt-logo-text">
         <span className="kr">경주트립</span>
         <span className="en" lang="en">
@@ -67,7 +79,7 @@ export function SiteHeader({
       className={`gt-header ${className}`}
     >
       <div className="gt-wrap gt-header-bar">
-        <Wordmark />
+        <Wordmark onNavigate={() => setMenuOpen(false)} />
 
         {back ? (
           <a href={back.href} className="gt-back">
@@ -156,7 +168,7 @@ export function SiteFooter() {
   return (
     <footer id="contact" className="gt-footer">
       <div className="gt-wrap gt-footer-in">
-        <Link href="/" className="gt-footer-mark" aria-label="경주트립 홈">
+        <Link href="/" className="gt-footer-mark" aria-label="경주트립 홈으로" onClick={goHomeTop}>
           <span className="kr">경주트립</span>
           <span className="en" lang="en">
             GYEONGJU TRIP
