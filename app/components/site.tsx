@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { IconArrow, IconClose, IconMenu } from "./icons";
 import styles from "../homepage.module.css";
@@ -22,20 +22,28 @@ export function SiteHeader({
   showCta = true,
   className = "",
   variant = "default",
+  navigation,
 }: {
   back?: { href: string; label: string };
   showCta?: boolean;
   className?: string;
   variant?: "default" | "home";
+  navigation?: "journey";
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const items = navItems;
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const items = navigation === "journey" ? [
+    { href: "/#tours", label: "투어 고르기" }, { href: "/#guide", label: "여행 준비" },
+    { href: "/now", label: "지금 경주" }, { href: "/company", label: "경주트립 이야기" },
+    { href: "/account", label: "내 예약" },
+  ] : navItems;
 
   return (
     <header
       data-site-header
       data-variant={variant}
       className={`relative w-full z-50 ${styles.header} ${className}`}
+      onKeyDown={event => { if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }}
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center shrink-0">
@@ -84,10 +92,12 @@ export function SiteHeader({
           )}
           {
             <button
+              ref={menuButton}
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
               aria-expanded={menuOpen}
+              aria-controls="site-mobile-navigation"
               className="xl:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand-600 transition-colors"
             >
               {menuOpen ? (
@@ -101,7 +111,7 @@ export function SiteHeader({
       </div>
 
       {menuOpen && (
-        <nav className="xl:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
+        <nav id="site-mobile-navigation" aria-label="모바일 메뉴" className="xl:hidden border-t border-brand-100 bg-white px-4 py-2 flex flex-col text-gray-700">
           {items.map((item) => (
             <a
               key={item.href}

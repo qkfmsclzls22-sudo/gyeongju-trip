@@ -1,0 +1,18 @@
+{
+  "tool": "Built-in image_gen imagegen",
+  "purpose": "Panoramic derivative of the owner's watercolor artwork for the homepage redesign. Original assets preserved. Format-only WebP compression with Sharp quality 88; no programmatic color editing.",
+  "assets": [
+    {
+      "name": "day",
+      "prompt": "Edit this supplied Gyeongju Trip watercolor illustration into a refined panoramic travel website artwork, approximately 3:1 wide horizontal. Preserve its distinctive hand-painted paper grain, the green royal burial mound and three autumn trees as the recognizable subject. Expand the landscape to the left and right with gently rolling low grassy mounds, spacious pale blue air, soft far-away hills; leave generous sky. More mature editorial color palette: powder blue sky, sage and olive green grass, nuanced ochre and golden apricot foliage. Reduce the original neon lime and orange saturation, but keep it fresh, luminous, welcoming, and richly painted rather than faded beige. Fine watercolor pigment variations and restrained gouache brushwork, wide open horizon, beautiful afternoon light. Main three trees slightly right of center, visible entire crowns, no clipping. Panoramic composition, not a square image placed on a wide blank canvas. No people, no text, no lettering, no logo, no borders, no UI. This is an artwork based on an existing illustration, not documentary photography.",
+      "source": "illustration-autumn.webp",
+      "output": "public/images/campaign-autumn-wide.webp"
+    },
+    {
+      "name": "night",
+      "prompt": "Edit this supplied Gyeongju Trip watercolor illustration into a refined panoramic travel website artwork, approximately 3:1 wide horizontal, in the same hand-painted paper-grain watercolor language. Preserve Woljeonggyo's recognizable long covered Korean bridge with the two raised pavilion roofs, stone piers, moon and reflected bridge. Extend scenery gently at both sides. Show the ENTIRE bridge and its reflection, never crop the pavilion roofs. Open spacious night sky. More mature editorial palette: muted midnight indigo and slate blue, soft celadon roof, restrained warm amber lamps and moon, dusky teal river; reduce electric cyan/royal blue saturation. Rich subtle watercolor pigment and paper grain, sophisticated quiet nocturne but enough contrast to read architecture. Panoramic frame, not square art with blank bars. No text, no lettering, no logo, no UI, no borders. The artifact is an imaginative painted landscape, not documentary photography.",
+      "source": "illustration-woljeonggyo.webp",
+      "output": "public/images/campaign-woljeonggyo-wide.webp"
+    }
+  ]
+}
