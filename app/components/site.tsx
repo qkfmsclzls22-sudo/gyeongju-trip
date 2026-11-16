@@ -30,7 +30,19 @@ const goHomeTop = () => {
   if (window.location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-/** 굵은 한글 + 넓은 영문 워드마크. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다. */
+/** 워드마크 '경주 [첨성대] 트립'에서 두 낱말 사이에 서는 첨성대 */
+function TowerMark() {
+  return (
+    <svg className="gt-tower" viewBox="0 0 56 100" aria-hidden="true" focusable="false">
+      <path
+        fillRule="evenodd"
+        d="M3 92.5L3.2 88.4L3.6 84.3L4.3 80.2L5.2 76.1L6.2 72L7.3 67.9L8.5 63.8L9.6 59.7L10.6 55.6L11.5 51.5L12.3 47.4L12.8 43.3L13 39.2L13 35.1L13 31L13 26.9L13 22.8L13 18.7L13 14.6L13 10.5L43 10.5L43 14.6L43 18.7L43 22.8L43 26.9L43 31L43 35.1L43 39.2L43.2 43.3L43.7 47.4L44.5 51.5L45.4 55.6L46.4 59.7L47.5 63.8L48.7 67.9L49.8 72L50.8 76.1L51.7 80.2L52.4 84.3L52.8 88.4L53 92.5ZM0 100L0 93.5L56 93.5L56 100ZM10.5 9.2L10.5 5.2L45.5 5.2L45.5 9.2ZM10.5 4L10.5 0L45.5 0L45.5 4ZM23 51.5L33 51.5L33 41.5L23 41.5Z"
+      />
+    </svg>
+  );
+}
+
+/** 굵은 한글(가운데 첨성대) + 넓은 영문 워드마크. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다. */
 export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Link
@@ -43,7 +55,11 @@ export function Wordmark({ onNavigate }: { onNavigate?: () => void }) {
       }}
     >
       <span className="gt-logo-text">
-        <span className="kr">경주트립</span>
+        <span className="kr">
+          경주
+          <TowerMark />
+          트립
+        </span>
         <span className="en" lang="en">
           GYEONGJU TRIP
         </span>
@@ -169,7 +185,11 @@ export function SiteFooter() {
     <footer id="contact" className="gt-footer">
       <div className="gt-wrap gt-footer-in">
         <Link href="/" className="gt-footer-mark" aria-label="경주트립 홈으로" onClick={goHomeTop}>
-          <span className="kr">경주트립</span>
+          <span className="kr">
+            경주
+            <TowerMark />
+            트립
+          </span>
           <span className="en" lang="en">
             GYEONGJU TRIP
           </span>

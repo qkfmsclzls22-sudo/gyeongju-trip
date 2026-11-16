@@ -81,6 +81,8 @@
 .gt-logo { display: inline-flex; align-items: center; gap: 9px; color: inherit; text-decoration: none; }
 .gt-logo .kr { font-family: var(--gt-kr); font-weight: 900; font-size: 24px; line-height: 1; letter-spacing: -0.06em; transition: color 0.2s; }
 .gt-logo:hover .kr { color: var(--gt-gold); }
+/* 워드마크 가운데의 첨성대: 글자 높이에 맞춰 기준선 아래까지 내려 세운다 */
+.gt-tower { display: inline-block; height: 0.9em; width: 0.504em; margin: 0 0.064em 0 0.126em; vertical-align: -0.098em; fill: var(--gt-gold); }
 .gt-logo .en {
   font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 800;
   font-size: 8px; line-height: 1; letter-spacing: 0.14em; color: var(--gt-gold); white-space: nowrap;
@@ -414,6 +416,7 @@
 .gt-footer-in { padding-block: 44px 110px; display: grid; gap: 30px; }
 .gt-footer-mark { display: flex; flex-direction: column; gap: 6px; color: #fff; text-decoration: none; }
 .gt-footer-mark .kr { font-weight: 900; font-size: clamp(76px, 22vw, 300px); line-height: 0.92; letter-spacing: -0.075em; color: var(--gt-gold); margin-left: -0.04em; }
+.gt-footer-mark .gt-tower { margin-left: 0.141em; fill: var(--gt-paper); }
 .gt-footer-mark .en { font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 900; font-size: clamp(22px, 6.6vw, 92px); line-height: 1; letter-spacing: 0.01em; white-space: nowrap; }
 .gt-footer-grid { display: grid; gap: 22px; padding-top: 26px; border-top: 1px solid var(--gt-line); }
 .gt-footer .gt-footer-grid h3 { font-size: 12.5px; font-weight: 700; color: var(--gt-mute); margin: 0 0 6px; }
