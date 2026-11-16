@@ -65,8 +65,6 @@ const why = [
 
 const heritageModels: HeritageModel[] = [
   { id: "crown", src: "/media/3d/crown.glb", name: "천마총 금관", note: "신라 황금 문화의 상징" },
-  { id: "gwansik", src: "/media/3d/gwansik.glb", name: "금제 관식", note: "관모에 꽂는 황금 날개 장식", swing: true },
-  { id: "sumaksae", src: "/media/3d/sumaksae.glb", name: "얼굴무늬 수막새", note: "‘신라의 미소’로 불리는 기와", swing: true },
   { id: "tou", src: "/media/3d/tou.glb", name: "신라 토우", note: "흙으로 빚은 신라 사람들" },
 ];
 
@@ -487,14 +485,13 @@ export default function Home() {
               </h2>
             </div>
             <p className="gt-lead" data-reveal>
-              현장에서 들은 이야기를 3D 콘텐츠로 이어갑니다. 금관과 금제 관식,
-              수막새를 직접 돌려보세요.
+              현장에서 들은 이야기를 3D 콘텐츠로 이어갑니다. 금관과 토우를 직접
+              돌려보세요.
             </p>
           </div>
           <HeritageViewer models={heritageModels} poster="/media/photo/crown-preview.webp" />
           <p className="gt-heritage-note" style={{ marginTop: 18 }}>
             교육·홍보용으로 제작한 3D 재현 모델이며, 실제 유물과 세부가 다를 수 있습니다.
-            금제 관식과 수막새는 형태를 단순화해 그린 그래픽 재현입니다.
           </p>
         </div>
       </section>
