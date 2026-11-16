@@ -1,21 +1,21 @@
 /* Shared editorial system for the pages beyond the homepage. */
 .inner-page {
-  --paper: #f4f1e9;
-  --ink: #242b27;
-  --muted: #626b62;
-  --line: #242b2726;
-  --accent: #b64025;
+  --paper: #f4f4ef;
+  --ink: #0b0b0c;
+  --muted: #5a5a60;
+  --line: #0b0b0c26;
+  --accent: #0b0b0c;
   --color-brand-50: #f0eee5;
   --color-brand-100: #d9dbce;
   --color-brand-200: #bac3af;
   --color-brand-300: #99ad92;
-  --color-brand-400: #54684d;
-  --color-brand-500: #283b2e;
-  --color-brand-600: #38503e;
-  --color-brand-700: #283b2e;
-  --color-cream: #f4f1e9;
-  --color-blush: #e8e9dd;
-  --color-ink: #242b27;
+  --color-brand-400: #3c3c42;
+  --color-brand-500: #0b0b0c;
+  --color-brand-600: #2a2a2e;
+  --color-brand-700: #0b0b0c;
+  --color-cream: #f4f4ef;
+  --color-blush: #ebebe6;
+  --color-ink: #0b0b0c;
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
@@ -69,7 +69,7 @@
   color: var(--accent);
   font-family:
     var(--font-condensed), var(--font-suite), var(--font-glyph-fallback),
-    sans-serif;
+    sans-serif; font-stretch: 80%;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.13em;
@@ -121,7 +121,7 @@
 .page-button.secondary {
   background: transparent;
   color: var(--ink);
-  border-color: #242b2750;
+  border-color: #0b0b0c50;
 }
 .page-link {
   display: inline-flex;
@@ -162,7 +162,7 @@
   margin-bottom: 28px;
 }
 .section-label > span {
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   color: var(--accent);
   font-size: 17px;
   letter-spacing: 0.06em;
@@ -178,8 +178,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-  background: #283b2e;
-  color: #f4f1e9;
+  background: #0b0b0c;
+  color: #f4f4ef;
 }
 .page-cta p {
   color: #d0d9c9;
@@ -200,9 +200,9 @@
   min-width: 174px;
 }
 .page-cta .page-button {
-  background: #f4f1e9;
-  border-color: #f4f1e9;
-  color: #283b2e;
+  background: #f4f4ef;
+  border-color: #f4f4ef;
+  color: #0b0b0c;
 }
 .page-cta .page-link {
   justify-content: center;
@@ -219,8 +219,7 @@
 }
 .tour-cover h1 {
   margin: 24px 0;
-  font-family: var(--font-editorial), serif;
-  font-weight: 500;
+  font-family: var(--font-editorial), serif; font-weight: 800; letter-spacing: -0.045em;
   font-size: clamp(36px, 3.8vw, 55px);
 }
 .tour-cover h1 span {
@@ -246,7 +245,7 @@
 .tour-cover-figure {
   position: relative;
   padding: 12px;
-  background: #fffdf5;
+  background: #ffffff;
   border: 1px solid var(--line);
 }
 .tour-cover-image {
@@ -264,7 +263,7 @@
   color: var(--muted);
 }
 .tour-cover-figure figcaption span:first-child {
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   letter-spacing: 0.12em;
 }
 .tour-nav {
@@ -320,7 +319,7 @@
   grid-template-columns: 92px 1fr;
   gap: 24px;
   padding: 13px 0;
-  border-bottom: 1px solid #242b2714;
+  border-bottom: 1px solid #0b0b0c14;
 }
 .tour-facts dt {
   color: var(--muted);
@@ -346,7 +345,7 @@
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   font-size: 19px;
 }
 .point-card h3 {
@@ -435,7 +434,7 @@
 }
 .safety-note {
   padding: 24px;
-  background: #e8e9dd;
+  background: #ebebe6;
   font-size: 13px;
   color: var(--muted);
 }
@@ -451,7 +450,7 @@
 }
 .booking-card {
   padding: 28px;
-  background: #fffdf7;
+  background: #ffffff;
   border: 1px solid var(--line);
   border-top: 3px solid var(--ink);
 }
@@ -539,7 +538,7 @@
   gap: 20px;
   padding: 20px;
   border: 1px solid var(--line);
-  background: #fffdf7;
+  background: #ffffff;
 }
 .related-tours img {
   width: 96px;
@@ -567,8 +566,7 @@
   align-items: end;
 }
 .company-hero h1 {
-  font-family: var(--font-editorial), serif;
-  font-weight: 500;
+  font-family: var(--font-editorial), serif; font-weight: 800; letter-spacing: -0.045em;
   font-size: clamp(42px, 4.8vw, 68px);
   margin-top: 22px;
 }
@@ -590,8 +588,8 @@
   bottom: 20px;
   left: 24px;
   padding: 8px 12px;
-  background: #f4f1e9e8;
-  color: #242b27;
+  background: #f4f4efe8;
+  color: #0b0b0c;
   font-size: 12px;
 }
 .company-intro {
@@ -600,8 +598,7 @@
   gap: 10%;
 }
 .company-intro h2 {
-  font-family: var(--font-editorial), serif;
-  font-weight: 500;
+  font-family: var(--font-editorial), serif; font-weight: 800; letter-spacing: -0.045em;
   margin-top: 20px;
 }
 .company-intro-copy {
@@ -623,7 +620,7 @@
 }
 .company-services article > span {
   display: block;
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   font-size: 25px;
   color: var(--accent);
   margin-bottom: 34px;
@@ -640,12 +637,12 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 40px;
-  background: #e4e8da;
+  background: #ebebe6;
   margin-top: 44px;
 }
 .company-stats strong {
   display: block;
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   font-size: 55px;
   line-height: 1.2;
   font-weight: 500;
@@ -742,8 +739,7 @@
   gap: 32px;
 }
 .place-hero h1 {
-  font-family: var(--font-editorial), serif;
-  font-weight: 500;
+  font-family: var(--font-editorial), serif; font-weight: 800; letter-spacing: -0.045em;
   font-size: clamp(48px, 6vw, 88px);
   margin-top: 18px;
 }
@@ -793,7 +789,7 @@
 .place-highlights span {
   display: block;
   color: var(--accent);
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   font-size: 16px;
   margin-bottom: 18px;
 }
@@ -806,8 +802,8 @@
 }
 .place-tip {
   padding: 28px;
-  background: #e4e8da;
-  border-left: 2px solid #75856a;
+  background: #ebebe6;
+  border-left: 2px solid #6b6b72;
 }
 .place-tip h2 {
   font-size: 22px;
@@ -818,7 +814,7 @@
 }
 .place-practical {
   padding: 28px;
-  background: #fffdf7;
+  background: #ffffff;
   border: 1px solid var(--line);
   position: sticky;
   top: 100px;
@@ -877,7 +873,7 @@
   display: inline-flex;
   gap: 22px;
   border: 1px solid var(--line);
-  background: #fffdf7;
+  background: #ffffff;
   padding: 10px 16px;
   font-size: 14px;
 }
@@ -894,8 +890,7 @@
   top: 112px;
 }
 .quote-intro h1 {
-  font-family: var(--font-editorial), serif;
-  font-weight: 500;
+  font-family: var(--font-editorial), serif; font-weight: 800; letter-spacing: -0.045em;
   margin: 22px 0;
   font-size: clamp(38px, 3.8vw, 54px);
 }
@@ -928,7 +923,7 @@
   object-fit: contain;
 }
 .quote-form {
-  background: #fffdf7;
+  background: #ffffff;
   padding: 36px;
   border: 1px solid var(--line);
 }
@@ -949,7 +944,7 @@
 }
 .quote-form legend span {
   color: var(--accent);
-  font-family: var(--font-condensed), sans-serif;
+  font-family: var(--font-condensed), sans-serif; font-stretch: 80%;
   margin-right: 14px;
   font-weight: 500;
 }
@@ -1024,7 +1019,7 @@
 .quote-done {
   border: 1px solid var(--line);
   border-top: 3px solid var(--ink);
-  background: #fffdf7;
+  background: #ffffff;
   padding: 44px;
 }
 .quote-done > svg {

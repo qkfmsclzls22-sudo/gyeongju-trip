@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Shared palette matches the current homepage. */
-  --color-brand-50: #f4f1e9;
-  --color-brand-100: #e8ecdf;
-  --color-brand-200: #d4d8ca;
-  --color-brand-300: #99ad92;
-  --color-brand-400: #283b2e;
-  --color-brand-500: #283b2e;
-  --color-brand-600: #38503e;
-  --color-brand-700: #243d2b;
+  /* 2026 리뉴얼 팔레트: 잉크 블랙 + 라임. 내부 페이지도 같은 토큰을 씁니다. */
+  --color-brand-50: #f4f4ef;
+  --color-brand-100: #ebebe6;
+  --color-brand-200: #dcdcd6;
+  --color-brand-300: #a8a8a0;
+  --color-brand-400: #0b0b0c;
+  --color-brand-500: #0b0b0c;
+  --color-brand-600: #2a2a2e;
+  --color-brand-700: #000000;
+
+  --color-lime-300: #d8fa6e;
+  --color-lime-400: #c8f53a;
 
   /* 골드 — 별점, 포인트 뱃지 */
   --color-sun-100: #fff6df;
@@ -18,17 +21,31 @@
   --color-sun-500: #ffb020;
 
   /* 배경 뉴트럴 */
-  --color-cream: #f4f1e9;
-  --color-blush: #e8e9dd;
-  --color-ink: #242b27;
+  --color-cream: #f4f4ef;
+  --color-blush: #ebebe6;
+  --color-ink: #0b0b0c;
 
-  --font-sans: var(--font-suite), var(--font-glyph-fallback), sans-serif;
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+:root {
+  /* 예전 서체 변수는 새 서체로 연결해 내부 페이지도 함께 바뀌게 합니다. */
+  --font-suite: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic";
+  --font-glyph-fallback: "Apple SD Gothic Neo", "Malgun Gothic";
+  --font-editorial: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic";
+  --font-condensed: "Archivo Variable", "Pretendard Variable";
+  --yellow: #f4f4ef;
+  --paper: #f4f4ef;
+  --red: #0b0b0c;
+  --ink: #0b0b0c;
 }
 
 body {
-  background: #f4f1e9;
+  background: #f4f4ef;
   color: var(--color-ink);
-  font-family: var(--font-suite), var(--font-glyph-fallback), sans-serif;
+  font-family: var(--font-suite), sans-serif;
   font-weight: 450;
   letter-spacing: -0.015em;
   line-height: 1.7;
@@ -42,12 +59,6 @@ textarea {
   letter-spacing: inherit;
 }
 
-:root {
-  --yellow: #f4f1e9;
-  --paper: #f4f1e9;
-  --red: #b64025;
-  --ink: #242b27;
-}
 [data-site-header] [data-home-wordmark] {
   white-space: nowrap;
 }
