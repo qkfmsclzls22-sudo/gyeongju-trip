@@ -33,7 +33,7 @@ KOREA MICE EXPO 2026 참가에 맞춘 전면 리뉴얼입니다. 구성·모션�
 - 내부 페이지의 예전 서체 변수(`--font-editorial`, `--font-condensed`, `--font-suite`)는 `globals.css`에서 위 두 서체로 연결됩니다.
 
 ## 워드마크
-`경주트립`(Pretendard 900) + `GYEONGJU TRIP`(Archivo 넓은 폭). 글자만 쓰고 옆에 원형 표식은 두지 않습니다. 헤더에서는 한 줄, 푸터에서는 화면 가득. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다(홈에서는 맨 위로). 컴포넌트: `Wordmark` (`app/components/site.tsx`).
+`경주 [첨성대] 트립`(Pretendard 900, 두 낱말 사이에 금빛 첨성대) + `GYEONGJU TRIP`(Archivo 넓은 폭). 2026-11-17 로고 시안 B안. 첨성대는 `TowerMark`(인라인 SVG, `.gt-tower`)로 글자 높이에 맞춰 세웁니다. 헤더는 흰 글자 + 금빛 첨성대, 푸터는 금빛 글자 + 한지색 첨성대. 글자 옆에 원형 표식은 두지 않습니다. 헤더에서는 한 줄, 푸터에서는 화면 가득. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다(홈에서는 맨 위로). 컴포넌트: `Wordmark` (`app/components/site.tsx`).
 
 ## 화면 구성
 - **홈(`/`)**: 영상 히어로 → 마키 → 투어 3종(스티키 스택 카드, 가격은 `lib/tours.ts`) → 단체·MICE 맞춤 프로그램(선비 체험·화랑 체험·전통문화/예술 공연·문화유산 유니크베뉴, 모바일은 옆으로 넘기는 사진 카드, `app/components/experience.tsx`) → 바이어용 WHY → 실적·진행 이력(`lib/clients.ts`) → 45초 홍보영상 → TOUR×AR×3D×AI → 3D 문화유산 뷰어 → 파트너십 문의 → 푸터.
