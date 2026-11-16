@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Breadcrumb } from "@/app/components/inside";
 import { SiteFooter, SiteHeader } from "@/app/components/site";
 import { IconCheck, IconPhone } from "@/app/components/icons";
@@ -91,14 +90,6 @@ export default function QuotePage() {
               <a href="tel:010-5552-7971">010-5552-7971 ↗</a>
               <a href="mailto:gjtrip11@naver.com">gjtrip11@naver.com ↗</a>
               <span>개인 예약·문자문의 010-8402-8543</span>
-            </div>
-            <div className="quote-art">
-              <Image
-                src="/images/illustration-blossom.webp"
-                alt=""
-                fill
-                sizes="(max-width:760px) 85px, 150px"
-              />
             </div>
           </section>
           {status === "done" ? (

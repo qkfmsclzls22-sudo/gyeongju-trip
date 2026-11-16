@@ -22,8 +22,8 @@ export default async function LoginPage({
       <div className="login-grid">
         <div className="login-visual">
           <Image
-            src="/images/tour-museum-field.webp"
-            alt="해설사와 함께 국립경주박물관을 둘러보는 가족 여행객"
+            src="/media/photo/museum-backs.webp"
+            alt="국립경주박물관 전시실에서 해설을 듣는 참가자들"
             fill
             sizes="(max-width:760px) 100vw, 520px"
             priority

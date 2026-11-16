@@ -1,52 +1,34 @@
-import type { Metadata } from "next";
-import { Hahmlet, Barlow_Condensed, Noto_Serif_KR } from "next/font/google";
-import localFont from "next/font/local";
+import type { Metadata, Viewport } from "next";
+// 굵은 고딕 한글(Pretendard)과 넓은 영문 디스플레이(Archivo)를 사이트에서 직접 제공합니다.
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import "@fontsource-variable/archivo/wdth.css";
 import "./globals.css";
 import "./inside.css";
+import "./renewal.css";
 import TravelChatWidget from "./components/TravelChatWidget";
-
-const hahmlet = Hahmlet({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-editorial",
-  display: "swap",
-  preload: false,
-});
-const condensed = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-condensed",
-  display: "swap",
-});
-
-// Hanja and rare Korean glyphs fall back to a self-hosted serif, not the device font.
-const glyphFallback = Noto_Serif_KR({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-glyph-fallback",
-  display: "swap",
-  preload: false,
-});
-
-// Rounded Korean and Latin UI typography, served with the site.
-const suite = localFont({
-  src: "./fonts/SUITE-Variable.woff2",
-  variable: "--font-suite",
-  weight: "300 900",
-  style: "normal",
-  display: "swap",
-  fallback: ["sans-serif"],
-});
+import MotionRoot from "./components/MotionRoot";
 
 export const metadata: Metadata = {
-  title: "경주트립 - 천년 고도 경주 프리미엄 역사문화 투어",
+  metadataBase: new URL("https://www.gjtrip.co.kr"),
+  title: "경주트립 GYEONGJU TRIP - 경주 일정에, 이야기를 더하다",
   description:
-    "전문 문화해설사와 함께하는 경주 프리미엄 역사투어. 국립경주박물관, 불국사·석굴암, 야경투어. 네이버 우수셀러 프리미엄 등급.",
+    "전문 문화해설사와 함께하는 경주 현지 문화유산 투어. 국립경주박물관 도슨트투어, 불국사·석굴암 역사투어, 청사초롱 야경투어. 기업·기관·MICE·인바운드 단체 맞춤 운영.",
+  openGraph: {
+    title: "경주트립 GYEONGJU TRIP",
+    description: "경주 일정에, 이야기를 더하다. 개인 여행부터 기업·기관·MICE 단체까지.",
+    images: ["/media/video/kme-reel.jpg"],
+    locale: "ko_KR",
+    type: "website",
+  },
   verification: {
     other: {
       "naver-site-verification": "da385efb83674f88fe184ecd65a7fb93b2442e57",
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1a1c20",
 };
 
 export default function RootLayout({
@@ -55,13 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={`${suite.variable} ${glyphFallback.variable} ${hahmlet.variable} ${condensed.variable} h-full antialiased`}
-    >
+    <html lang="ko" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         {children}
         <TravelChatWidget />
+        <MotionRoot />
       </body>
     </html>
   );

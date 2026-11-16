@@ -1,41 +1,71 @@
-# Gyeongju Trip — Local Travel Studio
+# 경주트립 GYEONGJU TRIP — 기와 · 한지 · 금빛 · 단청 (2026-11 리뉴얼 v2)
 
-This direction supersedes the rejected generic product-hero homepage. The website is a place to choose a trip, not just a stack of advertisements.
+KOREA MICE EXPO 2026 참가에 맞춘 전면 리뉴얼입니다. 구성·모션·서체는 v1(블랙·라임, 깃허브 태그 `ink-lime-v1`에 보관)과 같고, "너무 화려하다, 마라톤 사이트 같다"는 피드백에 따라 분위기를 문화유산·전통 쪽으로 옮겼습니다.
+뼈대는 getdesign의 Nike DESIGN.md(큰 타이포, 풀블리드 영상)에서 가져왔고, 색과 장식은 경주의 기와·한지·신라 금관·단청에서 가져옵니다.
 
-## Visual language
-- Warm paper #f4f1e9, charcoal #242b27, restrained vermilion #b64025.
-- Hahmlet for Korean editorial titles, Barlow Condensed for the masthead, chapter numbers and English display; Noto Sans KR for controls and body copy. Fonts self-host through Next/font.
-- Asymmetric photo cover, oversized daylight/nightfall type, ruled sections, staggered tour collection. No repeated centered hero blocks, gradients as decoration, or generic pill cards.
-- Real Gyeongju and tour photographs. Homepage scopes the new typography; readable operational pages retain their body system.
+## 한 줄 방향
+기와 먹색 바탕에 신라 금빛, 한지색 면, 단청(뇌록·석간주) 포인트. 직선보다 곡선. "경주 일정에, 이야기를 더하다."
 
-## Product experience
-1. Change the cover between Gyeongju by day and night, on request with no automatic cycling.
-2. Pick a companion and interest to see an immediate tour suggestion. Groups route to custom planning. Family guidance states guardian requirements.
-3. Optional travel date is a note, explicitly not a live inventory search.
-4. Compare all three tours using the same prices as lib/tours.ts.
-5. Save selected tours into a browser-local travel notebook, remove individually and copy for companions. It is a shortlist, not a booked or timed itinerary.
-6. Continue to existing tour details, booking/account or group quote flows.
+## 색
+| 토큰 | 값 | 유래 · 쓰임 |
+| --- | --- | --- |
+| `--gt-ink` | `#1a1c20` | 기와 먹색. 어두운 바탕, 밝은 면 위 글자 |
+| `--gt-gold` | `#d9b35c` | 신라 금빛. 어두운 면의 강조(제목 둘째 줄, 숫자, 주 버튼), 밝은 면의 칩 |
+| `--gt-paper` | `#f4efe4` | 한지. 밝은 섹션, 내부 페이지 바탕 |
+| `--gt-green` | `#2f6b5b` | 단청 뇌록. 문의·CTA 면, 투어 카드 한 장, '여행정보' 태그 |
+| `--gt-red` | `#a4442f` | 단청 석간주. 띠 배너, 밝은 면의 작은 라벨·번호 |
+| `--gt-night` / `--gt-line` | `#23262b` / `#363a41` | 어두운 카드 면, 구분선 |
 
-## Quality gates
-- SSR default content remains useful. Client state is hydrated without mismatches. Invalid storage fails safely.
-- Mobile 320/390px through desktop 1440px: no horizontal overflow, clear tap targets and readable labels.
-- Keyboard-visible focus, pressed states, live result feedback, reduced-motion support, semantic headings and image alternatives.
-- Browser test day/night, all suggestion combinations, comparisons, save/remove/persistence/copy, date note, menus and existing links.
-- Production build and Vercel preview before production release.
+- 금빛 위 글자는 먹색, 뇌록·석간주 위 글자는 흰색.
+- 형광색과 그라데이션 장식은 쓰지 않습니다. 강조는 금빛 하나, 단청 두 색은 넓은 면에만 쓰고 세 색을 줄무늬로 나란히 놓지 않습니다.
 
-## Original illustration integration
-- Four existing landmark illustrations form an illustrated postcard index linking to the existing landmark pages. Preserve square artwork without cropping.
-- Blossom artwork is a small paper postcard beside the notebook introduction, leaving all controls and text readable.
-- The original panoramic night illustration closes the page, after the studio statement and before contact information.
-- Photo-led cover and real tour photographs retain their existing role. No new images or altered artwork.
-- This change is preview-only pending owner review; do not merge or promote to production without approval.
+## 전통 모티프
+- **기와 처마**: 헤더 아래로 내려오는 막새 곡선(모든 페이지), 어두운 섹션 → 밝은 섹션 경계(`Giwa`).
+- **고분 능선**: 밝은 섹션 → 어두운 섹션 경계가 대릉원 능선처럼 솟습니다(`Mounds`).
+- **단청 문양**: 삼색 띠는 국기처럼 보여서 쓰지 않습니다. 단청은 문양으로 풉니다 — 작은 라벨 앞 **주화문**(네 잎 꽃, 한 가지 색), 띠 배너 위아래와 푸터 윗선의 **연주문**(금빛 구슬 줄), 뇌록 면 위의 옅은 **칠보문**(겹친 원).
+- **갓**: 대표 투어 제목 옆 선화(`GatMark`). 한 화면에 한 번만.
+- 컴포넌트는 `app/components/motifs.tsx`, 스타일은 `app/renewal.css`의 "전통 모티프".
+- 띠 배너와 작은 라벨은 영어 대문자 대신 한글 문구를 씁니다.
 
-## Store product images
-Use the existing product-smartstore-museum/night/bulguksa assets for the homepage collection and suggestion result. Keep 1:1 frames, no cropping, no text/icon overlays, and no hover zoom that crops lettering. Editorial numbering sits above each image.
+## 서체
+- 한글·본문: **Pretendard Variable** (npm `pretendard`, 사이트에서 직접 제공). 제목 800–900, 자간 -0.045 ~ -0.065em. 본문 500. 작은 라벨도 한글 800.
+- 영문·숫자: **Archivo Variable**, 폭(wdth) 125%, 굵기 900. 워드마크, 통계 숫자, 번호(01·02·03).
+- 내부 페이지의 예전 서체 변수(`--font-editorial`, `--font-condensed`, `--font-suite`)는 `globals.css`에서 위 두 서체로 연결됩니다.
 
-## Mobile page length
-Below 761px, tour and landmark collections use manual scroll-snap rails with visible next-card previews, dot navigation, previous/next controls, keyboard arrows and counts. Keep tour artwork square. No autoplay for purchasing decisions. Desktop grid stays unchanged. Forms, notebook and company content remain linear.
+## 워드마크
+`경주트립`(Pretendard 900) + `GYEONGJU TRIP`(Archivo 넓은 폭). 글자만 쓰고 옆에 원형 표식은 두지 않습니다. 헤더에서는 한 줄, 푸터에서는 화면 가득. 어느 화면에서든 누르면 홈 첫 화면으로 돌아갑니다(홈에서는 맨 위로). 컴포넌트: `Wordmark` (`app/components/site.tsx`).
 
-## Browse-first revision (2026-09-29)
-Research: STAYFOLIO /ko (editorial collections, exploration/bookmarks), MyRealTrip (clear product names and prices), GetYourGuide /ko-kr (duration and price alongside experiences).
-Show tours immediately after a shorter mobile cover; sticky mobile jump navigation. Put the optional preference form and notebook behind native disclosures. Remove the duplicate recommendation product image entirely, and remove the large tour photograph below the notebook. Keep a compact school/company/private inquiry block. Retain store artwork and original illustrations. Product names and booking links are explicit. Still preview-only pending approval.
+## 화면 구성
+- **홈(`/`)**: 영상 히어로 → 마키 → 투어 3종(스티키 스택 카드, 가격은 `lib/tours.ts`) → 단체·MICE 맞춤 프로그램(선비 체험·화랑 체험·전통문화/예술 공연·문화유산 유니크베뉴, 모바일은 옆으로 넘기는 사진 카드, `app/components/experience.tsx`) → 바이어용 WHY → 실적·진행 이력(`lib/clients.ts`) → 45초 홍보영상 → TOUR×AR×3D×AI → 3D 문화유산 뷰어 → 파트너십 문의 → 푸터.
+- **파트너(`/partners`)**: PCO·여행사·기관용 상세 소개. 국문/영문 전환(`?lang=en`). 내용은 KME 2026 회사소개서 기준. 03 MICE Programs에 투어 3종과 함께 체험·공연·유니크베뉴 카드(국문/영문)를 둡니다.
+- 체험·공연·유니크베뉴 사진은 프로그램 성격을 보여주는 예시 컷으로 쓰고, '진행 실적'이라고 적지 않습니다. 얼굴이 크게 나온 사진은 쓰지 않습니다.
+- 헤더·푸터·팔레트는 모든 내부 페이지에 공통 적용.
+
+## 내부 페이지 (메뉴로 들어가는 화면)
+홈과 같은 규칙을 씁니다. 기능 마크업(예약·결제·로그인·필터)은 그대로 두고 스타일만 교체했습니다.
+- **공통 틀** (`app/inside.css`): 상단은 먹색 띠(빵부스러기 + 금빛 아이브로 + 900 굵기 큰 제목), 본문은 한지 바탕 위 흰색 둥근 카드(반경 22–28px), 버튼은 모두 알약형. 번호·라벨은 금빛 칩.
+- **투어 상세** (`/tours/*`): 표지는 새 촬영 영상 루프, 알약 목차(스티키), 핵심 정보 카드, 번호 배지 포인트 카드, 먹색 예약 카드(가격은 금빛).
+- **기업소개** (`/company`): 큰 문장 히어로 + 겹쳐 올린 현장 사진, 먹색 실적 블록, 진행 이력 표.
+- **명소 가이드** (`/landmarks/*`): 초대형 지명 타이틀, 금빛 팁 카드, 먹색 방문 메모.
+- **견적문의** (`/quote`): 금빛 형광펜 제목, 둥근 입력창(포커스 시 금빛 링).
+- **지금 경주** (`/now`, `now.module.css`): 먹색 히어로, 알약 필터, 둥근 소식 카드.
+- **예약·결제·로그인·내 예약·약관** (`app/commerce.css`): 같은 카드·입력창·알약 버튼. 주문 요약 카드는 먹색 테두리.
+- **AI경트 채팅창**: 먹색 헤더 + 금빛 제목, 금빛 전송·실행 버튼.
+
+## 모션 (`app/components/MotionRoot.tsx`)
+`data-reveal`(등장), `data-count`(숫자 카운트업), `data-words`(스크롤 문장), `data-parallax`, `video[data-autoplay]`(보일 때만 재생). 서버 렌더 결과는 JS 없이도 그대로 읽히고, `prefers-reduced-motion`이면 모두 끕니다.
+
+## 3D (`app/components/HeritageViewer.tsx`)
+three.js를 섹션이 화면 근처에 올 때만 불러옵니다. 모델은 `public/media/3d/*.glb`(meshopt로 경량화, 0.2–1.2MB). 좌우 드래그로 회전, 세로 스크롤은 페이지에 양보.
+- 모델 4종: 천마총 금관 · 금제 관식(새 날개 모양 관모 장식) · 얼굴무늬 수막새 · 신라 토우. 선덕여왕 모델은 쓰지 않습니다.
+- 금제 관식과 수막새는 스캔 데이터가 아니라 형태를 단순화해 직접 그린 그래픽 재현입니다(화면에도 그렇게 적음). 실제 3D 스캔 자료가 생기면 같은 파일명으로 교체하면 됩니다.
+- 앞면이 있는 유물(`swing: true`)은 한 바퀴 돌지 않고 정면을 중심으로 좌우로만 움직입니다.
+
+## 미디어
+`public/media/video`(새 홍보영상에서 편집한 히어로·투어 루프, KME 45초 영상, 모션그래픽), `public/media/photo`(2026년 현장·AR 포토카드 사진), `public/media/3d`.
+예전 상품 썸네일은 결제·명소 페이지의 상품 식별용으로만 남깁니다.
+
+## 품질 기준
+- 모바일 360–430px 우선. 가로 스크롤 없음, 터치 영역 44px 이상.
+- 가격·운영시간은 `lib/tours.ts`만 참조. 실적 숫자는 기업소개와 같은 값.
+- 사업자 정보(상호·대표자·주소·사업자등록번호)는 푸터에 항상 표시.

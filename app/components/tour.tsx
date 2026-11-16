@@ -56,12 +56,18 @@ export function TourHero({
           </div>
           <figure className="tour-cover-figure">
             <div className="tour-cover-image">
-              <Image
-                src={image}
-                alt={`${category} 상품 안내 이미지`}
-                fill
-                priority
-                sizes="(max-width:760px) 90vw, 42vw"
+              {/* 표지는 새로 촬영한 투어 영상을 소리 없이 반복 재생합니다. image는 예비 포스터로 남겨둡니다. */}
+              <video
+                src={`/media/video/tour-${tourId}.mp4`}
+                poster={`/media/video/tour-${tourId}.jpg`}
+                muted
+                loop
+                playsInline
+                autoPlay
+                preload="metadata"
+                data-autoplay
+                data-fallback={image}
+                aria-label={`${category} 현장 영상`}
               />
             </div>
             <figcaption>
@@ -266,10 +272,11 @@ export function RelatedTours({ current }: { current: TourId }) {
           .map((tour) => (
             <Link href={`/tours/${tour.id}`} key={tour.id}>
               <Image
-                src={`/images/product-smartstore-${tour.id}.webp`}
+                src={`/media/video/tour-${tour.id}.jpg`}
                 alt=""
                 width={96}
                 height={96}
+                style={{ objectFit: "cover" }}
               />
               <div>
                 <strong>{names[tour.id]}</strong>
