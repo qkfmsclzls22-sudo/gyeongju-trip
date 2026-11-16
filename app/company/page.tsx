@@ -103,7 +103,7 @@ export default function CompanyPage() {
         </section>
         <figure className="company-panorama">
           <Image
-            src="/images/tour-bulguksa-field.webp"
+            src="/media/photo/bulguksa-group.webp"
             alt="해설사와 여행객이 함께한 불국사 현장"
             fill
             priority

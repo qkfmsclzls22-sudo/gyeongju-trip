@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import {
   categories,
   isVisible,
@@ -86,12 +85,6 @@ export default function NowFeed({
             <h1>
               지금, <em>경주.</em>
             </h1>
-            <Image
-              src="/images/illustration-autumn.webp"
-              alt=""
-              width={170}
-              height={170}
-            />
           </div>
           <div className={styles.heroBottom}>
             <p>

@@ -317,3 +317,23 @@
     display: none;
   }
 }
+
+/* ---------- 2026-11 리뉴얼: 굵은 고딕 · 알약 버튼 · 라임 포인트 ---------- */
+.reader { font-family: var(--gt-kr); letter-spacing: -0.02em; }
+.reader h1 { font-family: var(--gt-kr); font-weight: 900; letter-spacing: -0.06em; font-size: clamp(32px, 5vw, 52px); line-height: 1.15; }
+.header { border-bottom: 2px solid #0b0b0c; }
+.header a { font-family: var(--gt-en); font-stretch: 125%; font-variation-settings: "wdth" 125; font-weight: 900; font-size: 17px; letter-spacing: 0.02em; }
+.actions button { border-radius: 999px; border: 1.5px solid #0b0b0c; padding: 0 18px; min-height: 46px; font-weight: 800; }
+.actions button:first-child { background: #0b0b0c; color: #c8f53a; }
+.tabs { border: 0; padding: 0; gap: 8px; }
+.tabs button { border-radius: 999px; background: #f4f4ef; padding: 0 18px; min-height: 44px; font-weight: 800; cursor: pointer; }
+.tabs button:hover { background: #c8f53a; }
+.day h2 { font-weight: 900; letter-spacing: -0.05em; font-size: 26px; }
+.day ol { border-top: 2px solid #0b0b0c; }
+.time strong { font-family: var(--gt-en); font-stretch: 110%; font-weight: 900; font-size: 26px; letter-spacing: -0.02em; }
+.day h3 { font-weight: 800; letter-spacing: -0.04em; }
+.details h2 { font-weight: 900; letter-spacing: -0.045em; }
+.reader > section:first-of-type > a { border-radius: 999px; background: #c8f53a; color: #0b0b0c; font-weight: 800; padding: 14px 24px; }
+.reader button:focus-visible, .reader a:focus-visible { outline: 3px solid #0b0b0c; outline-offset: 3px; }
+@media (max-width: 600px) { .header a { font-size: 15px; } }
+@media print { .header a { font-size: 14pt; } }

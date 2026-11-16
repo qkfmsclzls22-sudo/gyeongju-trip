@@ -134,8 +134,8 @@ const landmarkData: Record<
   bulguksa: {
     name: "불국사",
     subtitle: "유네스코 세계문화유산",
-    image: "/images/tour-bulguksa.jpg",
-    images: ["/images/tour-bulguksa.jpg"],
+    image: "/media/photo/bulguksa-aerial.webp",
+    images: ["/media/photo/bulguksa-aerial.webp"],
     period: "신라 경덕왕 10년 (751년) 창건",
     address: "경상북도 경주시 불국로 385",
     hours: "하절기 07:00~18:00 / 동절기 07:30~17:30",
@@ -353,7 +353,7 @@ export default async function LandmarkPage({
             {related && (
               <Link className="place-related" href={`/tours/${related.slug}`}>
                 <Image
-                  src={`/images/product-smartstore-${related.slug}.webp`}
+                  src={`/media/video/tour-${related.slug}.jpg`}
                   alt=""
                   width={112}
                   height={112}

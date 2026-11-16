@@ -110,9 +110,9 @@ export default function CheckoutForm({
     }
   }
   const image = {
-    museum: "/images/product-smartstore-museum.webp",
-    night: "/images/product-smartstore-night.webp",
-    bulguksa: "/images/product-smartstore-bulguksa.webp",
+    museum: "/media/video/tour-museum.jpg",
+    night: "/media/video/tour-night.jpg",
+    bulguksa: "/media/video/tour-bulguksa.jpg",
   }[tour.id];
   return (
     <div className="columns">
