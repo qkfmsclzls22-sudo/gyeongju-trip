@@ -10,7 +10,7 @@ interface Album {
   slides: { src: string; alt: string }[];
 }
 
-/** 투어별 현장 사진 (투어마다 3장, 옆으로 넘겨 본다) */
+/** 투어별 현장 사진 (투어마다 5장, 옆으로 넘겨 본다. 포토카드는 마지막 장) */
 const albums: Album[] = [
   {
     id: "museum",
@@ -18,6 +18,8 @@ const albums: Album[] = [
     slides: [
       { src: "/media/photo/tour-museum-1.webp", alt: "전시실 진열장 앞에 모여 해설을 듣는 참가자들" },
       { src: "/media/photo/tour-museum-2.webp", alt: "박물관 전시실에서 해설사의 설명을 듣는 참가자들" },
+      { src: "/media/photo/tour-museum-4.webp", alt: "성덕대왕신종 앞에 모여 해설을 듣는 참가자들" },
+      { src: "/media/photo/tour-museum-5.webp", alt: "금빛 관 꾸미개 진열장 앞에 모여 해설을 듣는 참가자들" },
       { src: "/media/photo/tour-museum-3.webp", alt: "반가사유상 앞에서 들어 보인 박물관 투어 포토카드" },
     ],
   },
@@ -27,6 +29,8 @@ const albums: Album[] = [
     slides: [
       { src: "/media/photo/tour-bulguksa-1.webp", alt: "불국사 담장 너머 석탑을 가리키며 해설을 듣는 가족" },
       { src: "/media/photo/tour-bulguksa-2.webp", alt: "다보탑 앞에 모여 해설을 듣는 참가자들" },
+      { src: "/media/photo/tour-bulguksa-4.webp", alt: "나무 그늘 아래에서 수신기로 해설을 듣는 단체 참가자들" },
+      { src: "/media/photo/tour-bulguksa-5.webp", alt: "불국사 대웅전 앞에서 AR 불상 체험으로 합장해 보는 참가자" },
       { src: "/media/photo/tour-bulguksa-3.webp", alt: "불국사 일주문 앞에서 들어 보인 불국사 투어 포토카드" },
     ],
   },
@@ -36,6 +40,8 @@ const albums: Album[] = [
     slides: [
       { src: "/media/photo/tour-night-1.webp", alt: "청사초롱을 들고 밤길을 걷는 참가자들" },
       { src: "/media/photo/tour-night-2.webp", alt: "해 질 녘 고분 앞에서 청사초롱을 켜고 모인 참가자들" },
+      { src: "/media/photo/tour-night-4.webp", alt: "청사초롱을 들고 밤 산책길에 모인 참가자들" },
+      { src: "/media/photo/tour-night-5.webp", alt: "어둠 속 첨성대 앞에서 붉게 빛나는 청사초롱" },
       { src: "/media/photo/tour-night-3.webp", alt: "청사초롱과 함께 들어 보인 야경투어 포토카드" },
     ],
   },
