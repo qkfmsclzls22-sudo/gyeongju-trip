@@ -5,6 +5,7 @@ import HeritageViewer, { type HeritageModel } from "./components/HeritageViewer"
 import { OpenChatLink, ReelPlayer } from "./components/home-client";
 import { GatMark, Giwa, Mounds } from "./components/motifs";
 import { ExperienceCards } from "./components/experience";
+import { TourPhotos } from "./components/tour-photos";
 import { TOURS, type TourId } from "@/lib/tours";
 import { corporateClients, schoolClients } from "@/lib/clients";
 
@@ -255,6 +256,26 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* 투어 현장 사진: 투어마다 옆으로 넘겨 보는 슬라이드 */}
+      <section id="moments" className="gt-sec" style={{ paddingTop: 0 }} aria-labelledby="moments-title">
+        <div className="gt-wrap">
+          <div className="gt-head split">
+            <div>
+              <p className="gt-eyebrow">투어 현장</p>
+              <h2 id="moments-title" className="gt-h2" data-reveal>
+                사진으로 먼저 걷는
+                <br />
+                <span className="gt-gold">경주트립 투어.</span>
+              </h2>
+            </div>
+            <p className="gt-lead" data-reveal>
+              실제 투어에서 담은 장면들입니다. 사진을 옆으로 넘겨 보세요.
+            </p>
+          </div>
+          <TourPhotos />
         </div>
       </section>
 
